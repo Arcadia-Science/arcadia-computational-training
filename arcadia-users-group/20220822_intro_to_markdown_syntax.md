@@ -56,11 +56,12 @@ text `Inline Code` text
     makes full-width
     standard code blocks
 
-```
+\```
+# (remove the slashes above and below the back ticks to render properly
 # three backticks also makes a standard full-width code block
 library(dplyr)
 library(readr)
-```
+\```
 
 
 ---
