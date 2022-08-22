@@ -7,7 +7,7 @@ AUG is a two hour weekly (virtual) meetup.
 We will periodically offer 20 minute - 1 hour training sessions. 
 The rest of the time will be open office hour-style time to ask and answer questions and to co-work on data-relevant problems.
 
-What is a Users’ group? i
+What is a Users’ group?
 A users’ group is a club focused on a computer-related technology. 
 Unlike python users’ groups (PUGs) and R users’ groups (RUGs), AUG is language- and technology-agnostic. 
 We focus on anything Arcadians need to be successful with their data-related biology.
