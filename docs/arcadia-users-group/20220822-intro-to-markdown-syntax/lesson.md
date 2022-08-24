@@ -18,7 +18,7 @@ We'll use HackMD to practice writing markdown syntax and to watch it render inst
 
 Open a new HackMD document and make sure "Both" mode is selected at the top of the document viewer.
 
-![](https://i.imgur.com/V6QD8yj.png)
+![](hackmd_both.png)
 
 Copy and paste the following text into the left hand panel.
 The text will auto-render on the right hand panel and demonstrate how the markdown language is interpreted and displayed.
@@ -121,7 +121,7 @@ Most repositories contain a README in the main folder that describes the content
 See the image below for an example of a README that was auto-rendered by GitHub.
 Sometimes, folders contained within the repository will also contain a README describing the contents of that specific folder.
 
-![](https://i.imgur.com/1zgX4nE.jpg)
+![](readme-side-by-side-with-source.png)
 
 [GitHub issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues) and [pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) also support markdown syntax.
 GitHub issues track ideas, feedback, tasks, or bugs for a repository.
@@ -145,7 +145,7 @@ Each platform is briefly introduced below, followed by some platform-specific ma
     + user name tags: You can generate a name tag (e.g. to label a specific addition to the document) using `> [name=taylorreiter]`.
 + RMarkdown: Rmarkdown weaves together code, code outputs, and text into a single document.
     + Documents begin with a yaml header to specify how the document should be rendered.
-    + Code blocks begin with three back ticks (`````), but code blocks that should be executed start with `````{r}`. The content inside the curly brackets controls the run and rendering behavior of a specific code block and its outputs.
+    + Code blocks begin with three back ticks, but code blocks that should be executed start with `{r}` after the three back ticks. The content inside the curly brackets controls the run and rendering behavior of a specific code block and its outputs.
 
 ## More on markdown
 
