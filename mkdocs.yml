@@ -7,10 +7,18 @@ edit_uri: ""
 copyright: 'Copyright &copy; 2022 <a href="https://www.arcadia.science/">Arcadia Science</a>'
 
 # change directory names here to reflect directories in the repository
-docs_dir: doc
+docs_dir: docs
 site_dir: site
+
+include_sidebar: true
 
 theme:
   name: lux
 
-
+# organize site structure and give a title for each page
+# paths are relative to the docs directory
+nav:
+    - "Home": "index.md"
+    - "Arcadia Users Group": "arcadia-users-group/overview.md"
+    - "Workshops": "workshops/overview.md"
+    - "Contribute": "contribute.md"
