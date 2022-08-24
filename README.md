@@ -15,4 +15,13 @@ The file [mkdocs.yml](mkdocs.yml) controls the website layout and organization o
 This website uses the [Bootswatch](https://mkdocs.github.io/mkdocs-bootswatch/) [lux](https://mkdocs.github.io/mkdocs-bootswatch/#lux) theme.
 The [installation & usage](https://mkdocs.github.io/mkdocs-bootswatch/#installation-usage) instructions were added to the [.github/workflows/gh-pages.yml](.github/workflows/gh-pages.yml) as the first `run` directive.
 
+For complete documentation on getting started with MkDocs, see their [getting started documentation](https://www.mkdocs.org/getting-started/).
+If you have conda and mamba installed, you can run the following to use the MkDocs built-in dev-server:
 
+```
+mamba create -n mkdocs mkdocs mkdocs-bootswatch
+conda activate mkdocs
+mkdocs serve
+```
+
+Then in your browser, navigate to the URL printed to standard out.
