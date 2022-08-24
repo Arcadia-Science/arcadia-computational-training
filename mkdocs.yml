@@ -1,0 +1,16 @@
+site_name: Arcadia Science Computational Training
+site_url: http://arcadia-science.github.io/arcadia-computational-training
+repo_name: arcadia-computational-training
+repo_url: https://github.com/arcadia-science/arcadia-computational-training
+edit_uri: ""
+
+copyright: 'Copyright &copy; 2022 <a href="https://www.arcadia.science/">Arcadia Science</a>'
+
+# change directory names here to reflect directories in the repository
+docs_dir: doc
+site_dir: site
+
+theme:
+  name: lux
+
+

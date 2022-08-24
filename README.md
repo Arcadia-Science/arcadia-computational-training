@@ -4,3 +4,15 @@ This repository houses computational training materials developed for or deliver
 The repository is still a work in progress so things may shift around as we settle on an organizational structure.
 
 The content in this repository is meant to present a sensible set of defaults for common computational tasks in biology at the time that the content is added to the repo.
+
+
+## Building and deploying a site with MkDocs
+
+[MkDocs](https://www.mkdocs.org/) is static site generator that integrates nicely with GitHub to build websites from repositories.
+
+The file [mkdocs.yml](mkdocs.yml) controls the website layout and organization of the website (as opposed to this being controlled by the file structure in the repository).
+
+This website uses the [Bootswatch](https://mkdocs.github.io/mkdocs-bootswatch/) [lux](https://mkdocs.github.io/mkdocs-bootswatch/#lux) theme.
+The [installation & usage](https://mkdocs.github.io/mkdocs-bootswatch/#installation-usage) instructions were added to the [.github/workflows/gh-pages.yml](.github/workflows/gh-pages.yml) as the first `run` directive.
+
+
