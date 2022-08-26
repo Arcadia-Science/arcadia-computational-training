@@ -10,10 +10,11 @@ copyright: 'Copyright &copy; 2022 <a href="https://www.arcadia.science/">Arcadia
 docs_dir: docs
 site_dir: site
 
-include_sidebar: true
-
 theme:
   name: lux
+
+extra_css: 
+    - css/extra.css
 
 # organize site structure and give a title for each page
 # paths are relative to the docs directory
