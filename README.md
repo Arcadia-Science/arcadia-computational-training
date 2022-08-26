@@ -16,10 +16,10 @@ This website uses the [Bootswatch](https://mkdocs.github.io/mkdocs-bootswatch/) 
 The [installation & usage](https://mkdocs.github.io/mkdocs-bootswatch/#installation-usage) instructions were added to the [.github/workflows/gh-pages.yml](.github/workflows/gh-pages.yml) as the first `run` directive.
 
 For complete documentation on getting started with MkDocs, see their [getting started documentation](https://www.mkdocs.org/getting-started/).
-If you have conda and mamba installed, you can run the following to use the MkDocs built-in dev-server:
+If you have conda (version `4.13.0`) and mamba (version `0.25.0`) installed, you can run the following to use the MkDocs built-in dev-server:
 
 ```
-mamba create -n mkdocs mkdocs mkdocs-bootswatch
+mamba create -n mkdocs mkdocs=1.3.0 mkdocs-bootswatch=1.1
 conda activate mkdocs
 mkdocs serve
 ```
