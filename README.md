@@ -8,7 +8,7 @@ The content in this repository is meant to present a sensible set of defaults fo
 
 ## Building and deploying a site with MkDocs
 
-[MkDocs](https://www.mkdocs.org/) is static site generator that integrates nicely with GitHub to build websites from repositories.
+[MkDocs](https://www.mkdocs.org/) is a static site generator that integrates nicely with GitHub to build websites from repositories.
 
 The file [mkdocs.yml](mkdocs.yml) controls the website layout and organization of the website (as opposed to this being controlled by the file structure in the repository).
 
