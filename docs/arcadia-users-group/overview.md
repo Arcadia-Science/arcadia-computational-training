@@ -20,7 +20,7 @@ The schedule is subject to change.
 
 | Date | Tutorial | Description |
 |------|----------|-------------|
-| Aug 29, 2022  | Introduction to project organization and management |
+| Aug 29, 2022  | [Project organization and file & resource management](20220829-project-organization/lesson.md) |
 | Sept 5, 2022  | Labor day, no meeting |
 | Sept 12, 2022 | Introduction to the command line |
 | Sept 19, 2022 | How to use S3 with the command line interface (CLI) |
