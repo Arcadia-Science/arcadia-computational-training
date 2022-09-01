@@ -17,14 +17,12 @@ This is as opposed to controlling your computer using a graphical user interface
 Many different terms are used to refer to the shell or its computing environment. 
 Some commons ones are included below with their definitions.
 
-|| | ||
-||:-------------:|:------------------:||
-|| **Term**     | **What it is**   ||
-|| **`shell`** | what we use to talk to the computer; anything where you are pointing and clicking with a mouse is a **G**raphical **U**ser **I**nterface (**GUI**) shell; something with text only is a **C**ommand **L**ine **I**nterface (**CLI**) shell ||  
-|| **`command line`** | a text-based environment capable of taking input and providing output (a "terminal" is the same idea) ||  
-|| **`Unix`** | a family of operating systems ||  
-|| **`bash`** | the most common programming language used at a Unix command-line ||  
-|| | ||
+| **Term**     | **What it is**  |
+|:------------:|:---------------:|
+| **`shell`** | what we use to talk to the computer; anything where you are pointing and clicking with a mouse is a **G**raphical **U**ser **I**nterface (**GUI**) shell; something with text only is a **C**ommand **L**ine **I**nterface (**CLI**) shell | 
+| **`command line`** | a text-based environment capable of taking input and providing output (a "terminal" is the same idea) |
+| **`Unix`** | a family of operating systems |
+| **`bash`** | the most common programming language used at a Unix command-line |
 
 
 ## Accessing the shell for this lesson
@@ -266,37 +264,31 @@ ls
 <center>
 <h4><i>Terms introduced:</i></h4>
 
-|| | ||
-||:----------:|:------------------:||
-|| **Term**     | **What it is**          ||
-|| **`path`** | the address system the computer uses to keep track of files and directories ||
-|| **`root`** | where the address system of the computer starts, **`/`** ||
-|| **`home`** | where the current user's location starts, **`~/`**||
-|| **`absolute path`** | an address that starts from a specified location, i.e. root, or home ||
-|| **`relative path`** | an address that starts from wherever we are ||
-|| **`tab completion`** | auto complete file paths once you start typing ||
-|| | ||
+| **Term**     | **What it is**    |
+||:----------:|:------------------:|
+| **`path`** | the address system the computer uses to keep track of files and directories |
+| **`root`** | where the address system of the computer starts, `/`|
+| **`home`** | where the current user's location starts, `~/`|
+| **`absolute path`** | an address that starts from a specified location, i.e. root, or home |
+| **`relative path`** | an address that starts from wherever we are |
+| **`tab completion`** | auto complete file paths once you start typing |
 
 <h4><i>Commands introduced:</i></h4>
 
-|| | ||
-||:----------:|:------------------:||
-||**Command**     |**Function**          ||
-||**`head`**| prints out the first lines of a file ||
-||**`pwd`**       |tells us where we are in the computer (**p**rint **w**orking **d**irectory)||
-||**`ls`**        |lists contents of a directory (**l**i**s**t)||
-||**`cd`**| **c**hange **d**irectories ||
-|| | ||
+|**Command**     |**Function**          |
+|:----------:|:------------------:|
+|**`head`**| prints out the first lines of a file |
+|**`pwd`**       |tells us where we are in the computer (**p**rint **w**orking **d**irectory)|
+|**`ls`**        |lists contents of a directory (**l**i**s**t)|
+|**`cd`**| **c**hange **d**irectories |
 
 <h4><i>Special characters introduced:</i></h4>
 
-|| | ||
-||:----------:|:------------------:||
-||**Characters**     |  **Meaning**  ||
-|| **`/`** | the computer's root location ||
-|| **`~/`** | the user's home location ||
-|| **`../`** | specifies a directory one level "above" the current working directory ||
-|| | ||
+|**Characters**     |  **Meaning**  |
+|:----------:|:------------------:|
+| **`/`** | the computer's root location |
+| **`~/`** | the user's home location |
+| **`../`** | specifies a directory one level "above" the current working directory |
 
 </center>
 
