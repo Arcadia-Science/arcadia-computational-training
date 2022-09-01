@@ -265,7 +265,7 @@ ls
 <h4><i>Terms introduced:</i></h4>
 
 | **Term**     | **What it is**    |
-||:----------:|:------------------:|
+|:----------:|:------------------:|
 | **`path`** | the address system the computer uses to keep track of files and directories |
 | **`root`** | where the address system of the computer starts, `/`|
 | **`home`** | where the current user's location starts, `~/`|
