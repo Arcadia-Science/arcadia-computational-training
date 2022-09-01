@@ -2,10 +2,10 @@
 
 ## What is the shell and why do we care about it?
 
-(modified from [The Carpentries](https://datacarpentry.org/shell-genomics/01-introduction/index.html#what-is-a-shell-and-why-should-i-care))  
-
 A shell is a computer program that presents a command line interface which allows you to control your computer using commands entered with a keyboard.
 This is as opposed to controlling your computer using a graphical user interface (GUI) with a mouse/keyboard/touchscreen combination.
+
+Why should we care about learning the shell?
 
 * Many bioinformatics tools can only be used through a command-line interface, and/or have extra capabilities in the command-line version that are not available in the GUI (e.g. BLAST).  
 * It makes our work less error-prone. When humans do the same thing a hundred different times (or even ten times), we're likely to make a mistake. Your computer can do the same thing a thousand times with no mistakes. This also frees us up to do other things we can't automate, like the science part.  
@@ -36,10 +36,11 @@ This will launch a computer in the cloud.
 You'll interact with this computer through your browser.
 Click the Terminal button to launch a Terminal that we will work with for the rest of the lesson.
 
-![jupyterhub.png]
+![](jupyterhub.png)
 
 <details>
-  <summary>More information on binder and what happens when you click the **launch binder** button.</summary>
+  <summary>More information on binder and what happens when you click the launch binder button.</summary>
+
 binder is a service that turns a Git repo into a collection of interactive notebooks. 
 When a repository is configured to run as a binder, build a docker image that contains all of the specified software installations.
 binder launches an "instance" in the cloud (either on Google Cloud or AWS typically) with the docker image.
@@ -48,6 +49,7 @@ You interact with the image in your browser.
 binders are ephemeral instances -- after a period of inactivity, the instance is automatically shut down, and any work you have done will be lost.
 You're able to download files from your work before the instance is shut down if you do want to save anything.
 
+
 You may notice that this instance already has a bunch of files on it. 
 And that these files look suspiciously exactly like the files in the GitHub repository [Arcadia-Science/arcadia-computational-training](https://github.com/arcadia-science/arcadia-computational-training).
 That's because that's the repository we used to build the binder from. 
@@ -55,7 +57,7 @@ That's because that's the repository we used to build the binder from.
 
 ## Running commands
 
-A "command" is a set of typed commands entered at the command line prompt. 
+A "command" is a set of typed instructions entered at the command line prompt. 
 The general syntax working at the command line goes like this: `command` `argument`.
 Arguments (which can also be referred to as "flags" or "options" or "parameters") can be optional or required based on the command being used.
 
@@ -103,6 +105,7 @@ We can make the `ls` output more comprehensible by using the **flag** `-F`, whic
 ```
 ls -F
 ```
+Which produces:
 ```
 docs/  LICENSE  Makefile  mkdocs.yml  README.md
 ```
@@ -113,6 +116,7 @@ If we want to preview the contents of these files, we can start by using `head`.
 head README.md
 ```
 
+This outputs the first 10 lines of the file `README.md`:
 ```
 # Arcadia Computational Training
 
@@ -125,15 +129,14 @@ The content in this repository is meant to present a sensible set of defaults fo
 ## Building and deploying a site with MkDocs
 ```
 
-We see the first 10 lines of the `README.md` file.
-
 What if we only wanted to see the first 5 lines?
 We could use the `-n` flag:
 
 ```
-head -n README.md
+head -n 5 README.md
 ```
 
+Which would then only print the first 5 lines of the `README.md` file to the terminal:
 ```
 # Arcadia Computational Training
 
@@ -142,21 +145,13 @@ The repository is still a work in progress so things may shift around as we sett
 
 ```
 
-If we instead wanted to see the last few lines of a file, we could use `tail`:
+If we instead wanted to see the last line of a file, we could use `tail`:
 ```
-tail README.md
-```
-
-```
-For complete documentation on getting started with MkDocs, see their [getting started documentation](https://www.mkdocs.org/getting-started/).
-If you have conda (version `4.13.0`) and mamba (version `0.25.0`) installed, you can run the following to use the MkDocs built-in dev-server:
-
-```
-mamba create -n mkdocs mkdocs=1.3.0 mkdocs-bootswatch=1.1
-conda activate mkdocs
-mkdocs serve
+tail -n 1 README.md
 ```
 
+Which shows:
+```
 Then in your browser, navigate to the URL printed to standard out.
 ```
 
