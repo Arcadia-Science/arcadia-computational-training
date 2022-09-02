@@ -282,6 +282,7 @@ ls ../..
 |**Command**     |**Function**          |
 |:----------:|:------------------:|
 |**`head`**| prints out the first lines of a file |
+|**`tail`**| prints out the last lines of a file |
 |**`pwd`**       |tells us where we are in the computer (**p**rint **w**orking **d**irectory)|
 |**`ls`**        |lists contents of a directory (**l**i**s**t)|
 |**`cd`**| **c**hange **d**irectories |
