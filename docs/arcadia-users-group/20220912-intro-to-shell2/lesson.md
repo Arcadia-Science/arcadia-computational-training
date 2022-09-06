@@ -19,7 +19,7 @@ Click the Terminal button to launch a Terminal that we will work with for the re
 <details>
   <summary>More information on binder and what happens when you click the launch binder button.</summary>
 
-binder is a service that turns a Git repo into a collection of interactive notebooks. 
+Binder is a service that turns a Git repo into a collection of interactive notebooks. 
 When a repository is configured to run as a binder, passing the GitHub repository URL to binder starts the binder-building process.
 binder first builds a docker image that contains all of the software installations specified by a special set of files in the GitHub repository.
 A docker image is a set of instructions that are used to create a docker container.
@@ -28,7 +28,7 @@ Armed with the docker container, binder launches an "instance" in the cloud (eit
 Binder does some additional work in the background -- if no software configuration files are provided in the GitHub repo, or if those contain a minimal set of software, binder will by default include JupyterHub in the docker.
 When the cloud instance is launched, this is the screen you interact with.
 You interact with the cloud instance  in your browser.
-binders are ephemeral instances -- after a period of inactivity, the instance is automatically shut down, and any work you have done will be lost.
+Binders are ephemeral instances -- after a period of inactivity, the instance is automatically shut down, and any work you have done will be lost.
 You're able to download files from your work before the instance is shut down if you do want to save anything.
 
 
@@ -166,7 +166,7 @@ wc -l
 
 The options below allow you to select which counts are printed.
 * `-l`, `--lines` - print the number of lines.
-* `-w``, `--words` - print the number of words.
+* `-w`, `--words` - print the number of words.
 * `-m`, `--chars` - print the number of characters.
 * `-c`, `--bytes` - print the number of bytes.
 * `-L`, `--max-line-length` - print the length of the longest line.
