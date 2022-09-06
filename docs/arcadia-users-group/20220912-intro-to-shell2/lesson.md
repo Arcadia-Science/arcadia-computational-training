@@ -268,6 +268,18 @@ If the directory is not empty, **`rmdir`** will give you an error.
 rmdir docs/
 ```
 
+The `rm` command can also be used to delete a directory, but it needs the flags `-rf` added to.
+`-r` stands for recursive (meaning delete all files and folders located within the specified directory), while the `f` stands for for force.
+Unlike `rmdir`, this command will not check whether you want the directory deleted before removing it and it will remove a directory even if it isn't empty. 
+It's good to get into the habit of mentally or actually checking where you are and what you're deleting before removing something with `rm -rf` as this command can delete A LOT of files very quickly if you enter the wrong thing.
+
+```
+mkdir subset
+ls
+rm -rf subset
+```
+
+
 ## Summary
 
 <h4><i>Commands introduced:</i></h4>
