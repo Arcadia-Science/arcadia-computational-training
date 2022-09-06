@@ -68,7 +68,7 @@ repo_name: arcadia-computational-training
 repo_url: https://github.com/arcadia-science/arcadia-computational-training
 edit_uri: ""
 
-copyright: 'Copyright &copy; 2022 <a href="https://www.arcadia.science">Arcadia Science</a>'
+copyright: 'Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>'
 
 # change directory names here to reflect directories in the repository
 docs_dir: docs
@@ -136,7 +136,7 @@ grep "Arcadia" mkdocs.yml
 
 ```
 site_name: Arcadia Science Computational Training
-copyright: 'Copyright &copy; 2022 <a href="https://www.arcadia.science">Arcadia Science</a>'
+copyright: 'Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>'
     - "Arcadia Users Group": "arcadia-users-group/overview.md"
 ```
 
