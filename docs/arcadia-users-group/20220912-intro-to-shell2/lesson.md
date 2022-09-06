@@ -17,7 +17,7 @@ Click the Terminal button to launch a Terminal that we will work with for the re
 ![](../20220906-intro-to-shell1/jupyterhub.png)
 
 <details>
-  <summary>More information on binder and what happens when you click the launch binder button.</summary>
+  <summary><b>More information on binder and what happens when you click the launch binder button.</b></summary>
 
 Binder is a service that turns a Git repo into a collection of interactive notebooks. 
 When a repository is configured to run as a binder, passing the GitHub repository URL to binder starts the binder-building process.
@@ -33,9 +33,11 @@ You're able to download files from your work before the instance is shut down if
 
 
 You may notice that this instance already has a bunch of files on it. 
-And that these files look suspiciously exactly like the files in the GitHub repository [Arcadia-Science/arcadia-computational-training](https://github.com/arcadia-science/arcadia-computational-training).
+And that these files look suspiciously exactly like the files in the GitHub repository <a href="https://github.com/arcadia-science/arcadia-computational-training">Arcadia-Science/arcadia-computational-training</a>.
 That's because that's the repository we used to build the binder from. 
 </details>
+
+<br />
 
 ## Interrogating the content of files 
 
@@ -66,7 +68,7 @@ repo_name: arcadia-computational-training
 repo_url: https://github.com/arcadia-science/arcadia-computational-training
 edit_uri: ""
 
-copyright: 'Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>'
+copyright: 'Copyright &copy; 2022 <a href="https://www.arcadia.science">Arcadia Science</a>'
 
 # change directory names here to reflect directories in the repository
 docs_dir: docs
@@ -88,15 +90,16 @@ nav:
 ```
 
 <details>
-  <summary>More information on YAML (`.yml`, `.yaml`) file formats.</summary>
-[YAML](https://yaml.org) originally stood for Yet Another Markup Language as it was originally developed and released around the same time as many other markup languages (HTML, etc).
+  <summary><b>More information on YAML (<code>.yml</code>, <code>.yaml</code>) file formats.</b></summary>
+<a href="https://yaml.org">YAML</a> originally stood for Yet Another Markup Language as it was originally developed and released around the same time as many other markup languages (HTML, etc).
 Now, it stands for YAML Ain't A Markup Language.  
-Unlike [Markdown](../20220822-intro-to-markdown-syntax/lesson.md) which strives to be human-readable and parseable into pretty documents, YAML is a data-oriented.
+Unlike <a href="https://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20220822-intro-to-markdown-syntax/lesson/">Markdown</a> which strives to be human-readable and parseable into pretty documents, YAML is a data-oriented.
 YAML is a human-friendly data serialization language for all programming language.
 It's a file format commonly used to specify configuration files.
 Configuration files specify where a computer program can find files it needs, parameters for when the program runs, or other metadata for a program.
 </details>
 
+<br />
 In this case, the output of the file is palatable; we can grok the whole files contents by printing it all to stdout.
 
 Let's use `cat` on a longer file:
@@ -108,7 +111,7 @@ cat docs/arcadia-users-group/20220822-intro-to-markdown-syntax/lesson.md
 When we run this command, the output takes up more than we can see without scrolling.
 If we were to run `cat` on a really long file, it may take seconds, minutes, or even hours to print all of the contents to the screen. 
 Enter `less`.
-`less` is a terminal pager that shows a files contents one screen at a time.
+`less` is a terminal pager that shows a file's contents one screen at a time.
 
 ```
 less docs/arcadia-users-group/20220822-intro-to-markdown-syntax/lesson.md
@@ -133,7 +136,7 @@ grep "Arcadia" mkdocs.yml
 
 ```
 site_name: Arcadia Science Computational Training
-copyright: 'Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>'
+copyright: 'Copyright &copy; 2022 <a href="https://www.arcadia.science">Arcadia Science</a>'
     - "Arcadia Users Group": "arcadia-users-group/overview.md"
 ```
 
@@ -165,10 +168,134 @@ wc -l
 ```
 
 The options below allow you to select which counts are printed.
+
 * `-l`, `--lines` - print the number of lines.
 * `-w`, `--words` - print the number of words.
 * `-m`, `--chars` - print the number of characters.
 * `-c`, `--bytes` - print the number of bytes.
 * `-L`, `--max-line-length` - print the length of the longest line.
 
+## Copying, moving, and renaming files
+
+The commands **`cp`** and **`mv`** (**c**o**p**y and **m**o**v**e) have the same basic structure. 
+They both require two positional arguments – the first is the file you want to act on, and the second is where you want it to go (which can include the name you want to give it). 
+
+
+To see how this works, let's make a copy of "example.txt":
+
+```
+ls
+cp mkdocs.yml mkdocs_copy.yml
+ls
+```
+
+By giving the second argument a name and nothing else (meaning no path in front of the name), we are implicitly saying we want it copied to where we currently are. 
+
+To make a copy and put it somewhere else, like in our subdirectory `docs`, we could change the second positional argument using a **relative path** ("relative" because it starts from where we currently are):
+
+```
+ls docs
+cp mkdocs.yml docs/mkdocs_copy.yml
+ls docs
+```
+
+To copy a file to that subdirectory but keep the same name, we could type the whole name out, but we can also provide the directory but leave off the file name:
+
+```
+cp mkdocs.yml docs/
+ls docs/
+```
+
+If we wanted to copy something *from somewhere else to our current working directory* and keep the same name, we can use another special character, a period (**`.`**), which specifies the current working directory:
+
+```bash
+ls
+cp docs/index.md .
+ls
+```
+
+The **`mv`** command is used to move files. 
+Let's move the `README.md` file into the `docs` subdirectory:
+
+```
+ls
+ls docs/
+mv README.md docs/
+ls
+ls docs/
+```
+
+The **`mv`** command is also used to *rename* files. 
+This may seem strange at first, but remember that the path (address) of a file actually includes its name too (otherwise everything in the same directory would have the same path). 
+
+```
+ls
+mv mkdocs_copy.yml mkdocs_new.yml
+ls
+```
+
+To delete files there is the **`rm`** command (**r**e**m**ove). 
+This command requires at least one argument specifying the file we want to delete. 
+Typically, this command does not ask you to confirm your actions and files are permanently deleted instead of being moved to a `Trash` directory.
+
+```
+ls
+rm mkdocs_new.yml
+ls
+```
+
+## Creating and removing directories
+
+We can make a new directory with the command **`mkdir`** (for **m**a**k**e **dir**ectory): 
+
+```
+ls
+mkdir subset
+ls
+```
+
+And similarly, directories can be deleted with **`rmdir`** (for **r**e**m**ove **dir**ectory):
+
+```bash
+rmdir subset/
+ls
+```
+
+The command line is a little more forgiving when trying to delete a directory. 
+If the directory is not empty, **`rmdir`** will give you an error. 
+
+```bash
+rmdir docs/
+```
+
+## Summary
+
+<h4><i>Commands introduced:</i></h4>
+
+|**Command**     |**Function**          |
+|:----------:|:------------------:|
+|**`cat`** | prints the contents of a file to `stdout` |
+|**`less`**| allows us to browse a file (exit with <kbd>q</kbd> key) |
+|**`wc`** | count lines, words, and characters in a file |
+|**`cp`** | copy a file or directory |
+|**`mv`**| move or rename a file or directory |
+|**`rm`**| delete a file or directory |
+|**`mkdir`**| create a directory |
+|**`rmdir`**| delete a directory |
+
+<h4><i>Special characters introduced:</i></h4>
+
+|**Characters**     |  **Meaning**  |
+|:----------:|:------------------:|
+| **`.`** | specifies the current working directory |
+
+</center>
+
+## Credits
+
+This lesson was modified from the following sources:
+
+* ANGUS 2019:
+    * https://angus.readthedocs.io/en/2019/shell_intro/shell-six-glorious-commands-04.html
+    * https://angus.readthedocs.io/en/2019/shell_intro/shell-working-02.html
 
