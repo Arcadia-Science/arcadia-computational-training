@@ -1,0 +1,10 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Created mamba environment and start the dev server
+    init: |
+      mamba env create -n mkdocs --file environment.yml
+    command: |
+      conda activate mkdocs
+      mkdocs serve
