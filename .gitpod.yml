@@ -8,3 +8,20 @@ tasks:
     command: |
       conda activate mkdocs
       mkdocs serve
+
+# github:
+#   prebuilds:
+#     # enable for the default branch
+#     master: true
+#     # enable for all branches in this repo
+#     branches: true
+#     # enable for pull requests coming from this repo
+#     pullRequests: false
+#     # enable for pull requests coming from forks
+#     pullRequestsFromForks: false
+#     # add a check to pull requests
+#     addCheck: false
+#     # add a "Review in Gitpod" button as a comment to pull requests
+#     addComment: false
+#     # add a "Review in Gitpod" button to the pull request's description
+#     addBadge: false
