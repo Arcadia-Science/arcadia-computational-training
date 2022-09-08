@@ -1,0 +1,7 @@
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - mkdocs=1.3.0
+  - mkdocs-bootswatch=1.1
