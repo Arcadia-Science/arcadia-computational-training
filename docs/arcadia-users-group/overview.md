@@ -20,7 +20,7 @@ The schedule is subject to change.
 
 | Date | Tutorial | Description |
 |------|----------|-------------|
-| Sept 12, 2022 | Introduction to the command line part 2 | This next lesson on the command line covers how to create and (re)move directories and files (`mkdir`, `rmdir`, `cp`, `mv`, `rm`) and how to investigate the contents of a file thoroughly (`less`, `wc`, `grep`) |
+| Sept 12, 2022 | [Introduction to the command line part 2](20220912-intro-to-shell2/lesson.md) | This next lesson on the command line covers how to create and (re)move directories and files (`mkdir`, `rmdir`, `cp`, `mv`, `rm`) and how to investigate the contents of a file thoroughly (`less`, `wc`, `grep`) |
 | Sept 19, 2022 | How to use S3 with the command line interface (CLI) | Arcadia uses Amazon Web Services S3 to store some files remotely. This lesson introduces a tools that enables command line access to S3 |
 | Sept 26, 2022 | Tentative: How to build a website with GitHub and MkDocs | Following our Git and GitHub workshops, this lesson will help you flex your Git skills by demonstrating how to build a website using Git, GitHub, and MkDocs. | 
 | Oct 3, 2022   | Conda for software installation | In bioinformatics, we often use mulitiple software tools to answer a research question. In this lesson, we will learn how to use conda to install software. Conda is a software installation and management system that helps us conduct reproducible analyses while avoiding software conflicts. | 
