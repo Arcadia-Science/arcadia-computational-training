@@ -214,6 +214,19 @@ mv config .ssh/
 
 ## Getting started with version control
 
+Now that we've established a secure connection between our computers and GitHub, it's time to learn how to start a version controlled repository and add files to it.
+We'll start by creating a repository on GitHub.
+
+1. Navigate to [GitHub](www.github.com).
+2. Click on the plus sign in the upper right of the screen.
+3. Select "New repository" from the drop-down menu.
+4. On the "Create a new repository" page, choose a name for your repository.
+   For this workshop, name the repository `2022-my-first-repo`. 
+   A repository can have any valid directory name, but putting the year at the beginning is a good practice because it makes it clear when the repo was created.
+5. Check the box "Add a README file".
+6. Click the green "Create repository" button at the bottom of the page.
+
+
 #### Creating your first repository on GitHub
 
 
