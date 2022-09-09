@@ -127,17 +127,17 @@ By convention, key files are usually stored in a `.ssh` directory, not in a `ssh
 The difference is the `.ssh` folder is hidden from view by default.
 We need to download this file to our local computer however, and to do that, we need to be able to see if in the file panel viewer of our binder jupyter hub, so we'll put it in an `ssh` folder instead.
 
-The `ssh-keygen` program will prompt you to input a key file name (below, we use `20220909-github`) and a passphrase.
-It's ok to leave the passphrase blank.
+The `ssh-keygen` program will prompt you to input a key file name (below, we use `20220909-github-workshop`) and a passphrase.
+It's ok to leave the passphrase blank; if you put in a passphrase, you'll need to remember it and type it every time you use the key file.
 
 ```
 ssh-keygen
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/jovyan/.ssh/id_rsa): 20220909-github
+Enter file in which to save the key (/home/jovyan/.ssh/id_rsa): 20220909-github-workshop
 Enter passphrase (empty for no passphrase): 
 Enter same passphrase again: 
-Your identification has been saved in 20220909-github.
-Your public key has been saved in 20220909-github.pub.
+Your identification has been saved in 20220909-github-workshop.
+Your public key has been saved in 20220909-github-workshop.pub.
 The key fingerprint is:
 SHA265:
 The key's randomart image is:
@@ -155,29 +155,62 @@ We see:
 total 16K
 drwxr-xr-x 2 jovyan jovyan 4.0K Sep  9 20:21 .
 drwxr-xr-x 1 jovyan jovyan 4.0K Sep  9 20:20 ..
--rw------- 1 jovyan jovyan 1.7K Sep  9 20:21 20220909-github
--rw-r--r-- 1 jovyan jovyan  445 Sep  9 20:21 20220909-github.pub
+-rw------- 1 jovyan jovyan 1.7K Sep  9 20:21 20220909-github-workshop
+-rw-r--r-- 1 jovyan jovyan  445 Sep  9 20:21 20220909-github-workshop.pub
 ```
 
 We are the only user who has read access to our private key file, so our permissions are fine.
 
 When we ran `ls`, we saw that the `ssh-keygen` program generated two files. 
-The first file `20220909-github` is the private key file and should never be shared.
-The second file `20220909-github.pub` is the public key file that we'll upload to GitHub. 
+The first file `20220909-github-workshop` is the private key file and should never be shared.
+The second file `20220909-github-workshop.pub` is the public key file that we'll upload to GitHub. 
 We can tell it's the public key file because it ends in `.pub`.
 
 Next, we need to get our public key file uploaded to GitHub so we can use it for authentication.
-To do that, we'll first download it to our local computers and then we'll upload it to our GitHub accounts.
+GitHub will need the text in the public key file.
+You can view it by running `cat`:
 
-Click on the `ssh` folder:
+```
+cat 20220909-github-workshop.pub
+```
 
-![](ssh_folder.png){ width="600" }
+Your public key file text should look something like this:
+```
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtrKIjBDjfAt3sIfHOPKEE/RkcuPAfdl0xO7M+CBQNWuYqST2bW20yRFu4lpCyNuz7uG12DgIVMmLMdlfGlGjJpj/B/f3FUw6XxIaAzQIfYtg+Q+qJ0M2GSaooeEoKi9lgiJsR69fwAoVPgI0kyyA4253F/SLVD/QpWMQgcN5m43tPztc9vp1Lt5u8PZmZJUBMyMolOgtvRUYDKx7MRb9nWO/Rmzeibj96hLEm8GHiERRGDpHK1BOryiq2jI9C2+o3ujj+SWCeqRVTdBp7raSzhwPWCsLpNRX1MNQ9t+807eDV8pUDnJ6gfHZndcQ23k+OMwhTdhPk74drz2k5X+/h jovyan@jupyter-arcadia-2dscience-2dtional-2dtraining-2dgi36ozk6
+```
 
-And then use the file navigator to download the file to your local computer. 
-It doesn't matter where you save it, but make sure you know what the location is.
+To upload the key file text, navigate to GitHub and click on settings.
 
-![](ssh_pub_download.png){ width="525" }
+![](github_settings.png){ width="300" }
 
+Then use the menu on the left hand side of the page to navigate to the `SSH and GPG keys` tab.
+
+![](github_ssh_tab.png){ width="300" }
+
+Once there, select `New SSH key`.
+
+![](github_new_ssh.png){ width="500"}
+
+Give your key a descriptive name (such as `20220909-github-workshop`) and then paste in the contents of your public key file to text editor.
+
+![](github_ssh.png){ width="900" }
+
+The very last thing we need to do is tell our computers which key file to use when we want to authenticate with GitHub.
+We do this by creating a `config` file in our `.ssh` directory.
+We'll use the built in text editor in jupyter hub to do this.
+Type the following contents into your `config` file and save it as `config`.
+
+```
+Host github.com
+ User git
+ HostName ssh.github.com
+ IdentityFile ~/.ssh/20220909-github-workshop
+```
+
+Lastly, we'll place this file in the `.ssh` folder:
+```
+mv config .ssh/
+```
 
 ## Getting started with version control
 
