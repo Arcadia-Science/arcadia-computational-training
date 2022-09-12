@@ -446,12 +446,12 @@ Code review is when someone who didn't write the code but who has domain experti
 There is no one-size-fits-all approach for code review, but these are some things to keep an eye out for when you're reviewing someone's code (modified from [here](https://carpentries-incubator.github.io/managing-computational-projects/09-codereview/index.html)):
 
 * Bugs/Potential bugs
-   * Repetitive code
-   * Code saying one thing, documentation saying another
-   * Off-by-one errors
-   * Making sure each function does one thing only
-   * Lack of tests and sanity checks for what different parts are doing
-   * Magic numbers (a number hardcoded in the script)
+    * Repetitive code
+    * Code saying one thing, documentation saying another
+    * Off-by-one errors
+    * Making sure each function does one thing only
+    * Lack of tests and sanity checks for what different parts are doing
+    * Magic numbers (a number hardcoded in the script)
 * Unclear, messy code
     * Bad variable/method names
     * Inconsistent indentation
