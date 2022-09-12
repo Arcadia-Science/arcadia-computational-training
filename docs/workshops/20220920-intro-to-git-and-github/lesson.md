@@ -59,41 +59,13 @@ If you already have one, you can use your current username (e.g. there is no nee
 If you don't, sign up at [github.com](https://github.com/).
 Usernames are public so choose accordingly.
 
-#### Accessing a Unix shell
+#### Accessing a Unix shell & Git
 
 For this lesson, we need to have access to a Unix shell. 
-Click the button below to launch a shell through [binder](https://mybinder.org/).
+If you're not sure how to open a terminal on your computer, see [these instructions](https://swcarpentry.github.io/shell-novice/setup.html).
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/arcadia-science/arcadia-computational-training/main)
-
-This will launch a computer in the cloud.
-You'll interact with this computer through your browser.
-Click the Terminal button to launch a Terminal that we will work with for the rest of the lesson.
-
-![](../../arcadia-users-group/20220906-intro-to-shell1/jupyterhub.png)
-
-<details>
-  <summary>More information on binder and what happens when you click the launch binder button.</summary>
-
-Binder is a service that turns a Git repo into a collection of interactive notebooks. 
-When a repository is configured to run as a binder, passing the GitHub repository URL to binder starts the binder-building process.
-Binder first builds a docker image that contains all of the software installations specified by a special set of files in the GitHub repository.
-A docker image is a set of instructions that are used to create a docker container.
-A docker container is a runnable instance of a docker image -- it's an encapsulated computing environment that can be used to reproducibly install sets of software on diverse computers.
-Armed with the docker container, binder launches an "instance" in the cloud (either on Google Cloud or AWS typically) on which it runs the docker container.
-Binder does some additional work in the background -- if no software configuration files are provided in the GitHub repo, or if those contain a minimal set of software, binder will by default include JupyterHub in the docker.
-When the cloud instance is launched, this is the screen you interact with.
-You interact with the cloud instance  in your browser.
-Binders are ephemeral instances -- after a period of inactivity, the instance is automatically shut down, and any work you have done will be lost.
-You're able to download files from your work before the instance is shut down if you do want to save anything.
-
-
-You may notice that this instance already has a bunch of files on it. 
-And that these files look suspiciously exactly like the files in the GitHub repository <a href="https://github.com/arcadia-science/arcadia-computational-training">Arcadia-Science/arcadia-computational-training</a>. 
-That's because that's the repository we used to build the binder from. 
-</details>
-
-<br />
+Many computers come with Git installed.
+If Git is not already installed on your computer, see [these instructions](https://carpentries.github.io/workshop-template/#git).
 
 #### First time setup and configuration
 
