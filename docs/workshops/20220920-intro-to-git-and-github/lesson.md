@@ -446,15 +446,19 @@ Luckily, the error message points us to the code we need to run to set the remot
 git push --set-upstream origin ter/update-readme
 ```
 
-
-
-
-#### 
+If we navigate to our repositories on GitHub, we now see a yellow banner wtih our branch name and a green button inviting us to "Compare & pull request".
 
 #### Integrating changes into `main` using pull request
 
+We just created changes to our `README.md` file in a branch.
 To integrate this changes formally back into the **main branch**, you can open a **pull request**.
 **Pull requests** create a line-by-line comparison between the original code and the new code and generate an interface for inline and overall comments and feedback. 
+To open a pull request, click the green button "Compare & pull request".
+This will take you to a page where you can draft your pull request.
+You should update the title of your pull request to reflect the changes you made in your branch in plain language.
+Then you should add a few sentence description of those changes. 
+Once you've done that, click the "Create pull request" button.
+
 Pull requests are how changes are **reviewed** before they’re integrated.
 Once a pull request is **approved**, the changes are merged into the main branch.
 To get the merged changes back to your local branch, you can run **`git pull`**.
