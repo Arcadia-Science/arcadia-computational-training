@@ -136,6 +136,7 @@ Generating public/private rsa key pair.
 Enter file in which to save the key (/home/jovyan/.ssh/id_rsa): 20220909-github-workshop
 Enter passphrase (empty for no passphrase): 
 Enter same passphrase again: 
+
 Your identification has been saved in 20220909-github-workshop.
 Your public key has been saved in 20220909-github-workshop.pub.
 The key fingerprint is:
@@ -217,30 +218,246 @@ mv config .ssh/
 Now that we've established a secure connection between our computers and GitHub, it's time to learn how to start a version controlled repository and add files to it.
 We'll start by creating a repository on GitHub.
 
+#### Creating your first repository on GitHub
+
+Follow the steps below to create your first repository.
+
 1. Navigate to [GitHub](www.github.com).
 2. Click on the plus sign in the upper right of the screen.
 3. Select "New repository" from the drop-down menu.
 4. On the "Create a new repository" page, choose a name for your repository.
-   For this workshop, name the repository `2022-my-first-repo`. 
+   For this workshop, name the repository `2022-git-workshop`. 
    A repository can have any valid directory name, but putting the year at the beginning is a good practice because it makes it clear when the repo was created.
 5. Check the box "Add a README file".
 6. Click the green "Create repository" button at the bottom of the page.
 
+This will create a new repository and take you to the repository's landing page on GitHub.
 
-#### Creating your first repository on GitHub
+#### Cloning a repository from remote to local
+
+**Cloning** is the process of copying an existing Git repository from a **remote** location (here, on GitHub) to your **local** computer (here, on our binder instances).
+To clone the repository, click the green "Code" button in the top right hand corner of the repository screen. 
+This creates a drop down menu with clone options.
+We'll select the SSH tab because we configured an ssh key pair.
+Once you select the tab, copy the path that starts with `git@gitub.com:`.
+Then, navigate to your binder instance and use the command below to clone the repository.
+Remember to substitute out the username/URL with your own URL that we copied.
+
+```
+git clone git@github.com:your_username/2022-git-workshop
+```
+
+#### The basic Git workflow
 
 
+<center>
+<figure markdown>
+  ![Image title](allison_horst_git_overview_small.png){ width="600" }
+  <figcaption> Figure by Allison Horst. <a href='https://twitter.com/allison_horst/status/1523744022421860352' target='_blank'>www.twitter.com/allison_horst</a> </figcaption>
+</figure>
+</center>
 
+We can now make changes to our files in our local repository.
+The basic Git workflow begins when you communicate to Git about changes you've made to your files.
+Once you like a set of changes you’ve made you can tell Git about them by using the command **`git add`**.
+This stages the changes you have made.
+Next, you bake them into the branch using **`git commit`**.
+When you’re ready, you can communicate those changes back to GitHub using **`git push`**.
+This will push your the changes that are in your local repository up to the remote repository.
 
+Let's try this workflow out.
+Throughout this process, we'll use the command `git status` to track our progress through the workflow.
+`git status` displays the state of a working direcotry and the staging area.
 
+```
+git status
+```
 
-## Branches
+We'll use the `echo` command to create a new file, `notes.txt`.
 
-When you want to make changes to code, it’s best practice to do it in a **branch**.
+```
+ls
+echo "some interesting notes" > notes.txt
+ls
+```
+
+Take a look at the contents of your `notes.txt` file:
+```
+less notes.txt
+```
+
+And run `git status` to see how creating a new file changes the output of that command:
+```
+git status
+```
+
+Once you have made changes in your repository, you need to tell Git to start tracking the file. 
+The command `git add` adds the files to the "staging area", meaning Git is now tracking the changes.
+
+```
+git add notes.txt
+```
+
+After adding this file, we see our output of `git status` changes.
+
+```
+git status
+```
+
+The text associated with our file is now green because the file is staged.
+When you've made all of the changes to a file that represent a unit of changes, you can use `git commit` to create a snapshot of the file in your Git version history.
+
+```
+git commit -m "start notes file"
+
+git status
+```
+
+The `-m` flag is the message that is associated with that commit.
+The message should be short and descriptive so that you or someone looking at your code could quickly determine what changes took place from one commit to the next.
+What constitutes a unit of changes worthy of running `git commit`? 
+That depends on the project and the person, but think about returning to this code six months in the future.
+What set of changes would make it most easy to return to an earlier version of document?
+
+Committing a file bakes changes into your local repository. 
+To communicate that changes back up to your remote repository, use `git push`.
+
+```
+git push
+``` 
+
+**Challenge**: Add today's date to the `README.md` text file, stage the changes in those files, commit them to version history, and push them up to your remote repository.
+
+<details>
+  <summary>Challenge solution</summary>
+
+You can make changes to your <code>README.md</code> file however you choose -- using the built-in text editor in binder, using a text editor in your terminal, or by using a shell redirect. 
+This solution demonstrates how to add text using <code>echo</code> and redirects <code>>></code>.
+
+```
+echo "20220920" >> README.md
+git add README.md
+git commit -m "add date to readme"
+git push
+```
+</details>
+
+<br />
+
+## Working on branches
+
+<center>
+![](git_branch_simple.png){ width="400" }
+</center>
+
+When you want to make changes to files in a repository, it’s best practice to do it in a **branch**.
 A **branch** is an independent line of development of files in a repository. 
 You can think of it like making a copy of a document and making changes to that copy only: the original stays the same, but the copy diverges with new content.
-In a branch, all files are copied and can be changed. 
+In a branch, all files are copied and can be changed.
 
+
+<center>
+![](git_branch_collab.png){ width="600" }
+</center>
+
+Branches are particularly powerful for collaborating.
+They allow multiple people to work on the same code base and seamless integrate changes.
+
+By default, you start on the `main` branch.
+You can see which branch you're on locally using the `git branch` command.
+
+```
+git branch
+``` 
+
+Let's create a branch and make changes to it.
+We can create a new local branch using `git checkout -b`.
+`git checkout` tells git we want to switch which branch we're currently on, while the `-b` flag tells git that we're creating a new branch.
+
+```
+git checkout -b my-first-branch 
+```
+
+Now, if we run `git branch` we'll see we're on the branch `my-first-branch`.
+
+```
+git branch
+```
+
+To go back to the `main` branch, we can use the `git checkout` command without the flag `-b`.
+
+```
+git checkout main
+```
+
+
+At Arcadia, we follow specific naming conventions for our branches: the branch names should be all lowercase and should follow this convention: `<your initials>/<brief description of the code change>`. 
+Example: `ter/git-workshop`.
+
+Let's practice making a branch using these conventions. 
+In our branch, we'll update our `README.md` file.
+Use the code below to create a new branch, but remember to substitute out `your-initials` for your initials.
+
+```
+git checkout -b your-initials/update-readme.
+```
+
+Whenever you create a new branch, it branches off from the branch you're currently in when you make the new branch.
+In this case, we started in `main`, so our branch will branch off of from here.
+
+Next, let's add some changes to our `README.md` file and run `git status`.
+
+```
+echo "adding more text to the README file" >> README.md
+git status
+```
+
+Stage the changes with `git add`:
+
+```
+git add README.md
+```
+
+And commit them:
+```
+git commit -m "update readme w more text"
+```
+
+Run `git push`:
+
+```
+git push
+```
+
+This gives us an error message!
+
+```
+fatal: The current branch tmp has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin ter/update-readme
+```
+
+While we created our branch locally, we haven't created the same branch remotely. 
+We need to tell `git` where to put our changes in the remote repository.
+Luckily, the error message points us to the code we need to run to set the remote branch.
+
+```
+git push --set-upstream origin ter/update-readme
+```
+
+
+
+
+#### 
+
+#### Integrating changes into `main` using pull request
+
+To integrate this changes formally back into the **main branch**, you can open a **pull request**.
+**Pull requests** create a line-by-line comparison between the original code and the new code and generate an interface for inline and overall comments and feedback. 
+Pull requests are how changes are **reviewed** before they’re integrated.
+Once a pull request is **approved**, the changes are merged into the main branch.
+To get the merged changes back to your local branch, you can run **`git pull`**.
 
 ## Bringing the whole process together
 
@@ -251,23 +468,18 @@ In a branch, all files are copied and can be changed.
 </figure>
 </center>
 
-This figure by [@allison_horst](https://twitter.com/allison_horst) gives an overview of the entire Git & GitHub ecosystem.
+This figure gives an overview of the entire Git & GitHub ecosystem.
 It provides a succinct review of the concepts we've covered today.
-
-Once you like a set of changes you’ve finished on your branch, you can tell git about them by using the command **`git add`**.
-This stages the changes you have made. 
-Next, you bake them into the branch using **`git commit`**.
-When you’re ready, you can communicate those changes back to GitHub using **`git push`**.
-This will push your the changes that are on your local branch up to the remote branch.
-To integrate this changes formally back into the **main branch**, you can open a **pull request**.
-**Pull requests** create a line-by-line comparison between the original code and the new code and generate an interface for inline and overall comments and feedback. 
-Pull requests are how changes are **reviewed** before they’re integrated.
-Once a pull request is **approved**, the changes are merged into the main branch.
-To get the merged changes back to your local branch, you can run **`git pull`**.
 
 GitHub has integrated enough features that many of these steps can be orchestrated completely on GitHub without needing to clone a repository to your local machine.
 However, this mental model is still helpful: you can create a branch, make edits to a text file and commit them, open a pull request, and merge the pull request all from the GitHub online interface.
-**You do not need to learn Git to experience the joys and benefits of GitHub and to contribute to projects that live there.**
+**You do not need to learn the Git CLI to experience the joys and benefits of GitHub and to contribute to projects that live there.**
+
+## GitHub Goodies
+
+issues
+code review
+editing a file in the browser or uploading files (then running `git pull` locally)
 
 ## Summary
 
