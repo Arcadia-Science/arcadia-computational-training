@@ -46,7 +46,6 @@ You also don't need to know the Git command line interface to take advantage of 
 
 However, both Git and GitHub are most powerful when combined together.
 This workshop will teach you the basics of Git and GitHub so you can leverage both in your research.
-TODO: ADD A LIST OF WHY USING GIT AND GITHUB WILL MAKE YOUR RESEARCH BETTER. 
 
 ## Setting up
 
