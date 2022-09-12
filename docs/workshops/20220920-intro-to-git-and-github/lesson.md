@@ -98,27 +98,24 @@ Things that are encrypted with the public key can be be decrypted with the priva
 You can read more about it [here](https://en.wikipedia.org/wiki/Public-key_cryptography).
 
 ```
-mkdir ssh
-cd ssh
+cd ~
+mkdir -p .ssh
+cd .ssh
 ssh-keygen
 ```
 
-By convention, key files are usually stored in a `.ssh` directory, not in a `ssh` directory.
-The difference is the `.ssh` folder is hidden from view by default.
-We need to download this file to our local computer however, and to do that, we need to be able to see if in the file panel viewer of our binder jupyter hub, so we'll put it in an `ssh` folder instead.
-
-The `ssh-keygen` program will prompt you to input a key file name (below, we use `20220909-github-workshop`) and a passphrase.
+The `ssh-keygen` program will prompt you to input a key file name (below, we use `20220920-github-workshop`) and a passphrase.
 It's ok to leave the passphrase blank; if you put in a passphrase, you'll need to remember it and type it every time you use the key file.
 
 ```
 ssh-keygen
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/jovyan/.ssh/id_rsa): 20220909-github-workshop
+Enter file in which to save the key (/home/jovyan/.ssh/id_rsa): 20220920-github-workshop
 Enter passphrase (empty for no passphrase): 
 Enter same passphrase again: 
 
-Your identification has been saved in 20220909-github-workshop.
-Your public key has been saved in 20220909-github-workshop.pub.
+Your identification has been saved in 20220920-github-workshop.
+Your public key has been saved in 20220920-github-workshop.pub.
 The key fingerprint is:
 SHA265:
 The key's randomart image is:
@@ -136,15 +133,15 @@ We see:
 total 16K
 drwxr-xr-x 2 jovyan jovyan 4.0K Sep  9 20:21 .
 drwxr-xr-x 1 jovyan jovyan 4.0K Sep  9 20:20 ..
--rw------- 1 jovyan jovyan 1.7K Sep  9 20:21 20220909-github-workshop
--rw-r--r-- 1 jovyan jovyan  445 Sep  9 20:21 20220909-github-workshop.pub
+-rw------- 1 jovyan jovyan 1.7K Sep  9 20:21 20220920-github-workshop
+-rw-r--r-- 1 jovyan jovyan  445 Sep  9 20:21 20220920-github-workshop.pub
 ```
 
 We are the only user who has read access to our private key file, so our permissions are fine.
 
 When we ran `ls`, we saw that the `ssh-keygen` program generated two files. 
-The first file `20220909-github-workshop` is the private key file and should never be shared.
-The second file `20220909-github-workshop.pub` is the public key file that we'll upload to GitHub. 
+The first file `20220920-github-workshop` is the private key file and should never be shared.
+The second file `20220920-github-workshop.pub` is the public key file that we'll upload to GitHub. 
 We can tell it's the public key file because it ends in `.pub`.
 
 Next, we need to get our public key file uploaded to GitHub so we can use it for authentication.
@@ -152,7 +149,7 @@ GitHub will need the text in the public key file.
 You can view it by running `cat`:
 
 ```
-cat 20220909-github-workshop.pub
+cat 20220920-github-workshop.pub
 ```
 
 Your public key file text should look something like this:
@@ -186,20 +183,21 @@ Give your key a descriptive name (such as `20220909-github-workshop`) and then p
 
 The very last thing we need to do is tell our computers which key file to use when we want to authenticate with GitHub.
 We do this by creating a `config` file in our `.ssh` directory.
-We'll use the built in text editor in jupyter hub to do this.
+We'll use nano to do this.
 Type the following contents into your `config` file and save it as `config`.
+
+```
+nano config
+```
 
 ```
 Host github.com
  User git
  HostName ssh.github.com
- IdentityFile ~/.ssh/20220909-github-workshop
+ IdentityFile ~/.ssh/20220920-github-workshop
 ```
 
-Lastly, we'll place this file in the `.ssh` folder:
-```
-mv config .ssh/
-```
+Follow the command prompts in the bottom ribbon of nano to exit.
 
 ## Getting started with version control
 
@@ -232,7 +230,9 @@ Then, navigate to your binder instance and use the command below to clone the re
 Remember to substitute out the username/URL with your own URL that we copied.
 
 ```
+cd ~
 git clone git@github.com:your_username/2022-git-workshop
+cd 2022-git-workshop
 ```
 
 #### The basic Git workflow
