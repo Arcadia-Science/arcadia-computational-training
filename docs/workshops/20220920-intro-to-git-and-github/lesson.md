@@ -2,8 +2,6 @@
 
 ## Version control
 
-#### What it is and when to use it
-
 <center>
 <figure markdown>
   ![Image title](phd101212s.png){ width="400" }
@@ -25,7 +23,7 @@ Version control systems work by tracking incremental differences -- delineated b
 This allows you to return to return to previous versions at any time.
 The file name doesn't change and only one version of a file is displayed at a time, but the full history is accessible.
 
-#### How to use it: overview of Git and GitHub
+#### Version control with Git and GitHub
 
 **[Git](https://git-scm.com/)** is a [free](https://www.gnu.org/philosophy/free-sw.en.html), [distributed](https://en.wikipedia.org/wiki/Distributed_version_control) version control system.
 The complete history of your project is safely stored in a hidden `.git` repository.
