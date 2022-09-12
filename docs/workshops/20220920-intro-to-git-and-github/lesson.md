@@ -553,21 +553,32 @@ editing a file in the browser or uploading files (then running `git pull` locall
 
 ## Summary
 
-Git
-GitHub
-repository
-local 
-remote
-commit
-branch
-pull request
-review
-issue
+<center>
+<h4><i>Terms introduced:</i></h4>
 
-`git clone`
-`git checkout`
-`git add`
-`git commit`
-`git push`
-`git pull`
+| Term | Definition |
+| -----| -----------|
+| Git  | a version control system |
+| GitHub | an internet hosting service for version control using Git |
+| repository | a collection of files and folders associated with a project that is under Git version control |
+| local  | accessed from your system; the computer you're working on | 
+| remote | stored on a remote computer; GitHub |
+| commit | a snapshot of your files and folders at a given time |
+| branch | an independent line of development in a repository |
+| pull request | a mechanism to suggest changes from a branch be integrated back into the `main` branch |
+| review | the process of reviewing changes in a branch through a pull request |
+| issue | a tracking tool integrated into a GitHub repository |
 
+<h4><i>Commands introduced:</i></h4>
+
+| Command | Function |
+| --------| ---------| 
+| `git clone` | copies a Git repository from remote to local |
+| `git add` | adds new or changed files in your working directory to the Git staging area|
+| `git commit` | creates a commit of your repository |
+| `git push` | uploads all local branch commits to the corresponding remote branch|
+| `git checkout` | switches between local branches |
+| `git branch` | reports what branch you're currently on and what other local branches exist |
+| `git pull` | updates current local working branch and all of the remote tracking branches |
+
+</center>
