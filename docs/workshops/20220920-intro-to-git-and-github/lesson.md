@@ -420,20 +420,104 @@ git push --set-upstream origin ter/update-readme
 
 If we navigate to our repositories on GitHub, we now see a yellow banner wtih our branch name and a green button inviting us to "Compare & pull request".
 
-#### Integrating changes into `main` using pull request
+#### Integrating changes into `main` using pull requests
 
 We just created changes to our `README.md` file in a branch.
 To integrate this changes formally back into the **main branch**, you can open a **pull request**.
 **Pull requests** create a line-by-line comparison between the original code and the new code and generate an interface for inline and overall comments and feedback. 
+Pull requests are how changes are **reviewed** before they’re integrated back into the `main` branch.
+
 To open a pull request, click the green button "Compare & pull request".
 This will take you to a page where you can draft your pull request.
 You should update the title of your pull request to reflect the changes you made in your branch in plain language.
 Then you should add a few sentence description of those changes. 
 Once you've done that, click the "Create pull request" button.
 
-Pull requests are how changes are **reviewed** before they’re integrated.
+The pull request interface has a lot of features that make collaboration and code review straight forward.
+The main pull request page supports many important features:
+* Each commit and the descriptive message your provided for them are displayed.
+* Conversations about the file changes can take place via comments.
+* You can convert your pull request to a draft if you're not done adding to it yet, or request review from other GitHub users.
+The main pull request page also has a tab for "Files changed".
+This provides a succint view of every line changed in every file, showing you the new content in green and the deleted content in red. 
+
+The "Files changed" interface is the most useful interface for code review.
+Code review is when someone who didn't write the code but who has domain expertise relevant to the code reads and reviews the code being added or removed by a pull request.
+There is no one-size-fits-all approach for code review, but these are some things to keep an eye out for when you're reviewing someone's code (modified from [here](https://carpentries-incubator.github.io/managing-computational-projects/09-codereview/index.html)):
+
+* Bugs/Potential bugs
+   * Repetitive code
+   * Code saying one thing, documentation saying another
+   * Off-by-one errors
+   * Making sure each function does one thing only
+   * Lack of tests and sanity checks for what different parts are doing
+   * Magic numbers (a number hardcoded in the script)
+* Unclear, messy code
+    * Bad variable/method names
+    * Inconsistent indentation
+    * The order of the different steps
+    * Too much on one line
+    * Lack of comments and signposting
+* Fragile and non-reusable code
+    * Software or software versions not documented
+    * Tailor-made and manual steps
+    * Only works with the given data
+
+For more on code review, see [this lesson](https://carpentries-incubator.github.io/managing-computational-projects/09-codereview/index.html).
+
+From the "Files changed" tab, you can see all of the changes suggested in a pull request.
+You can use in-line comments and suggestions or holistic comments on changes.
+When you're finished with your review, you can submit it as a set of comments, approved changes, or requesting further changes.
+
 Once a pull request is **approved**, the changes are merged into the main branch.
-To get the merged changes back to your local branch, you can run **`git pull`**.
+
+**Challenge** Open a pull request with the changes you made to your `README.md`. 
+Request a review from the person sitting next to you.
+After your PR has been reviewed, merge the changes into your `main` branch.
+
+#### Pulling changes from the remote repository back to the local repostory
+
+After we merged our pull requests, our `main` branches in our remote repositories on GitHub now contain content that our
+To get the merged changes back to your local branch, you can run **`git pull`** in your local repository.
+
+```
+git pull
+```
+
+This will pull in all of the changes that are on GitHub but not in our local repo.
+
+**Challenge** Checkout the `main` branch and run `git pull`. What happens?
+
+<details>
+  <summary>Challenge solution</summary>
+
+```
+git checkout main
+git pull
+```
+
+You should see a message that ends with:
+```
+Already up to date.
+```
+
+This happens because we already pulled in all of the remote changes to our local repository, so there is nothing left to do.
+
+</details>
+
+</br>
+
+Now that all of our changes to our `README.md` are in our local and remote branch, we can safely delete our branch.
+
+```
+git branch
+```
+
+```
+git branch -d ter/update-readme
+```
+
+While you don't have to delete a branch when you're finished with it, deleting branches you're done with helps keep your project tidy and helps yourself and others not get confused when you revisit work in the future.
 
 ## Bringing the whole process together
 
