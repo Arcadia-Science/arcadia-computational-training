@@ -62,6 +62,17 @@ For this lesson, we need to have access to a Unix shell.
 If you're not sure how to open a terminal on your computer, see [these instructions](https://swcarpentry.github.io/shell-novice/setup.html).
 
 Many computers come with Git installed.
+Once you have a Unix shell open, run the following command to see if `git` is installed:
+```
+which git
+```
+
+You should see something like:
+```
+/usr/bin/git
+```
+
+If you don't, you'll need to install `git`.
 If Git is not already installed on your computer, see [these instructions](https://carpentries.github.io/workshop-template/#git).
 
 #### First time setup and configuration
