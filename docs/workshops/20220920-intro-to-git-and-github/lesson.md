@@ -547,9 +547,28 @@ However, this mental model is still helpful: you can create a branch, make edits
 
 ## GitHub Goodies
 
-issues
-code review
-editing a file in the browser or uploading files (then running `git pull` locally)
+#### Issues
+
+GitHub issues started as a way to record problems with software and have since evolved into generalized [project planning tools](https://github.com/features/issues). 
+Issues are a great way to keep track of to do items, have asynchronous conversations relevant to a repository, or otherwise deposit information relevant to a repository.
+
+#### Releases
+
+[Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) bundle and deliver iterations of your project.
+When your entire repository reaches a consensus point, you can use GitHub to compress that version of files together.
+Releases [integrate with zenodo](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content) to archive your repo and give it a DOI. 
+
+#### `.gitignore`
+
+A `.gitignore` file is a hidden text file in you repository that you can use to "ignore" files that you don't want under version control.
+This is handy for really large data files that you don't want to add to your repo.
+To use a `.gitignore` file, create a `.gitignore` text file in the main directory of your repo and add paths to files that you would like to ignore.
+The `.gitignore` file accepts regular expressions (e.g. `*.fastq.gz` to ignore any file that ends in `.fastq.gz`).
+
+#### Links to other goodies
+
+* [Archive a repository that is no long in use](https://docs.github.com/en/repositories/archiving-a-github-repository/archiving-repositories)
+* [Continuous integration with GitHub Actions](https://github.com/features/actions)
 
 ## Summary
 
