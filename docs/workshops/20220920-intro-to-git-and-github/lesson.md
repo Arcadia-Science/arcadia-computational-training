@@ -371,7 +371,8 @@ git checkout main
 ```
 
 
-At Arcadia, we follow specific naming conventions for our branches: the branch names should be all lowercase and should follow this convention: `<your initials>/<brief description of the code change>`. 
+Branch names can be used to convey information that can help you and others keep track of what you're doing.
+For example, you can prepend your branch names with your initials and a slash to make it clear that you were the one who created the branch, and you can specify a name that is associated with the file changes made on the branch: `<your initials>/<brief description of the code change>`. 
 Example: `ter/git-workshop`.
 
 Let's practice making a branch using these conventions. 
@@ -451,6 +452,7 @@ This provides a succint view of every line changed in every file, showing you th
 
 The "Files changed" interface is the most useful interface for code review.
 Code review is when someone who didn't write the code but who has domain expertise relevant to the code reads and reviews the code being added or removed by a pull request.
+Code review  a) encourages you to write better documentation and cleaner code as you go because you know someone will be reading it soon, b) gives a collaborator an opportunity to comment on and improve your work, and c) increases accountability and visibility of your work.
 There is no one-size-fits-all approach for code review, but these are some things to keep an eye out for when you're reviewing someone's code (modified from [here](https://carpentries-incubator.github.io/managing-computational-projects/09-codereview/index.html)):
 
 * Bugs/Potential bugs
