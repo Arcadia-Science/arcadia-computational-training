@@ -154,19 +154,27 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtrKIjBDjfAt3sIfHOPKEE/RkcuPAfdl0xO7M+CBQN
 
 To upload the key file text, navigate to GitHub and click on settings.
 
+<center>
 ![](github_settings.png){ width="300" }
+</center>
 
 Then use the menu on the left hand side of the page to navigate to the `SSH and GPG keys` tab.
 
+<center>
 ![](github_ssh_tab.png){ width="300" }
+</center>
 
 Once there, select `New SSH key`.
 
+<center>
 ![](github_new_ssh.png){ width="500"}
+</center>
 
 Give your key a descriptive name (such as `20220909-github-workshop`) and then paste in the contents of your public key file to text editor.
 
+<center>
 ![](github_ssh.png){ width="900" }
+</center>
 
 The very last thing we need to do is tell our computers which key file to use when we want to authenticate with GitHub.
 We do this by creating a `config` file in our `.ssh` directory.
