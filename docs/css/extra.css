@@ -1,3 +1,7 @@
 body.homepage .bs-sidebar{
     display: none;
 }
+
+body {
+    font-weight: unset
+}
