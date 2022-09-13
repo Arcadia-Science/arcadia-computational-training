@@ -1,7 +1,19 @@
+/* Homepage */
+
+/* remove the navigation bar on the left side of the page */
 body.homepage .bs-sidebar{
     display: none;
 }
 
+/* enable bold font to render */
 body {
     font-weight: unset
 }
+
+/* center the logo and text on the screen */
+body.homepage>div.container>div.row>div.col-md-9 {
+    margin-left: 0;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
