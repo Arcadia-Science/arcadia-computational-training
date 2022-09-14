@@ -422,6 +422,8 @@ Stage the changes with `git add`:
 git add README.md
 ```
 
+And then create a new commit with `git commit`:
+```
 git commit -m "update readme w more text"
 ```
 
