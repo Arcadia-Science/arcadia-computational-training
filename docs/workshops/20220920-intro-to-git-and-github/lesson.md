@@ -178,7 +178,7 @@ Once there, select `New SSH key`.
 ![](github_new_ssh.png){ width="500"}
 </center>
 
-Give your key a descriptive name (such as `20220909-github-workshop`) and then paste in the contents of your public key file to text editor.
+Give your key a descriptive name (such as `20220920-github-workshop`) and then paste in the contents of your public key file to text editor.
 
 <center>
 ![](github_ssh.png){ width="900" }
@@ -201,6 +201,17 @@ Host github.com
 ```
 
 Follow the command prompts in the bottom ribbon of nano to exit.
+
+To confirm that you have set up authentication properly, run the following command:
+
+```
+ssh -i ~/.ssh/20220920-github-workshop -T git@github.com
+```
+
+You should see:
+```
+Hi username! You've successfully authenticated, but GitHub does not provide shell access.
+```
 
 ## Getting started with version control
 
