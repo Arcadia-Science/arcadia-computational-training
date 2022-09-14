@@ -334,7 +334,7 @@ git push
 <details>
   <summary>Challenge solution</summary>
 
-You can make changes to your <code>README.md</code> file however you choose -- using the built-in text editor in binder, using a text editor in your terminal, or by using a shell redirect. 
+You can make changes to your <code>README.md</code> file however you choose -- using a text editor on your system (TextEdit, BBEdit, VSCode, Sublime), using a text editor in your terminal, or by using a shell redirect. 
 This solution demonstrates how to add text using <code>echo</code> and redirects <code>>></code>.
 
 ```
