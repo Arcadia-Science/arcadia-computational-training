@@ -226,7 +226,7 @@ To clone the repository, click the green "Code" button in the top right hand cor
 This creates a drop down menu with clone options.
 We'll select the SSH tab because we configured an ssh key pair.
 Once you select the tab, copy the path that starts with `git@gitub.com:`.
-Then, navigate to your binder instance and use the command below to clone the repository.
+Then, navigate to your terminal and use the command below to clone the repository.
 Remember to substitute out the username/URL with your own URL that we copied.
 
 ```
