@@ -95,6 +95,8 @@ Next, we'll set up a key pair.
 GitHub [recently discontinued password authentication](https://docs.github.com/en/rest/overview/other-authentication-methods). 
 Cryptographic keys are a convenient and secure way to authenticate without having to use passwords and are an authentication method still supported by GitHub. 
 They consist of a pair of files called the public and private keys: the public part can be shared with whoever you'd like to authenticate with (in our case, GitHub), and the private part is kept "secret" on your machine. 
+The private key should never be shared in an unencrypted way with anyone -- this includes over email, slack, etc. 
+If your private key is accidentally shared, you should stop using it for authentication and create a new key pair.
 Things that are encrypted with the public key can be be decrypted with the private key, but it is computationally intractable (ie, it would take on the order of thousands of years) to determine a private key from a public key. 
 You can read more about it [here](https://en.wikipedia.org/wiki/Public-key_cryptography).
 
