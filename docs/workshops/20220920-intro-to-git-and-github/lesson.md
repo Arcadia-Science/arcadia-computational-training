@@ -22,6 +22,7 @@ While the document above is technically under version control, using file names 
 Version control systems work by tracking incremental differences -- delineated by commits -- in files and keeping a history of those changes. 
 This allows you to return to return to previous versions at any time.
 The file name doesn't change and only one version of a file is displayed at a time, but the full history is accessible.
+This is similar to the version control that occurs in programs like Google Docs or Microsoft Word.
 
 #### Version control with Git and GitHub
 
