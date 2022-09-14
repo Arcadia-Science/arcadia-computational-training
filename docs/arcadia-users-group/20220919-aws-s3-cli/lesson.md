@@ -57,17 +57,40 @@ sudo ./aws/install
 rm awscliv2.zip
 ```
 
-## Getting your AWS credentials to use with the AWS CLI
+Once the installation process is complete run `which aws` to make sure installation worked as expected.
 
 ## Configuring the AWS CLI to work with your credentials
 
+### Getting your AWS credentials to use with the AWS CLI
+
+This section assumes you are part of the Arcadia Science AWS account. If you're not, no worries. I'll securely share credentials with you. For AWS users, detailed instructions can be found [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html). The summary:
+
+* Login to the [AWS console](https://console.aws.amazon.com/).
+* Click on your username on the top right and select "Security credentials"
+* Scroll down to the "Access keys for CLI, SDK, & API access" section, select "Create access key" and go through the steps.
+* Record your access key and access secret in a secure place (or download it as a CSV temporarily) and do not share with anyone!
+
+Now we need to tell the AWS CLI how to use your credentials.
+
 ### With `aws configure`
 
-### By setting `.aws/credentials`
+Run `aws configure`. It'll ask for your `AWS Access Key ID`, `AWS Secret Access Key`, `Default region name` and `Default output format` one command at a time.
 
-### By manually passing it with each command
+Enter the credentials you got in the previous section for the first two settings. Our `Default region name` is `us-west` and `Default output format` is `json`.
 
-### When working wit an EC2 instance
+It should look like this:
+
+```{bash}
+aws configure
+AWS Access Key ID [None]: <YOUR_ACCESS_KEY>
+AWS Secret Access Key [None]: <YOUR_ACCESS_SECRET>
+Default region name [None]: us-west-1
+Default output format [None]: json
+```
+
+### [Advanced] When working wit an EC2 instance
+
+This section is out of the scope of this workshop, but it is important to note: When working with an AWS EC2 instance you can enable S3 access by using IAM roles. Instructions for that can be found [here](https://www.notion.so/arcadiascience/Enabling-EC2-and-S3-connection-3d8b3b75441b49eaac1095eb66fbde97).
 
 ## S3 commands we'll work with
 
@@ -83,24 +106,22 @@ rm awscliv2.zip
 
 ## --dry-run
 
-## Advanced usage with s5cmd
+## [Optional] Advanced usage with s5cmd
 
 ### Why?
 
+[s5cmd](https://github.com/peak/s5cmd) is an unofficial tool to interact with AWS S3 through the command-line. Great news: if your machine is configured to work with the AWS CLI, it's by default configured to work with s5cmd! It has two benefits over the official S3 CLI:
+1. It's much faster. See [this blog post](https://joshua-robinson.medium.com/s5cmd-for-high-performance-object-storage-7071352cc09d) for benchmarking data.
+![](s5cmd-benchmark.png)
+2. It also is compatible with Google Cloud Storage (GCS) in case you have to work with any databases that are hosted on GCS (think: Alphafold).
+
 ## Downloading and installing the s5cmd CLI
 
-https://github.com/peak/s5cmd
+```{bash}
+wget https://github.com/peak/s5cmd/releases/download/v2.0.0/s5cmd_2.0.0_Linux-64bit.tar.gz
+tar -xvf s5cmd_2.0.0_Linux-64bit.tar.gz
+```
 
-### s5cmd commands we'll work with
+## Differences to the official CLI
 
-#### ls
-
-### sync
-
-#### cp
-
-#### mv
-
-#### rm
-
-### --dry-run
+### `--dry-run` behavior
