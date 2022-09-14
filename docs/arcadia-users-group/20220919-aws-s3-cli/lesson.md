@@ -61,19 +61,60 @@ Default output format [None]: json
 
 This section is out of the scope of this workshop, but it is important to note: When working with an AWS EC2 instance you can enable S3 access by using IAM roles. Instructions for that can be found [here](https://www.notion.so/arcadiascience/Enabling-EC2-and-S3-connection-3d8b3b75441b49eaac1095eb66fbde97).
 
+## S3 CLI command structure
+
+The general structure of an AWS S3 CLI command follows the following structure:
+
+```{bash}
+aws s3 <COMMAND> <FLAGS> <SOURCE_PATH> <TARGET_PATH>
+```
+
+* `<COMMAND>` could be `cp`, `mv`, `sync` etc.
+* `<FLAGS>` could be something like `--dry-run` to display the operations that would be performed using the specified `<COMMAND>` without actually running them.
+* `<SOURCE_PATH>` and `<TARGET_PATH>` could be a path to a local file/directory, or an S3 file/directory path.
+
+
+As an example, something like `aws s3 cp lesson.md s3://aug-workshop-demo/lesson.md` would copy the local `lesson.md` file from my computer to the S3 bucket `aug-workshop-demo` and create a file called `lesson.md`.
+
 ## S3 commands we'll work with
+
+For all the following commands, we'll be working with an S3 bucket called `aug-workshop-demo` hosted through Arcadia's AWS account. For the workshop, we'll focus on a small but useful subset of commands, but you can find the full reference documentation [here](https://docs.aws.amazon.com/cli/latest/reference/s3/).
 
 ### ls
 
-### sync
+In the [first shell workshop](../20220906-intro-to-shell1/lesson.md), we learned that `ls` lists contents of a directory (**l**i**s**t). It serves the same function for the S3 CLI.
+
+Let's start with listing all the Arcadia Science S3 buckets:
+
+```{bash}
+aws s3 ls
+```
+
+Now let's explore what one of these buckets looks like, starting with the `aug-workshop-demo` bucket.
+
+```{bash}
+aws s3 ls s3://aug-workshop-demo
+```
 
 ### cp
 
+In the [second shell workshop](../20220912-intro-to-shell2/lesson.md), we learned that `cp` copies a file or directory. The S3 command also serves a similar purpose.
+
 ### mv
+
+In the [second shell workshop](../20220912-intro-to-shell2/lesson.md), we learned that `mv` moves or renames a file or directory. The S3 command also serves a similar purpose.
+
+### sync
 
 ### rm
 
-## --dry-run
+In the [second shell workshop](../20220912-intro-to-shell2/lesson.md), we learned that `rm` deletes a file or directory. The S3 command also serves a similar purpose.
+
+### --dry-run
+
+In using all of these commands, if a command writes or modifies data, it's a good idea to visualize what changes will be made to your local system or the S3 storage system before making them. For this the `--dry-run` flag is your friend.
+
+When used, it displays the operations that would be performed using the specified command without actually executing them. So, if you're in the wrong directory or about to modify or delete a file irreversibly by mistake, it allows you to catch these issues ahead of time. Let's see it in action.
 
 ## [Optional] Advanced usage with s5cmd
 
@@ -93,6 +134,20 @@ wget https://github.com/peak/s5cmd/releases/download/v2.0.0/s5cmd_2.0.0_Linux-64
 tar -xvf s5cmd_2.0.0_Linux-64bit.tar.gz
 ```
 
+After this you should be able to run `s5cmd --version`.
+
 ## Differences to the official CLI
 
-### `--dry-run` behavior
+### Order of commands
+
+You may remember the order of commands for the AWS CLI looked like this:
+
+```{bash}
+aws s3 <COMMAND> <FLAGS> <SOURCE_PATH> <TARGET_PATH>
+```
+
+For `s5cmd` it is slightly different:
+
+```{bash}
+s5cmd <FLAGS> <COMMAND> <SOURCE_PATH> <TARGET_PATH>
+```
