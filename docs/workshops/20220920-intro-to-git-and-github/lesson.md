@@ -422,8 +422,6 @@ Stage the changes with `git add`:
 git add README.md
 ```
 
-And commit them:
-```
 git commit -m "update readme w more text"
 ```
 
@@ -449,6 +447,9 @@ Luckily, the error message points us to the code we need to run to set the remot
 ```
 git push --set-upstream origin ter/update-readme
 ```
+
+In the above command, `origin` is shorthand for the remote repository that a project was cloned from. 
+To view what this value is, you can run `git remote -v`.
 
 If we navigate to our repositories on GitHub, we now see a yellow banner wtih our branch name and a green button inviting us to "Compare & pull request".
 
