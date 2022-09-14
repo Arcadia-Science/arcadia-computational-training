@@ -249,6 +249,7 @@ We can now make changes to our files in our local repository.
 The basic Git workflow begins when you communicate to Git about changes you've made to your files.
 Once you like a set of changes you’ve made you can tell Git about them by using the command **`git add`**.
 This stages the changes you have made.
+Staging a file tells Git that you're ready to commit those files -- it's a way of telling Git which files you're ready to commit.
 Next, you bake them into the branch using **`git commit`**.
 When you’re ready, you can communicate those changes back to GitHub using **`git push`**.
 This will push your the changes that are in your local repository up to the remote repository.
