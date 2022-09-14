@@ -569,6 +569,213 @@ GitHub has integrated enough features that many of these steps can be orchestrat
 However, this mental model is still helpful: you can create a branch, make edits to a text file and commit them, open a pull request, and merge the pull request all from the GitHub online interface.
 **You do not need to learn the Git CLI to experience the joys and benefits of GitHub and to contribute to projects that live there.**
 
+## Undoing Changes
+
+Confusingly, git has four different subcommands for undoing things:
+
+* `restore`
+* `revert`
+* `reset`
+* `checkout`
+
+We'll cover these commands below.
+
+
+#### Restoring a file to its state at the previous commit
+
+The `git restore` command is useful if you want to undo changes you haven't committed yet.
+
+Open up the `README.md` file in a text editor and make some changes. 
+For instance, let's add the line `This is a mistake` to the end of the file. 
+Then save and close the file.
+
+Next, check the repository status:
+
+```
+git status
+```
+
+As expected, git tells us there are changes to the `README.md` file:
+
+```
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+What if now you decide the changes were a mistake and you don't want to keep them? 
+The `git restore` command restores a file in the working directory to the version of the file in the most recent commit.
+
+Let's try out restoring the `README.md` file:
+
+```
+git restore README.md
+```
+
+Now check the status again:
+
+```
+git status
+```
+
+The status shows that there are no longer any new changes to the `README.md`
+file:
+
+```
+On branch main
+nothing to commit, working tree clean
+```
+
+There is no way to undo `git restore`, so be careful when you're using it.
+
+In older versions of git, the command to restore a file in the working directory was `git checkout -- FILENAME`. 
+You may occasionally see people mention this command online, and it still works in recent versions of git.
+However, the `git restore` command is preferable because it disambiguates what you're trying to do (`git checkout` is also used for other things unrelated to restoring files).
+
+
+#### Restoring the staging area
+
+With a different set of arguments, you can also use the `git restore` command to remove changes from the staging area.
+
+Open up the `README.md` file in a text editor again and make some more changes. 
+This time let's add the line `Git is tough` to the end of the file. 
+As usual, save and close the file.
+
+Next, add the changes to the staging area:
+
+```
+git add README.md
+```
+
+Then check the repository status with `git status`:
+
+```
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   README.md
+```
+
+git tells us our changes to `README.md` are staged.
+
+Now suppose you decide you want to unstage the changes to `README.md`. 
+This removes the changes from the staging area, but not from the working directory.
+Unstaging changes is especially useful when you're working with multiple files and accidentally add a file you don't want to commit yet.
+
+To unstage a file, use `git restore` with the `--staged` argument:
+
+```
+git restore --staged README.md
+```
+
+Then check the status again:
+
+```
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+The changes to `README.md` are still in the working directory, but no longer in the staging area.
+
+In older versions of git, the command to restore a file in the staging area was `git reset FILENAME`. 
+You may occasionally see people mention this command online, and it still works in recent versions of git. 
+However, the `git restore` command is preferable because it disambiguates what you're trying to do (`git reset` is also used for other things unrelated to restoring the staging area).
+
+
+#### Reverting a commit
+
+The `git revert` command is useful if you want to undo changes that you've already committed. 
+Once a commit is in your repository's history, it generally stays there forever. 
+There is a way to delete commits, but you should really only delete commits if you [accidentally commit sensitive data](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository).
+Instead, the idiomatic way to undo a commit is to create a new commit that reverses the changes.
+
+
+Let's start by editing the `README.md` file again and making a commit. 
+Add the line `This is a big mistake.` to the end of the file. 
+Then run:
+
+```
+git add README.md
+git commit -m "This commit is a mistake."
+```
+
+Now suppose you decide the commit is a mistake, and want to undo it. 
+First, you need to find the ID of the commit you want to undo. 
+The `git log` command opens a scrolling list of all commits in the repository's history and their IDs. 
+Run the command:
+
+```
+git log
+```
+
+You can exit the log by typing `q`.
+
+In the log, locate the the mistaken commit, and copy or remember the first 5 digits of its ID. 
+Git is smart enough that it can generally recognize a commit from the first few digits of its ID, and will tell you if it needs more digits for disambiguation.
+
+In my repo, the ID of the commit starts with `e01d1`. 
+In your repo, the commit will likely have a different ID. 
+Next, run this command, replacing the ID with the ID you copied:
+
+```
+git revert e01d1 --no-edit
+```
+
+The `--no-edit` flag tells `git revert` to generate the commit message for the new commit automatically. 
+Without the flag, `git revert` will prompt you to enter a commit message.
+
+Now inspect the file with `nano` or `cat`. 
+You should see that the changes from your bad commit are gone. 
+If you look in the log with `git log`, you'll also see a new commit to revert the changes of a previous commit.
+
+**Challenge**: The goal of this challenge is to make a bad commit and then revert it. Work
+through these steps:
+
+1. Change a file in your repository.
+2. `add` and `commit` the changes.
+3. Find the ID of the commit from step 2 in the repository history.
+4. `revert` the commit from step 2.
+
+<details>
+<summary>Challenge solution</summary>
+Change a file like `README.md`.
+Then run:
+```
+git add README.md
+git commit -m "update README"
+```
+
+To find the ID of the commit, run:
+```
+git log
+```
+
+Then revert the commit:
+```
+git revert 07f61 --no-edit
+```
+</details>
+<br />
+
+#### Creating a branch from a previous commit
+
+Another strategy to revert to a prior state is to create a new branch that starts at the state of a previous commit. 
+This has the advantage of keeping a branch with the work you did on it, but allows you to continue to work in a different direction from a previous commit.
+To do this, you can use `git log` like above to identify which commit you want your new branch to start out at.
+Once you have the commit ID, run the following:
+
+```
+git checkout -b name-of-new-branch e01d1
+```
+
+You'll now be on a new branch that starts from the commit you indicated.
+To check, run `git branch`.
+
 ## GitHub Goodies
 
 #### Issues
@@ -620,8 +827,10 @@ The `.gitignore` file accepts regular expressions (e.g. `*.fastq.gz` to ignore a
 | `git add` | adds new or changed files in your working directory to the Git staging area|
 | `git commit` | creates a commit of your repository |
 | `git push` | uploads all local branch commits to the corresponding remote branch|
-| `git checkout` | switches between local branches |
+| `git checkout` | switches between local branches, or creates a new branch with the `-b` flag |
 | `git branch` | reports what branch you're currently on and what other local branches exist |
 | `git pull` | updates current local working branch and all of the remote tracking branches |
+| `git restore` | restores a file to its state at the last commit or remove a file from the staging area |
+| `git revert` | reverts changes that have already been committed |
 
 </center>
