@@ -236,6 +236,18 @@ Nothing happens! This is because all the files as they are on S3. Let's make a c
 ```{bash}
 echo "new copy" >> copy.txt
 aws s3 sync . s3://aug-workshop-demo/fmc/
+aws s3 ls s3://aug-workshop-demo/fmc/
+```
+
+### Downloading data from S3
+
+Our examples so far have been about uploading data to S3, but we can easily switch the direction of operations to download data from S3. The main change is the argument order. To download data from S3, we need S3 to be our source and local file system to be the target.
+
+Let's copy and move some data from S3 as a simple example:
+```{bash}
+aws s3 cp s3://aug-workshop-demo/fmc/copy.txt new-copy.txt
+aws s3 mv s3://aug-workshop-demo/fmc/move.txt new-move.txt
+aws s3 ls s3://aug-workshop-demo/fmc/
 ```
 
 ### --dryrun
