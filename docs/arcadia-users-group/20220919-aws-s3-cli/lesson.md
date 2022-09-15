@@ -7,7 +7,7 @@ If you're not sure how to open a terminal on your computer, see [these instructi
 
 ## What is the AWS S3 CLI and why do we care about it?
 
-Arcadia uses Amazon Web Services (AWS) S3 to store our files remotely, sometimes as backups, sometimes to host files temporarily before we deposit them to a FAIR data repository.
+Arcadia uses Amazon Web Services (AWS) S3 to store our files remotely, sometimes as backup, sometimes to host files temporarily before we deposit them to a FAIR data repository.
 
 Some of us may already know how to interact with AWS S3 through its own user interface or using a tool like [Cyberduck](https://www.notion.so/arcadiascience/Syncing-data-to-S3-via-a-GUI-for-the-microscopy-team-bd7c106e648343d4ac01c2d5198b633c). While these options work fine, they limit the speed at which you can interact with S3 (they put explicit caps on upload/download speeds) and may be burdensome for large scale changes (think: updating 100s of files).
 
@@ -17,7 +17,7 @@ Command line tools may be intimidating but great news: if you attended the AUG w
 
 ## Downloading and installing the AWS CLI
 
-The download and installation instructions for the AWS CLI can be found [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html). Since we'll be using Binder for our workshop, you can use these two commands to start the installation process:
+The download and installation instructions for the AWS CLI can be found [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html). If you're on a Unix machine, you can use these two commands to start the installation process:
 
 ```{bash}
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -57,11 +57,11 @@ Default region name [None]: us-west-1
 Default output format [None]: json
 ```
 
-### [Advanced] When working wit an EC2 instance
+### [Advanced] When working with an EC2 instance
 
 This section is out of the scope of this workshop, but it is important to note: When working with an AWS EC2 instance you can enable S3 access by using IAM roles. Instructions for that can be found [here](https://www.notion.so/arcadiascience/Enabling-EC2-and-S3-connection-3d8b3b75441b49eaac1095eb66fbde97).
 
-## Test data
+## Creating test data
 
 Let's create some basic test data by copying the following commands:
 
@@ -79,6 +79,7 @@ echo "sync 2" >> sync2.txt
 echo "sync 3" >> sync3.txt
 
 cd ..
+ls
 ```
 
 ## S3 CLI command structure
@@ -91,7 +92,7 @@ aws s3 <COMMAND> <FLAGS> <SOURCE_PATH> <TARGET_PATH>
 
 * `<COMMAND>` could be `cp`, `mv`, `sync` etc.
 * `<FLAGS>` could be something like `--dry-run` to display the operations that would be performed using the specified `<COMMAND>` without actually running them.
-* `<SOURCE_PATH>` and `<TARGET_PATH>` could be a path to a local file/directory, or an S3 file/directory path.
+* `<SOURCE_PATH>` and `<TARGET_PATH>` could be a path to a local file/directory, or an S3 file/directory path. For local files, the paths can be absolute or relative.
 
 
 As an example, something like `aws s3 cp lesson.md s3://aug-workshop-demo/lesson.md` would copy the local `lesson.md` file from my computer to the S3 bucket `aug-workshop-demo` and create a file called `lesson.md`.
@@ -116,12 +117,26 @@ Now let's explore what one of these buckets looks like, starting with the `aug-w
 aws s3 ls s3://aug-workshop-demo
 ```
 
+If everything went correctly, you should see the `demo` folder under the `aug-workshop-demo` bucket.
+
 ### cp
 
 In the [second shell workshop](../20220912-intro-to-shell2/lesson.md), we learned that `cp` copies a file or directory. The S3 command also serves a similar purpose. Let's try it out by trying to copy the file we created earlied `copy.txt` to the S3 bucket under a folder with your initials. For me, this would be in `s3://aug-workshop-demo/fmc/`.
 
 ```{bash}
 aws s3 cp copy.txt s3://aug-workshop-demo/fmc/copy.txt
+```
+
+If you ignore the last part of the S3 path, it'll create a file with the same name:
+
+```{bash}
+aws s3 cp copy.txt s3://aug-workshop-demo/fmc/
+```
+
+Alternatively, you can give a new name to the file on S3:
+
+```{bash}
+aws s3 cp copy.txt s3://aug-workshop-demo/fmc/new-copy.txt
 ```
 
 Let's see the changes:
@@ -159,7 +174,7 @@ Let's see the changes:
 ```{bash}
 ls
 ```
-This time, the file is no longer in our directory. Let's check AWS:
+This time, the file is no longer in our directory. Let's check AWS S3:
 
 ```{bash}
 aws s3 ls s3://aug-workshop-demo
