@@ -45,7 +45,7 @@ Now we need to tell the AWS CLI how to use your credentials.
 
 Run `aws configure`. It'll ask for your `AWS Access Key ID`, `AWS Secret Access Key`, `Default region name` and `Default output format` one command at a time.
 
-Enter the credentials you got in the previous section for the first two settings. Our `Default region name` is `us-west` and `Default output format` is `json`.
+Enter the credentials you got in the previous section for the first two settings. Our `Default region name` is `us-west-1` and `Default output format` is `json`.
 
 It should look like this:
 
@@ -91,7 +91,7 @@ aws s3 <COMMAND> <FLAGS> <SOURCE_PATH> <TARGET_PATH>
 ```
 
 * `<COMMAND>` could be `cp`, `mv`, `sync` etc.
-* `<FLAGS>` could be something like `--dry-run` to display the operations that would be performed using the specified `<COMMAND>` without actually running them.
+* `<FLAGS>` could be something like `--dryrun` to display the operations that would be performed using the specified `<COMMAND>` without actually running them.
 * `<SOURCE_PATH>` and `<TARGET_PATH>` could be a path to a local file/directory, or an S3 file/directory path. For local files, the paths can be absolute or relative.
 
 
@@ -121,7 +121,7 @@ If everything went correctly, you should see the `demo` folder under the `aug-wo
 
 ### cp
 
-In the [second shell workshop](../20220912-intro-to-shell2/lesson.md), we learned that `cp` copies a file or directory. The S3 command also serves a similar purpose. Let's try it out by trying to copy the file we created earlied `copy.txt` to the S3 bucket under a folder with your initials. For me, this would be in `s3://aug-workshop-demo/fmc/`.
+In the [second shell workshop](../20220912-intro-to-shell2/lesson.md), we learned that `cp` copies a file or directory. The S3 command also serves a similar purpose. Let's try it out by trying to copy the file we created earlier `copy.txt` to the S3 bucket under a folder with your initials. For me, this would be in `s3://aug-workshop-demo/fmc/`.
 
 ```{bash}
 aws s3 cp copy.txt s3://aug-workshop-demo/fmc/copy.txt
@@ -219,7 +219,7 @@ aws s3 ls s3://aug-workshop-demo/fmc/
 
 ### sync
 
-`sync` is a convenient command for syncing directories (local to S3, S3 to local or S3 to S3). It recursively copies new and updated files from the source directory to the destination. Here *new* and *updated* are important key words. If a file already exists, it'll not copy it to S3. Let's see it in action:
+`sync` is a convenient command for syncing directories (local to S3, S3 to local, or S3 to S3). It recursively copies new and updated files from the source directory to the destination. Here *new* and *updated* are important key words. If a file already exists, it'll not copy it to S3. Let's see it in action:
 
 ```{bash}
 aws s3 sync . s3://aug-workshop-demo/fmc/
@@ -231,7 +231,7 @@ Now, everything is in S3. Let's try it again:
 aws s3 sync . s3://aug-workshop-demo/fmc/
 ```
 
-Nothing happens! This is because all the files as they are on S3. Let's make a change to the `copy.txt` file:
+Nothing happens! This is because all of the files are as they are on S3. Let's make a change to the `copy.txt` file:
 
 ```{bash}
 echo "new copy" >> copy.txt
@@ -243,7 +243,7 @@ aws s3 ls s3://aug-workshop-demo/fmc/
 
 Our examples so far have been about uploading data to S3, but we can easily switch the direction of operations to download data from S3. The main change is the argument order. To download data from S3, we need S3 to be our source and local file system to be the target.
 
-Let's copy and move some data from S3 as a simple example:
+Let's copy and move some data from S3 as an example:
 ```{bash}
 aws s3 cp s3://aug-workshop-demo/fmc/copy.txt new-copy.txt
 aws s3 mv s3://aug-workshop-demo/fmc/move.txt new-move.txt
