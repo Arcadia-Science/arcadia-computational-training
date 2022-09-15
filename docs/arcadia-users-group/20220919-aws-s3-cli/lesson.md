@@ -61,6 +61,26 @@ Default output format [None]: json
 
 This section is out of the scope of this workshop, but it is important to note: When working with an AWS EC2 instance you can enable S3 access by using IAM roles. Instructions for that can be found [here](https://www.notion.so/arcadiascience/Enabling-EC2-and-S3-connection-3d8b3b75441b49eaac1095eb66fbde97).
 
+## Test data
+
+Let's create some basic test data by copying the following commands:
+
+```{bash}
+cd ~/Desktop
+mkdir s3-test
+cd s3-test
+echo "copy" >> copy.txt
+echo "move" >> move.txt
+
+mkdir sync
+cd sync
+echo "sync 1" >> sync1.txt
+echo "sync 2" >> sync2.txt
+echo "sync 3" >> sync3.txt
+
+cd ..
+```
+
 ## S3 CLI command structure
 
 The general structure of an AWS S3 CLI command follows the following structure:
@@ -98,23 +118,120 @@ aws s3 ls s3://aug-workshop-demo
 
 ### cp
 
-In the [second shell workshop](../20220912-intro-to-shell2/lesson.md), we learned that `cp` copies a file or directory. The S3 command also serves a similar purpose.
+In the [second shell workshop](../20220912-intro-to-shell2/lesson.md), we learned that `cp` copies a file or directory. The S3 command also serves a similar purpose. Let's try it out by trying to copy the file we created earlied `copy.txt` to the S3 bucket under a folder with your initials. For me, this would be in `s3://aug-workshop-demo/fmc/`.
+
+```{bash}
+aws s3 cp copy.txt s3://aug-workshop-demo/fmc/copy.txt
+```
+
+Let's see the changes:
+```{bash}
+ls
+```
+The file is still in our directory, it hasn't moved.
+
+```{bash}
+aws s3 ls s3://aug-workshop-demo
+aws s3 ls s3://aug-workshop-demo/fmc/
+```
+
+Now let's try copying the `sync` directory by:
+```{bash}
+aws s3 cp sync/ s3://aug-workshop-demo/fmc/
+```
+
+That failed! This is because the `cp` command directly works with individual files. For copying folders, we need to use the `--recursive` flag. So, let's try this:
+
+```{bash}
+aws s3 cp --recursive sync/ s3://aug-workshop-demo/fmc/
+aws s3 ls s3://aug-workshop-demo/fmc/
+```
 
 ### mv
 
-In the [second shell workshop](../20220912-intro-to-shell2/lesson.md), we learned that `mv` moves or renames a file or directory. The S3 command also serves a similar purpose.
+In the [second shell workshop](../20220912-intro-to-shell2/lesson.md), we learned that `mv` moves or renames a file or directory. The S3 command also serves a similar purpose. Let's start with a moving example by trying to move the `move.txt` file we created earlier to the S3 bucket under a folder with your name. For me, this would be in `s3://aug-workshop-demo/mert/`.
 
-### sync
+```{bash}
+aws s3 mv move.txt s3://aug-workshop-demo/mert/move.txt
+```
+
+Let's see the changes:
+```{bash}
+ls
+```
+This time, the file is no longer in our directory. Let's check AWS:
+
+```{bash}
+aws s3 ls s3://aug-workshop-demo
+aws s3 ls s3://aug-workshop-demo/mert/
+```
+
+Now, let's do a move within S3 by moving the file from `s3://aug-workshop-demo/mert/move.txt` to `s3://aug-workshop-demo/fmc/move.txt`:
+
+```{bash}
+aws s3 mv s3://aug-workshop-demo/mert/move.txt s3://aug-workshop-demo/fmc/move.txt
+```
+
+And now let's visulize it:
+```{bash}
+aws s3 ls s3://aug-workshop-demo/mert/
+aws s3 ls s3://aug-workshop-demo/fmc/
+```
+
+The former folder is empty and the latter now has the `move.txt`.
 
 ### rm
 
 In the [second shell workshop](../20220912-intro-to-shell2/lesson.md), we learned that `rm` deletes a file or directory. The S3 command also serves a similar purpose.
 
-### --dry-run
+Let's delete the `copy.txt` file:
+```{bash}
+aws s3 rm s3://aug-workshop-demo/fmc/copy.txt
+aws s3 ls s3://aug-workshop-demo/fmc/
+```
 
-In using all of these commands, if a command writes or modifies data, it's a good idea to visualize what changes will be made to your local system or the S3 storage system before making them. For this the `--dry-run` flag is your friend.
+Let's try to delete the contents of `s3://aug-workshop-demo/fmc/`:
+```{bash}
+aws s3 rm s3://aug-workshop-demo/fmc/
+aws s3 ls s3://aug-workshop-demo/fmc/
+```
 
-When used, it displays the operations that would be performed using the specified command without actually executing them. So, if you're in the wrong directory or about to modify or delete a file irreversibly by mistake, it allows you to catch these issues ahead of time. Let's see it in action.
+You'll see that didn't work. This is because similar to `cp`, `rm` works with individual files by default. For folder deletions, you need to use the `--recursive` flag:
+```{bash}
+aws s3 rm --recursive s3://aug-workshop-demo/fmc/
+aws s3 ls s3://aug-workshop-demo/fmc/
+```
+
+### sync
+
+`sync` is a convenient command for syncing directories (local to S3, S3 to local or S3 to S3). It recursively copies new and updated files from the source directory to the destination. Here *new* and *updated* are important key words. If a file already exists, it'll not copy it to S3. Let's see it in action:
+
+```{bash}
+aws s3 sync . s3://aug-workshop-demo/fmc/
+aws s3 ls s3://aug-workshop-demo/fmc/
+```
+
+Now, everything is in S3. Let's try it again:
+```{bash}
+aws s3 sync . s3://aug-workshop-demo/fmc/
+```
+
+Nothing happens! This is because all the files as they are on S3. Let's make a change to the `copy.txt` file:
+
+```{bash}
+echo "new copy" >> copy.txt
+aws s3 sync . s3://aug-workshop-demo/fmc/
+```
+
+### --dryrun
+
+In using all of these commands, if a command writes or modifies data, it's a good idea to visualize what changes will be made to your local system or the S3 storage system before making them. For this the `--dryrun` flag is your friend.
+
+When used, it displays the operations that would be performed using the specified command without actually executing them. So, if you're in the wrong directory or about to modify or delete a file irreversibly by mistake, it allows you to catch these issues ahead of time. Let's see it in action:
+
+```{bash}
+aws s3 rm --dryrun --recursive s3://aug-workshop-demo/fmc/
+```
 
 ## [Optional] Advanced usage with s5cmd
 
@@ -127,7 +244,7 @@ Great news: if your machine is configured to work with the AWS CLI, it's by defa
 ![](s5cmd-benchmark.png)
 2. It also is compatible with Google Cloud Storage (GCS) in case you have to work with any databases that are hosted on GCS (think: Alphafold).
 
-## Downloading and installing the s5cmd CLI
+### Downloading and installing the s5cmd CLI
 
 ```{bash}
 wget https://github.com/peak/s5cmd/releases/download/v2.0.0/s5cmd_2.0.0_Linux-64bit.tar.gz
@@ -136,7 +253,7 @@ tar -xvf s5cmd_2.0.0_Linux-64bit.tar.gz
 
 After this you should be able to run `s5cmd --version`.
 
-## Differences to the official CLI
+### Differences to the official CLI
 
 ### Order of commands
 
@@ -151,3 +268,7 @@ For `s5cmd` it is slightly different:
 ```{bash}
 s5cmd <FLAGS> <COMMAND> <SOURCE_PATH> <TARGET_PATH>
 ```
+
+### `--dryrun` vs `--dry-run`
+
+The S3 CLI uses the former, `s5cmd` uses the latter.
