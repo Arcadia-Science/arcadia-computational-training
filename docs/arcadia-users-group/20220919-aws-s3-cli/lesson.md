@@ -164,7 +164,7 @@ aws s3 ls s3://aug-workshop-demo/fmc/
 
 ### mv
 
-In the [second shell workshop](../20220912-intro-to-shell2/lesson.md), we learned that `mv` moves or renames a file or directory. The S3 command also serves a similar purpose. Let's start with a moving example by trying to move the `move.txt` file we created earlier to the S3 bucket under a folder with your name. For me, this would be in `s3://aug-workshop-demo/mert/`.
+In the [second shell workshop](../20220912-intro-to-shell2/lesson.md), we learned that `mv` moves or renames a file or directory. The S3 command also serves a similar purpose. Let's start with a moving example by trying to move the `move.txt` file we created earlier to the S3 bucket under a folder with your name (not your initials this time, since we'll do another move later). For me, this would be in `s3://aug-workshop-demo/mert/`.
 
 ```{bash}
 aws s3 mv move.txt s3://aug-workshop-demo/mert/move.txt
