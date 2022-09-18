@@ -43,6 +43,8 @@ Now we need to tell the AWS CLI how to use your credentials.
 
 ### With `aws configure`
 
+This section assumes you have not run `aws configure` before. If you have, you can create a new AWS credential profile by passing the `--profile arcadia` to the `aws configure` command.
+
 Run `aws configure`. It'll ask for your `AWS Access Key ID`, `AWS Secret Access Key`, `Default region name` and `Default output format` one command at a time.
 
 Enter the credentials you got in the previous section for the first two settings. Our `Default region name` is `us-west-1` and `Default output format` is `json`.
@@ -56,6 +58,12 @@ AWS Secret Access Key [None]: <YOUR_ACCESS_SECRET>
 Default region name [None]: us-west-1
 Default output format [None]: json
 ```
+
+Once the setup is complete you can inspect the contents of your AWS configuration file with `cat ~/.aws/credentials`. You'll most likely only see the `[default]` profile. These are the credentials the AWS CLI will use by default when you run a command. If you created an `arcadia` profile and want to use those, you have to explicitly pass them as part of the CLI commands below. 
+
+![](aws-configuration.png)
+
+Since these credentials only belong to the Arcadia Science organization, when you run a command (think: list all the S3 buckets), it'll only run them within the Arcadia organization context (think: the CLI will only show the S3 buckets of the Arcadia Science organization). You can also create credentials that only have access to parts of the organization (think: a single EC2 instance or a single S3 bucket), and in those cases the CLI context will again change.
 
 ### [Advanced] When working with an EC2 instance
 
