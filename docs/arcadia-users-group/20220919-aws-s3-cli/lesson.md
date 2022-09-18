@@ -239,6 +239,10 @@ aws s3 sync . s3://aug-workshop-demo/fmc/
 aws s3 ls s3://aug-workshop-demo/fmc/
 ```
 
+### A note on data integrity
+
+For upload related commands (`cp`, `mv`, `sync`), the AWS CLI will calculate and validate the MD5 checksums. If the checksum doesn't match the expected values, the upload command will fail. In the case of `mv`, the local files you're moving will not be deleted. By default, the AWS CLI will re-try the upload up to 5 times and only then exit the operation. More details can be found [here](https://docs.aws.amazon.com/cli/latest/topic/s3-faq.html).
+
 ### Downloading data from S3
 
 Our examples so far have been about uploading data to S3, but we can easily switch the direction of operations to download data from S3. The main change is the argument order. To download data from S3, we need S3 to be our source and local file system to be the target.
