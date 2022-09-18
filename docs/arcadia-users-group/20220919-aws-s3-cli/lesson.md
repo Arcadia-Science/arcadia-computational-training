@@ -19,6 +19,14 @@ Command line tools may be intimidating but great news: if you attended the AUG w
 
 The download and installation instructions for the AWS CLI can be found [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html). If you're on a Unix machine, you can use these two commands to start the installation process:
 
+On Mac:
+```{bash}
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
+rm AWSCLIV2.pkg
+```
+
+On Linux:
 ```{bash}
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
@@ -59,7 +67,7 @@ Default region name [None]: us-west-1
 Default output format [None]: json
 ```
 
-Once the setup is complete you can inspect the contents of your AWS configuration file with `cat ~/.aws/credentials`. You'll most likely only see the `[default]` profile. These are the credentials the AWS CLI will use by default when you run a command. If you created an `arcadia` profile and want to use those, you have to explicitly pass them as part of the CLI commands below. 
+Once the setup is complete you can inspect the contents of your AWS configuration file with `cat ~/.aws/credentials`. You'll most likely only see the `[default]` profile. These are the credentials the AWS CLI will use by default when you run a command. If you created an `arcadia` profile and want to use those, you have to explicitly pass them as part of the CLI commands below.
 
 ![](aws-configuration.png)
 
@@ -285,9 +293,21 @@ Great news: if your machine is configured to work with the AWS CLI, it's by defa
 
 ### Downloading and installing the s5cmd CLI
 
+On Mac, you can install `s5cmd` with Homebrew: `brew install peak/tap/s5cmd`.
+
+Alternatively, you can use the command-line on both Mac and Linux:
 ```{bash}
-wget https://github.com/peak/s5cmd/releases/download/v2.0.0/s5cmd_2.0.0_Linux-64bit.tar.gz
-tar -xvf s5cmd_2.0.0_Linux-64bit.tar.gz
+cd ~/Desktop
+curl -L "https://github.com/peak/s5cmd/releases/download/v2.0.0/s5cmd_2.0.0_macOS-64bit.tar.gz" --output s5cmd.tar.gz
+tar -xvf s5cmd.tar.gz
+mv s5cmd /usr/local/bin
+```
+
+On Linux:
+```{bash}
+curl -L "https://github.com/peak/s5cmd/releases/download/v2.0.0/s5cmd_2.0.0_macOS-64bit.tar.gz" --output s5cmd.tar.gz
+tar -xvf s5cmd.tar.gz
+mv s5cmd /usr/local/bin
 ```
 
 After this you should be able to run `s5cmd --version`.
