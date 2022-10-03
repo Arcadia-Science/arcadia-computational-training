@@ -470,9 +470,11 @@ Once you've done that, click the "Create pull request" button.
 
 The pull request interface has a lot of features that make collaboration and code review straight forward.
 The main pull request page supports many important features:
+
 * Each commit and the descriptive message your provided for them are displayed.
 * Conversations about the file changes can take place via comments.
 * You can convert your pull request to a draft if you're not done adding to it yet, or request review from other GitHub users.
+
 The main pull request page also has a tab for "Files changed".
 This provides a succint view of every line changed in every file, showing you the new content in green and the deleted content in red. 
 
