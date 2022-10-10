@@ -15,9 +15,6 @@ alias ll="ls -lh"
 # List all files colorized in long format, including dot files
 alias la="ls -lha"
 
-# List only directories
-alias lsd="ls -l | grep "^d""
-
 # Grep (case-insensitive)
 alias lg="l | grep -i"
 
@@ -32,4 +29,6 @@ alias ca="code ~/.aliases"
 alias proj="cd ~/Desktop/Projects"
 
 # Git commands
+alias gch="git checkout"
 alias gst="git status"
+alias gp="git pull origin"
