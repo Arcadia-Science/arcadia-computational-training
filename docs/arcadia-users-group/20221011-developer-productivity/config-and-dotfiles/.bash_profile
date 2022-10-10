@@ -34,6 +34,3 @@ for file in ~/.{bash_prompt,aliases}; do
   [ -r "$file" ] && source "$file"
 done
 unset file
-
-# Fix Python
-export PATH="$PATH:/$HOME/Library/Python/3.9/bin"
