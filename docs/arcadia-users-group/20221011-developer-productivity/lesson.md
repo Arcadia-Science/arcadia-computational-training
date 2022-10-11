@@ -13,14 +13,15 @@ If you're not sure how to open a terminal on your computer, see [these instructi
 - A good chunk of these customizations are personal. The goal is to learn _how_ to customize and to empower you to customize as you wish.
 - A good chunk of these customizations are stylistic. As a programmar, you spend a lot of time in your terminal or text editor. I think it's important to make these tools beautiful.
 - I like bash because I've been using it for 10 years. This workshop will focus on using bash instead of zsh. But there are parallels between the two and learning to customize one will help you customize the other.
-- These type of tools can sometimes get RAM-intensive. So, beware if you have a laptop with <16GB of RAM.
+- IDEs can sometimes get RAM-intensive. So, beware if you have a laptop with <16GB of RAM. Any customizations to your terminal should be fine.
+- Most of the instructions today are for Mac devices. This is because 95% of Arcadia Science scientists use Macs for development work.
 
 ## Demo repository
 
-For demo purposes, we'll use the contents of the [AUG repository](https://github.com/Arcadia-Science/arcadia-computational-training). So, let's download the contents of it:
+For demo purposes, we'll use the contents of the [AUG repository](https://github.com/Arcadia-Science/arcadia-computational-training). So, let's download the contents of it. Our clone code assumes you have git configured to use an ssh key like we set up in the workshop. If you don't, head over to [this lesson](../../workshops/20220920-intro-to-git-and-github/lesson/#setting-up) for instructions on how to set it up.
 
 ```{bash}
-cd ~/Desktop
+cd ~/Desktop # or cd wherever you keep git repositories on your computer
 git clone git@github.com:Arcadia-Science/arcadia-computational-training.git
 cd arcadia-computational-training
 ls
@@ -38,24 +39,24 @@ IDEs are not necessary for programming, but with basic configuration, they can s
 
 ### Which IDE should I use?
 
-There are many IDEs or IDE-like text editors out there. Some are language-specific (think [IntelliJ](https://www.jetbrains.com/idea/) for Java). Some are generic like [Sublime Text](https://www.sublimehq.com/). Up until very recently, I've exclusively used Sublime Text and still love it for light-weight programming.
+There are many IDEs or IDE-like text editors out there. Some are language-specific (think [RStudio](https://www.rstudio.com/) for R). Some are generic like [Sublime Text](https://www.sublimehq.com/). Up until very recently, I've exclusively used Sublime Text and still love it for light-weight programming.
 
-But at Arcadia Science, we'll be using [Visual Studio Code](https://code.visualstudio.com/) (aka VS Code). There are couple reasons for this:
+Today we'll cover [Visual Studio Code](https://code.visualstudio.com/) (aka VS Code). There are couple reasons for this:
 
 - It has a tight-integration with git and Github.
 - It has a rich marketplace of free extensions, enabling you to configure your IDE to your heart's content.
 - It works cross-platform and has a straightforward way of syncing your settings across devices.
 - It is quite easy to configure because it suggests improvements on its own as needed.
-- It has access to a built-in terminal. Try hitting CTRL + ` when you install it.
+- It has access to a built-in terminal. Try hitting CTRL + \` when you install it.
 - It has tooling built-in to enable remote SSH access. So you can use an EC2 instance and navigate it through these tools.
 
 ### Installing VS Code
 
-Download and install VS Code by going to [this URL](https://code.visualstudio.com/download). Once installed, turn on sync across devices and login with your GitHub account.
+Download and install VS Code by going to [this URL](https://code.visualstudio.com/download). Once installed, turn on sync across devices and login with your GitHub account. This will only sync your settings and extensions across devices and will not sync any files you work with.
 
 ## Customizing VS Code
 
-You can just use VS Code as is. This section suggests a couple base-level customizations to make your life a little easier.
+You can use VS Code as is. This section suggests a couple base-level customizations to make your life a little easier.
 
 ### Settings
 
@@ -68,15 +69,14 @@ Open up the settings panel by hitting Command + , or by selecting "Code" -> "Pre
 
 Today, we'll mostly do #1, but if you're interested in following the second method, a simplified version of all my settings can be found in [this file](config-and-dotfiles/vscode_settings.json). So, let's get started.
 
-- **Auto Save:** Search for "Auto Save" in the settings menu. And adjust it to the non-default value (which is none). Mine is "afterDelay".
+- **Auto Save:** Search for "Auto Save" in the settings menu. And adjust it to the non-default value (which is none). Mine is "afterDelay". This will make sure your changes are saved automatically 1000ms after you stop typing.
 - **Font Size:** Search for "Font Size" and adjust it as you wish. I like 14pts font.
 - **Trim Trailing Whitespace:**: Search for it and turn it on, so your code doesn't have trailing spaces or tabs.
 - **Insert Final Newline:** Search for it and turn it on. This will prevent you from receiving PR review comments on [this](https://stackoverflow.com/questions/729692/why-should-text-files-end-with-a-newline).
 - **Trim Final Newlines:** Again, turn it on. This will make sure there's only a single newline at the end of each file.
-- insertFinalNewline
 - **Format on Save:** Search for "Format on Save" and turn it on. This will make sure, whatever code formatter you use formats the code upon saving it.
-- **Default Terminal application:** Search for "Osx Exex" and type "iTerm.app".
-- **Default Terminal profile:** Search for "Default Profile: Osx" and choose "bash".
+- **Default Terminal application:** You only need to change this if you use iTerm2. If you're on Mac, search for "Osx Exec" and type "iTerm.app". For Linux users, you'd have to search for "Linux Exec".
+- **Default Terminal profile:** If you're on Mac, search for "Default Profile: Osx" and choose "bash".
 - **Adding code in the PATH:** Open the command palette with Command + Shift + P. Search for "code" and choose the "Install 'code' command in PATH". This will make it so that you can open any file/directory from the terminal with `code`.
 
 ### Extensions
@@ -137,7 +137,7 @@ Once you select the color scheme you'd like to use, just do the following:
 
 ### Tweaking bash
 
-In general, most customizations go to the `.bash_profile` or `.bashrc` files. Here, we'll show a slightly modular approach, so we can simplify the files before they get too long and difficult to manage. Once you change the `.bash_profile` or the underlying configuration files, you need to make sure those changes are persisted. You can that by "sourcing" the `.bash_profile` with `source .bash_profile` or restarting your terminal.
+In general, most customizations go to the `.bash_profile` or `.bashrc` files. Here, we'll show a slightly modular approach, so we can simplify the files before they get too long and difficult to manage. Once you change the `.bash_profile` or the underlying configuration files, you need to make sure those changes are persistant. You can do that by "sourcing" the `.bash_profile` with `source .bash_profile` or restarting your terminal.
 
 #### Tweaking the bash prompt
 
