@@ -26,40 +26,6 @@ cd arcadia-computational-training
 ls
 ```
 
-## Customizing the terminal
-
-There are 3 main ways, we'll customize our terminals.
-
-- Switching from zsh to bash if you haven't already.
-- Installing [iTerm2](https://iterm2.com/), a better version of Apple's built-in Terminal application.
-- Customizing bash with `.bash_profile`.
-
-### Switching from zsh to bash
-
-Open the Terminal application, run `chsh -s /bin/bash` and quit the application. Next time you open, you should see bash. You'll see an alert that `zsh` the new Apple default when you open the terminal
-
-### Installing and using iTerm2
-
-Download and install iTerm2 by going to [this URL](https://iterm2.com/). There aren't too many ways to customize iTerm2. Or at least, I only customize the color scheme. My color scheme can be found [here](config-and-dotfiles/iterm.json). If you want to download something unique for you, there are many options [here](https://iterm2colorschemes.com/).
-
-Once you select the color scheme you'd like to use, just do the following:
-
-- Launch iTerm2
-- Type CMD+i
-- Navigate to Colors tab
-- Click on Load Presets
-- Click on Import
-- Select your file
-- Click on Load Presets and choose a color scheme
-
-### Tweaking the bash prompt
-
-### Using aliases for commonly used commands
-
-### Adding git auto-complete to bash
-
-### Tweaking git
-
 ## IDEs
 
 ### What are IDEs?
@@ -80,6 +46,7 @@ But at Arcadia Science, we'll be using [Visual Studio Code](https://code.visuals
 - It has a rich marketplace of free extensions, enabling you to configure your IDE to your heart's content.
 - It works cross-platform and has a straightforward way of syncing your settings across devices.
 - It is quite easy to configure because it suggests improvements on its own as needed.
+- It has access to a built-in terminal. Try hitting CTRL + ` when you install it.
 
 ### Installing VS Code
 
@@ -109,10 +76,18 @@ Today, we'll mostly do #1, but if you're interested in following the second meth
 - **Format on Save:** Search for "Format on Save" and turn it on. This will make sure, whatever code formatter you use formats the code upon saving it.
 - **Default Terminal application:** Search for "Osx Exex" and type "iTerm.app".
 - **Default Terminal profile:** Search for "Default Profile: Osx" and choose "bash".
+- **Adding code in the PATH:** Open the command palette with Command + Shift + P. Search for "code" and choose the "Install 'code' command in PATH". This will make it so that you can open any file/directory from the terminal with `code`.
 
 ### Extensions
 
-For this section, I'll only go through the installation instructions of a few VS Code extensions and give you a list of other extensions you can install on your own time. For downloading and installing extensions, click on the "Extensions" tab from the left tab, search for the name of the extension and hit "install". Here are the extensions:
+Before we go through this section, let's quit VS Code. Renavigate to the correct demo folder and re-open with VS Code:
+
+```{bash}
+cd ~/Desktop/arcadia-computational-training
+code .
+```
+
+For this section, we'll only go through the installation instructions of a few VS Code extensions and give you a list of other extensions you can install on your own time. For downloading and installing extensions, click on the "Extensions" tab from the left tab, search for the name of the extension and hit "install". Here are the extensions:
 
 - Prettier
 - Git Graph
@@ -131,6 +106,61 @@ For this section, I'll only go through the installation instructions of a few VS
 - Jupyter Notebook Renderers
 - Jupyter Slide Show
 - One Dark Pro - for color schemes
+
+## Customizing the terminal
+
+There are 3 main ways, we'll customize our terminals.
+
+- Switching from zsh to bash if you haven't already.
+- Installing [iTerm2](https://iterm2.com/), a better version of Apple's built-in Terminal application.
+- Customizing bash with `.bash_profile`.
+
+### Switching from zsh to bash
+
+Open the Terminal application, run `chsh -s /bin/bash` and quit the application. Next time you open, you should see bash. You'll see an alert that `zsh` the new Apple default when you open the terminal
+
+### Installing and using iTerm2
+
+Download and install iTerm2 by going to [this URL](https://iterm2.com/). There aren't too many ways to customize iTerm2. Or at least, I only customize the color scheme. My color scheme can be found [here](config-and-dotfiles/iterm.json). If you want to download something unique for you, there are many options [here](https://iterm2colorschemes.com/).
+
+Once you select the color scheme you'd like to use, just do the following:
+
+- Launch iTerm2
+- Type CMD+i
+- Navigate to Colors tab
+- Click on Load Presets
+- Click on Import
+- Select your file
+- Click on Load Presets and choose a color scheme
+
+### Tweaking bash
+
+In general, most customizations go to the `.bash_profile` or `.bashrc` files. Here, I'll show a slightly modular approach, so we can simplify the files before they get too long and difficult to manage. Once you change the `.bash_profile` or the underlying configuration files, you need to make sure those changes are persisted. You can that by "sourcing" the `.bash_profile` with `source .bash_profile` or restarting your terminal.
+
+#### Tweaking the bash prompt
+
+For this and the following sections, we need to create the following files: `.bash_profile`, `.bash_prompt`, `.aliases` and `.gitconfig` (which you mostly have). Let's start with creating these:
+
+```{bash}
+cd ~
+touch .bash_profile .bash_prompt .aliases .gitconfig
+code .bash_profile .bash_prompt .aliases .gitconfig
+```
+
+This command will not recreate the files if they already exist. And it's okay, if they already exist, we'll edit some of them. My versions of all these files can be found in the `config-and-dotfiles` directory. You can just copy and paste them, making sure to not delete anything in your existing files. We'll go through them one by one, starting with the [.bash_prompt](config-and-dotfiles/.bash_prompt).
+
+This file basically shapes the main prompt that shows up when you use bash. For it to be activated, make sure you also copy the [.bash_profile](config-and-dotfiles/.bash_profile) file. And run `source ~/.bash_profile`.
+
+#### Using aliases for commonly used commands
+
+Aliases are shortcuts for commands that you frequently use. Some of these provide stylistic changes. Some of these provide useful shortcuts for common git commands. You can customize this however you want, but a simplified version of my aliases can be found [here](config-and-dotfiles/.aliases).
+
+#### Tweaking git
+
+Git uses the `.gitconfig` file to configure the behavior of the git CLI. My simplified version of the configuration file can be found [here](config-and-dotfiles/.gitconfig). The two big components of this configuration file are:
+
+- Colorful view for git branches, stages etc.
+- Better visualization of the git history through the command-line
 
 ## What will happen in the future?
 
