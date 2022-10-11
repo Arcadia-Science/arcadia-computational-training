@@ -144,7 +144,7 @@ Once you select the color scheme you'd like to use, just do the following:
 
 ### Tweaking zsh
 
-There are two files as part of this repository that should give you a sense of how to configure zsh. First one is the [.zshrc](config-and-dotfiles/.zshrc) file and the other is the [iTerm2 zsh configuration file](config-and-dotfiles/iterm2_shell_integration.zsh). As you'll see most of the configurations rely on the [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) repository. So let's start with installing that:
+There are two files as part of this repository that should give you a sense of how to configure zsh. First one is the [.zshrc](config-and-dotfiles/.zshrc) file and the other is the [iTerm2 zsh configuration file](config-and-dotfiles/.iterm2_shell_integration.zsh). As you'll see most of the configurations rely on the [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) repository. So let's start with installing that:
 
 On Unix systems, you can run `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`.
 
@@ -156,7 +156,7 @@ You can make sure the installation worked as expected with:
 cat ~/.zshrc
 ```
 
-This file should look awfully similar to [this one](config-and-dotfiles/.zshrc). You can copy the [iTerm2 zsh configuration file](config-and-dotfiles/iterm2_shell_integration.zsh) in this repository to the root directory (`~`). And copy the contents of the sample .zshrc file to the newly created `~/.zshrc` file. And you should be all set!
+This file should look awfully similar to [this one](config-and-dotfiles/.zshrc). You can copy the [iTerm2 zsh configuration file](config-and-dotfiles/.iterm2_shell_integration.zsh) in this repository to the root directory (`~`). And copy the contents of the sample .zshrc file to the newly created `~/.zshrc` file. And you should be all set!
 
 ### Tweaking bash
 
