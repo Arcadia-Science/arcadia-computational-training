@@ -101,7 +101,7 @@ For this section, we'll only go through the installation instructions of a few V
 - Python
 - Pylance - for basic linting
 - R
-- Jupyter - for Jupyter notebooks
+- Jupyter - for Jupyter notebooks. These tools will allow to specify your Python version/kernel you use.
 - Jupyter Cell Tags
 - Jupyter Keymap
 - Jupyter Notebook Renderers
@@ -119,7 +119,14 @@ There are 3 main ways, we'll customize our terminals.
 
 ### Switching from zsh to bash
 
-Open the Terminal application, run `chsh -s /bin/bash` and quit the application. Next time you open, you should see bash. You'll see an alert that `zsh` the new Apple default when you open the terminal
+**Note:** I like bash because I've been using it for 10 years. You don't have to. If you want to learn more about the differences, you can read more [here](https://www.geeksforgeeks.org/bash-scripting-difference-between-zsh-and-bash/#:~:text=Zsh%20is%20built%20on%20top,support%2C%20spelling%20correction%2C%20etc.). The main differences are:
+
+- zsh is more configurable and support more customizable plug-ins (like auto-complete!).
+- bash is the default shell you'll get access on Linux devices (like AWS instances).
+
+If you want to keep using zsh, that's perfectly fine! You can check [this blog post](https://medium.com/@harrison.miller13_28580/bash-vs-z-shell-a-tale-of-two-command-line-shells-c65bb66e4658) and [this tool](https://github.com/ohmyzsh/ohmyzsh) for ways to configure it.
+
+If you want to start using bash, open the Terminal application, run `chsh -s /bin/bash` and quit the application. Next time you open, you should see bash. You'll see an alert that `zsh` the new Apple default when you open the terminal
 
 ### Installing and using iTerm2
 
