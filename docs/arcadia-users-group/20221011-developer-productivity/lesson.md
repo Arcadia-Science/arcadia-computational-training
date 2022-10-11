@@ -107,6 +107,7 @@ For this section, we'll only go through the installation instructions of a few V
 - Jupyter Notebook Renderers
 - Jupyter Slide Show
 - One Dark Pro - for color schemes
+- Nextflow specific [extensions](https://github.com/nf-core/vscode-extensionpack) recommended by the nf-core team
 
 ## Customizing the terminal
 
