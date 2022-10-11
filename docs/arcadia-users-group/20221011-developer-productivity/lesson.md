@@ -10,8 +10,8 @@ If you're not sure how to open a terminal on your computer, see [these instructi
 ## Caveats
 
 - You don't really have to do any of these customizations to get good at programming. But these are designed to make your life easier.
-- A good chunk of customizations are personal. The goal is to learn _how_ to customize and to empower you to customize as you wish.
-- A good chunk of customizations are stylistic. As a programmar, you spend a lot of time in your terminal or text editor. I like making these tools beautiful.
+- A good chunk of these customizations are personal. The goal is to learn _how_ to customize and to empower you to customize as you wish.
+- A good chunk of these customizations are stylistic. As a programmar, you spend a lot of time in your terminal or text editor. I think it's important to make these tools beautiful.
 - I like bash because I've been using it for 10 years. This workshop will focus on using bash instead of zsh. But there are parallels between the two and learning to customize one will help you customize the other.
 - These type of tools can sometimes get RAM-intensive. So, beware if you have a laptop with <16GB of RAM.
 
@@ -47,6 +47,7 @@ But at Arcadia Science, we'll be using [Visual Studio Code](https://code.visuals
 - It works cross-platform and has a straightforward way of syncing your settings across devices.
 - It is quite easy to configure because it suggests improvements on its own as needed.
 - It has access to a built-in terminal. Try hitting CTRL + ` when you install it.
+- It has tooling built-in to enable remote SSH access. So you can use an EC2 instance and navigate it through these tools.
 
 ### Installing VS Code
 
@@ -54,15 +55,15 @@ Download and install VS Code by going to [this URL](https://code.visualstudio.co
 
 ## Customizing VS Code
 
-You can just use VS Code as is. This section suggests a couple base-level customizations to make your life a little easier. Some of these are basic settings changes and some of these are installing extensions to add new capabilities to VS Code.
+You can just use VS Code as is. This section suggests a couple base-level customizations to make your life a little easier.
 
 ### Settings
 
-**Note:** There are hundreds of settings you can customize, we'll only focus on essentials.
+**Note:** There are hundreds of settings you can customize, we'll only focus on the essentials.
 
 Open up the settings panel by hitting Command + , or by selecting "Code" -> "Preferences" -> "Settings" from the top left corner. There are two ways to adjust settings:
 
-1. You can search through them using the search bar or
+1. You can search through them using the search bar
 2. You can edit the underlying JSON blob that specifies the user settings.
 
 Today, we'll mostly do #1, but if you're interested in following the second method, a simplified version of all my settings can be found in [this file](config-and-dotfiles/vscode_settings.json). So, let's get started.
@@ -89,11 +90,11 @@ code .
 
 For this section, we'll only go through the installation instructions of a few VS Code extensions and give you a list of other extensions you can install on your own time. For downloading and installing extensions, click on the "Extensions" tab from the left tab, search for the name of the extension and hit "install". Here are the extensions:
 
-- Prettier
-- Git Graph
+- Prettier: Customization with "Format Document With"
+- Markdown All in One: Opening Markdown previews with Command + Shift + V
+- Excel Viewer: Opening CSV and Excel previews with Command + Shift + V
 - GitHub Pull Requests and Issues
-- Excel Viewer
-- Markdown All in One
+- Git Graph
 
 #### Extension recommendations
 
@@ -135,11 +136,11 @@ Once you select the color scheme you'd like to use, just do the following:
 
 ### Tweaking bash
 
-In general, most customizations go to the `.bash_profile` or `.bashrc` files. Here, I'll show a slightly modular approach, so we can simplify the files before they get too long and difficult to manage. Once you change the `.bash_profile` or the underlying configuration files, you need to make sure those changes are persisted. You can that by "sourcing" the `.bash_profile` with `source .bash_profile` or restarting your terminal.
+In general, most customizations go to the `.bash_profile` or `.bashrc` files. Here, we'll show a slightly modular approach, so we can simplify the files before they get too long and difficult to manage. Once you change the `.bash_profile` or the underlying configuration files, you need to make sure those changes are persisted. You can that by "sourcing" the `.bash_profile` with `source .bash_profile` or restarting your terminal.
 
 #### Tweaking the bash prompt
 
-For this and the following sections, we need to create the following files: `.bash_profile`, `.bash_prompt`, `.aliases` and `.gitconfig` (which you mostly have). Let's start with creating these:
+For this and the following sections, we need to create the following files: `.bash_profile` (main entry point the Terminal application searches for), `.bash_prompt` (customizes the look of the prompt), `.aliases` (adds new shortcuts/aliases for common commands) and `.gitconfig` (customizations for git commands). Let's start with creating these:
 
 ```{bash}
 cd ~
@@ -147,7 +148,7 @@ touch .bash_profile .bash_prompt .aliases .gitconfig
 code .bash_profile .bash_prompt .aliases .gitconfig
 ```
 
-This command will not recreate the files if they already exist. And it's okay, if they already exist, we'll edit some of them. My versions of all these files can be found in the `config-and-dotfiles` directory. You can just copy and paste them, making sure to not delete anything in your existing files. We'll go through them one by one, starting with the [.bash_prompt](config-and-dotfiles/.bash_prompt).
+These commands will not recreate the files if they already exist. If they already exist, we'll edit them. My versions of all these files can be found in the `config-and-dotfiles` directory. You can just copy and paste them, making sure to not delete anything in your existing files. We'll go through them one by one, starting with the [.bash_prompt](config-and-dotfiles/.bash_prompt).
 
 This file basically shapes the main prompt that shows up when you use bash. For it to be activated, make sure you also copy the [.bash_profile](config-and-dotfiles/.bash_profile) file. And run `source ~/.bash_profile`.
 
