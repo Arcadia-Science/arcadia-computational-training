@@ -310,7 +310,7 @@ tar -xvf s5cmd.tar.gz
 mv s5cmd /usr/local/bin
 ```
 
-After this you should be able to run `s5cmd version`. For viewing full functionality run `s5cmd -h`
+After this you should be able to run `s5cmd version`. For viewing full functionality run `s5cmd -h`.
 
 ### Differences to the official CLI
 
