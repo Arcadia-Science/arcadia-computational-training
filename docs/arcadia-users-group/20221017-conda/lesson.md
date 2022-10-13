@@ -102,14 +102,58 @@ The `base` environment contains all of the software needed for conda to run.
 
 ### Installing mamba
 
-While you can install new 
+While you can install new packages with conda, sometimes it's...slow.
+[Mamba](https://mamba.readthedocs.io/en/latest/index.html) helps solve this problem. 
+Mamba is a drop in replacement for conda and it improves installation speeds by decreasing the time it takes to solve dependency conflicts.
+You can install mamba with:
+
+```
+conda install -c conda-forge mamba
+```
+
+### Conda channels
+
+Channels are the locations of the repositories (directories) online containing Conda packages. 
+Upon Conda’s installation, Continuum’s (Conda’s developer) channels are set by default, so without any further modification, these are the locations where your Conda will start searching for packages.
+
+Channels in Conda are ordered. 
+The channel with the highest priority is the first one that Conda checks, looking for the package you asked for. 
+You can change this order, and also add channels to it (and set their priority as well).
+
+You should follow the channel order below -- otherwise, sometimes you'll encounter weird bugs because packages will be installed from the wrong location. 
+```
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+```
+
+Once we have our channel order configured, you will no longer need to use the explicit channel parameter `-c` when you install new packages.
+
+<center>
+<figure markdown>
+  ![condachannel](conda_channels.png){ width="700" }
+  <figcaption> Cartoon of conda channels by Gergely Szerovay <a href='https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/' target='_blank'>www.freecodecamp.org</a> </figcaption>
+</figure>
+</center>
+
+If multiple channels contain a package, and one channel contains a newer version than the other one, the order of the channels determines which of these two versions is going to be installed, even if the higher priority channel contains the older version.
+
+
+<center>
+<figure markdown>
+  ![condachannels2](conda_channels2.png){ width="700" }
+  <figcaption> Cartoon of conda channel priorities by Gergely Szerovay <a href='https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/' target='_blank'>www.freecodecamp.org</a> </figcaption>
+</figure>
+</center>
 
 
 ### Creating a new environment
 
-Check your current version of python by exectuting `python --version`
+Other than mamba, we recommend you keep you `base` environment free from all other installations. 
+If you install everything in `base`, you'll end up with lots of dependencies that need to be solved which will decrease installation speeds.
+It also becomes more difficult to document software installations and versions required for specific project. 
 
-To create a new environment named, for instance mynewenv (you can name it what ever you like), that includes, let’s say, a Python version 3.4., run:
+To create a new environment named, for instance `mynewenv` (you can name it what ever you like), run:
 
 ```
 conda create --name mynewenv
@@ -117,53 +161,50 @@ conda create --name mynewenv
 
 ### Navigating environments through `activate` and `deactivate`
 
-Inside a new Conda installation, the root environment is activated by default, so you can use it without activation.
-
-In other cases, if you want to use an environment (for instance manage packages, or run Python scripts inside it) you need to first activate it.
+If you want to use an environment (for instance manage packages, or run Python scripts inside it) you need to first activate it.
 
 ```
 conda activate mynewenv
 ```
-The command prompt changes upon the environment’s activation, it now contains the active environment’s name.
 
-The directories of the active environment’s executable files are added to the system path (this means that you can now access them more easily). You can leave an environment with this command:
+The command prompt should now be prepended by `(mynewenv)` instead of `(base)`.
+The command prompt is a useful tool to orient yourself as to which environment you're currently using.
+
+If you install a new tool while in an environment, it only gets installed in that environment.
+```
+mamba install samtools
+```
+
+Even better, you can specify which version of samtools you would like to install:
+```
+mamba install samtools=1.9
+```
+
+We just installed a very old version. 
+We can ask mamba to automatically update our package installation to the latest version:
+```
+mamba update samtools
+```
+
+The directories of the active environment’s executable files are added to the system path (this means that you can now access them more easily). 
+
+```
+which samtools
+```
+
+You can leave an environment with this command:
 
 ```
 conda deactivate
 ```
 
-It needs to be mentioned that upon deactivating an environment, the base environment becomes active automatically.
-
-
-### Conda channels
-
-Channels are the locations of the repositories (directories) online containing Conda packages. 
-Upon Conda’s installation, Continuum’s (Conda’s developer) channels are set by default, so without any further modification, these are the locations where your Conda will start searching for packages.
-
-Channels in Conda are ordered. The channel with the highest priority is the first one that Conda checks, looking for the package you asked for. 
-You can change this order, and also add channels to it (and set their priority as well).
-
-<center><img src="conda_channels.png" width="90%"></center>
-<br>
-
-If multiple channels contain a package, and one channel contains a newer version than the other one, the order of the channels’ determines which one of these two versions are going to be installed, even if the higher priority channel contains the older version.
-
-
-
-See the bioconda paper and the [bioconda web site](http://bioconda.github.io/)
-
-Bioconda is a community-enabled repository of 3,000+ bioinformatics packages, installable via the conda package manager.
-Note: bioconda is not available for windows systems
-
-Add channels
+Now, if we run the same command, we'll get a different result:
 
 ```
-conda config --add channels defaults
-conda config --add channels bioconda
-conda config --add channels conda-forge
+which samtools
 ```
 
-### Searching, installing and removing packages
+### Searching, installing, and removing packages
 
 To list out all the installed packages in the currently active environment, run:
 
@@ -171,7 +212,8 @@ To list out all the installed packages in the currently active environment, run:
 conda list
 ```
 
-To search for all the available versions of a certain package, you can use the search command. For instance, to list out all the versions of the seaborn package (it is a tool for data visualization), run:
+To search for all the available versions of a certain package, you can use the search command. 
+For instance, to list out all the versions of samtools, run:
 
 ```
 conda search samtools
@@ -181,32 +223,20 @@ Similarly to the conda list command, this one results in a list of the matching 
 
 ```
 Loading channels: done
-# Name                       Version           Build  Channel             
-samtools                      0.1.12               0  bioconda            
-samtools                      0.1.12               1  bioconda            
-samtools                      0.1.12               2  bioconda            
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""  
-samtools                         1.9      h91753b0_3  bioconda            
-samtools                         1.9      h91753b0_4  bioconda            
-samtools                         1.9      h91753b0_5  bioconda            
-samtools                         1.9      h91753b0_8  bioconda  
-```
-
-To install a package (for samtools) that is inside a channel that is on your channel list, run this command (if you don’t specify which version you want, it’ll automatically install the latest available version from the highest priority channel):
-
-```
-conda install samtools
-```
-
-You can also specify the package’s version:
-```
-conda install samtools=1.9
+# Name                       Version           Build  Channel
+samtools                      0.1.12               0  bioconda
+samtools                      0.1.12               1  bioconda
+samtools                      0.1.12               2  bioconda
+samtools                      0.1.12      hdd8ed8b_3  bioconda
 ```
 
 ### Freezing an environment
 
-This will save the list of **conda-installed** software you have in a particular
-environment to the file `packages.txt`:
+Keeping track of the software versions you used to run your analyses is a cornerstone of reproducible science.
+Conda facilitates this in many ways.
+One handy way is to record the packages you've installed into a text file.
+
+This will save the list of **conda-installed** software you have in a particular environment to the file `packages.txt`:
 ```
 conda list --export > packages.txt
 ```
@@ -217,60 +247,45 @@ conda install --file=packages.txt
 ```
 will install those packages in your local environment.
 
-### Conda Commands
+### Encoding environments in and installing environments from text files
 
-| Conda commands | action |
-| -------- | -------- |
-| `conda install`     | install a package     |
-| `conda list`     | list installed packages     |
-| `conda search`     |   To search a package   |
-| `conda info`     | list of information about the environment     |
-| `conda list`     | list out all the installed packages in the currently active environment    |
-| `conda remove`     | Remove a conda package     |
-| `conda config --get channels`     | list out the active channels and their priorities     |
-| `conda update`     | update all the installed packages     |
-| `conda config --remove channels unwanted_channel` | remove unwanted_channel |
-| `conda env list` | list the different environments you have set up | 
-| `conda activate myNewEnvironment` | activate the myNewEnvironment Conda environment (this also works for activating our `base` environment |
-| `conda info --envs` | list the locations of Conda directories |
+### Using small environments
 
-## A note on the management Conda Environments
-Conda environments are expceptionally useful! However, they can become quite large depending on how many packages we load into them. We can check how large any of our Conda enviroments are by finding the path to the environment directory and then estimating the file space usage of that directory.
+### Keeping an eye on the size of conda environments
+
+Conda environments can become quite large depending on how many packages are installed. 
+We can check how large any of our Conda enviroments are by finding the path to the environment directory and then estimating the file space usage of that directory.
 
 First, let's find where we put out `mynewenv` directory
 ```
-conda info --envs
+conda env list
 ```
-This will print out a list of the locations of our Conda environments.
 
-```
-# conda environments:
-#
-base                  *  /opt/miniconda
-mynewenv                 /opt/miniconda/envs/mynewenv
-```
+This will print out a list of the locations of our Conda environments.
+We installed conda in our home directory, so we can use the `~` shortcut to access our environment paths.
 
 Next, let's use the command `du` to estimate the space our `mynewenv` directory is taking up!
 
 ```
-du -sh /opt/miniconda/envs/mynewenv/
+du -sh ~/miniconda/envs/mynewenv/
 ```
 
 We can see our `mynewenv` environment is taking up about 12K of space. 
 
-```
-12K	/opt/miniconda/envs/mynewenv/
-```
+## Summary of Conda Commands
 
-**QUESTION: How much space is your `base` environment taking up?**
-
-
-
-## More Reading on Conda
-
-+ Conda [Documentation](https://conda.io/en/latest/)
-
-+ Image credits: Gergely Szerovay. Read original article [here](https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/)
+| Conda commands | action |
+| -------- | -------- |
+| `conda install`     | install a package     |
+| `conda search`     |  search for a package   |
+| `conda info`     | list of information about the environment     |
+| `conda list`     | list out all the installed packages in the currently active environment    |
+| `conda remove`     | remove a conda package     |
+| `conda config --get channels`     | list out the active channels and their priorities     |
+| `conda update`     | update all the installed packages     |
+| `conda config --remove channels unwanted_channel` | remove unwanted_channel |
+| `conda env list` | list the different environments you have set up and their locations | 
+| `conda activate mynewenv` | activate the mynewenv Conda environment (this also works for activating our `base` environment |
 
 ## A note about the conda ecosystem
 
@@ -296,4 +311,3 @@ This is an [NP-complete problem](https://www.anaconda.com/blog/understanding-and
 [mamba](https://mamba.readthedocs.io/en/latest/index.html) is a drop-in replacement for conda that offers higher speed and more reliable environment solutions.
 However, the best way to install mamba at the moment is via conda.
 Mamba is worth the confusion it has caused -- it decreases install times by orders of magnitude thus saving time.
-
