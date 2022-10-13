@@ -11,7 +11,7 @@ The content in this repository is meant to present a sensible set of defaults fo
 
 The file [mkdocs.yml](mkdocs.yml) controls the website layout and organization of the website (as opposed to this being controlled by the file structure in the repository).
 
-This website uses the [Bootswatch](https://mkdocs.github.io/mkdocs-bootswatch/) [lux](https://mkdocs.github.io/mkdocs-bootswatch/#lux) theme.
+This website uses the [Material](https://squidfunk.github.io/mkdocs-material/) theme.
 The [installation & usage](https://mkdocs.github.io/mkdocs-bootswatch/#installation-usage) instructions were added to the [.github/workflows/gh-pages.yml](.github/workflows/gh-pages.yml) as the first `run` directive.
 
 For complete documentation on getting started with MkDocs, see their [getting started documentation](https://www.mkdocs.org/getting-started/).
