@@ -2,7 +2,8 @@
 
 ## Why should I use a package and environment management system?
 
-**Package managers and why we use them.** A [package manager](https://en.wikipedia.org/wiki/Package_manager) is a software tool that automates the process of installing, upgrading, configuring, or removing software from your computer.
+**Package managers and why we use them.** 
+A [package manager](https://en.wikipedia.org/wiki/Package_manager) is a software tool that automates the process of installing, upgrading, configuring, or removing software from your computer.
 [Pip](https://pypi.org/project/pip/) (python), [BiocManager](https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html) (Bioconductor R packages), and [APT](https://en.wikipedia.org/wiki/APT_(software)) (ubuntu) are three commonly encountered package managers. 
 Package managers make installation software easier. 
 
@@ -35,6 +36,21 @@ With a few commands, you can set up a totally separate environment to run that d
 </figure>
 </center>
 
+For this lesson, we'll install miniconda. 
+We've included the latest installation instructions below.
+You can access the latest and legacy installation links [here](https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links).
+
+### Installing conda on an Apple machine
+
+Apple now has two processor types, the Intel x64 and the Apple M1 (or M2) ARM64.
+As of October 2022, many of the packages available via conda-forge and other conda installation channels are only available of the Intel x64 processor. 
+Therefore, even if you have an M1 (or M2) Mac, we currently recommend that you use the Intel x64 installation and take advantage of Apple's translation program Rosetta. 
+This requires a little bit of pre-configuration to make sure your Terminal application also runs with Rosetta.
+To set this up, open **Finder** -> navigate to your **Applications** folder -> right click on your Terminal application (either Terminal or iTerm2) -> select **Get Info** -> check the box for **Open using Rosetta**.
+
+
+  
+### Installing conda on a Linux machine
 
 ## How does Conda work
 
