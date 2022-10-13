@@ -11,10 +11,13 @@ docs_dir: docs
 site_dir: site
 
 theme:
-  name: lux
+  name: material
+  palette:
+    primary: black
+    accent: light blue
+  logo: assets/logo.png
+  favicon: assets/Arcadia_LogoOnly-XL-K.png
 
-extra_css: 
-    - css/extra.css
 
 markdown_extensions:
     - attr_list
@@ -23,7 +26,7 @@ markdown_extensions:
 # organize site structure and give a title for each page
 # paths are relative to the docs directory
 nav:
-    - "Home": "index.md"
+    - "Computational Training Home": "index.md"
     - "Arcadia Users Group": "arcadia-users-group/overview.md"
     - "Workshops": "workshops/overview.md"
     - "Contribute": "CONTRIBUTING.md"
