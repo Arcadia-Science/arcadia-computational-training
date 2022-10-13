@@ -27,7 +27,16 @@ Conda as a package manager helps you find and install packages.
 If you need a package that requires a different version of Python, you do not need to switch to a different environment manager, because Conda is also an environment manager. 
 With a few commands, you can set up a totally separate environment to run that different version of Python, while continuing to run a different version of Python in another environment.
 
-## Installing Conda
+## How does Conda work?
+
+<center>
+<figure markdown>
+  ![conda](conda.png){ width="700" }
+  <figcaption> Cartoon of conda environments by Gergely Szerovay <a href='https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/' target='_blank'>www.freecodecamp.org</a> </figcaption>
+</figure>
+</center>
+
+### Installing Conda
 
 <center>
 <figure markdown>
@@ -40,7 +49,7 @@ For this lesson, we'll install miniconda.
 We've included the latest installation instructions below.
 You can access the latest and legacy installation links [here](https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links).
 
-### Installing conda on an Apple machine
+#### Installing conda on an Apple machine
 
 Apple now has two processor types, the Intel x64 and the Apple M1 (or M2) ARM64.
 As of October 2022, many of the packages available via conda-forge and other conda installation channels are only available of the Intel x64 processor. 
@@ -48,31 +57,55 @@ Therefore, even if you have an M1 (or M2) Mac, we currently recommend that you u
 This requires a little bit of pre-configuration to make sure your Terminal application also runs with Rosetta.
 To set this up, open **Finder** -> navigate to your **Applications** folder -> right click on your Terminal application (either Terminal or iTerm2) -> select **Get Info** -> check the box for **Open using Rosetta**.
 
-
-  
-### Installing conda on a Linux machine
-
-## How does Conda work
-
 <center>
 <figure markdown>
-  ![conda](conda.png){ width="700" }
-  <figcaption> Cartoon of conda environments by Gergely Szerovay <a href='https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/' target='_blank'>www.freecodecamp.org</a> </figcaption>
+  ![installingconda](rosetta.png){ width="200" }
+  <figcaption> Running Terminal/iTerm using Rosetta </figcaption>
 </figure>
 </center>
 
-## Benefits of Conda
+After that is configured, open your Terminal application and copy and paste the following commands to download and install miniconda.
 
-<center><img src="_static/conda3.png" width="90%"></center>
-<br>
+```
+curl -JLO https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+bash Miniconda3-latest-MacOSX-x64_64.sh 
+```
 
-## Installing & Activating Conda
+This will prompt you to accept the miniconda license, ask you whether you accept the default installation location, and whether you want the installation script to intialize conda. 
+Accept all of the defaults and then open and close your terminal for the installation to take effect.
+ 
+#### Installing conda on a Linux machine
 
-We have already installed conda on these instances, but please see the [stellar conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/install/) after the class if you'd like to install it on your personal computer or elsewhere. 
+Each time you start a new AWS (or many other cloud) machine, you'll have to install miniconda. 
+The installation process is the same as it is on Mac except you'll need to use a different download URL.
 
-## Adding a new environment
+```
+curl -JLO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+``` 
 
-> If you need to re-access your terminal environment, [see here](jetstream/boot.html#ssh-secure-login).
+This will prompt you to accept the miniconda license, ask you whether you accept the default installation location, and whether you want the installation script to intialize conda. 
+Accept all of the defaults and then open and close your terminal for the installation to take effect.
+To activate conda, you can either log out and log back in or run:
+
+```
+source ~/.bashrc
+```
+
+### Activating conda and the `(base)` environment
+
+Conda needs to be activated for it to be usable. 
+During the installation process, we configured conda to automatically activate when the shell is started.
+If conda is activated, you should see `(base)` prepend your path. 
+
+The `base` environment contains all of the software needed for conda to run. 
+
+### Installing mamba
+
+While you can install new 
+
+
+### Creating a new environment
 
 Check your current version of python by exectuting `python --version`
 
@@ -82,7 +115,7 @@ To create a new environment named, for instance mynewenv (you can name it what e
 conda create --name mynewenv
 ```
 
-## Activating and leaving (deactivating) an environment
+### Navigating environments through `activate` and `deactivate`
 
 Inside a new Conda installation, the root environment is activated by default, so you can use it without activation.
 
@@ -102,22 +135,20 @@ conda deactivate
 It needs to be mentioned that upon deactivating an environment, the base environment becomes active automatically.
 
 
-## What are Conda channels?
+### Conda channels
 
-Channels are the locations of the repositories (directories) online containing Conda packages. Upon Conda’s installation, Continuum’s (Conda’s developer) channels are set by default, so without any further modification, these are the locations where your Conda will start searching for packages.
+Channels are the locations of the repositories (directories) online containing Conda packages. 
+Upon Conda’s installation, Continuum’s (Conda’s developer) channels are set by default, so without any further modification, these are the locations where your Conda will start searching for packages.
 
-Channels in Conda are ordered. The channel with the highest priority is the first one that Conda checks, looking for the package you asked for. You can change this order, and also add channels to it (and set their priority as well).
+Channels in Conda are ordered. The channel with the highest priority is the first one that Conda checks, looking for the package you asked for. 
+You can change this order, and also add channels to it (and set their priority as well).
 
-<center><img src="_static/conda4.png" width="90%"></center>
+<center><img src="conda_channels.png" width="90%"></center>
 <br>
 
 If multiple channels contain a package, and one channel contains a newer version than the other one, the order of the channels’ determines which one of these two versions are going to be installed, even if the higher priority channel contains the older version.
 
 
-<center><img src="_static/conda5.png" width="90%"></center>
-<br>
-
- Bioconda Channel
 
 See the bioconda paper and the [bioconda web site](http://bioconda.github.io/)
 
@@ -132,18 +163,12 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
-Searching, installing and removing packages
+### Searching, installing and removing packages
 
 To list out all the installed packages in the currently active environment, run:
 
 ```
 conda list
-```
-
-Try running a program pre-installed on this instance:
-
-```
-fastqc
 ```
 
 To search for all the available versions of a certain package, you can use the search command. For instance, to list out all the versions of the seaborn package (it is a tool for data visualization), run:
