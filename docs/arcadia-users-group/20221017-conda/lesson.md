@@ -26,12 +26,22 @@ Conda as a package manager helps you find and install packages.
 If you need a package that requires a different version of Python, you do not need to switch to a different environment manager, because Conda is also an environment manager. 
 With a few commands, you can set up a totally separate environment to run that different version of Python, while continuing to run a different version of Python in another environment.
 
+## Installing Conda
+
+<center>
+<figure markdown>
+  ![installingconda](installing_conda.png){ width="700" }
+  <figcaption> Cartoon of decision points for conda installation by Gergely Szerovay <a href='https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/' target='_blank'>www.freecodecamp.org</a> </figcaption>
+</figure>
+</center>
+
+
 ## How does Conda work
 
 <center>
 <figure markdown>
-  ![Image title](conda-env2.png){ width="400" }
-  <figcaption> Cartoon of conda environments by geohackweek <a href='https://geohackweek.github.io/datasharing/01-conda-tutorial/' target='_blank'>www.phdcomics.com</a> </figcaption>
+  ![conda](conda.png){ width="700" }
+  <figcaption> Cartoon of conda environments by Gergely Szerovay <a href='https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/' target='_blank'>www.freecodecamp.org</a> </figcaption>
 </figure>
 </center>
 
@@ -220,4 +230,29 @@ We can see our `mynewenv` environment is taking up about 12K of space.
 + Conda [Documentation](https://conda.io/en/latest/)
 
 + Image credits: Gergely Szerovay. Read original article [here](https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/)
+
+## A note about the conda ecosystem
+
+Conda has truly been a gift to the scientific community, taking software installs that used to take days and bringing it down to minutes.
+It also simplified versioning and environment management by integrating software encoded in many different languages into its ecosystem (python, R, perl, rust...).
+It has therefore attracted contributions from many parties over the years that have lead to a diversity of modular pieces that participate in the conda ecosystem. 
+This can be especially confusing for conda newcomers.
+This section outlines many of the key pieces in the conda ecosytem to reduce confusion as people onboard to conda.
+
+Conda itself is a piece of software that is a package and environment manager.
+To get access to the conda software, you need to install it.
+The most popular way to install conda is via miniconda or miniforge.
+**[miniforge](https://github.com/conda-forge/miniforge)** is the community (conda-forge) driven minimalistic conda installer. 
+By default, subsequent package installations come from conda-forge channel.
+**[miniconda](https://docs.conda.io/en/latest/miniconda.html)** is the Anaconda (company) driven minimalistic conda installer. 
+By default, subsequent package installations come from anaconda channels (default or otherwise).
+The default channel order can be changed for either conda installation type.
+miniforge started when miniconda didn't support the linux aarch64 system architectures and was quickly adopted by many conda user.
+It's stuck around even though both miniconda and miniforge support most system architectures.
+
+One of the problems conda addresses is resolving dependency conflicts betweens many pieces of software installed in the same environment.
+This is an [NP-complete problem](https://www.anaconda.com/blog/understanding-and-improving-condas-performance) meaning it gets slower as more software is added to an environment and it's a hard problem to solve.
+[mamba](https://mamba.readthedocs.io/en/latest/index.html) is a drop-in replacement for conda that offers higher speed and more reliable environment solutions.
+However, the best way to install mamba at the moment is via conda.
+Mamba is worth the confusion it has caused -- it decreases install times by orders of magnitude thus saving time.
 
