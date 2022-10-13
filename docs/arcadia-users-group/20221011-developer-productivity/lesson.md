@@ -12,7 +12,7 @@ If you're not sure how to open a terminal on your computer, see [these instructi
 - You don't really have to do any of these customizations to get good at programming. But these are designed to make your life easier.
 - A good chunk of these customizations are personal. The goal is to learn _how_ to customize and to empower you to customize as you wish.
 - A good chunk of these customizations are stylistic. As a programmar, you spend a lot of time in your terminal or text editor. I think it's important to make these tools beautiful.
-- I like bash because I've been using it for 10 years. This workshop will focus on using bash instead of zsh. But there are parallels between the two and learning to customize one will help you customize the other.
+- I like bash because I've been using it for 10 years. This workshop will focus on using bash in more detail, and give basic examples of zsh customizations. But there are parallels between the two and learning to customize one will help you customize the other.
 - IDEs can sometimes get RAM-intensive. So, beware if you have a laptop with <16GB of RAM. Any customizations to your terminal should be fine.
 - Most of the instructions today are for Mac devices. This is because 95% of Arcadia Science scientists use Macs for development work.
 
@@ -76,7 +76,7 @@ Today, we'll mostly do #1, but if you're interested in following the second meth
 - **Trim Final Newlines:** Again, turn it on. This will make sure there's only a single newline at the end of each file.
 - **Format on Save:** Search for "Format on Save" and turn it on. This will make sure, whatever code formatter you use formats the code upon saving it.
 - **Default Terminal application:** You only need to change this if you use iTerm2. If you're on Mac, search for "Osx Exec" and type "iTerm.app". For Linux users, you'd have to search for "Linux Exec".
-- **Default Terminal profile:** If you're on Mac, search for "Default Profile: Osx" and choose "bash".
+- **Default Terminal profile:** If you're on Mac, search for "Default Profile: Osx" and choose "bash" or "zsh" depending on your preferences.
 - **Adding code in the PATH:** Open the command palette with Command + Shift + P. Search for "code" and choose the "Install 'code' command in PATH". This will make it so that you can open any file/directory from the terminal with `code`.
 
 ### Extensions
@@ -113,18 +113,18 @@ For this section, we'll only go through the installation instructions of a few V
 
 There are 3 main ways, we'll customize our terminals.
 
-- Switching from zsh to bash if you haven't already.
+- (Optional) Switching from zsh to bash if you haven't already.
 - Installing [iTerm2](https://iterm2.com/), a better version of Apple's built-in Terminal application.
-- Customizing bash with `.bash_profile`.
+- Customizing bash with `.bash_profile` or customizing zsh with `.zshrc`.
 
-### Switching from zsh to bash
+### (Optional) Switching from zsh to bash
 
-**Note:** I like bash because I've been using it for 10 years. You don't have to. If you want to learn more about the differences, you can read more [here](https://www.geeksforgeeks.org/bash-scripting-difference-between-zsh-and-bash/#:~:text=Zsh%20is%20built%20on%20top,support%2C%20spelling%20correction%2C%20etc.). The main differences are:
+**Note:** I like bash because I've been using it for 10 years. You don't have to. If you want to learn more about the differences, you can read more [here](https://www.geeksforgeeks.org/bash-scripting-difference-between-zsh-and-bash/). The main differences are:
 
 - zsh is more configurable and support more customizable plug-ins (like auto-complete!).
 - bash is the default shell you'll get access on Linux devices (like AWS instances).
 
-If you want to keep using zsh, that's perfectly fine! You can check [this blog post](https://medium.com/@harrison.miller13_28580/bash-vs-z-shell-a-tale-of-two-command-line-shells-c65bb66e4658) and [this tool](https://github.com/ohmyzsh/ohmyzsh) for ways to configure it.
+If you want to keep using zsh, that's perfectly fine! You can check [this blog post](https://medium.com/@harrison.miller13_28580/bash-vs-z-shell-a-tale-of-two-command-line-shells-c65bb66e4658) and [this tool](https://github.com/ohmyzsh/ohmyzsh) for ways to configure it. And we'll go through an example customization below.
 
 If you want to start using bash, open the Terminal application, run `chsh -s /bin/bash` and quit the application. Next time you open, you should see bash. You'll see an alert that `zsh` the new Apple default when you open the terminal
 
@@ -141,6 +141,22 @@ Once you select the color scheme you'd like to use, just do the following:
 - Click on Import
 - Select your file
 - Click on Load Presets and choose a color scheme
+
+### Tweaking zsh
+
+There are two files as part of this repository that should give you a sense of how to configure zsh. First one is the [.zshrc](config-and-dotfiles/.zshrc) file and the other is the [iTerm2 zsh configuration file](config-and-dotfiles/.iterm2_shell_integration.zsh). As you'll see most of the configurations rely on the [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) repository. So let's start with installing that:
+
+On Unix systems, you can run `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`.
+
+Note that any previous `.zshrc` will be renamed to `.zshrc.pre-oh-my-zsh`.
+
+You can make sure the installation worked as expected with:
+
+```{bash}
+cat ~/.zshrc
+```
+
+This file should look awfully similar to [this one](config-and-dotfiles/.zshrc). You can copy the [iTerm2 zsh configuration file](config-and-dotfiles/.iterm2_shell_integration.zsh) in this repository to the root directory (`~`). And copy the contents of the sample .zshrc file to the newly created `~/.zshrc` file. And you should be all set!
 
 ### Tweaking bash
 

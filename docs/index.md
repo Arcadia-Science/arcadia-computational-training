@@ -1,11 +1,6 @@
-<br/>
-<br/>
-<br/>
 
-![](_static/arcadia-logo.png)
+![](_static/Arcadia_Lockup-XL-K.png)
 
-<br/>
-<br/>
 <br/>
 
 Welcome to the computational training website for Arcadia Science.
@@ -13,6 +8,7 @@ The purpose of this website is to catalogue and host training materials that hav
 We strive to make our training material open and accessible so that it can be useful at time of delivery and for asynchronous learning.
 To discover training materials, navigate to the pages on the top ribbon navigation bar.
 
+<br/>
 <br/>
 <br/>
 <br/>
