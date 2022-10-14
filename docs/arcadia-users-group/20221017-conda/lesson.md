@@ -92,11 +92,36 @@ To activate conda, you can either log out and log back in or run:
 source ~/.bashrc
 ```
 
-#### A note about versioning conda installations
+#### Additional notes about conda installations 
 
+**Versioning conda installations.**
 The conda API has changed over the years.
 You can access legacy installers associated with specific versions of python [here](https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links).
 If you need a specific version of conda, you can access the conda package through the conda-forge channel and install it using the instructions for installing specific versions of a package detailed later in the lesson.
+
+**Conda intialization.**
+By default, the Conda installer "initializes" conda.
+This allows you to access Conda commands by putting conda in your path any time you log into a terminal.
+Conda acheives this by appending code to you `~/.zshrc` or `~/.bashrc` file.
+These lines of code look like this:
+```
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/taylorreiter/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/taylorreiter/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/taylorreiter/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/taylorreiter/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+```
+There is a command, `conda init`, that you can use to initialize conda if you choose to skip this step during installation.
+You can always remove these lines if you change your mind about wanting conda in your PATH.
 
 ### Activating conda and the `(base)` environment
 
@@ -104,7 +129,13 @@ Conda needs to be activated for it to be usable.
 During the installation process, we configured conda to automatically activate when the shell is started.
 If conda is activated, you should see `(base)` prepend your path. 
 
-The `base` environment contains all of the software needed for conda to run. 
+If at any point you don't want the `base` environment to be active when you log in to a shell, you can disable this behavior using the command:
+```
+conda config --set auto_activate_base false
+```
+
+The `base` environment contains all of the software needed for conda to run.
+This includes a python installation and some core system libraries and dependencies of Conda. 
 
 ### Installing mamba
 
