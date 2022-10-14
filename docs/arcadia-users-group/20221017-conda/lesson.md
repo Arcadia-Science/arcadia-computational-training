@@ -270,7 +270,7 @@ Save the file as `samtools.yml`.
 Then, you can install:
 
 ```
-mamba env create -n -f samtools.yml
+mamba env create -n samtools -f samtools.yml
 ```
 
 ### Using small environments
@@ -304,7 +304,7 @@ We installed conda in our home directory, so we can use the `~` shortcut to acce
 Next, let's use the command `du` to estimate the space our `mynewenv` directory is taking up!
 
 ```
-du -sh ~/miniconda/envs/mynewenv/
+du -sh ~/miniconda3/envs/mynewenv/
 ```
 
 We can see our `mynewenv` environment is taking up about 12K of space. 
