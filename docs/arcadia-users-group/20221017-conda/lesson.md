@@ -255,7 +255,7 @@ Freezing an environment with `conda env export` is a perfectly viable option to 
 This approach can be brittle to operating system because so there are other more flexible ways to achieve similar things.
 
 Instead, you can keep track of software and versions you install in a YAML file.
-Open a text file using nano, vim, VS code, or your favorite text editor and paste the following text.
+Open a text file using nano, vim, VS Code, or your favorite text editor and paste the following text.
 
 ```
 channels:
