@@ -204,7 +204,13 @@ If you want to use an environment (for instance manage packages, or run Python s
 conda activate mynewenv
 ```
 
-The command prompt should now be prepended by `(mynewenv)` instead of `(base)`.
+If this command gives you an error, you might not selected for conda to initialize during installation. 
+You can initialize conda with:
+```
+conda init
+```
+
+Once you've successfully run `conda activate`, the command prompt should be prepended by `(mynewenv)` instead of `(base)`.
 The command prompt is a useful tool to orient yourself as to which environment you're currently using.
 
 If you install a new tool while in an environment, it only gets installed in that environment.
