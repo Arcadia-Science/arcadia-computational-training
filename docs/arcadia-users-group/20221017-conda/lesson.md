@@ -92,6 +92,12 @@ To activate conda, you can either log out and log back in or run:
 source ~/.bashrc
 ```
 
+#### A note about versioning conda installations
+
+The conda API has changed over the years.
+You can access legacy installers associated with specific versions of python [here](https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links).
+If you need a specific version of conda, you can access the conda package through the conda-forge channel and install it using the instructions for installing specific versions of a package detailed later in the lesson.
+
 ### Activating conda and the `(base)` environment
 
 Conda needs to be activated for it to be usable. 
