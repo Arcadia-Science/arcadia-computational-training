@@ -238,12 +238,14 @@ One handy way is to record the packages you've installed into a text file.
 
 This will save the list of **conda-installed** software you have in a particular environment to the file `packages.txt`:
 ```
+conda activate mynewenv
 conda env export > mynewenv.yml
+conda deactivate
 ```
 (it will not record the software versions for software not installed by conda.)
 
 ```
-conda env create --file mynewenv.yml
+conda env create -n mynewenv2 --file mynewenv.yml
 ```
 will install those packages in your local environment.
 
@@ -268,7 +270,7 @@ Save the file as `samtools.yml`.
 Then, you can install:
 
 ```
-mamba env create -f samtools.yml
+mamba env create -n -f samtools.yml
 ```
 
 ### Using small environments
@@ -318,7 +320,6 @@ We can see our `mynewenv` environment is taking up about 12K of space.
 | `conda remove`     | remove a conda package     |
 | `conda config --get channels`     | list out the active channels and their priorities     |
 | `conda update`     | update all the installed packages     |
-| `conda config --remove channels unwanted_channel` | remove unwanted_channel |
 | `conda env list` | list the different environments you have set up and their locations | 
 | `conda activate mynewenv` | activate the mynewenv Conda environment (this also works for activating our `base` environment |
 
@@ -351,6 +352,18 @@ Mamba is worth the confusion it has caused -- it decreases install times by orde
 
 ### Conda and workflow managers
 
+Conda is integrated into workflow managers like snakemake and nextflow.
+Using environment files or other directives that point toward the conda packages that are needed for a specific rule or process, the workflow manager will use conda to build the necessary environments and will automatically activate and deactivate them for each rule or process as it runs the workflow.
+In this case, it's best practice to have only the tools needed for a specific rule or process in a given environment -- often, this will mean only including one tool per an environment.
+
+For snakemake, conda environments are encoded in YAML files and fed to a given rule using the `conda:` directive and the path to the YAML file.
+For nextflow, conda environments are actually the least-recommended way to execute a pipeline.
+While you can give a process a conda package name and its build hash, it's better to use the biocontainer build for that conda package on docker.
+This overcomes [issues with reproducibility that stem from differences in operating systems](https://www.nature.com/articles/nbt.3820).
+
 ### Building a conda package from an R library on CRAN
 
-
+Once you become reliant on conda to manage all of your packages, it can be disappointing when your favoRite new pacakge isn't available on the conda-forge channel.
+If the R package is available on CRAN, it's relatively straightforward to build the conda package yourself and get it onto conda-forge.
+You can follow instructions in [this blog post](https://taylorreiter.github.io/2020-01-16-Building-a-conda-forge-package-from-an-R-CRAN-package/) if you ever want to do this.
+This only works for CRAN packages that do not depend on Bioconductor packages -- Bioconductor packages and the packages that depend on them are released on bioconda, while CRAN packages are released on conda-forge.
