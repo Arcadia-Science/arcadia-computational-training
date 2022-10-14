@@ -363,7 +363,7 @@ This overcomes [issues with reproducibility that stem from differences in operat
 
 ### Building a conda package from an R library on CRAN
 
-Once you become reliant on conda to manage all of your packages, it can be disappointing when your favoRite new pacakge isn't available on the conda-forge channel.
+Once you become reliant on conda to manage all of your packages, it can be disappointing when your favorite new pacakge isn't available on the conda-forge channel.
 If the R package is available on CRAN, it's relatively straightforward to build the conda package yourself and get it onto conda-forge.
 You can follow instructions in [this blog post](https://taylorreiter.github.io/2020-01-16-Building-a-conda-forge-package-from-an-R-CRAN-package/) if you ever want to do this.
 This only works for CRAN packages that do not depend on Bioconductor packages -- Bioconductor packages and the packages that depend on them are released on bioconda, while CRAN packages are released on conda-forge.
