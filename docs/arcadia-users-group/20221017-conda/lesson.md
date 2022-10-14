@@ -447,3 +447,9 @@ dependencies:
    - pip:
        - git+https://github.com/czbiohub/orpheum@master
 ```
+
+### Conda-lock
+
+[Conda-lock](https://github.com/conda-incubator/conda-lock) is a lightweight library generates lock files for conda environments.
+These lock files document the results of conda solve for each platform that you designate.
+This can help to exactly reproduce an environment across operating systems and to reduce environment creation times.
