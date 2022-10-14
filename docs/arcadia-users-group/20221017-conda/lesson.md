@@ -52,7 +52,7 @@ You can access the latest and legacy installation links [here](https://docs.cond
 #### Installing conda on an Apple machine
 
 Apple now has two processor types, the Intel x64 and the Apple M1 (or M2) ARM64.
-As of October 2022, many of the packages available via conda-forge and other conda installation channels are only available of the Intel x64 processor. 
+As of October 2022, many of the packages available via conda-forge and other conda installation channels are only available on the Intel x64 processor. 
 Therefore, even if you have an M1 (or M2) Mac, we currently recommend that you use the Intel x64 installation and take advantage of Apple's translation program Rosetta. 
 This requires a little bit of pre-configuration to make sure your Terminal application also runs with Rosetta.
 To set this up, open **Finder** -> navigate to your **Applications** folder -> right click on your Terminal application (either Terminal or iTerm2) -> select **Get Info** -> check the box for **Open using Rosetta**.
