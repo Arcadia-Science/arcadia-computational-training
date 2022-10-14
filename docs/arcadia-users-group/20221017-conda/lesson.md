@@ -385,6 +385,11 @@ The default channel order can be changed for either conda installation type.
 miniforge started when miniconda didn't support the linux aarch64 system architectures and was quickly adopted by many conda user.
 It's stuck around even though both miniconda and miniforge support most system architectures.
 
+There's another distinction between miniconda and [anaconda](https://anaconda.org/).
+Anaconda comes with all of the contents of miniconda, plus a bunch of other packages that are used frequently with scientific computing. 
+Anaconda also comes with a graphical user interface. 
+We use miniconda because its the minimum set of tools that we need to install packages and manage environments and we can use it locally and on remote computers.
+
 One of the problems conda addresses is resolving dependency conflicts betweens many pieces of software installed in the same environment.
 This is an [NP-complete problem](https://www.anaconda.com/blog/understanding-and-improving-condas-performance) meaning it gets slower as more software is added to an environment and it's a hard problem to solve.
 [mamba](https://mamba.readthedocs.io/en/latest/index.html) is a drop-in replacement for conda that offers higher speed and more reliable environment solutions.
