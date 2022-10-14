@@ -410,3 +410,40 @@ Once you become reliant on conda to manage all of your packages, it can be disap
 If the R package is available on CRAN, it's relatively straightforward to build the conda package yourself and get it onto conda-forge.
 You can follow instructions in [this blog post](https://taylorreiter.github.io/2020-01-16-Building-a-conda-forge-package-from-an-R-CRAN-package/) if you ever want to do this.
 This only works for CRAN packages that do not depend on Bioconductor packages -- Bioconductor packages and the packages that depend on them are released on bioconda, while CRAN packages are released on conda-forge.
+
+### Installing packages with pip when they're in PyPi but not in a conda channel
+
+Sometimes the package you're interested in installation is available in [PyPi](https://pypi.org/) but not in a conda channel.
+You can use `pip` to install things into a conda environment to overcome this.
+To do this, you need to install pip via conda, and then you can use `pip install`.
+Whatever packages you pip install will only be available in the conda environment you have active at time of installation.
+To document pip installations in a YAML file, use the following syntax:
+
+```
+channels:
+    - conda-forge
+    - bioconda
+    - defaults
+dependencies:
+    - pip
+    - pip:
+      - genome-grist==0.7
+```
+
+### Installing PyPi-compliant packages from GitHub into a conda channel using pip
+
+Similar to installing packages in PyPi via pip, you can install PyPi-compliant packages that are on GitHub directly from GitHub.
+We include a YAML file demonstrating this below.
+While this is handy, especially for development, it's can be difficult to version software installations so you should use this approach with caution and be sure to document versions (or commit hashes) elsewhere.
+
+```
+channels:
+   - conda-forge
+   - bioconda
+   - defaults
+dependencies:
+   - sourmash
+   - pip
+   - pip:
+       - git+https://github.com/czbiohub/orpheum@master
+```
