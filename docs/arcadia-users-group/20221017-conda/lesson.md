@@ -238,18 +238,53 @@ One handy way is to record the packages you've installed into a text file.
 
 This will save the list of **conda-installed** software you have in a particular environment to the file `packages.txt`:
 ```
-conda list --export > packages.txt
+conda env export > mynewenv.yml
 ```
 (it will not record the software versions for software not installed by conda.)
 
 ```
-conda install --file=packages.txt
+conda env create --file mynewenv.yml
 ```
 will install those packages in your local environment.
 
 ### Encoding environments in and installing environments from text files
 
+Freezing an environment with `conda env export` is a perfectly viable option to record your compute state for a given environment.
+This approach can be brittle to operating system because so there are other more flexible ways to achieve similar things.
+
+Instead, you can keep track of software and versions you install in a YAML file.
+Open a text file using nano, vim, VS code, or your favorite text editor and paste the following text.
+
+```
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - samtools=1.9
+```
+
+Save the file as `samtools.yml`.
+Then, you can install:
+
+```
+mamba env create -f samtools.yml
+```
+
 ### Using small environments
+
+The performance of conda environments decreases with increasing size.
+We hinted at this above when we recommended to keep the `base` environment free of software installations other than `mamba`.
+The larger a conda environment becomes, the longer it takes to activate the environment and to install new software. 
+You'll have to experiment with a strategy that works for you as far as environment size goes, but we recommend a strategy that keeps environments small.
+One starting place might be to have one environment per project.
+If you want to test new installations of software before you're committed to using it, you could create a `sandbox` environment and install software for experimenting there.
+Then, when that environment gets too big, you can delete it and start over.
+To delete an environment, run:
+
+```
+conda env remove -n sandbox
+```
 
 ### Keeping an eye on the size of conda environments
 
@@ -311,3 +346,11 @@ This is an [NP-complete problem](https://www.anaconda.com/blog/understanding-and
 [mamba](https://mamba.readthedocs.io/en/latest/index.html) is a drop-in replacement for conda that offers higher speed and more reliable environment solutions.
 However, the best way to install mamba at the moment is via conda.
 Mamba is worth the confusion it has caused -- it decreases install times by orders of magnitude thus saving time.
+
+## Extra content
+
+### Conda and workflow managers
+
+### Building a conda package from an R library on CRAN
+
+
