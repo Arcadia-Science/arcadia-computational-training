@@ -16,9 +16,9 @@ Click the button below to launch a jupyter notebook through [binder](https://myb
 
 This will launch a computer in the cloud.
 You'll interact with this computer through your browser.
-Click the Terminal button to launch a Terminal that we will work with for the rest of the lesson.
+Click the Python 3 button under the Notebook section to launch a jupyter notebook.
 
-![](../20220906-intro-to-shell1/jupyterhub.png)
+![](jupyterlab.png)
 
 <details>
   <summary>More information on binder and what happens when you click the launch binder button.</summary>
@@ -34,14 +34,13 @@ When the cloud instance is launched, this is the screen you interact with.
 You interact with the cloud instance  in your browser.
 Binders are ephemeral instances -- after a period of inactivity, the instance is automatically shut down, and any work you have done will be lost.
 You're able to download files from your work before the instance is shut down if you do want to save anything.
-
-
+<br />
+<br />
 You may notice that this instance already has a bunch of files on it. 
 And that these files look suspiciously exactly like the files in the GitHub repository <a href="https://github.com/arcadia-science/arcadia-computational-training">Arcadia-Science/arcadia-computational-training</a>. 
 That's because that's the repository we used to build the binder from. 
 </details>
 
-<br />
 
 ### Jupyter notebook vs. JupyterLab
 
@@ -49,80 +48,39 @@ Technically, our entry point for this tutorial is JupyterLab.
 JupyterLab is the next-generation user interface that includes notebooks.
 For an in depth comparison between Jupyter notebooks and JupyterLab, see [this article](https://medium.com/analytics-vidhya/why-switch-to-jupyterlab-from-jupyter-notebook-c6d98362945b).
 
+The image below depicts the JupyterLab (left) and Jupyter notebook (right) start up screens.
+JupyterLab provides a richer set of entry points for computation.
+Once you start a notebook, the notebook interface is identical.
+
 ![](nbvslab.png) 
-
-
 
 ### How the Jupyter notebook works
 
-After typing the command `jupyter notebook`, the following happens:
+* Click in the first cell and type some Python code.
 
-* A Jupyter Notebook server is automatically created on your local machine.
-* The Jupyter Notebook server runs locally on your machine only and does not
-  use an internet connection.
-* The Jupyter Notebook server opens the Jupyter notebook client, also known
-  as the notebook user interface, in your default web browser.
+  ![Code cell](00_5_jupyter_code_before.png)
 
-  ![Jupyter notebook file browser](../fig/00_1_jupyter_file_browser.png)
-  *The Jupyter notebook file browser*
+* This is a **Code** cell (see the cell type dropdown with the word **Code**). To run the cell, type <kbd>Shift</kbd>+<kbd>Return</kbd>.
 
-* To create a new Python notebook select the "New" dropdown on the upper
-  right of the screen.
+  ![Code cell and its output](00_6_jupyter_code_after.png)
 
-  ![Jupyter notebook file browser](../fig/00_2_jupyter_new_notebook.png)
-  *The Jupyter notebook file browser*
+* Let's look at a **Markdown** cell.
+  Markdown is a text manipulation language that is readable yet offers additional formatting. 
+  Don't forget to select **Markdown** from the cell type dropdown. 
+  Click in the cell and enter the markdown text.
 
-* When you can create a new notebook and type code into the browser, the web
-  browser and the Jupyter notebook server communicate with each other.
-
-  ![new Jupyter notebook](../fig/00_3_jupyter_blank_notebook.png)
-  *A new, blank Jupyter notebook*
-
-* Under the "help" menu, take a quick interactive tour of how to
-  use the notebook. Help on Jupyter and key workshop packages is
-  available here too.
-
-  ![Jupyter tour and help](../fig/00_4_jupyter_tour_help.png)
-  *User interface tour and Help*
-
-* The Jupyter Notebook server does the work and calculations, and the web
-  browser renders the notebook.
-* The web browser then displays the updated notebook to you.
-
-* For example, click in the first cell and type some Python code.
-
-  ![Code cell](../fig/00_5_jupyter_code_before.png)
-  *A Code cell*
-
-* This is a **Code** cell (see the cell type dropdown with the word **Code**).
-  To run the cell, type <kbd>Shift</kbd>+<kbd>Return</kbd>.
-
-  ![Code cell and its output](../fig/00_6_jupyter_code_after.png)
-  *A Code cell and its output*
-
-* Let's look at a **Markdown** cell. Markdown is a text manipulation
-  language that is readable yet offers additional formatting. Don't forget
-  to select **Markdown** from the cell type dropdown. Click in the cell and
-  enter the markdown text.
-
-  ![markdown input cell](../fig/00_7_jupyter_markdown_before.png)
-  *A markdown input cell*
+  ![markdown input cell](00_7_jupyter_markdown_before.png)
 
 * To run the cell, type <kbd>Shift</kbd>+<kbd>Return</kbd>.
 
-  ![rendered markdown cell](../fig/00_8_jupyter_markdown_after.png)
-  *A rendered markdown cell*
+  ![rendered markdown cell](00_8_jupyter_markdown_after.png)
 
 This workflow has several advantages:
 
 - You can easily type, edit, and copy and paste blocks of code.
-- Tab completion allows you to easily access the names of things you are using
-  and learn more about them.
-- It allows you to annotate your code with links, different sized text,
-  bullets, etc. to make information more accessible to you and your
-  collaborators.
-- It allows you to display figures next to the code that produces them
-  to tell a complete story of the analysis.
+- Tab completion allows you to easily access the names of things you are using and learn more about them.
+- It allows you to annotate your code with links, different sized text, bullets, etc. to make information more accessible to you and your collaborators.
+- It allows you to display figures next to the code that produces them to tell a complete story of the analysis.
 
 ### How the notebook is stored
 
@@ -155,20 +113,116 @@ you edit notebook level features; while, Edit mode lets you change the
 contents of a notebook cell. Remember a notebook is made up of a number of
 cells which can contain code, markdown, html, visualizations, and more.
 
-### Help and more information
-
-Use the **Help** menu and its options when needed.
-
 ### Executing shell commands in a jupyter notebook
 
 To execute a line of bash code in a python jupyter notebook, prepend the line of code with an `!`:
+
 ```
 !ls
 ```
 
 ## Running jupyter notebooks locally: installation and startup
 
+Until this point, we've been using a JupyterLab installation on a cloud computer. 
+This allowed us to learn how to use Jupyter notebooks without having to install the program ourselves.
+In this section, we'll learn to install jupyter locally using conda.
+If you don't have conda install, head over to the [miniconda lesson](../20221017-conda/lesson.md) to get it set up on your machine. 
+
 ### Managing jupyter notebook installations with conda
+
+Jupyter brings along a lot of dependencies, so we'll create a new environment just for jupyter.
+In the long run, you'll also need to install any dependencies you need into this environment. 
+For practice, we'll install pandas and seaborn to demonstrate how to do this.
+
+```
+mamba create -n jupyter jupyter pandas
+```
+
+After we've created our environment, we  need to activate it to be able to access the software we just installed.
+```
+conda activate jupyter
+```
+
+The command to start a jupyter notebook is `jupyter notebook`.
+```
+jupyter notebook
+```
+
+### Starting a jupyter notebook and an explanation of what jupyter is doing 
+
+After typing the command `jupyter notebook`, the following happens:
+
+* A Jupyter Notebook server is automatically created on your local machine.
+* The Jupyter Notebook server runs locally on your machine only and does not use an internet connection.
+* The Jupyter Notebook server opens the Jupyter notebook client, also known as the notebook user interface, in your default web browser.
+![Jupyter notebook file browser](00_1_jupyter_file_browser.png)
+* To create a new Python notebook select the "New" dropdown on the upper right of the screen.
+![Jupyter notebook file browser](00_2_jupyter_new_notebook.png)
+* When you can create a new notebook and type code into the browser, the web browser and the Jupyter notebook server communicate with each other.
+![](00_3_jupyter_blank_notebook.png)
+* The Jupyter Notebook server does the work and calculations, and the web browser renders the notebook.
+* The web browser then displays the updated notebook to you.
+
+### Managing other software used in jupyter notebooks
+
+When we installed jupyter notebook, we also installed pandas.
+We can check that our installation worked by importing pandas.
+
+```
+import pandas as pd
+```
+
+It works!
+
+This used the pandas library we installed when we created the environment. 
+If we later realize we need another piece of software, say seaborn, we can check if it's installed:
+
+```
+import seaborn
+```
+
+Since we haven't installed it yet, it's not available.
+We need to install it into our `jupyter` environment and then it will be accessible.
+We can do this from our jupyter notebook using the `!` to access bash from the notebook.
+
+```
+!mamba install seaborn
+```
+
+Then seaborn will be installed for us to use.
+```
+import seaborn
+```
+
+You can also install things from the terminal into the environment when your `jupyter` environment is activated.
+Check your prompt to make sure it's prepended with `(jupyter)`, and then install the software you're interested in obtaining:
+```
+mamba install scikit-learn
+```
 
 ### Setting up an R kernel to run R code in a jupyter notebook
 
+Jupyter notebooks can run languages other than python but require additional configuration.
+To run R, we need to install a package called irkernel.
+We'll create a new environment, and also install popular R packages like tidyverse.
+
+```
+conda deactivate
+mamba create -n tidyjupyter jupyter r-irkernel r-tidyverse
+```
+
+Activate the new environment
+```
+conda activate tidyjupyter
+```
+
+And start jupyter notebook
+```
+jupyter notebook
+```
+
+Now when we start a new notebook from jupyter, we have the option to start it with an R kernel.
+
+## Credits
+
+This lesson was modified from the [Data Carpentry python ecology lesson on jupyter notebooks](https://datacarpentry.org/python-ecology-lesson/jupyter_notebooks/).
