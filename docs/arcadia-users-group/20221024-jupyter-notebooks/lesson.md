@@ -1,9 +1,4 @@
----
-title: Overview of Jupyter Notebooks
----
-
-![Example Jupyter Notebook](../fig/00_0_jupyter_notebook_example.jpg)
-*Screenshot of a [Jupyter Notebook on quantum mechanics](https://github.com/jrjohansson/qutip-lectures) by Robert Johansson*
+# Introduction to Jupyter notebooks
 
 ## Jumping in with Jupyter notebooks
 
@@ -98,11 +93,13 @@ This is probably still the most popular way to interact with notebooks but there
 
 **Viewing and interacting with jupyter notebooks.**
 To view a jupyter notebook, you can use any of the following strategies.
+
 1. Use a local installation of jupyter notebook or jupyter hub to open the notebook in your browser. You'll have full functionality of the notebook with this strategy.
 2. Use VS Code to open and render the notebook. You'll still need jupyter installed locally for this to work, and you'll have full functionality of the notebook but it will be rendered directly in VS Code.
 
 **Only viewing jupyter notebooks.**
 If your goal is view the notebook, or allow others to view the notebook, you can use the following strategies.
+
 1. Export the notebook to html, markdown, or PDF. You can then share the file with others who would like to view it.
 2. Upload the notebook to a GitHub repository. GitHub will automatically render the notebook, allowing others to view it without having to download it and use a local installation of jupyter notebook to open it.
 3. You can use [nbviewer](https://nbviewer.org/) or other third party applications that render and distribute jupyter notebooks. 
