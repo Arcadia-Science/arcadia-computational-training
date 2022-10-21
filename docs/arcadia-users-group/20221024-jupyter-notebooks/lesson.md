@@ -103,12 +103,12 @@ If your goal is view the notebook, or allow others to view the notebook, you can
 1. Export the notebook to html, markdown, or PDF. You can then share the file with others who would like to view it.
 2. Upload the notebook to a GitHub repository. GitHub will automatically render the notebook, allowing others to view it without having to download it and use a local installation of jupyter notebook to open it.
 3. You can use [nbviewer](https://nbviewer.org/) or other third party applications that render and distribute jupyter notebooks. 
+
 ### Notebook modes: Control and Edit
 
-The notebook has two modes of operation: Control and Edit. Control mode lets
-you edit notebook level features; while, Edit mode lets you change the
-contents of a notebook cell. Remember a notebook is made up of a number of
-cells which can contain code, markdown, html, visualizations, and more.
+The notebook has two modes of operation: Control and Edit. 
+Control mode lets you edit notebook level features; while, Edit mode lets you change the contents of a notebook cell. 
+Remember a notebook is made up of a number of cells which can contain code, markdown, html, visualizations, and more.
 
 ### Executing shell commands in a jupyter notebook
 
@@ -178,12 +178,22 @@ If we later realize we need another piece of software, say seaborn, we can check
 import seaborn
 ```
 
-Since we haven't installed it yet, it's not available.
+Since we haven't installed it yet, it's not available and we get the error:
+```
+---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+Cell In [2], line 1
+----> 1 import seaborn
+
+ModuleNotFoundError: No module named 'seaborn'
+```
+
 We need to install it into our `jupyter` environment and then it will be accessible.
 We can do this from our jupyter notebook using the `!` to access bash from the notebook.
+We'll add the `-y` flag to our installation command to autamatically accept the install -- we do this because jupyter notebooks aren't interactive in the same way that the terminal would be during conda/mamba installations.
 
 ```
-!mamba install seaborn
+!mamba install seaborn -y
 ```
 
 Then seaborn will be installed for us to use.
@@ -196,6 +206,18 @@ Check your prompt to make sure it's prepended with `(jupyter)`, and then install
 ```
 mamba install scikit-learn
 ```
+
+Then, in our notebook, we could run:
+```
+import sklearn
+```
+
+### Shutting down a jupyter notebook
+
+You can use the jupyter notebook interface to shut down specific notebooks.
+To stop jupyter from running, you need to run <kbd>Ctrl</kbd>+<kbd>c</kbd> in the same terminal that you originall ran `jupyter notebook` in.
+Jupyter will prompt you to confirm the shut down. 
+Press <kbd>y</kbd> and then <kbd>Enter</kbd>.
 
 ### Setting up an R kernel to run R code in a jupyter notebook
 
