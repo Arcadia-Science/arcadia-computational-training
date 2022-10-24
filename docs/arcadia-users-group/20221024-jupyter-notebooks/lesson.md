@@ -242,6 +242,14 @@ jupyter notebook
 
 Now when we start a new notebook from jupyter, we have the option to start it with an R kernel.
 
-## Credits
+### Reviewing pull requests on GitHub that contain jupyter notebooks
+
+The Arcadia Science organization has integration [ReviewNB](https://www.reviewnb.com/) into our pull requests.
+Because jupyter notebooks are voluminous json text files, than can be really hard to review -- small changes in code (the thing we care about) can lead to huge changes in the metadata in the notebook (less interesting stuff we have to wade through).
+The ReviewNB tool automatically comments on PRs with jupyter notebooks and takes to you an external page where you can review rendered notebooks with side-by-side diffs.
+
+![](reviewnb.png)
+
+## Attribution
 
 This lesson was modified from the [Data Carpentry python ecology lesson on jupyter notebooks](https://datacarpentry.org/python-ecology-lesson/jupyter_notebooks/).
