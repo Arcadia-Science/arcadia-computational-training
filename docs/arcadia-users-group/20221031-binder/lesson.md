@@ -59,6 +59,19 @@ python hello.py
 
 `Hello from Binder!` should be printed to the terminal.
 
+## Computational limits of Binder
+
+While running, users are guaranteed at least 1GB of RAM, with a maximum of 2GB. 
+This means you will always have 1GB, you may occasionally have between 1 and 2GB, and if you go over 2GB your kernel will be restarted.
+
+Binder is meant for interactive and ephemeral interactive coding, meaning that it is ideally suited for relatively short sessions. 
+Binder will automatically shut down user sessions that have more than 10 minutes of inactivity (if you leave a jupyterlab window open in the foreground, this will generally be counted as "activity").
+
+Binder aims to provide up to six hours of session time per user session, or up to one cpu-hour for more computationally intensive sessions. 
+Beyond that, Binder does not guarantee that the session will remain running.
+
+For up-to-date information on Binder, see [here](https://mybinder.readthedocs.io/en/latest/about/user-guidelines.html).
+
 ## Building out the environment and pinning dependencies
 
 By including a `.py` file in our repository, BinderHub knew that we wanted to launch a Binder with python installed.
@@ -99,12 +112,12 @@ print(numpy.__version__)
 numpy.random.randn()
 ```
 
-> **If you save this notebook, it will not be saved to the GitHub repo.** 
-Pushing changes back to the GitHub repo through the container is not possible with Binder. 
+> **If you save this notebook, it will not be automatically saved to the GitHub repo.** 
 Any changes you have made to files inside the Binder will be lost once you close the browser window.
+You can always download the file locally if you would like to keep a copy of the changes you made.
+If you have write access to the repository you're working with in Binder, you can set up a [key file and ssh access for the repository](../../workshops/20220920-intro-to-git-and-github/lesson.md) and push changes you make.
 
 ## Sharing your Binder with others
-
 
 Binder is all about sharing your work easily and there are two ways to do it:
 
@@ -162,6 +175,36 @@ data.columns = years.astype(int)              # Convert year values to integers,
 
 data.loc["Australia"].plot()
 ```
+
+## Creating a Binderize-able R repository
+
+Creating an R repository is similar to creating a python repository. 
+There are multiple ways to do this, but we'll do it using conda.
+
+1. Create a new repo on GitHub called `2022-my-r-binder`
+    * Make sure the repository is **public**, not private
+    * Initialize the repo with a README
+2. Create a file called `hello.R` via the web interface with `print("Hello from Binder!")` on the first line and commit to the main branch
+3. Create a file called `runtime.txt` with `r-2022-01-01` on the first line.
+This date represents the snapshot of [CRAN](https://cran.r-project.org/) hosted on the [RStudio Package Manager](https://packagemanager.rstudio.com/client/#/) we will use.
+Commit this file to the main branch.
+
+Then, follow the launch binder instructions:
+
+1. Go to **<https://mybinder.org>**
+2. Type the URL of your repo into the "GitHub repo or URL" box.
+   It should look like this:
+   > **https://github.com/YOUR-USERNAME/2022-my-r-binder**`
+3. As you type, the webpage generates a link in the "Copy the URL below..." box
+   It should look like this:
+   > **https://mybinder.org/v2/gh/YOUR-USERNAME/2022-my-r-binder/HEAD**
+4. Copy it, open a new browser tab and visit that URL
+   - You will see a "spinner" as Binder launches the repo
+
+If everything ran smoothly, you'll see a JupyterLab interface, but this time you should be able to open the RStudio interface.
+Note that it takes much longer to build an R binder than it does to build a python binder.
+
+You can use the same conda approach of creating an `environment.yml` to install additional R packages.
 
 ## Attributions
 
