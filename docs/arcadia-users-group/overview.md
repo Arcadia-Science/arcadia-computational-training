@@ -20,8 +20,7 @@ The schedule is subject to change.
 
 | Date         | Tutorial                                                                       | Description                                                                                                                                                                                                                                                                                                                                                                    |
 | ------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Nov 21, 2022 | [Keyboard shortcuts for Terminal](20221121-keyboard-shortcuts-terminal/lesson.md) | This lesson covers keyboard shortcuts that can be used in Terminal to quickly navigate around commands that you write.                                                                                                                                                                                                                                         |
-| Dec 5, 2022  | Review of GitHub and conda, exact lesson TBD | TBD | 
+| Dec 5, 2022 | [Keyboard shortcuts for Terminal](20221121-keyboard-shortcuts-terminal/lesson.md) | This lesson covers keyboard shortcuts that can be used in Terminal to quickly navigate around commands that you write.                                                                                                                                                                                                                                         |
 
 ## Previous trainings
 
