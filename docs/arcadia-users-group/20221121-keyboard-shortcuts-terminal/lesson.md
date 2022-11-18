@@ -1,6 +1,6 @@
 # Keyboard shortcuts for Terminal
 
-The Terminal (or iTERM) is the MacOS application to access the command line (see lessons on the introduction to the command line [here](../20220906-intro-to-shell1/lesson.md) and [here](../20220912-intro-to-shell2/lesson.md).
+The Terminal (or iTerm) is the MacOS application to access the command line (see lessons on the introduction to the command line [here](../20220906-intro-to-shell1/lesson.md) and [here](../20220912-intro-to-shell2/lesson.md).
 Today we'll cover keyboard shortcuts that can be used to navigate around iTerm -- fnding old commands you've run, navigating to different parts of the command quickly, opening new terminal windows, etc.
 We'll highlight a few key commands below, but Apple has curated an extensive, operating-system specific list of keyboard shortcuts [here](https://support.apple.com/guide/terminal/keyboard-shortcuts-trmlshtcts/mac). 
 The commands shown below are for Mac OS 13.0, but many will be operating system agnostic and will also work in Linux.
