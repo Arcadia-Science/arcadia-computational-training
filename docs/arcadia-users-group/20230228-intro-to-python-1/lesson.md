@@ -1,13 +1,18 @@
 # Introduction to Python, Part 1
 
-## 0.0 Fundamentals of Python
+---
+## 0. Fundamentals of Python
 
-Python is a popular programming language. It was designed to be easy to read in comparison to other programming languages, so it's a great first programming language to learn. Over the next 3 lessons, we'll cover the basics of Python programming, including:
+Python is a popular programming language. It was designed to be easy to read in comparison to other programming languages, so it's a great first programming language to learn. 
+
+**This lesson** covers the following basics of Python, such as:
 - variables
 - data types
 - built-in functions
-- custom functions
-- lists and dictionaries
+- creating custom functions
+
+Over the following lessons, we'll cover more basics of Python, including:
+- data structures
 - loops
 - conditional expressions
 - packages
@@ -18,7 +23,8 @@ Python is a popular programming language. It was designed to be easy to read in 
 
 At the end of this workshop series, you'll have enough experience with Python to be able to write your own basic Python scripts. You'll also have enough knowledge of Python to be able to use the OpenTrons API (Application-Program Interface) to control our in-house liquid handling robot, covered in the upcoming Intro to OpenTrons series.
 
-## 0.1 Jupyter Notebooks
+---
+### 0.1 Jupyter Notebooks
 
 For the first workshop, we'll work in an interactive computing environment called a Jupyter notebook. To run a "cell" of code in Jupyter, you'll simply press <kbd>Shift</kbd>+<kbd>Return</kbd> from inside the cell. The result of the cell - the output - will display just below the cell.
 
@@ -31,6 +37,7 @@ For more on Jupyter notebooks, you can check out this [AUG Lesson](https://train
 > The Python programming language is not named for snakes, but instead for Monty Python, a signifier of the idea that the language should be [fun to use](https://en.wikipedia.org/wiki/Python_(programming_language)#Design_philosophy_and_features).  
 > Despite this, many Python tools and packages make reference to snakes, such as packages you may have heard us talk about before: [Anaconda](https://www.anaconda.com/products/distribution), [conda](https://docs.conda.io/en/latest/), [mamba](https://mamba.readthedocs.io/en/latest/), [snakemake](https://snakemake.readthedocs.io/en/stable/), etc.
 
+---
 ## 1. Variables
 
 Variables in programming languages are containers for assigning values.
@@ -59,6 +66,7 @@ x + y
 
 
 
+---
 ## 2. Data types
 
 Variables in Python come in a variety of types, such as:
@@ -123,6 +131,7 @@ If you're ever confused about the source of an error, websites such as [StackOve
 >
 > The term "bug" predates modern computers, but there are real examples of actual insects interfering with the function of a computer, such as this ["bug" found at Harvard in 1947](https://education.nationalgeographic.org/resource/worlds-first-computer-bug). 
 
+---
 ## 3. Using variables
 
 You assign variables in Python using the `variable = value` syntax. You can perform operations on a mix of hard-coded values and variables interchangeably. This is very useful when you expect to use a variable in many different places in your script - Python keeps track of its value so you don't have to.
@@ -159,6 +168,7 @@ a + b
 
 
 
+---
 ## 4. Built-in Python functions
 
 In addition to managing variables and values, Python also provides a variety of [built-in functions](https://docs.python.org/3/library/functions.html). Functions are "called" by chaining the function name with parentheses `()`. Parameters of that function can be typed between the parentheses to tell the function what to do.
@@ -188,6 +198,7 @@ print(type('Hello, world!'))
     <class 'str'>
 
 
+---
 ## 5. Typecasting
 
 A bit earlier, we tried to evalute the expression `3 + '5'`. This failed because we were trying to add an `int` and a `str`, which isn't natively supported operation with the `+` operand.
@@ -231,6 +242,7 @@ int('banana')
 This example is probably pretty intuitive, as it's hard to imagine how you would turn the string `'banana'` into an integer.  
 But there are plenty of cases where typecasting won't work, so be aware that this isn't a perfect solution.
 
+---
 ## P1. Practice
 
 Let's try some things with basic Python variables!
@@ -260,7 +272,7 @@ y = y + 4
 
 <details>
     <summary> Practice 2 Answer </summary>
-    This is a trick question! You might have expected the cell below to throw a <code>TypeError</code> because we're multiplying an <code>int</code> with a <code>str</code>. But <code>`3 * '15'`</code> actually is a special operation in Python; it's actually telling Python to repeat the string <code>'15'</code> three times. Therefore, the correct answer is <code>'151515'</code>
+    This is a trick question! You might have expected the cell below to throw a <code>TypeError</code> because we're multiplying an <code>int</code> with a <code>str</code>. But <code>`4 * '15'`</code> is actually a special operation in Python; it's telling Python to repeat the string <code>'15'</code> four times. Therefore, the correct answer is <code>'15151515'</code>
 </details>
 
 
@@ -273,6 +285,7 @@ l = 4
 m = l * str(k)
 ```
 
+---
 ## 6. Defining a custom function
 
 In addition to working with built-in functions, you can also define your own functions in Python. This is one of the most powerful ways to use the language, as it allows you to write one block of code which you can use repeatedly in your scripts.
@@ -298,6 +311,7 @@ hello_world()
     Hello world!
 
 
+---
 ## 7. Indentation and code blocks
 
 You've defined a function above, but how does Python know when the function ends?  
@@ -343,6 +357,7 @@ print(sentence_1, sentence_2)
     Hello Guido! My name is Python!
 
 
+---
 ## 8. Comments
 
 A crucial part of writing good code is being able to understand what it does later.  
@@ -418,6 +433,7 @@ factor(a, b, c)
 
 
 
+---
 ## P2. Practice
 
 Let's try writing some basic Python functions.
@@ -509,10 +525,11 @@ greetings(greeting, robot_name)
     TypeError: can only concatenate str (not "int") to str
 
 
+---
 ## 9. Problem Set
 
 To really get familiar with coding in Python (or any other language), the best way is simply to **write a lot of code**.  
-We recommend working through a problem set to practice some more with coding in Python. The problem set will also cover some of the basics we covered in a bit more detail. We expect the problem set won't take longer than ~1 hr to complete.
+We recommend working through a problem set to practice some more with coding in Python. The problem set will also cover some of the basics we covered in a bit more detail. We expect the problem set won't take longer than ~1-2 hrs to complete.
 
 We'll have office hours throughout the week for you to stop by and work on your problem set with other Arcadians as well as to work through any bugs in your code.
 
