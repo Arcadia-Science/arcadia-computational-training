@@ -16,7 +16,6 @@ Over the following lessons, we'll cover more basics of Python, including:
 - loops
 - conditional expressions
 - packages
-- objects
 - methods
 - debugging
 - ... and more!
@@ -75,7 +74,7 @@ Variables in Python come in a variety of types, such as:
 - `str` or **string**: chains of alphanumeric characters flanked by quotation marks, e.g. `'apple'`.   
 You can use either single-quotes or double-quotes, but they must be the same on either end.
 
-Python is able to natively perform certain operations using these datatypes, such as basic addition, multiplication, subtraction, etc.
+Python is able to natively perform certain operations using these datatypes, such as basic addition `+`, subtraction `-`, multiplication `*`, division `/`, etc.
 
 
 ```python
@@ -362,6 +361,8 @@ print(sentence_1, sentence_2)
 
 A crucial part of writing good code is being able to understand what it does later.  
 For example, consider how mystifying it can be to try to read the code block below.
+
+> Note: the `**` operand is the exponential.
 
 
 ```python
