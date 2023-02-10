@@ -13,4 +13,5 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install mkdocs==1.4.0 mkdocs-material==8.5.6
+      - run: echo "training.arcadiascience.com" > CNAME
       - run: mkdocs gh-deploy --force
