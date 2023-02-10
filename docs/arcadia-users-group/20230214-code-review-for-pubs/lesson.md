@@ -66,7 +66,7 @@ Any other suggestions you get are just that -- suggestions -- and can be punted 
 
 ### Practice time!
 
-1. Download [this file]() as our pretend code that we've been working on our own computers or on AWS.
+1. Download [this file](https://raw.githubusercontent.com/Arcadia-Science/2022-prjna853785-sourmash/main/scripts/utils.R) as our pretend code that we've been working on our own computers or on AWS.
 2. Create an empty, private repository in the Arcadia-Science organization. Name it `tmp-yourinitials-aug`.
 3. Copy and paste the instructions given to you on the screen.
 4. Create and checkout a new branch with `git checkout -b `ter/init-pr`. Name it `yourinitials/init-pr`.
