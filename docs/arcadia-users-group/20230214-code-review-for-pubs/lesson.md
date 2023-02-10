@@ -1,7 +1,5 @@
 # Code review during the pub process
 
-## Goals of the code review process
-
 At Arcadia, one of our central tenets is that our science should be maximally useful.
 We believe that useful computing is innovative, usable, reproducible, and timely.
 
@@ -42,6 +40,8 @@ Any other suggestions you get are just that – suggestions – and can be punte
 
 ![](overview.png)
 
+Checkout the **What to expect from code review during the pub process** Notion page for an up to date guide through this process.
+
 ## Minimums for passing code review: a checklist
 
 1. All software packages and their versions are documented.
@@ -57,8 +57,6 @@ Any other suggestions you get are just that – suggestions – and can be punte
 
 ## GitHub refresher
 
-### Overview
-
 <center>
 <figure markdown>
   ![Image title](../../workshops/20220920-intro-to-git-and-github/allison_horst_git_overview.png){ width="900" }
@@ -66,13 +64,12 @@ Any other suggestions you get are just that – suggestions – and can be punte
 </figure>
 </center>
 
-### Practice time!
-
-1. Download [this file](https://raw.githubusercontent.com/Arcadia-Science/2022-prjna853785-sourmash/main/scripts/utils.R) as our pretend code that we've been working on our own computers or on AWS.
-2. Create an empty, private repository in the Arcadia-Science organization. Name it `tmp-yourinitials-aug`.
+1. Make a new folder wherever your GitHub repos live. Name it `tmp-yourinitials-aug`.
+1. Download [this file](https://raw.githubusercontent.com/Arcadia-Science/2022-prjna853785-sourmash/main/scripts/utils.R) as our pretend code that we've been working on. Save it in your new folder.
+2. Create an empty, private repository in the Arcadia-Science organization. Use the same name as the local folder we made.
 3. Copy and paste the instructions given to you on the screen.
 4. Create and checkout a new branch with `git checkout -b `ter/init-pr`. Name it `yourinitials/init-pr`.
-5. Use `git add`, `git commit`, and `git push` to add your existing work to a branch in your new repository.
+5. Use `git add`, `git commit`, and `git push` to add our file to a branch in your new repository.
 6. Open a pull request and explain your changes.
 7. Convert your PR to a draft.
 8. Convert it back to "ready for review" and request review from someone.
@@ -80,5 +77,12 @@ Any other suggestions you get are just that – suggestions – and can be punte
 ## Resources to help you thrive through code review
 
 1. Your code review partner, AUG office hours, and the #software-questions channel
-2. https://github.com/Arcadia-Science/arcadia-software-handbook
+2. [Arcadia software handbook](https://github.com/Arcadia-Science/arcadia-software-handbook)
 3. [GitHub workshop](../../workshops/20220920-intro-to-git-and-github/lesson.md) and [recording](https://www.youtube.com/watch?v=fRUrbWC3htc)
+
+## Future directions
+
+We really want the code review process to be as painless as possible.
+When we identify things that people do over and over again – building a binder from an R repo, [writing a Nextflow pipeline](https://github.com/Arcadia-Science/nextflow-template-repository) – we can build templates that you can clone at the start of a project and use to cut down on repetitive work.
+
+If you have any other ideas of how we can help, we're always happy to try new things!
