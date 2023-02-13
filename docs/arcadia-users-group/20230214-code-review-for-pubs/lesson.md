@@ -40,7 +40,7 @@ Any other suggestions you get are just that – suggestions – and can be punte
 
 ![](overview.png)
 
-Checkout the **What to expect from code review during the pub process** Notion page for an up to date guide through this process.
+Checkout the [What to expect from code review during the pub process](https://www.notion.so/arcadiascience/What-to-expect-from-code-review-during-the-pub-process-eac7ab5083ff4d88bf3039686b9281b7) Notion page for an up to date guide through this process.
 
 ## Minimums for passing code review: a checklist
 
