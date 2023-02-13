@@ -1,5 +1,9 @@
 # Introduction to Python, Part 1
 
+Follow along in **Binder** by clicking the badge below:  
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Arcadia-Science/arcadia-computational-training/das/pytutorial?labpath=docs%2Farcadia-users-group%2F20230228-intro-to-python-1%2Flesson.ipynb)
+
 ---
 ## 0. Fundamentals of Python
 
