@@ -68,7 +68,7 @@ Check out the [What to expect from code review during the pub process](https://w
 1. Download [this file](https://raw.githubusercontent.com/Arcadia-Science/2022-prjna853785-sourmash/main/scripts/utils.R) as our pretend code that we've been working on. Save it in your new folder.
 2. Create an empty, private repository in the Arcadia-Science organization. Use the same name as the local folder we made.
 3. Copy and paste the instructions given to you on the screen.
-4. Create and checkout a new branch with `git checkout -b `ter/init-pr`. Name it `yourinitials/init-pr`.
+4. Create and checkout a new branch with `git checkout -b ter/init-pr`. Name it `yourinitials/init-pr`.
 5. Use `git add`, `git commit`, and `git push` to add our file to a branch in your new repository.
 6. Open a pull request and explain your changes.
 7. Convert your PR to a draft.
