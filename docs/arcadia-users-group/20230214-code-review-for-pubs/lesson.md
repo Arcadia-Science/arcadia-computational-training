@@ -18,7 +18,7 @@ For command line tools, the parameters you specify or the versions of tools you 
 It's also super helpful for other people to see what you ran so they can use it as a recipe for a reasonable way to analyze their data -- think of it like a tutorial in disguise.
 For figures, we think filtering steps or transformations are important to capture.
 Even if you don't do any of these steps, your figure code is also like a tutorial in disguise – since we provide our input data and pubs openly, providing the code use to make a plot allows other people to interface with our results or to accomplish something similar to what we did.
-We get that coding a pub-ready figure is a big task – it's totally fine to edit titles, labels, and fonts in PowerPoint/Photoshop after making the plot (just be careful not to edit the data!).
+We get that coding a pub-ready figure is a big task – it's totally fine to edit titles, labels, and fonts in Illustrator/Photoshop after making the plot (just be careful not to edit the data!).
 
 Imagine a world in which you pick up a manuscript that has some really interesting new result.
 Wouldn't it be cool if you could you could access the code for the figures inline, and recreate them all, but zooming in on the results you specifically care about?
@@ -40,7 +40,7 @@ Any other suggestions you get are just that – suggestions – and can be punte
 
 ![](overview.png)
 
-Checkout the [What to expect from code review during the pub process](https://www.notion.so/arcadiascience/What-to-expect-from-code-review-during-the-pub-process-eac7ab5083ff4d88bf3039686b9281b7) Notion page for an up to date guide through this process.
+Check out the [What to expect from code review during the pub process](https://www.notion.so/arcadiascience/What-to-expect-from-code-review-during-the-pub-process-eac7ab5083ff4d88bf3039686b9281b7) Notion page for an up-to-date guide through this process.
 
 ## Minimums for passing code review: a checklist
 
