@@ -532,6 +532,10 @@ greetings(greeting, robot_name)
 To really get familiar with coding in Python (or any other language), the best way is simply to **write a lot of code**.  
 We recommend working through a problem set to practice some more with coding in Python. The problem set will also cover some of the basics we covered in a bit more detail. We expect the problem set won't take longer than ~1-2 hrs to complete.
 
+You can find the problem set at this [Google CoLab Document](https://colab.research.google.com/drive/1zJQIp-LbaK9K8Y6FbCAKVSGZA-kxJca7#scrollTo=2c08df7c-86a5-430c-95a3-a90719c3f81d).  
+CoLab works just like a Jupyter notebook, but it automatically saves your changes and keeps them as a cloud document.  
+**To get started on the problem set, make sure to first <mark>click "File" > "Save a copy in Drive"</mark> to make sure you don't lose your progress!**
+
 We'll have office hours throughout the week for you to stop by and work on your problem set with other Arcadians as well as to work through any bugs in your code.
 
 

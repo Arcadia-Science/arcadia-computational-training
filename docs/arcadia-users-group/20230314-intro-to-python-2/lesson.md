@@ -704,7 +704,7 @@ print(output)
 
 There are other types of conditional statements in Python which you'll encounter less frequently, but can still be very helpful:
 
-- **`try`** **`except`**: tries to do something, unless it returns an error. If an error occurs, runs the **`except`** statement.
+- **`try`** **`except`** **`finally`**: tries to do something, unless it returns an error. If an error occurs, runs the **`except`** statement. at the end of each attempt, do a thing.
 
 
 ```python
@@ -713,21 +713,46 @@ values = ['a', 1, 3, '5', 'q', 3.0]
 for value in values:
     try:
         print(value / 3)
-    except:
-        print("Cannot divide, not an int or float.")
+    except TypeError:
+        print("Cannot divide - wrong value type.")
+    finally:
+        print("---")
 ```
 
-    Cannot divide, not an int or float.
+    Cannot divide - wrong value type.
+    ---
     0.3333333333333333
+    ---
     1.0
-    Cannot divide, not an int or float.
-    Cannot divide, not an int or float.
+    ---
+    Cannot divide - wrong value type.
+    ---
+    Cannot divide - wrong value type.
+    ---
     1.0
+    ---
 
 
 - **`match`** **`case`**: works very similarly to an if - elif - else statement, but can be much easier to read when you have specific expected outcomes. See example [here](https://learnpython.com/blog/python-match-case-statement/).
 
 > **NOTE:** match - case statements are still very new to Python 3.10, so Jupyter doesn't have syntax highlighting for them yet.
+
+- **`with`** `open()`: used for opening files. We'll cover this in lesson 3!
+
+---
+## 5. Problem Set
+
+With a wealth of data types, functions, loops, and conditional expressions at your disposal, you can accomplish **many** different computations using Python.  
+
+This week's problem set features several open-ended problems that you can solve in many different ways.  
+Some will revisit and revise the code you wrote in Problem Set 1.  
+Hopefully you'll be able to write some fun and interesting code and feel empowered by Python programming!
+
+You can find the problem set at this [Google CoLab Document](https://colab.research.google.com/drive/16UsMDgDffCj2fxdLp0MMEG7yRDxPfNNV?usp=sharing).  
+CoLab works just like a Jupyter notebook, but it automatically saves your changes and keeps them as a cloud document.  
+**To get started on the problem set, make sure to first <mark>click "File" > "Save a copy in Drive"</mark> to make sure you don't lose your progress!**
+
+We'll have office hours throughout the week for you to stop by and work on your problem set with other Arcadians as well as to work through any bugs in your code.
 
 
 ```python
