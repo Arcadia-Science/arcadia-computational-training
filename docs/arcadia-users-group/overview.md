@@ -1,6 +1,6 @@
 # Arcadia Users' Group
 
-Arcadia Users’ Group (AUG) is a forum for Arcadians to bring your biological data and discuss high level conceptual problems (what is genome assembly?), low level coding problems (what does this error message even mean?!), and everything in between.
+Arcadia Users’ Group (AUG) is a forum for Arcadians to bring their biological data and discuss high level conceptual problems (what is genome assembly?), low level coding problems (what does this error message even mean?!), and everything in between.
 Like the start codon, AUG aims to get Arcadians started on projects and help them get re-started after they run into problems.
 AUG is a weekly hybrid meetup.
 On training weeks, we offer 20 minute - 1 hour training or code review sessions.
