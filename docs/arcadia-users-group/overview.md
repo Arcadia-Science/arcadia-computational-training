@@ -1,10 +1,10 @@
 # Arcadia Users' Group
 
-Arcadia Users’ Group (AUG) is a forum to bring your biological data and discuss high level conceptual problems (what is genome assembly?), low level coding problems (what does this error message even mean?!), and everything in between.
-Like the start codon, AUG aims to get you started on projects and help you get re-started after you run into problems.
-Come to this group’s informal meetups with your own questions or to help others answer theirs.
+Arcadia Users’ Group (AUG) is a forum for Arcadians to bring your biological data and discuss high level conceptual problems (what is genome assembly?), low level coding problems (what does this error message even mean?!), and everything in between.
+Like the start codon, AUG aims to get Arcadians started on projects and help them get re-started after they run into problems.
 AUG is a weekly hybrid meetup.
 On training weeks, we offer 20 minute - 1 hour training or code review sessions.
+See the tables below for upcoming and past lesson materials.
 On non-training weeks, we host a 2 hour hybrid remote/in-person office-hours style working group to ask and answer questions and to co-work on data-relevant problems.
 
 What is a Users’ group?
@@ -30,6 +30,8 @@ The schedule is subject to change.
 | May 23, 2023 | TBD: Workflows and software at Arcadia                                        | This lesson covers an overview of the workflows and software packages that have been written for Arcadians, by Arcadians. We'll cover the Nextflow workflows that we have written (seqqc, hifi2genome, metagenomics, and phylorthology) and how you can use them. We'll also go over the software packages we have written or that are being written. |
 
 ## Previous trainings
+
+Note recordings are only available to people with `@arcadiascience.com` email addresses.
 
 | Date          | Tutorial                                                                                                                                                                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                          | Link to recording                                        |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
