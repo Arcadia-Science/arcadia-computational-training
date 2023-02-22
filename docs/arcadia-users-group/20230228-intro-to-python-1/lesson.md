@@ -14,6 +14,7 @@ Python is a popular programming language. It was designed to be easy to read in 
 - data types
 - built-in functions
 - creating custom functions
+- running Python from the command line
 
 Over the following lessons, we'll cover more basics of Python, including:
 - data structures
@@ -29,7 +30,7 @@ At the end of this workshop series, you'll have enough experience with Python to
 ---
 ### 0.1 Jupyter Notebooks
 
-For the first workshop, we'll work in an interactive computing environment called a Jupyter notebook. To run a "cell" of code in Jupyter, you'll simply press <kbd>Shift</kbd>+<kbd>Return</kbd> from inside the cell. The result of the cell - the output - will display just below the cell.
+For the first workshop, we'll work in an interactive computing environment called a Jupyter notebook. To run a "cell" of code in Jupyter, you'll press <kbd>Shift</kbd>+<kbd>Return</kbd> from inside the cell. The result of the cell - the output - will display just below the cell.
 
 You can tell if a cell has successfully executed based on the `[ ]` text to the left of the cell. A cell that is in progress has an asterisk `[*]`, and a cell that has completed has a number `[1]`.
 
@@ -39,6 +40,19 @@ For more on Jupyter notebooks, you can check out this [AUG Lesson](https://train
 >
 > The Python programming language is not named for snakes, but instead for Monty Python, a signifier of the idea that the language should be [fun to use](https://en.wikipedia.org/wiki/Python_(programming_language)#Design_philosophy_and_features).  
 > Despite this, many Python tools and packages make reference to snakes, such as packages you may have heard us talk about before: [Anaconda](https://www.anaconda.com/products/distribution), [conda](https://docs.conda.io/en/latest/), [mamba](https://mamba.readthedocs.io/en/latest/), [snakemake](https://snakemake.readthedocs.io/en/stable/), etc.
+
+---
+### 0.2 Python Version
+
+This lesson is written for Python version 3 and above. You can figure out what version of Python you're running using the cell below. (We'll explain how the cell below works at the end of the lesson.)
+
+
+```python
+!python --version
+```
+
+    Python 3.11.0
+
 
 ---
 ## 1. Variables
@@ -75,8 +89,9 @@ x + y
 Variables in Python come in a variety of types, such as:
 - `int` or **integer**: whole numbers such as `1`, `2`, `3`, etc.
 - `float` or **floating-point number**: numbers including decimals, e.g. `1.03`.
-- `str` or **string**: chains of alphanumeric characters flanked by quotation marks, e.g. `'apple'`.   
-You can use either single-quotes or double-quotes, but they must be the same on either end.
+- `str` or **string**: chains of alphanumeric characters flanked by quotation marks, e.g. `"apple"`.  
+    Double-quotes are stylistically perferred, but single-quotes also work.  
+    If you need to include quotation marks in a string, you can use the other option to "escape" the quotation mark.
 
 Python is able to natively perform certain operations using these datatypes, such as basic addition `+`, subtraction `-`, multiplication `*`, division `/`, etc.
 
@@ -96,7 +111,7 @@ Python also has some helpful intuitive operations – for example, you can join 
 
 
 ```python
-'pine' + 'apple' 
+"pine" + "apple"
 ```
 
 
@@ -108,14 +123,15 @@ Python also has some helpful intuitive operations – for example, you can join 
 
 Certain operations are not supported by default in Python - for example, you can't add a `str` with an `int`. Running the code below will cause a `TypeError`. Python is quite helpful in explaining errors you might encounter. Read the error message below and see if it makes sense to you.
 
-In general, you should expect to encounter *lots* of these errors, or "bugs", when you start getting into programming. **This is totally normal!**  
-In fact, probably 50% of programming is just squashing bugs.  
+In general, you should expect to encounter *lots* of these errors, or "bugs", when you start getting into programming.  
+**This is totally normal!**   
 
-If you're ever confused about the source of an error, websites such as [StackOverflow](https://stackoverflow.com/) are great places to look for answers.
+If you're ever confused about the source of an error, websites such as [StackOverflow](https://stackoverflow.com/) are great places to look for answers.  
+One skill in learning to programming is learning what part of an error message to Google.
 
 
 ```python
-3 + '5'
+3 + "5"
 ```
 
 
@@ -123,8 +139,8 @@ If you're ever confused about the source of an error, websites such as [StackOve
 
     TypeError                                 Traceback (most recent call last)
 
-    Cell In[5], line 1
-    ----> 1 3 + '5'
+    Cell In[17], line 1
+    ----> 1 3 + "5"
 
 
     TypeError: unsupported operand type(s) for +: 'int' and 'str'
@@ -138,6 +154,8 @@ If you're ever confused about the source of an error, websites such as [StackOve
 ## 3. Using variables
 
 You assign variables in Python using the `variable = value` syntax. You can perform operations on a mix of hard-coded values and variables interchangeably. This is very useful when you expect to use a variable in many different places in your script - Python keeps track of its value so you don't have to.
+
+If you use variable names that correspond to the value the variable holds (think `wind_mph` for wind speed), this can also help make your code more readable for yourself and others.
 
 
 ```python
@@ -167,26 +185,29 @@ a + b
 
 
 
-    10
+    11
 
 
 
 ---
 ## 4. Built-in Python functions
 
-In addition to managing variables and values, Python also provides a variety of [built-in functions](https://docs.python.org/3/library/functions.html). Functions are "called" by chaining the function name with parentheses `()`. Parameters of that function can be typed between the parentheses to tell the function what to do.
+In addition to managing variables and values, Python also provides a variety of [built-in functions](https://docs.python.org/3/library/functions.html).  
+A **function** is a block of organized, reusable code that accomplishes a specific task.
+
+Functions are "called" by chaining the function name with parentheses `()`. Parameters of that function can be typed between the parentheses to tell the function what to do.
 
 For example, the `print()` function takes any value and prints it as output.
 
 
 ```python
-print('Hello, world!')
+print("Hello, world!")
 
 print(a + b)
 ```
 
     Hello, world!
-    10
+    11
 
 
 We can call a function from within another function call. For example, the `type()` function gives the type of a Python value.
@@ -194,7 +215,7 @@ We can call a function from within another function call. For example, the `type
 
 ```python
 print(type(4))
-print(type('Hello, world!'))
+print(type("Hello, world!"))
 ```
 
     <class 'int'>
@@ -210,7 +231,7 @@ If we wanted to actually get the sum of 3 + 5 in this case, but `'5'` is given a
 
 
 ```python
-3 + int('5')
+3 + int("5")
 ```
 
 
@@ -227,7 +248,7 @@ In some cases, you can't cast a value into another type; for example, running th
 
 
 ```python
-int('banana')
+int("banana")
 ```
 
 
@@ -235,8 +256,8 @@ int('banana')
 
     ValueError                                Traceback (most recent call last)
 
-    Cell In[22], line 1
-    ----> 1 int('banana')
+    Cell In[24], line 1
+    ----> 1 int("banana")
 
 
     ValueError: invalid literal for int() with base 10: 'banana'
@@ -281,7 +302,7 @@ y = y + 4
 
 ```python
 i = 3
-j = '5'
+j = "5"
 k = i * int(j)
 
 l = 4
@@ -300,7 +321,7 @@ To define a custom function, you can start by writing `def`, followed by the des
 
 ```python
 def hello_world():
-    print('Hello world!')
+    print("Hello world!")
 ```
 
 When you execute the cell above, nothing prints out. Why?  
@@ -325,9 +346,9 @@ The line break and lack of indentation after the end of the function's scope tel
 
 ```python
 def hello_name(name):
-    return 'Hello ' + name + '!'
+    return "Hello " + name + "!"
 
-my_name = 'Guido'
+my_name = "Guido"
 
 hello_name(my_name)
 ```
@@ -347,12 +368,12 @@ You might notice some differences in the code above to the `hello_world` functio
 - The function ends with a **`return`** statement instead of a `print()` call.  
     Most Python functions should end with a **`return`** statement. This is the value that the function spits out when it finishes running. If a function lacks a **`return`** statement, it will instead return **`None`**, a special value of the type `NoneType`.
     
-An important thing to know is that the output of functions can themselves be assigned to variables, as exemplefied below. Combining function calls with variable assignment is a powerful way of using Python functions to modify or generate new variables.
+An important thing to know is that the output of functions can themselves be assigned to variables, as exemplified below. Combining function calls with variable assignment is a powerful way of using Python functions to modify or generate new variables.
 
 
 ```python
 sentence_1 = hello_name(my_name)
-sentence_2 = 'My name is Python!'
+sentence_2 = "My name is Python!"
 
 print(sentence_1, sentence_2)
 ```
@@ -398,15 +419,19 @@ factor(a, b, c)
 The function above is definitely an example of inefficiently written code, but let's put that aside for now.  
 If you ended up writing the function above, it might be helpful to be able to know what the overall goal of the code is, and perhaps what each step is doing.
 
-This is where **comments** come to the rescue. Comments in Python begin on the left with a hash mark (`#`) and are ignored by the Python interpreter. You can even include a comment in the same line as functional code!  
+This is where **comments** come to the rescue. Comments in Python begin on the left with a hash mark (`#`) and are ignored by the Python interpreter. Comments can also be written in blocks demarcated with triple-double-quotes (`"""`). You can even include a comment in the same line as functional code!
+
 Consider the code below with comments - how does the code feel with comments and additional line breaks included?
 
 
 ```python
 # Applies the quadratic formula to find the intercepts of a quadratic equation of the format y = ax**2 + bx + c
 def factor(a, b, c):
-    # The formula is:
-    # -b +/- sqrt(b**2 - 4ac) / 2a
+    """  This is a block comment.
+    
+    The formula is:
+    -b +/- sqrt(b**2 - 4ac) / 2a
+    """
     
     step_one = -1 * b # evaluates -b
     step_q = 4 * a * c # evaluates 4ac
@@ -462,24 +487,19 @@ Let's try writing some basic Python functions.
 
 
 
-
 ###########################################
 
-greeting = 'Bonjour'
-name = 'Jacques'
+greeting = "Bonjour"
+name = "Jacques"
 
 greetings(greeting, name)
 ```
 
-
-
-
-    'Bonjour, Jacques!'
-
+    Bonjour, Jacques!
 
 
 > ### Practice 4
-> What happens if you pass the variable `x` below to your `greetings()` function?
+> What happens if you pass the variable `robot_name` below to your `greetings()` function?
 >
 > How could you modify the function to avoid this error?
 
@@ -511,7 +531,7 @@ greetings(greeting, robot_name)
 
     TypeError                                 Traceback (most recent call last)
 
-    Cell In[36], line 12
+    Cell In[34], line 12
           1 ###############################################
           2 # Write your new function in the space below. #
           3 #### Then run the cell to check your work. ####
@@ -522,25 +542,99 @@ greetings(greeting, robot_name)
     ---> 12 greetings(greeting, robot_name)
 
 
-    Cell In[19], line 6, in greetings(greeting, name)
+    Cell In[32], line 6, in greetings(greeting, name)
           5 def greetings(greeting, name):
-    ----> 6     return greeting + ', ' + name + '!'
+    ----> 6     print(greeting + ", " + name + "!")
 
 
     TypeError: can only concatenate str (not "int") to str
 
 
 ---
-## 9. Problem Set
+## 9. Running Python from the command line
 
-To really get familiar with coding in Python (or any other language), the best way is simply to **write a lot of code**.  
+In this lesson, we've taken advantage of the interactive computing experience offered by Jupyter notebooks.   
+This computing environment is nice because it allows you to link input code to output data more easily.  
+However, there are other ways to execute Python code.
+
+For example, you can write Python code into a text file ending with `.py`.  
+We've included a script in the lesson folder called `hello_world.py`. Its contents are as follows:
+```python
+print('Hello world!')
+```
+You can execute that script using the command line as follows:
+
+
+```python
+!python hello_world.py
+```
+
+    Hello world!
+
+
+The cell above starts with a special Jupyter operator, the exclamation point `!`, which passes code directly to a shell.  
+This is the same as using `python hello_world.py` in your command line terminal.  
+
+Code executed through a Python script works just the same as code executed in Jupyter, and comes with some advantages:
+- it's the most common way to use Python
+- it's easier to compartmentalize code that runs different functions
+- it doesn't requires setting up a Jupyter environment, which can be confusing
+
+In general, Jupyter notebooks are a helpful way to write exploratory code, while functions you've finalized and plan to use repeatedly are better off being stored in scripts.
+
+---
+### 9.1 Receiving user input with `input()`
+
+The built-in function `input()` prompts the user for input and accepts the response.  
+`input()` takes a `str` argument which can be used to describe what the function is trying to get from the user as input.
+
+This is one way to be able to interact with a Python script interactively.
+
+In the example below, the user is prompted to input a day of the week.
+
+
+```python
+weekday = input('What day of the week is it?')
+print("It sounds like it's " + weekday)
+```
+
+    What day of the week is it? Wednesday
+
+
+    It sounds like it's Wednesday
+
+
+You can use this function to prompt a user for input as part of a Python script.  
+Try running the script `hello_name.py` from a Terminal to see how the input function could be used.
+
+The contents of the script are shown below.
+```python
+name = input("What's your name?")
+print("Hello, " + name + "!")
+```
+
+---
+## P3. Practice
+Let's try writing a Python script.
+
+> ### Practice 5.
+> Write a Python script in a file called `greetings.py`.  
+> The script should prompt the user for a greeting and a name as interactive input, and print  
+> `{Greeting}, {Name}!`  
+
+---
+## 10. Problem Set
+
+To really get familiar with coding in Python (or any other language), the best way is to **write a lot of code**.  
 We recommend working through a problem set to practice some more with coding in Python. The problem set will also cover some of the basics we covered in a bit more detail. We expect the problem set won't take longer than ~1-2 hrs to complete.
 
 You can find the problem set at this [Google CoLab Document](https://colab.research.google.com/drive/1zJQIp-LbaK9K8Y6FbCAKVSGZA-kxJca7#scrollTo=2c08df7c-86a5-430c-95a3-a90719c3f81d).  
 CoLab works just like a Jupyter notebook, but it automatically saves your changes and keeps them as a cloud document.  
 **To get started on the problem set, make sure to first <mark>click "File" > "Save a copy in Drive"</mark> to make sure you don't lose your progress!**
 
-We'll have office hours throughout the week for you to stop by and work on your problem set with other Arcadians as well as to work through any bugs in your code.
+We'll have AUG office hours next week for you to stop by and work on your problem set with other Arcadians as well as to work through any bugs in your code.
+
+Feel free to ping the `#software-questions` Slack channel for anything that comes up in the meantime!
 
 
 ```python
