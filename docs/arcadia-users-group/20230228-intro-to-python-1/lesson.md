@@ -642,11 +642,6 @@ CoLab works just like a Jupyter notebook, but it automatically saves your change
 **To get started on the problem set, make sure to first <mark>click "File" > "Save a copy in Drive"</mark> to make sure you don't lose your progress!**
 
 We'll have AUG office hours next week for you to stop by and work on your problem set with other Arcadians as well as to work through any bugs in your code.  
-If you're stumped, we also have an [Answer Key](problem_set_1_answers.ipynb) that you can check.
+If you're stumped, we also have an [Answer Key](https://github.com/Arcadia-Science/arcadia-computational-training/blob/main/docs/arcadia-users-group/20230228-intro-to-python-1/problem_set_1_answers.ipynb) that you can check.
 
 Feel free to ping the `#software-questions` Slack channel for anything that comes up in the meantime!
-
-
-```python
-
-```
