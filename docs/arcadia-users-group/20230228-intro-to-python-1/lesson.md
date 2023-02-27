@@ -2,7 +2,7 @@
 
 Follow along in **Binder** by clicking the badge below:  
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Arcadia-Science/arcadia-computational-training/das/pytutorial?labpath=docs%2Farcadia-users-group%2F20230228-intro-to-python-1%2Flesson.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Arcadia-Science/arcadia-computational-training/HEAD?labpath=docs%2Farcadia-users-group%2F20230228-intro-to-python-1%2Fplayground.ipynb)
 
 ---
 ## 0. Fundamentals of Python
@@ -341,7 +341,10 @@ hello_world()
 You've defined a function above, but how does Python know when the function ends?  
 Python uses **indentation** to signify the scope of a function. In the code block below, we define a function, then define a variable, and finally pass the variable to the function.
 
-The line break and lack of indentation after the end of the function's scope tells Python that the function is completed.
+The line break and lack of indentation after the end of the function's scope tells Python that the function is completed.  
+> **Note:**  
+> This indentation syntax is uncommon among programming languages – often, languages require specific characters to set the scope of the code.
+> For example, in **C** (another programming language), you end every code line with a semicolon `;`.
 
 
 ```python
@@ -485,7 +488,8 @@ Let's try writing some basic Python functions.
 # Write your function in the space below. #
 ## Then run the cell to check your work. ##
 
-
+def greetings(greeting, name):
+    return greeting + ', ' + name + '!'
 
 ###########################################
 
@@ -495,7 +499,11 @@ name = "Jacques"
 greetings(greeting, name)
 ```
 
-    Bonjour, Jacques!
+
+
+
+    'Bonjour, Jacques!'
+
 
 
 > ### Practice 4
@@ -531,7 +539,7 @@ greetings(greeting, robot_name)
 
     TypeError                                 Traceback (most recent call last)
 
-    Cell In[34], line 12
+    Cell In[41], line 12
           1 ###############################################
           2 # Write your new function in the space below. #
           3 #### Then run the cell to check your work. ####
@@ -542,9 +550,9 @@ greetings(greeting, robot_name)
     ---> 12 greetings(greeting, robot_name)
 
 
-    Cell In[32], line 6, in greetings(greeting, name)
+    Cell In[40], line 6, in greetings(greeting, name)
           5 def greetings(greeting, name):
-    ----> 6     print(greeting + ", " + name + "!")
+    ----> 6     return greeting + ', ' + name + '!'
 
 
     TypeError: can only concatenate str (not "int") to str
@@ -560,7 +568,7 @@ However, there are other ways to execute Python code.
 For example, you can write Python code into a text file ending with `.py`.  
 We've included a script in the lesson folder called `hello_world.py`. Its contents are as follows:
 ```python
-print('Hello world!')
+print("Hello world!")
 ```
 You can execute that script using the command line as follows:
 
@@ -588,13 +596,12 @@ In general, Jupyter notebooks are a helpful way to write exploratory code, while
 The built-in function `input()` prompts the user for input and accepts the response.  
 `input()` takes a `str` argument which can be used to describe what the function is trying to get from the user as input.
 
-This is one way to be able to interact with a Python script interactively.
-
+This is one way to be able to interact with a Python script interactively.  
 In the example below, the user is prompted to input a day of the week.
 
 
 ```python
-weekday = input('What day of the week is it?')
+weekday = input("What day of the week is it?")
 print("It sounds like it's " + weekday)
 ```
 
@@ -622,6 +629,8 @@ Let's try writing a Python script.
 > The script should prompt the user for a greeting and a name as interactive input, and print  
 > `{Greeting}, {Name}!`  
 
+You'll need to test the script using the terminal, in part because Jupyter doesn't reliably allow user input in output blocks.
+
 ---
 ## 10. Problem Set
 
@@ -632,7 +641,8 @@ You can find the problem set at this [Google CoLab Document](https://colab.resea
 CoLab works just like a Jupyter notebook, but it automatically saves your changes and keeps them as a cloud document.  
 **To get started on the problem set, make sure to first <mark>click "File" > "Save a copy in Drive"</mark> to make sure you don't lose your progress!**
 
-We'll have AUG office hours next week for you to stop by and work on your problem set with other Arcadians as well as to work through any bugs in your code.
+We'll have AUG office hours next week for you to stop by and work on your problem set with other Arcadians as well as to work through any bugs in your code.  
+If you're stumped, we also have an [Answer Key](problem_set_1_answers.ipynb) that you can check.
 
 Feel free to ping the `#software-questions` Slack channel for anything that comes up in the meantime!
 
