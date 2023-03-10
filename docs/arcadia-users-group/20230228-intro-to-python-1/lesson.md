@@ -488,8 +488,7 @@ Let's try writing some basic Python functions.
 # Write your function in the space below. #
 ## Then run the cell to check your work. ##
 
-def greetings(greeting, name):
-    return greeting + ', ' + name + '!'
+
 
 ###########################################
 
@@ -499,11 +498,7 @@ name = "Jacques"
 greetings(greeting, name)
 ```
 
-
-
-
-    'Bonjour, Jacques!'
-
+    Bonjour, Jacques!
 
 
 > ### Practice 4
@@ -539,7 +534,7 @@ greetings(greeting, robot_name)
 
     TypeError                                 Traceback (most recent call last)
 
-    Cell In[41], line 12
+    Cell In[34], line 12
           1 ###############################################
           2 # Write your new function in the space below. #
           3 #### Then run the cell to check your work. ####
@@ -552,7 +547,7 @@ greetings(greeting, robot_name)
 
     Cell In[40], line 6, in greetings(greeting, name)
           5 def greetings(greeting, name):
-    ----> 6     return greeting + ', ' + name + '!'
+    ----> 6     print(greeting + ", " + name + "!")
 
 
     TypeError: can only concatenate str (not "int") to str
