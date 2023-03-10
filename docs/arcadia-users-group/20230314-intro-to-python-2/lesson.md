@@ -2,7 +2,7 @@
 
 Follow along in **Binder** by clicking the badge below:  
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Arcadia-Science/arcadia-computational-training/das/pytutorial?labpath=docs%2Farcadia-users-group%2F20230314-intro-to-python-2%2Flesson.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Arcadia-Science/arcadia-computational-training/HEAD?labpath=docs%2Farcadia-users-group%2F20230314-intro-to-python-2%2Fplayground.ipynb)
 
 ---
 ## 0. Loops and Conditionals
