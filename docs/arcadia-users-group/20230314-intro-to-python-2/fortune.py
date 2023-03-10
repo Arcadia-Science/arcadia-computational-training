@@ -1,7 +1,3 @@
-###############################################
-### Write your function in the space below. ###
-#### Then run the cell to check your work. ####
-
 def fortune():
     flag1, flag2, flag3 = False, False, False
     
@@ -41,7 +37,5 @@ def fortune():
     lucky_number = (len(name) * len(month)) % int(day_num)
     print('It appears that your lucky number is ' + str(lucky_number) + '.')
     return lucky_number
-
-###############################################
 
 fortune()
