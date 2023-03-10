@@ -26,7 +26,7 @@ Often, when you're working with values in science, you're not just working with 
 - `set`s: like lists, but each value can only occur once.
 - `tuple`s: like lists, but you can't modify the values.
 
-We'll first talk about `list` and `dict` structures, as they're the easiest and most intuitive to understand.
+We'll first talk about `list` and `dict` structures, as they're the most common data structures.
 
 ---
 ### 1.1 Lists
@@ -39,7 +39,7 @@ lst = [1, 2, 3, 4, 5]
 
 To access a specific value in the list, such as `2`, you use the **index**, or the position of the value in the list, in bracket notation, as below.
 
-A key thing to remember in Python is that **lists are indexed starting with the index `[0]`**. So, if you wanted to get the value `2` from the list above, you would use an the index `[1]`.
+A key thing to remember in Python is that **lists are indexed starting with the index `[0]`**. So, if you wanted to get the value `2` from the list above, you would use the index `[1]`.
 
 
 ```python
@@ -461,6 +461,9 @@ Let's explore using loops.
 > - Optionally, adds a prefix of the user's choice to the start of every file name.
 > - Returns a list of the new file names.
 
+> **Note:** In this case, we're performing this operation on a list of file name strings, not actual files.  
+> In the next lesson, we'll talk about actually reading and writing files.
+
 <details>
 <summary> Practice 3 Sample Answer </summary>
     <br>
@@ -772,7 +775,7 @@ for value in values:
     ---
 
 
-- **`match`** **`case`**: works very similarly to an if - elif - else statement, but can be much easier to read when you have specific expected outcomes. See example [here](https://learnpython.com/blog/python-match-case-statement/).
+- **`match`** **`case`**: works very similarly to an **`if`** - **`elif`** - **`else`** statement, but can be much easier to read when you have specific expected outcomes. See example [here](https://learnpython.com/blog/python-match-case-statement/).
 
 > **NOTE:** match - case statements are still very new to Python 3.10, so Jupyter doesn't have syntax highlighting for them yet.
 
@@ -855,7 +858,10 @@ You can find the problem set at this [Google CoLab Document](https://colab.resea
 CoLab works just like a Jupyter notebook, but it automatically saves your changes and keeps them as a cloud document.  
 **To get started on the problem set, make sure to first <mark>click "File" > "Save a copy in Drive"</mark> to make sure you don't lose your progress!**
 
-We'll have office hours throughout the week for you to stop by and work on your problem set with other Arcadians as well as to work through any bugs in your code.
+We'll have AUG office hours next week for you to stop by and work on your problem set with other Arcadians as well as to work through any bugs in your code.  
+If you're stumped, we also have an [Answer Key](problem_set_2_answers.ipynb) that you can check.
+
+Feel free to ping the `#software-questions` Slack channel for anything that comes up in the meantime!
 
 
 ```python
