@@ -2,7 +2,7 @@
 
 Follow along in **Binder** by clicking the badge below:  
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Arcadia-Science/arcadia-computational-training/das/pytutorial?labpath=docs%2Farcadia-users-group%2F20230328-intro-to-python-3%2Flesson.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Arcadia-Science/arcadia-computational-training/HEAD?labpath=docs%2Farcadia-users-group%2F20230328-intro-to-python-3%2Fplayground.ipynb)
 
 ---
 ## 0. Packages
@@ -24,19 +24,16 @@ This lesson is the third in a series of workshops that provide an introduction t
 Using the basics of Python we've learned so far, it's possible to perform _many_ operations you might want to deal with in Python. In theory, you could probably write a script or function to do just about anything you wanted using just base Python language.  
 
 However, that would probably not be an efficient use of your time!  
-
 It turns out that there are many built-in packages that Python provides to do more complex things, built upon the Python language.
 
 ---
 ### 1.1 File handling with **`os`**
-Importing a package in Python is pretty straightforward. Below, we import the **`os`** package.
+Importing a package in Python uses the following syntax. Below, we import the **`os`** package.
 
 
 ```python
 import os
 ```
-
-That wasn't so bad, was it?  
 
 Let's explore some of the functions of the **`os`** package.  
 The function `os.getcwd()` returns the current working directory your script or Jupyter notebook is located in.  
@@ -50,7 +47,7 @@ os.getcwd()
 
 
 
-    '/home/ec2-user/arcadia-computational-training/docs/arcadia-users-group/20230314-intro-to-python-3'
+    '/home/ec2-user/arcadia-computational-training/docs/arcadia-users-group/20230328-intro-to-python-3'
 
 
 
@@ -64,7 +61,18 @@ os.listdir()
 
 
 
-    ['lesson.ipynb', '.ipynb_checkpoints', 'hello.txt', 'practice2.txt']
+    ['.ipynb_checkpoints',
+     'newfile.txt',
+     'newfile2.txt',
+     'practice2.txt',
+     'test.csv',
+     'lesson_files',
+     'testfiles',
+     'cities.csv',
+     'hello.txt',
+     'lesson.ipynb',
+     'lesson.md',
+     'playground.ipynb']
 
 
 
@@ -102,7 +110,7 @@ print(os.path.abspath('hello.txt'))
 ```
 
     hello.txt
-    /home/ec2-user/arcadia-computational-training/docs/arcadia-users-group/20230314-intro-to-python-3/hello.txt
+    /home/ec2-user/arcadia-computational-training/docs/arcadia-users-group/20230328-intro-to-python-3/hello.txt
 
 
 These functions can be particularly helpful when using Python to create or modify files used for bioinformatic analysis.
@@ -122,7 +130,9 @@ For example, basic commands such as `ls` or `pwd` can be run when typed directly
 ls
 ```
 
-    hello.txt  lesson.ipynb  practice2.txt
+    cities.csv     lesson.ipynb  newfile.txt       test.csv
+    hello.txt      lesson.md     playground.ipynb  [0m[01;34mtestfiles[0m/
+    [01;34mlesson_files[0m/  newfile2.txt  practice2.txt
 
 
 
@@ -133,7 +143,7 @@ pwd
 
 
 
-    '/home/ec2-user/arcadia-computational-training/docs/arcadia-users-group/20230314-intro-to-python-3'
+    '/home/ec2-user/arcadia-computational-training/docs/arcadia-users-group/20230328-intro-to-python-3'
 
 
 
@@ -160,14 +170,14 @@ For commands that aren't compatible with this approach, you can use a different 
 !which python
 ```
 
-    /home/ec2-user/miniconda3/envs/GeneFinder/bin/python
+    /home/ec2-user/miniconda3/envs/umap/bin/python
 
 
 This can be really nice when you plan on programming interactively.  
 However, using the exclamation point Jupyter magic doesn't translate well if you were to convert your Jupyter notebook into a Python script.  
-The details aren't important for this workshop, but if you were to try to use the exclamation point operator, you'd have to rewrite some of your code, which is never fun!  
+If you were to try to use the exclamation point operator in a script, you'd have to rewrite some of your code, which is never fun! 
 
-Instead of relying Jupyter magic, we generally recommend using the package **`subprocess`**, which passes commands from Python into the shell.
+Instead of relying Jupyter magic, we suggest using the package **`subprocess`**, which passes commands from Python into the shell.
 
 
 ```python
@@ -176,7 +186,7 @@ import subprocess
 subprocess.run(['which', 'python'])
 ```
 
-    /home/ec2-user/miniconda3/envs/GeneFinder/bin/python
+    /home/ec2-user/miniconda3/envs/umap/bin/python
 
 
 
@@ -189,7 +199,7 @@ subprocess.run(['which', 'python'])
 The code above runs the same as `!which python`.  
 `subprocess.run` passes each element of a list as an argument to the shell. 
 
-It's unfortunately not as tidy looking, but it does allow for more robust code that can be converted to Python packages or functions without rewriting!
+It's unfortunately not as tidy looking, but it does allow for more robust code that can be converted to Python scripts without rewriting!
 
 ---
 ### 1.3 **`math`** ematics
@@ -228,7 +238,7 @@ print(math.e)
     2.718281828459045
 
 
-Packages can thus be used to distribute specific numbers in addition to helpful functions!
+Packages can thus be used to distribute specific values in addition to helpful functions!
 
 ---
 ## P1. Practice
@@ -238,7 +248,8 @@ Let's try using some Python packages to do useful things.
 > ### Practice 1
 > Using a `for` loop, create a directory called `testfiles/` in the current directory and populate it with empty files numbered `file1.txt` to `file5.txt`
 >
-> **Hint:** The command-line tool `touch` creates an empty file. Its syntax is `touch filename`.
+> **Hint:** The command-line tool `touch` creates an empty file. Its syntax is `touch filename`.  
+> **Hint:** You also might want to check out this list of [`os` functions](https://docs.python.org/3/library/os.html#os.mkdir).
 
 <details>
 <summary> Practice 1 Sample Answer </summary>
@@ -255,6 +266,21 @@ os.mkdir(destination)
     filename = 'file' + str(number) + '.txt'
     subprocess.run(['touch', destination + filename])
 </code></pre>
+    <br>
+    *Example using os.path.join()*
+    <br>
+    <pre><code><b>import</b> subprocess
+<b>import</b> os
+
+numbers = [1, 2, 3, 4, 5]
+
+destination = 'testfiles/'
+os.mkdir(destination)
+
+<b>for</b> number <b>in</b> numbers:
+    filename = 'file' + str(number) + '.txt'
+    subprocess.run(['touch', os.path.join(destination, filename)])
+</code></pre>
 </details>
 
 
@@ -262,7 +288,6 @@ os.mkdir(destination)
 ###############################################
 ##### Write your code in the space below. #####
 #### Then run the cell to check your work. ####
-
 
 
 ###############################################
@@ -274,7 +299,7 @@ filenames = ['testfiles/file' + str(num) + '.txt' for num in [1, 2, 3, 4, 5]]
 print(all([os.path.exists(file) for file in filenames]))
 ```
 
-    False
+    True
 
 
 ---
@@ -337,7 +362,8 @@ file.readlines()
 
 Another somewhat annoying aspect of this approach is that you also always have to `.close()` a file when you're done with it, or you can run into all sorts of weird errors.
 
-For example, if we try to read the file again without closing it, we get an empty list.
+For example, if we try to read the file again without closing it, we get an empty list.  
+This is because we already read through all of the lines in the file, and Python has kept track of that and picked back up reading at the end of the file.
 
 
 ```python
@@ -439,7 +465,7 @@ with open('newfile2.txt', 'w') as file:
 
     TypeError                                 Traceback (most recent call last)
 
-    Cell In[23], line 4
+    Cell In[25], line 4
           1 my_text_list = ['Lorem', 'ipsum', 'dolor', 'sit', 'amet']
           3 with open('newfile2.txt', 'w') as file:
     ----> 4     file.write(my_text_list)
@@ -466,7 +492,10 @@ Let's practice figuring out how to do something in Python!
 > Try to figure out on your own how you might overcome this problem.
 >
 > **Tip:** Search engines such as **Google** are your friend in this situation! Try looking for help on websites like [StackOverflow](https://stackoverflow.com/questions/tagged/python), [W3Schools](https://www.w3schools.com/python/default.asp), or [Real Python](https://realpython.com/tutorials/basics/).  
-> A huge part of learning how to program is also learning how to search for the solutions to your own programming problems.
+> A huge part of learning how to program is also learning how to search for the solutions to your own programming problems.  
+>
+> **Hint:** Try simply searching for the error above (`TypeError: write() argument must be str, not list`) and see where that gets you.   
+> How might you modify this query to get closer to solving your problem?
 
 
 <details>
@@ -501,7 +530,6 @@ practice_list = ['We', 'can', 'solve', 'Python', 'problems', 'ourselves']
 ###############################################
 ##### Write your code in the space below. #####
 #### Then run the cell to check your work. ####
-
 
 
 
@@ -558,7 +586,7 @@ You'll notice that rather than simply using `import matplotlib.pyplot`, we added
 Python allows you to import packages using aliases.  
 This saves you from having to type out `matplotlib.pyplot.plot()` and shortens the expression to `plt.plot()`.  
 
-Package documentation examples often gives you a suggestion for how you might abbreviate packages for others to be able to understand.  
+Package documentation examples often give you a suggestion for how you might abbreviate packages for others to be able to understand.  
 The base `matplotlib` package, for example, is often abbreviated as `mpl`.  
 You'll see additional examples of this in the other examples we'll look at.
 
@@ -613,7 +641,7 @@ plt.show()
 
 
 This example only scratches the barest surface of what you can do with **`plt`**.  
-Future workshops will dive into deeper detail about how **`matplotlib`** works and what you can do with it.
+If people want to learn more, we can have future workshops that dive into deeper detail about how **`matplotlib`** works and what you can do with it.
 
 ---
 ### 3.3 Working with `DataFrame`s using **`pandas`**
@@ -625,7 +653,7 @@ You can use **`pandas`** to load files and perform all manner of database manipu
 ```python
 import pandas as pd
 
-df = pd.DataFrame(pd.read_csv('cities.csv'))
+df = pd.read_csv('cities.csv')
 
 # The display() function allows us to nicely view tables and other data in Jupyter
 display(df)
@@ -1117,7 +1145,7 @@ If you tried to manually build some of these functions, it could be quite challe
 
 Hopefully these examples give you a sense of what you can do using Python if you build your skills and become fluent in the language.
 
+## 4. Next Steps
 
-```python
-
-```
+We've gone through a whirlwind tour of Python over the last few weeks, but there are many more things to learn!  
+If there's interest, we can cover additional topics in future Python workshops.
