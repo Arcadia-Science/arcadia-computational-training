@@ -83,7 +83,7 @@ Unless you need to change something, these commands only need to be used the fir
 
 First, set your name and email:
 ```
-git config --global user.name "Taylor Reiter"
+git config --global user.name "My Name"
 git config --global user.email "myemail@gmail.com"
 ```
 
