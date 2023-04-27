@@ -68,7 +68,7 @@ After that is configured, open your Terminal application and copy and paste the 
 
 ```
 curl -JLO https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
-bash Miniconda3-latest-MacOSX-x64_64.sh 
+bash Miniconda3-latest-MacOSX-x86_64.sh 
 ```
 
 This will prompt you to accept the miniconda license, ask you whether you accept the default installation location, and whether you want the installation script to intialize conda. 
