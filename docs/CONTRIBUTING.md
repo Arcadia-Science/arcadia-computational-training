@@ -57,3 +57,7 @@ Lessons are linked from the `overview.md` document, making them discoverable and
 Sometimes lesson material belongs better in a different repository or we'll cover open lessons developed by other organizations such as [The Carpentries](https://carpentries.org/).
 When this is the case, link to the lesson material in the `overview.md` document.
 The lesson will not be rendered on the computational training website, but it will be linked and discoverable from there.
+
+## Attribution
+
+This document was inspired by [The Carpentries documentation](https://docs.carpentries.org/) and our experience participating in The Carpentries community.
