@@ -23,8 +23,8 @@ The schedule is subject to change.
 | Jun 27, 2023 | Office hours        |               |
 | Jul 11, 2023 | Intro to 3D Printing| TBD           |
 | Jul 25, 2023 | Office hours        |               |
-| Aug 8, 2023  | Intro to R & dplyr  |               |
-| Aug 22, 2023 | Office hours        | TBD           |
+| Aug 8, 2023  | Intro to R & dplyr  | TBD           |
+| Aug 22, 2023 | Office hours        |               |
 | Sept 5, 2023 | Intro to R & ggplot2| TBD           |
 
 ## Previous trainings
