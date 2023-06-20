@@ -18,11 +18,14 @@ This is the landing page for tutorials delivered during AUG sessions.
 
 The schedule is subject to change.
 
-| Date         | Tutorial                               | Description                                                                                                                                                                                                                                                                                                                                           |
-| ------------ | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Apr 25, 2023 | Cancelled                              |                                                                                                                                                                                                                                                                                                                                                       |
-| May 9, 2023  | TBD: VS Code & AWS                     | TBD                                                                                                                                                                                                                                                                                                                                                   |
-| May 23, 2023 | TBD: Workflows and software at Arcadia | This lesson covers an overview of the workflows and software packages that have been written for Arcadians, by Arcadians. We'll cover the Nextflow workflows that we have written (seqqc, hifi2genome, metagenomics, and phylorthology) and how you can use them. We'll also go over the software packages we have written or that are being written. |
+| Date         | Tutorial            | Description   |
+| ------------ | ------------------- | ------------- |
+| Jun 27, 2023 | Office hours        |               |
+| Jul 11, 2023 | Intro to 3D Printing| TBD           |
+| Jul 25, 2023 | Office hours        |               |
+| Aug 8, 2023  | Intro to R & dplyr  | TBD           |
+| Aug 22, 2023 | Office hours        |               |
+| Sept 5, 2023 | Intro to R & ggplot2| TBD           |
 
 ## Previous trainings
 
