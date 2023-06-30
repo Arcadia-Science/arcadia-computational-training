@@ -20,8 +20,7 @@ The schedule is subject to change.
 
 | Date         | Tutorial            | Description   |
 | ------------ | ------------------- | ------------- |
-| Jun 27, 2023 | Office hours        |               |
-| Jul 11, 2023 | Intro to 3D Printing| TBD           |
+| Jul 11, 2023 | [Intro to 3D Printing](20230711-3d-printing/lesson.md)| Introduces learners to the basics of 3D printing, specifically focusing on designing stamps to create microchambers for cells using Autodesk Fusion 360 software and utilizing the Form2 SLA printer from Formlabs for actual 3D printing.            |
 | Jul 25, 2023 | Office hours        |               |
 | Aug 8, 2023  | Intro to R & dplyr  | TBD           |
 | Aug 22, 2023 | Office hours        |               |
