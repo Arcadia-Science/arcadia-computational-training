@@ -1,6 +1,6 @@
 # Using Git and GitHub to Contribute to Repositories You Don't Have Write Access To
 
-Arcadia is participating in Hacktoberfest 2023.
+Arcadia is participating in [Hacktoberfest 2023](https://hacktoberfest.com/).
 Our goal is to give back to the open source software community that we use every day in our own scientific work.
 As part of this, we are hosting a mini-hackathon to create a space and support others in making contribution to open source software libraries.
 We've [curated a list of bioinformatics (or adjacent) software repos](https://docs.google.com/document/d/1EjyQOwPO-Zc4aKM_mTPEFo3K97Ox3lEk-DyZxlivyVU/edit?usp=sharing) that are accepting contributions.
@@ -77,7 +77,7 @@ cd repository_name
 ### Making changes to the code: working on a branch
 
 <center>
-![](git_branch_simple.png){ width="400" }
+![](../20220920-intro-to-git-and-github/git_branch_simple.png){ width="400" }
 </center>
 
 When you want to make changes to files in a repository, it’s best practice to do it in a **branch**.
@@ -87,7 +87,7 @@ In a branch, all files are copied and can be changed.
 
 
 <center>
-![](git_branch_collab.png){ width="600" }
+![](../20220920-intro-to-git-and-github/git_branch_collab.png){ width="600" }
 </center>
 
 Branches are particularly powerful for collaborating.
