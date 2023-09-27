@@ -28,10 +28,11 @@ Respect, gratitude, and openness to feedback also go a long way toward fostering
 ## Setting up
 
 If you need to:
-* sign up for a GitHub account
-* install git locally
-* configure global git settings
-* create an ssh key to authenticate without a password
+
+- sign up for a GitHub account
+- install git locally
+- configure global git settings
+- create an ssh key to authenticate without a password
 
 Navigate to the [Setting Up Instructions](https://training.arcadiascience.com/workshops/20220920-intro-to-git-and-github/lesson/#setting-up) in the Intro to Git and GitHub lesson.
 
@@ -84,7 +85,6 @@ When you want to make changes to files in a repository, it’s best practice to 
 A **branch** is an independent line of development of files in a repository. 
 You can think of it like making a copy of a document and making changes to that copy only: the original stays the same, but the copy diverges with new content.
 In a branch, all files are copied and can be changed.
-
 
 <center>
 ![](../20220920-intro-to-git-and-github/git_branch_collab.png){ width="600" }
