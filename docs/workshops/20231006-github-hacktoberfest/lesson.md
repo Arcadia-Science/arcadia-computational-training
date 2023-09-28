@@ -36,19 +36,43 @@ If you need to:
 
 Navigate to the [Setting Up Instructions](https://training.arcadiascience.com/workshops/20220920-intro-to-git-and-github/lesson/#setting-up) in the Intro to Git and GitHub lesson.
 
-## Finding repositories that accept contributions
+## Finding repositories that accept contributions & work that needs to be done
 
 ### Searching for repositories that are open to external contributions
 
+Not every open source repository is in a position to accept work from new contributors.
+Contributing to a repository that isn't accepting these types of contributions at best leads to unintegrated pull requests and at worse creates additional work and head aches for maintainers.
+To avoid these situations, look out for signals that a repository is accepting contributions from new contributors.
+Good signals include:
+
+1. The repository has contributor guidelines.
+2. The repository uses issues to keep track of work that needs to be completed and labels issues to make it clear where contributions are welcome.
+3. The maintainers of the repository have recently engaged with issues, pull requests, or have recently updated the repository.
+4. The repository is marked with a `hacktoberfest` topic. Since Hacktoberfest is in its 10th year and repository topics have been around for three years, the tag may be from previous years so look for other signals that the repo is still accepting contributions. You can also search for the `hacktoberfest2023` tag instead to get recent labels.
+ 
 ### Contributor guidelines 
+
+The Contributor Guidelines for a repository outline how the project would like to receive contributions.
+This is a very important document to read and to continually reference as you're making your contribution to make sure you're following the preferences of the community or project you're contributing to.
+Each project is a little different, so make sure you read this document closely for each project you plan to contribute to.
 
 ### Finding work that needs to be completed: issues, pull requests, and repo searches
 
-GitHub issues started as a way to record problems with software and have since evolved into generalized [project planning tools](https://github.com/features/issues). 
-Issues are a great way to keep track of to do items, have asynchronous conversations relevant to a repository, or otherwise deposit information relevant to a repository.
+The contributor guidlines document often details how new contributors can find work that needs to be done.
+Often times, projects use [GitHub Issues](https://github.com/features/issues) to document work that needs to be completed.
+When a project is accepting external contributions, they often use issue labels to highlight work that can be done by anyone.
+Common labels include "good first issue," "good second issue," and "help wanted," but these labels can vary a lot by project.
+
+Issues can also be used to document work that is being worked on by someone else.
+These can be issues all on their own or responses to issues that already exist.
+Similarly, a pull request may declare work that is in progress or has already been contributed.
+It's a good idea to search open issues and pull requests, as well as the repository in general, to make sure the work you want to do hasn't already been undertaken by another contributor.  
 
 ### Narrating the work that you will complete
 
+To make sure that others know what work you plan to do, it's usually a good idea to narrate this work somewhere in the repository.
+Check the contributor guidelines first to see what the recommended strategy to use is.
+A common strategy is to respond with a comment to an open issue asking if the work still needs to be done or to state that you plan to work on it. 
 
 ## Workflow for making changes on a repository you don't own 
 
@@ -57,11 +81,19 @@ Below, we cover how to make changes in a way that will allow you to contribute t
 
 ### Forking the repository
 
+When you don't have write access to a repository, you need to make a copy of the repo into a user name or organization that you do have write access to.
+This process is called "forking" or "creating a fork" for a repo.
+You do this by clicking the fork button in the upper right hand corner of a repository.
+
+<center>
+![](fork.png){ width="400" }
+</center>
+
 ### Cloning the fork from remote to local
 
-First, navigate to your fork of the repository you're working with.
+**Cloning** is the process of copying an existing Git repository from a **remote** location (here, on GitHub) to your **local** computer.
+Navigate to your fork of the repository you're working with.
 The URL should start with your GitHub user name.
-**Cloning** is the process of copying an existing Git repository from a **remote** location (here, on GitHub) to your **local** computer (here, on our binder instances).
 To clone the repository, click the green "Code" button in the top right hand corner of the repository screen. 
 This creates a drop down menu with clone options.
 We'll select the SSH tab because we configured an ssh key pair.
@@ -208,13 +240,33 @@ To view what this value is, you can run `git remote -v`.
 
 ## Contributing changes 
 
-If we navigate to our repositories on GitHub, we now see a yellow banner wtih our branch name and a green button inviting us to "Compare & pull request".
-You can use this banner to create a pull request.
+Pull requests are used to contribute changes from your fork back to the main repository.
+Before opening a pull request, re-read the contributing guidelines and make sure to fulfill all of the requirements requested therein.
+This will often include that all test should be passing locally.
+For more on testing, see this [Carpentries Incubator lesson](https://carpentries-incubator.github.io/python-testing/) on testing in python.
 
+To create a new pull request, you can click the "Pull requests" tab on your fork of the repository.
+This will launch a page that asks you where the changes are coming from and where they are being contributed to.
+Pay special attention on this page to make sure you select the appropriate branches and forks here.
 
-#### Links to other goodies
+<center>
+![](pr.png){ width="400" }
+</center>
 
-* [Continuous integration with GitHub Actions](https://github.com/features/actions)
+Once the PR is open, use the comment dialogue box to narrate the changes you made.
+Be sure to link to the issue you're addressing using a `#`.
+Re-read the contributor guidelines or follow the PR template to make sure you're including all required information.
+
+In some repositories, opening a PR may launch [continuous integration with GitHub Actions](https://github.com/features/actions).
+These will appear as banners of tasks.
+When they pass successfully you'll see a green check mark.
+Generally, all tests need to pass before a PR is merged.
+
+<center>
+![](ci.png){ width="400" }
+</center>
+
+After opening your PR, a maintainer will typically review the PR and request or make changes.
 
 ## Summary
 
