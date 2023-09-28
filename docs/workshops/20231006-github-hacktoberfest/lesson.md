@@ -53,11 +53,15 @@ Good signals include:
 We've [curated a list of bioinformatics (or adjacent) software repos](https://docs.google.com/document/d/1EjyQOwPO-Zc4aKM_mTPEFo3K97Ox3lEk-DyZxlivyVU/edit?usp=sharing) that are accepting contributions either for hacktoberfest or otherwise.
 You can start from this list or search GitHub topics to find a repository you want to contribute to.
 
+For the hands on portions in the rest of this lesson, we will practice making a contribution using the [Arcadia-Science/2023-hackathon-practice](https://github.com/Arcadia-Science/2023-hackathon-practice) repository.
+
 ### Contributor guidelines 
 
 The Contributor Guidelines for a repository outline how the project would like to receive contributions.
 This is a very important document to read and to continually reference as you're making your contribution to make sure you're following the preferences of the community or project you're contributing to.
 Each project is a little different, so make sure you read this document closely for each project you plan to contribute to.
+
+In the [Arcadia-Science/2023-hackathon-practice](https://github.com/Arcadia-Science/2023-hackathon-practice) repository, the contributor guide is located in the file `CONTRIBUTING.md` and it is linked to from the `README.md`.
 
 ### Finding work that needs to be completed: issues, pull requests, and repo searches
 
@@ -71,11 +75,33 @@ These can be issues all on their own or responses to issues that already exist.
 Similarly, a pull request may declare work that is in progress or has already been contributed.
 It's a good idea to search open issues and pull requests, as well as the repository in general, to make sure the work you want to do hasn't already been undertaken by another contributor.  
 
+
 ### Narrating the work that you will complete
 
 To make sure that others know what work you plan to do, it's usually a good idea to narrate this work somewhere in the repository.
 Check the contributor guidelines first to see what the recommended strategy to use is.
 A common strategy is to respond with a comment to an open issue asking if the work still needs to be done or to state that you plan to work on it. 
+
+According to the contributor guide in the [Arcadia-Science/2023-hackathon-practice](https://github.com/Arcadia-Science/2023-hackathon-practice) repository, the maintainers ask that you post an issue declaring the change that you will make the repo.
+The guide also states that if you plan to add a file that the file should be added in the `practice` folder.
+Practice opening an issue.
+First, navigate to the issues tab.
+
+<center>
+![](issue-tab.png){ width="600" }
+</center>
+
+Then, open a new issue by selecting the green "New issue" button.
+
+<center>
+![](new-issue.png){ width="600" }
+</center>
+
+Describe that you will add a file to the `practice` folder called `my-first-file-`, your initials, and then `.txt` (`my-first-file-ter.txt`).
+
+<center>
+![](issue-text.png){ width="600" }
+</center>
 
 ## Workflow for making changes on a repository you don't own 
 
@@ -92,22 +118,35 @@ You do this by clicking the fork button in the upper right hand corner of a repo
 ![](fork.png){ width="600" }
 </center>
 
+Select the new owner (for this lesson, yourself), and then select the green "Create fork" button.
+
+<center>
+![](create-fork.png){ width="600" }
+</center>
+
+You should now have a copy of the repository in your own GitHub account.
+
 ### Cloning the fork from remote to local
 
 **Cloning** is the process of copying an existing Git repository from a **remote** location (here, on GitHub) to your **local** computer.
-Navigate to your fork of the repository you're working with.
+Navigate to your fork of the repository you're working with (GitHub did this for you after forking if you kept the same tab open).
 The URL should start with your GitHub user name.
 To clone the repository, click the green "Code" button in the top right hand corner of the repository screen. 
 This creates a drop down menu with clone options.
 We'll select the SSH tab because we configured an ssh key pair.
 Once you select the tab, copy the path that starts with `git@gitub.com:`.
+
+<center>
+![](clone.png){ width="600" }
+</center>
+
 Then, navigate to your terminal and use the command below to clone the repository.
 Remember to substitute out the username/URL with your own URL that we copied.
 
 ```
-cd ~
-git clone git@github.com:your_username/respository_name
-cd repository_name
+cd ~ # this will clone the repo to your home directory. Feel free to put it somewhere else if you prefer.
+git clone git@github.com:your_username/2023-hacktathon-practice
+cd 2023-hackathon-practice
 ```
 
 ### Making changes to the code: working on a branch
@@ -185,17 +224,17 @@ Throughout this process, we'll use the command `git status` to track our progres
 git status
 ```
 
-We'll use the `echo` command to create a new file, `notes.txt`.
+We'll use the `echo` command to create a new file matching the name of the file we said we'd make in our issue.
 
 ```
 ls
-echo "some interesting notes" > notes.txt
+echo "creating my first file" > practice/my-first-file-ter.txt
 ls
 ```
 
-Take a look at the contents of your `notes.txt` file:
+Take a look at the contents of your `practice/my-first-file-ter.txt` file:
 ```
-less notes.txt
+less practice/my-first-file-ter.txt
 ```
 
 And run `git status` to see how creating a new file changes the output of that command:
@@ -207,7 +246,7 @@ Once you have made changes in your repository, you need to tell Git to start tra
 The command `git add` adds the files to the "staging area", meaning Git is now tracking the changes.
 
 ```
-git add notes.txt
+git add practice/my-first-file-ter.txt
 ```
 
 After adding this file, we see our output of `git status` changes.
@@ -220,7 +259,7 @@ The text associated with our file is now green because the file is staged.
 When you've made all of the changes to a file that represent a unit of changes, you can use `git commit` to create a snapshot of the file in your Git version history.
 
 ```
-git commit -m "start notes file"
+git commit -m "start my first file"
 
 git status
 ```
@@ -248,17 +287,27 @@ Before opening a pull request, re-read the contributing guidelines and make sure
 This will often include that all test should be passing locally.
 For more on testing, see this [Carpentries Incubator lesson](https://carpentries-incubator.github.io/python-testing/) on testing in python.
 
-To create a new pull request, you can click the "Pull requests" tab on your fork of the repository.
-This will launch a page that asks you where the changes are coming from and where they are being contributed to.
-Pay special attention on this page to make sure you select the appropriate branches and forks here.
+To create a new pull request, you can click the yellow banner with the green button, "Compare & pull request."
 
 <center>
-![](pr.png){ width="600" }
+![](compare-and-pr.png.png){ width="600" }
 </center>
 
-Once the PR is open, use the comment dialogue box to narrate the changes you made.
+This will launch a page that suggests where the changes are coming from and where they're being integrated into.
+Pay special attention on this page to make sure you select the appropriate branches and forks here.
+Use the title and dialogue box to annotate what your PR accomplishes.
 Be sure to link to the issue you're addressing using a `#`.
 Re-read the contributor guidelines or follow the PR template to make sure you're including all required information.
+
+<center>
+![](open-pr.png){ width="600" }
+</center>
+
+The opened PR looks something like this
+
+<center>
+![](opened-pr.png){ width="600" }
+</center>
 
 In some repositories, opening a PR may launch [continuous integration with GitHub Actions](https://github.com/features/actions).
 These will appear as banners of tasks.
