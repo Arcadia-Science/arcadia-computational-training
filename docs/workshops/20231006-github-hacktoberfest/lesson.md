@@ -2,26 +2,26 @@
 
 Arcadia is participating in [Hacktoberfest 2023](https://hacktoberfest.com/).
 Our goal is to give back to the open source software community that we use every day in our own scientific work.
-As part of this, we are hosting a mini-hackathon to create a space and support others in making contribution to open source software libraries.
+As part of this, we are hosting a mini-hackathon to create a space for and support others in making contribution to open source software libraries.
 We've [curated a list of bioinformatics (or adjacent) software repos](https://docs.google.com/document/d/1EjyQOwPO-Zc4aKM_mTPEFo3K97Ox3lEk-DyZxlivyVU/edit?usp=sharing) that are accepting contributions.
 The purpose the lesson below is to outline how to contribute to a GitHub repository that you don't own (e.g., you don't have write access to).
 
 While we will cover this in more depth below, we want to highlight how important it is to only contribute to projects that are open to contributions and to abide by community- or project-specific guidelines when doing so.
 Every contribution creates additional work for maintainers, many of whom are volunteers or who have responsibilities outside of software maintenance.
-Approaching your contribution with this in mind ensures that suggestions you make are more likely to be a net benefit for the project to which your contributing.
+Approaching your contribution with this in mind ensures that suggestions you make are more likely to be a net benefit for the project to which you're contributing.
 Respect, gratitude, and openness to feedback also go a long way toward fostering a fruitful collaboration.
 
 ## tl;dr
 
 0. Select a repository to contribute to and read the contribution guide.
-1. Fork your repository of interest to your own GitHub account (click the Fork button in the top right of this page)
+1. Fork your repository of interest to your own GitHub account (click the Fork button in the top right of the repo page).
 2. Navigate to your fork. Clone your fork down to your local machine: `git clone https://github.com/your-username/repository-name.git`
 3. Create a branch: `git checkout -b branch-name`
-4. Make your changes
+4. Make your changes.
 5. Add your changes to be tracked by git: `git add file-changed.txt`
 6. Commit your changes: `git commit -m 'short explanation of changes i made'`
 7. Push your changes: `git push origin branch-name`
-8. Create a new pull request from your forked repository (click the New Pull Request button located at the top of your repo)
+8. Create a new pull request from your forked repository (click the Pull request banner and then the New Pull Request button located at the top of your repo).
 9. Describe your changes following the guidelines in the contribution guide or the PR template.
 10. Wait for your PR to be reviewed and make any requested changes.
 
@@ -34,7 +34,7 @@ If you need to:
 - configure global git settings
 - create an ssh key to authenticate without a password
 
-Navigate to the [Setting Up Instructions](https://training.arcadiascience.com/workshops/20220920-intro-to-git-and-github/lesson/#setting-up) in the Intro to Git and GitHub lesson.
+Navigate to the [Setting Up Instructions](https://training.arcadiascience.com/workshops/20220920-intro-to-git-and-github/lesson/#setting-up) in the Intro to Git and GitHub lesson and follow along with the tutorial.
 
 ## Finding repositories that accept contributions & work that needs to be done
 
@@ -50,6 +50,9 @@ Good signals include:
 3. The maintainers of the repository have recently engaged with issues, pull requests, or have recently updated the repository.
 4. The repository is marked with a `hacktoberfest` topic. Since Hacktoberfest is in its 10th year and repository topics have been around for three years, the tag may be from previous years so look for other signals that the repo is still accepting contributions. You can also search for the `hacktoberfest2023` tag instead to get recent labels.
  
+We've [curated a list of bioinformatics (or adjacent) software repos](https://docs.google.com/document/d/1EjyQOwPO-Zc4aKM_mTPEFo3K97Ox3lEk-DyZxlivyVU/edit?usp=sharing) that are accepting contributions either for hacktoberfest or otherwise.
+You can start from this list or search GitHub topics to find a repository you want to contribute to.
+
 ### Contributor guidelines 
 
 The Contributor Guidelines for a repository outline how the project would like to receive contributions.
@@ -59,7 +62,7 @@ Each project is a little different, so make sure you read this document closely 
 ### Finding work that needs to be completed: issues, pull requests, and repo searches
 
 The contributor guidlines document often details how new contributors can find work that needs to be done.
-Often times, projects use [GitHub Issues](https://github.com/features/issues) to document work that needs to be completed.
+Often times, projects use [GitHub **Issues**](https://github.com/features/issues) to document work that needs to be completed.
 When a project is accepting external contributions, they often use issue labels to highlight work that can be done by anyone.
 Common labels include "good first issue," "good second issue," and "help wanted," but these labels can vary a lot by project.
 
@@ -82,7 +85,7 @@ Below, we cover how to make changes in a way that will allow you to contribute t
 ### Forking the repository
 
 When you don't have write access to a repository, you need to make a copy of the repo into a user name or organization that you do have write access to.
-This process is called "forking" or "creating a fork" for a repo.
+This process is called **forking** or creating a **fork** for a repo.
 You do this by clicking the fork button in the upper right hand corner of a repository.
 
 <center>
