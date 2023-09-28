@@ -86,7 +86,7 @@ This process is called "forking" or "creating a fork" for a repo.
 You do this by clicking the fork button in the upper right hand corner of a repository.
 
 <center>
-![](fork.png){ width="400" }
+![](fork.png){ width="600" }
 </center>
 
 ### Cloning the fork from remote to local
@@ -250,7 +250,7 @@ This will launch a page that asks you where the changes are coming from and wher
 Pay special attention on this page to make sure you select the appropriate branches and forks here.
 
 <center>
-![](pr.png){ width="400" }
+![](pr.png){ width="600" }
 </center>
 
 Once the PR is open, use the comment dialogue box to narrate the changes you made.
@@ -263,7 +263,7 @@ When they pass successfully you'll see a green check mark.
 Generally, all tests need to pass before a PR is merged.
 
 <center>
-![](ci.png){ width="400" }
+![](ci.png){ width="600" }
 </center>
 
 After opening your PR, a maintainer will typically review the PR and request or make changes.
