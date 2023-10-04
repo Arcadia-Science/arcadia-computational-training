@@ -4,7 +4,7 @@ Arcadia is participating in [Hacktoberfest 2023](https://hacktoberfest.com/).
 Our goal is to give back to the open source software community that we use every day in our own scientific work.
 As part of this, we are hosting a mini-hackathon to create a space for and support others in making contribution to open source software libraries.
 We've [curated a list of bioinformatics (or adjacent) software repos](https://docs.google.com/document/d/1EjyQOwPO-Zc4aKM_mTPEFo3K97Ox3lEk-DyZxlivyVU/edit?usp=sharing) that are accepting contributions.
-The purpose the lesson below is to outline how to contribute to a GitHub repository that you don't own (e.g., you don't have write access to).
+The purpose of the lesson below is to outline how to contribute to a GitHub repository that you don't own (e.g., you don't have write access to).
 
 While we will cover this in more depth below, we want to highlight how important it is to only contribute to projects that are open to contributions and to abide by community- or project-specific guidelines when doing so.
 Every contribution creates additional work for maintainers, many of whom are volunteers or who have responsibilities outside of software maintenance.
@@ -41,7 +41,7 @@ Navigate to the [Setting Up Instructions](https://training.arcadiascience.com/wo
 ### Searching for repositories that are open to external contributions
 
 Not every open source repository is in a position to accept work from new contributors.
-Contributing to a repository that isn't accepting these types of contributions at best leads to unintegrated pull requests and at worse creates additional work and head aches for maintainers.
+Contributing to a repository that isn't accepting these types of contributions at best leads to unintegrated pull requests and at worse creates additional work and headache for maintainers.
 To avoid these situations, look out for signals that a repository is accepting contributions from new contributors.
 Good signals include:
 
@@ -65,7 +65,7 @@ In the [Arcadia-Science/2023-hackathon-practice](https://github.com/Arcadia-Scie
 
 ### Finding work that needs to be completed: issues, pull requests, and repo searches
 
-The contributor guidlines document often details how new contributors can find work that needs to be done.
+The contributor guidelines document often details how new contributors can find work that needs to be done.
 Often times, projects use [GitHub **Issues**](https://github.com/features/issues) to document work that needs to be completed.
 When a project is accepting external contributions, they often use issue labels to highlight work that can be done by anyone.
 Common labels include "good first issue," "good second issue," and "help wanted," but these labels can vary a lot by project.
