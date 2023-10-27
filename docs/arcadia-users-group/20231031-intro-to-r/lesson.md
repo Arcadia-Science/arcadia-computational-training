@@ -10,7 +10,7 @@ output:
 
 ## Exploring data in R
 
-In this lesson, we'll spend time unpacking the basic data structures in R that we breezed past in our previous lesson.
+In this lesson, we'll spend time unpacking the basic data structures in R that we breezed past in our [previous lesson](https://training.arcadiascience.com/arcadia-users-group/20231017-intro-to-ggplot2/lesson/).
 Then, we'll go over how to read in data and manipulate it in tidyverse.
 
 Note that this lesson has been modified from [The Carpentries](https://carpentries.org/index.html) [alternative version](https://carpentries.org/blog/2023/07/r-ecology-alt-beta/) of the [R Ecology lesson](https://carpentries-incubator.github.io/R-ecology-lesson-alternative/visualizing-ggplot.html).
@@ -18,7 +18,7 @@ Parts are reproduced in full, but the major changes were included to shorten the
 
 ### The data.frame
 
-In the previous lesson, we created visualizations from the `complete_old` data, but we did not talk much about **what** this `complete_old` thing is.
+In the [previous lesson](https://training.arcadiascience.com/arcadia-users-group/20231017-intro-to-ggplot2/lesson/), we created visualizations from the `complete_old` data, but we did not talk much about **what** this `complete_old` thing is.
 During this lesson, we'll cover how R represents, uses, and stores data.
 
 To start out, launch a fresh RStudio application window and load the two packages we'll work with during this lesson.
@@ -611,57 +611,6 @@ select(surveys, -record_id, -year)
 ## # ℹ 2 more variables: taxa <chr>, plot_type <chr>
 ```
 
-Finally, you can select columns based on whether they match a certain criteria by using the `where()` function.
-If we want all numeric columns, we can ask to `select` all the columns `where` the class `is numeric`:
-
-
-```r
-select(surveys, where(is.numeric))
-```
-
-```
-## # A tibble: 16,878 × 7
-##    record_id month   day  year plot_id hindfoot_length weight
-##        <dbl> <dbl> <dbl> <dbl>   <dbl>           <dbl>  <dbl>
-##  1         1     7    16  1977       2              32     NA
-##  2         2     7    16  1977       3              33     NA
-##  3         3     7    16  1977       2              37     NA
-##  4         4     7    16  1977       7              36     NA
-##  5         5     7    16  1977       3              35     NA
-##  6         6     7    16  1977       1              14     NA
-##  7         7     7    16  1977       2              NA     NA
-##  8         8     7    16  1977       1              37     NA
-##  9         9     7    16  1977       1              34     NA
-## 10        10     7    16  1977       6              20     NA
-## # ℹ 16,868 more rows
-```
-
-Instead of giving names or positions of columns, we instead pass the `where()` function with the name of another function inside it, in this case `is.numeric()`, and we get all the columns for which that function returns `TRUE`.
-
-We can use this to select any columns that have any `NA` values in them:
-
-
-```r
-select(surveys, where(anyNA))
-```
-
-```
-## # A tibble: 16,878 × 7
-##    species_id sex   hindfoot_length weight genus       species  taxa  
-##    <chr>      <chr>           <dbl>  <dbl> <chr>       <chr>    <chr> 
-##  1 NL         M                  32     NA Neotoma     albigula Rodent
-##  2 NL         M                  33     NA Neotoma     albigula Rodent
-##  3 DM         F                  37     NA Dipodomys   merriami Rodent
-##  4 DM         M                  36     NA Dipodomys   merriami Rodent
-##  5 DM         M                  35     NA Dipodomys   merriami Rodent
-##  6 PF         M                  14     NA Perognathus flavus   Rodent
-##  7 PE         F                  NA     NA Peromyscus  eremicus Rodent
-##  8 DM         M                  37     NA Dipodomys   merriami Rodent
-##  9 DM         F                  34     NA Dipodomys   merriami Rodent
-## 10 PF         F                  20     NA Perognathus flavus   Rodent
-## # ℹ 16,868 more rows
-```
-
 #### `filter()`
 
 The `filter()` function is used to select rows that meet certain criteria.
@@ -748,7 +697,7 @@ filter(surveys, year <= 1988 & !is.na(hindfoot_length))
 
 **Challenge 2: Filtering and selecting**
 
-1. Use the surveys data to make a data.frame that has only data with years from 1980 to 1985.
+* Use the surveys data to make a data.frame that has only data with years from 1980 to 1985.
 
 <details>
   <summary>Challenge solution</summary>
@@ -760,7 +709,7 @@ surveys_filtered <- filter(surveys, year >= 1980 & year <= 1985)
 
 </details>
 
-2. Use the surveys data to make a data.frame that has only the following columns, in order: `year`, `month`, `species_id`, `plot_id`.
+* Use the surveys data to make a data.frame that has only the following columns, in order: `year`, `month`, `species_id`, `plot_id`.
 
 <details>
   <summary>Challenge solution</summary>
@@ -776,7 +725,7 @@ surveys_selected <- select(surveys, year, month, species_id, plot_id)
 
 What happens if we want to both `select()` and `filter()` our data?
 We have a couple options. 
-An alternative approach is to create **intermediate** objects:
+For example, we can create **intermediate** objects:
 
 
 ```r
@@ -802,7 +751,7 @@ filter(surveys_noday, month >= 7)
 ## # ℹ 3 more variables: species <chr>, taxa <chr>, plot_type <chr>
 ```
 
-This approach accumulates a lot of intermediate objects, often with confusing names.
+This approach accumulates a lot of intermediate objects, often with confusing names and without clear relationships between those objects.
 
 An elegant solution to this problem is an operator called the **pipe**, which looks like `%>%`.
 You can insert it by using the keyboard shortcut <kbd>Shift+Cmd+M</kbd> (Mac) or <kbd>Shift+Ctrl+M</kbd> (Windows).
@@ -1254,6 +1203,106 @@ surveys_daily_counts %>%
 
 </details>
 
+### Joining data together with the `*join()` functions
+
+Often times, all the data you need to do a project might be contained in multiple CSV files.
+When you read those files into R, they will be in separate data.frames.
+To combine two different data.frames that both contain at least one shared column of information, you can use the dplyr `*join()` commands.
+
+We'll practice a `*join()` command by downloading and reading in a CSV file that annotates the `plot_type` for each plot in our `surveys` data.frame.
+
+
+```r
+download.file("https://ndownloader.figshare.com/files/3299474", "plots.csv")
+plots <- read_csv("plots.csv")
+```
+
+```
+## Rows: 24 Columns: 2
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr (1): plot_type
+## dbl (1): plot_id
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+```
+
+```r
+head(plots)
+```
+
+```
+## # A tibble: 6 × 2
+##   plot_id plot_type                
+##     <dbl> <chr>                    
+## 1       1 Spectab exclosure        
+## 2       2 Control                  
+## 3       3 Long-term Krat Exclosure 
+## 4       4 Control                  
+## 5       5 Rodent Exclosure         
+## 6       6 Short-term Krat Exclosure
+```
+
+There are multiple join commands: `left_join()`, `right_join()`, `inner_join()`, and `full_join()`.
+We'll practice doing a `left_join()`: for two data.frames, keep all rows in the left data.frame even if this introduces `NA` values because there is no corresponding information in the right data.frame.
+
+
+```r
+left_join(surveys, plots, by = "plot_id")
+```
+
+```
+## # A tibble: 16,878 × 14
+##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##        <dbl> <dbl> <dbl> <dbl>   <dbl> <chr>      <chr>           <dbl>  <dbl>
+##  1         1     7    16  1977       2 NL         M                  32     NA
+##  2         2     7    16  1977       3 NL         M                  33     NA
+##  3         3     7    16  1977       2 DM         F                  37     NA
+##  4         4     7    16  1977       7 DM         M                  36     NA
+##  5         5     7    16  1977       3 DM         M                  35     NA
+##  6         6     7    16  1977       1 PF         M                  14     NA
+##  7         7     7    16  1977       2 PE         F                  NA     NA
+##  8         8     7    16  1977       1 DM         M                  37     NA
+##  9         9     7    16  1977       1 DM         F                  34     NA
+## 10        10     7    16  1977       6 PF         F                  20     NA
+## # ℹ 16,868 more rows
+## # ℹ 5 more variables: genus <chr>, species <chr>, taxa <chr>,
+## #   plot_type.x <chr>, plot_type.y <chr>
+```
+
+In this command, we tell R to join the two data.frames by the `plot_id` column.
+In order for the two data.frames to be combined, they must share the same value in the `plot_id` column.
+However, when we look at the output, we see that we've introduced new columns, `plot_type.x` and `plot_typs.y`.
+It turns out we already had this information in our data.frame and didn't need to do a join.
+When we did, we only specified that we wanted to join on `plot_id`, but both data.frames shared the `plot_type` variable name, so the `left_join()` functions appended the suffixes `.x` and `.y`.
+
+Instead, let's join on two column names:
+
+```r
+left_join(surveys, plots, by = c("plot_id", "plot_type"))
+```
+
+```
+## # A tibble: 16,878 × 13
+##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##        <dbl> <dbl> <dbl> <dbl>   <dbl> <chr>      <chr>           <dbl>  <dbl>
+##  1         1     7    16  1977       2 NL         M                  32     NA
+##  2         2     7    16  1977       3 NL         M                  33     NA
+##  3         3     7    16  1977       2 DM         F                  37     NA
+##  4         4     7    16  1977       7 DM         M                  36     NA
+##  5         5     7    16  1977       3 DM         M                  35     NA
+##  6         6     7    16  1977       1 PF         M                  14     NA
+##  7         7     7    16  1977       2 PE         F                  NA     NA
+##  8         8     7    16  1977       1 DM         M                  37     NA
+##  9         9     7    16  1977       1 DM         F                  34     NA
+## 10        10     7    16  1977       6 PF         F                  20     NA
+## # ℹ 16,868 more rows
+## # ℹ 4 more variables: genus <chr>, species <chr>, taxa <chr>, plot_type <chr>
+```
+
+Now no suffixes are added to our column names.
+
 ### Exporting data
 
 Let's say we want to send the wide version of our `surveys_1988` data.frame to a colleague who doesn't use R.
@@ -1667,8 +1716,145 @@ sp_by_plot_wide %>%
 
 Data are often recorded in spreadsheets in a wider format, but lots of `tidyverse` tools, especially `ggplot2`, like data in a longer format, so `pivot_longer()` is often very useful.
 
-### Joining data together with `dplyr`
+### Getting rid of any row where any value is `NA` with `drop_na()`
 
-Another operation that is often useful is to join two data.frames together based on shared columns.
-While not covered here, [this lesson](https://datacarpentry.org/semester-biology/materials/dplyr-joins/) shows how to do those operations using the `dplyr` `join*()` functions.
+In the split-apply-combine approach section above, we covered how to remove `NA` values for a specific column.
+If instead of removing `NA`s from a single column you would like to drop any row where any column is an `NA`, you can use the `drop_na()` function.
+
+
+```r
+surveys %>%
+  drop_na()
+```
+
+```
+## # A tibble: 13,773 × 13
+##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##        <dbl> <dbl> <dbl> <dbl>   <dbl> <chr>      <chr>           <dbl>  <dbl>
+##  1        63     8    19  1977       3 DM         M                  35     40
+##  2        64     8    19  1977       7 DM         M                  37     48
+##  3        65     8    19  1977       4 DM         F                  34     29
+##  4        66     8    19  1977       4 DM         F                  35     46
+##  5        67     8    19  1977       7 DM         M                  35     36
+##  6        68     8    19  1977       8 DO         F                  32     52
+##  7        69     8    19  1977       2 PF         M                  15      8
+##  8        70     8    19  1977       3 OX         F                  21     22
+##  9        71     8    19  1977       7 DM         F                  36     35
+## 10        74     8    19  1977       8 PF         M                  12      7
+## # ℹ 13,763 more rows
+## # ℹ 4 more variables: genus <chr>, species <chr>, taxa <chr>, plot_type <chr>
+```
+
+Alternatively, you can provide column names to the `drop_na()` function to specify which columns to remove `NA` values from.
+
+
+```r
+surveys %>%
+  drop_na(hindfoot_length, weight)
+```
+
+```
+## # A tibble: 13,797 × 13
+##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##        <dbl> <dbl> <dbl> <dbl>   <dbl> <chr>      <chr>           <dbl>  <dbl>
+##  1        63     8    19  1977       3 DM         M                  35     40
+##  2        64     8    19  1977       7 DM         M                  37     48
+##  3        65     8    19  1977       4 DM         F                  34     29
+##  4        66     8    19  1977       4 DM         F                  35     46
+##  5        67     8    19  1977       7 DM         M                  35     36
+##  6        68     8    19  1977       8 DO         F                  32     52
+##  7        69     8    19  1977       2 PF         M                  15      8
+##  8        70     8    19  1977       3 OX         F                  21     22
+##  9        71     8    19  1977       7 DM         F                  36     35
+## 10        74     8    19  1977       8 PF         M                  12      7
+## # ℹ 13,787 more rows
+## # ℹ 4 more variables: genus <chr>, species <chr>, taxa <chr>, plot_type <chr>
+```
+
+### Tidy selection
+
+In the `select` section above, we demonstrated how to select columns based on column name.
+You can select columns based on whether they match a certain criteria by using [tidyselect](https://tidyselect.r-lib.org/articles/tidyselect.html) functions.
+Below, we'll demonstrate how to use the `where()` function and the `ends_with() function, but there are many additional tidyselect functions such as `starts_with()` or `contains()`. 
+
+With the `where()` function, we can select columns that match a specific conditions.
+If we want all numeric columns, we can ask to `select` all the columns `where` the class `is numeric`:
+
+
+```r
+select(surveys, where(is.numeric))
+```
+
+```
+## # A tibble: 16,878 × 7
+##    record_id month   day  year plot_id hindfoot_length weight
+##        <dbl> <dbl> <dbl> <dbl>   <dbl>           <dbl>  <dbl>
+##  1         1     7    16  1977       2              32     NA
+##  2         2     7    16  1977       3              33     NA
+##  3         3     7    16  1977       2              37     NA
+##  4         4     7    16  1977       7              36     NA
+##  5         5     7    16  1977       3              35     NA
+##  6         6     7    16  1977       1              14     NA
+##  7         7     7    16  1977       2              NA     NA
+##  8         8     7    16  1977       1              37     NA
+##  9         9     7    16  1977       1              34     NA
+## 10        10     7    16  1977       6              20     NA
+## # ℹ 16,868 more rows
+```
+
+Instead of giving names or positions of columns, we instead pass the `where()` function with the name of another function inside it, in this case `is.numeric()`, and we get all the columns for which that function returns `TRUE`.
+
+We can use this to select any columns that have any `NA` values in them:
+
+
+```r
+select(surveys, where(anyNA))
+```
+
+```
+## # A tibble: 16,878 × 7
+##    species_id sex   hindfoot_length weight genus       species  taxa  
+##    <chr>      <chr>           <dbl>  <dbl> <chr>       <chr>    <chr> 
+##  1 NL         M                  32     NA Neotoma     albigula Rodent
+##  2 NL         M                  33     NA Neotoma     albigula Rodent
+##  3 DM         F                  37     NA Dipodomys   merriami Rodent
+##  4 DM         M                  36     NA Dipodomys   merriami Rodent
+##  5 DM         M                  35     NA Dipodomys   merriami Rodent
+##  6 PF         M                  14     NA Perognathus flavus   Rodent
+##  7 PE         F                  NA     NA Peromyscus  eremicus Rodent
+##  8 DM         M                  37     NA Dipodomys   merriami Rodent
+##  9 DM         F                  34     NA Dipodomys   merriami Rodent
+## 10 PF         F                  20     NA Perognathus flavus   Rodent
+## # ℹ 16,868 more rows
+```
+
+Instead of matching on a condition, the `ends_with()` function match variables (in this case column names) according to a given pattern.
+We'll use the string `"_id"` to select columns that end with the string `_id`: `record_id`, `plot_id`, and `species_id`.
+
+
+```r
+select(surveys, ends_with("_id"))
+```
+
+```
+## # A tibble: 16,878 × 3
+##    record_id plot_id species_id
+##        <dbl>   <dbl> <chr>     
+##  1         1       2 NL        
+##  2         2       3 NL        
+##  3         3       2 DM        
+##  4         4       7 DM        
+##  5         5       3 DM        
+##  6         6       1 PF        
+##  7         7       2 PE        
+##  8         8       1 DM        
+##  9         9       1 DM        
+## 10        10       6 PF        
+## # ℹ 16,868 more rows
+```
+
+### More on joining data together with `dplyr`
+
+We briefly covered how to join two data.frames together above.
+If you would like more information and practice doing joins, [this lesson](https://datacarpentry.org/semester-biology/materials/dplyr-joins/) provides more information and practice.
 It relies on a similar data set to the one we've been using in this lesson.
