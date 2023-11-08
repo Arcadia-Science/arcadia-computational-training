@@ -1,7 +1,13 @@
+# Testing concepts and terminology
+
+Note that this lesson has been modified from [The Carpentries Incubator](https://github.com/carpentries-incubator) lesson on [Python Testing](https://carpentries-incubator.github.io/python-testing/).
+Parts are reproduced in full, but the major changes were included to shorten the lesson to 60 minutes.
+
 Everyone tests their software to some extent, if only by running it and trying it out.
 Most programmers do a certain amount of exploratory testing, which involves running through various functional paths in your code and seeing if they work.
+This may involve printing or plotting outputs of your code as you program.
 
-Systematic testing, however, is a different matter.
+Systematic testing codifies these behaviors, allowing them to be automatically applied quickly and repeatedly over entire code bases.
 Systematic testing simply cannot be done properly without a certain (large!) amount of automation, because every change to the software means that the software needs to be tested all over again.
 
 This lesson introduces automated testing concepts and shows how to use built-in Python constructs to start writing tests.
@@ -15,8 +21,8 @@ There are many ways to test software, such as:
 - Assertions
 - Exceptions
 - Unit Tests
-- Regresson Tests
 - Integration Tests
+- Regresson Tests
 
 *Exceptions and Assertions*: While writing code, `exceptions` and `assertions` can be added to sound an alarm as runtime problems come up. 
 These kinds of tests, are embedded in the software iteself and handle, as their name implies, exceptional cases rather than the norm. 
@@ -344,5 +350,151 @@ test_mean.py::test_complex PASSED
 ```
 
 As we write more code, we would write more tests, and pytest would produce more dots.
-Each passing test is a small, satisfying reward for having written quality scientific software.
-Now that you know how to write tests, let's go into what can go wrong.
+
+## Integration tests
+
+Integration tests focus on gluing code together or the results of code when multiple functions are used.
+See below for an conceptual example of an integration test.
+
+Consider three functions `a()`, `b()`, and `c()` as a simplistic example.
+Function `a()` increments a number by one, `b()` multiplies a number by two, and `c()` composes them as defined below:
+
+```
+def a(x):
+    return x + 1
+
+def b(x):
+    return 2 * x
+
+def c(x):
+    return b(a(x))
+```
+
+Functions `a()` and `b()` can be unit tested since they perform singular operations.
+However, `c()` can't be truly unit tested as it delegates the real work to `a()` and `b()`.
+Testing `c()` will evaluate the integration of `a()` and `b()`.
+
+Integration tests still adhere to the practice of comparing expected outcomes with observed results.
+A sample `test_c()` is illustrated below:
+
+```
+from mod import c
+
+def test_c():
+    exp = 6
+    obs = c(2)
+    assert obs == exp
+```
+
+The definition of a code unit is somewhat ambiguous, making the distinction between integration tests and unit tests a bit unclear.
+Integration tests can range from extremely simple to highly complex, contrasting with unit tests.
+If a function or class merely amalgamates two or more unit-tested code pieces, an integration test is necessary.
+If a function introduces new untested behavior, a unit test is needed.
+
+The structure of integration tests closely resembles that of unit tests, comparing expected results with observed values.
+However, deriving the expected result or preparing the code for execution can be significantly more complex.
+Integration tests are generally more time-consuming due to their extensive nature.
+This distinction is helpful to differentiate between straightforward (unit) and more nuanced (integration) test-writing requirements.
+
+## Regression tests
+
+Regression tests refer to past outputs for expected behavior.
+The anticipated outcome is based on previous computations for the same inputs.
+
+Regression tests hold the past as "correct."
+They notify developers about how and when a codebase has evolved such that it produces different results.
+However, they don't provide insights into why the changes occurred.
+The discrepancy between current and previous code outputs is termed a regression.
+
+Like integration tests, regression tests are high-level and often encompass the entire code base.
+A prevalent regression test strategy extends across multiple code versions.
+For instance, an input file for version X of a workflow is processed, and the output file is saved, typically online.
+While developing version Y, the test suite automatically fetches the output for version X, processes the same input file for version Y, and contrasts the two output files.
+Any significant discrepancies trigger a test failure.
+Regression tests can identify failures missed by integration and unit tests.
+Each project may adopt a slightly varied approach to regression testing, based on its software requirements.
+Testing frameworks aid in constructing regression tests but don’t provide additional sophistication beyond the discussed concepts.
+
+## Testing when your code is non-deterministic
+
+In certain cases, particularly in probabilistic or stochastic codes, predicting the exact behavior of an integration test is challenging.
+That's acceptable.
+In such scenarios, it's suitable for integration tests to confirm average or aggregate behavior instead of exact values.
+Nondeterminism can sometimes be mitigated by saving seed values to a random number generator, but it's not always feasible.
+Having an imperfect integration test is preferable over having none at all.
+
+## Continuous integration
+
+To make running the tests as easy as possible, many software development teams implement a strategy called **continuous integration** (CI).
+As its name implies, continuous integration integrates the test suite into the development process. 
+Every time a change is made to the repository, the continuous integration system builds and checks that code.
+
+Based on instructions you provide, a continuous integration server can:
+- check out new code from a repository
+- spin up instances of supported operating systems (i.e. various versions of OSX, Linux, Windows, etc.).
+- spin up those instances with different software versions (i.e. python 2.7 and python 3.0)
+- run the build and test scripts
+- check for errors
+- report the results.
+
+Since the first step the server conducts is to check out the code from a repository, we'll need to put our code online to make use of this kind of server.
+
+### Set Up a Mean Git Repository on GitHub
+
+Our `mean.py` `test_mean.py` files can be the contents of a repository on GitHub.
+
+1. Go to GitHub and [create a repository](https://github.com/new) called mean. Do this in your own user account.
+2. Clone that repository (`git clone https://github.com:yourusername/mean`)
+3. Copy the `mean.py` and `test_mean.py` files into the repository directory.
+4. Use git to `add`, `commit`, and `push` the two files to GitHub.
+
+### GitHub Actions
+
+[GitHub Actions](https://github.com/features/actions) is a continuous integration service provided by GitHub.
+It's integrated directly into GitHub repositories and does not require additional accounts or external services.
+
+To use GitHub Actions, all you need is a repository on GitHub.
+Create a directory called `.github` and within it, create another directory called `workflows`.
+Inside the `workflows` directory, you can create a YAML file (e.g. `ci.yml`) to define your continuous integration process:
+
+```
+name: Continuous Integration
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: [2.7, 3.6, 3.7, 3.8, 3.9]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run tests
+      run: pytest
+```
+
+You can see how the python package manager, pip, will use your requirements.txt file from the previous exercise.
+That requirements.txt file is a conventional way to list all of the python packages that we need.
+If we needed pytest, numpy, and pymol, the `requirements.txt` file would look like this:
+
+```
+pytest
+numpy
+```
+
+### Triggering CI
+
+1. Add `.github/workflows/ci.yml` to your repository
+2. Commit and push it.
+3. Check the situation at your repository's actions tab (https://github.com/yourusername/mean/actions)
