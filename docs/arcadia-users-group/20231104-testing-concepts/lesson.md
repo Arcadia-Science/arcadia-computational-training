@@ -37,8 +37,8 @@ conda activate augtest
 
 We'll also create a folder to help us stay organized.
 ```
-mkdir aug-mean
-cd aug-mean
+mkdir 20231114-aug-testing-lesson
+cd 20231114-aug-testing-lesson
 ```
 
 Once our environment is activated, start a Jupyter notebook
@@ -58,7 +58,7 @@ These kinds of tests, are embedded in the software iteself and handle, as their 
 * **Unit tests**: Unit tests investigate the behavior of units of code (such as functions, classes, or data structures).
 By validating each software unit across the valid range of its input and output parameters, tracking down unexpected behavior that may appear when the units are combined is made vastly simpler.
 * **Integration tests**: Integration tests check that various pieces of the software work together as expected. 
-* **Regression tests**: Regression tests defend against new bugs, or regressions, which might appear due to new software and updates.
+* **Regression tests**: Regression tests defend against new bugs, or regressions, which might appear due to new software and updates. Regression tests can also refer to test for decreases in performance (run time, memory usage, etc.) or in the qualit of some output (the resolution of a rendered graph, accuracy of a set of predictions, etc.).
 
 While each of these types of tests has a different definition, in practice there isn't always a firm delineation between each type.
 
@@ -124,9 +124,9 @@ To add information or replace the message before it is passed upstream, the try-
 def mean(num_list):
     try:
         return sum(num_list)/len(num_list)
-    except ZeroDivisionError as detail :
+    except ZeroDivisionError as original_error :
         msg = "The algebraic mean of an empty list is undefined. Please provide a list of numbers."
-        raise ZeroDivisionError(detail.__str__() + "\n" +  msg)
+        raise ZeroDivisionError(original_error.__str__() + "\n" +  msg)
 ```
 
 Alternatively, the exception can be handled apropriately for the use case.
@@ -148,10 +148,10 @@ def mean(num_list):
         return sum(num_list)/len(num_list)
     except ZeroDivisionError :
         return 0
-    except TypeError as detail :
+    except TypeError as original_error :
         msg = "The algebraic mean of an non-numerical list is undefined.\
                Please provide a list of numbers."
-        raise TypeError(detail.__str__() + "\n" +  msg)
+        raise TypeError(original_error.__str__() + "\n" +  msg)
 ```
 
 Exceptions have the advantage of being simple to include and when accompanied by useful help message, can be helpful to the user.
@@ -183,10 +183,10 @@ def mean(num_list):
         return sum(num_list)/len(num_list)
     except ZeroDivisionError :
         return 0
-    except TypeError as detail :
+    except TypeError as original_error :
         msg = "The algebraic mean of an non-numerical list is undefined.\
                Please provide a list of numbers."
-        raise TypeError(detail.__str__() + "\n" +  msg)
+        raise TypeError(original_error.__str__() + "\n" +  msg)
 ```
 
 Now, back in your Jupyter Notebook run the following code:
@@ -380,10 +380,10 @@ def mean(num_list):
             return sum(num_list)/len(num_list)
         except ZeroDivisionError :
             return 0
-        except TypeError as detail :
+        except TypeError as original_error :
             msg = "The algebraic mean of an non-numerical list is undefined.\
                    Please provide a list of numbers."
-            raise TypeError(detail.__str__() + "\n" +  msg)
+            raise TypeError(original_error.__str__() + "\n" +  msg)
 ```
 
 </details>
@@ -416,32 +416,32 @@ As we write more code, we would write more tests, and pytest would produce more 
 Integration tests focus on gluing code together or the results of code when multiple functions are used.
 See below for an conceptual example of an integration test.
 
-Consider three functions `a()`, `b()`, and `c()` as a simplistic example.
-Function `a()` increments a number by one, `b()` multiplies a number by two, and `c()` composes them as defined below:
+Consider three functions `add_one()`, `multiply_by_two()`, and `add_one_and_multiply_by_two()` as a simplistic example.
+Function `add_one()` increments a number by one, `multiply_by_two()` multiplies a number by two, and `add_one_and_multiply_by_two()` composes them as defined below:
 
 ```
-def a(x):
+def add_one(x):
     return x + 1
 
-def b(x):
+def multiply_by_two(x):
     return 2 * x
 
-def c(x):
-    return b(a(x))
+def add_one_and_multiply_by_two(x):
+    return multiply_by_two(add_one(x))
 ```
 
-Functions `a()` and `b()` can be unit tested since they perform singular operations.
-However, `c()` can't be truly unit tested as it delegates the real work to `a()` and `b()`.
-Testing `c()` will evaluate the integration of `a()` and `b()`.
+Functions `add_one()` and `multiply_by_two()` can be unit tested since they perform singular operations.
+However, `add_one_and_multiply_by_two()` can't be truly unit tested as it delegates the real work to `add_one()` and `multiply_by_two()`.
+Testing `add_one_and_multiply_by_two()` will evaluate the integration of `add_one()` and `multiply_by_two()`.
 
 Integration tests still adhere to the practice of comparing expected outcomes with observed results.
-A sample `test_c()` is illustrated below:
+A sample `test_add_one_and_multiply_by_two()` is illustrated below:
 
 ```
-def test_c():
-    exp = 6
-    obs = c(2)
-    assert obs == exp
+def test_add_one_and_multiply_by_two():
+    expected_value = 6
+    observed_value = add_one_and_multiply_by_two(2)
+    assert observed_value == expected_value
 ```
 
 The definition of a code unit is somewhat ambiguous, making the distinction between integration tests and unit tests a bit unclear.
