@@ -276,38 +276,38 @@ Recall our tests:
 ```
 from mean import *
 
-def test_ints():
-    num_list = [1,2,3,4,5]
-    obs = mean(num_list)
-    exp = 3
-    assert obs == exp
+def test_mean_with_ints():
+    num_list = [1, 2, 3, 4, 5]
+    observed_value = mean(num_list)
+    expected_value = 3
+    assert observed_value == expected_value
 
-def test_zero():
-    num_list=[0,2,4,6]
-    obs = mean(num_list)
-    exp = 3
-    assert obs == exp
+def test_mean_with_zero():
+    num_list=[0, 2, 4, 6]
+    observed_value = mean(num_list)
+    expected_value = 3
+    assert observed_value == expected_value
 
-def test_double():
+def test_mean_with_double():
     # This one will fail in Python 2
-    num_list=[1,2,3,4]
-    obs = mean(num_list)
-    exp = 2.5
-    assert obs == exp
+    num_list=[1, 2, 3, 4]
+    observed_value = mean(num_list)
+    expected_value = 2.5
+    assert observed_value == expected_value
 
-def test_long():
+def test_mean_with_long():
     big = 100000000
-    obs = mean(range(1,big))
-    exp = big/2.0
-    assert obs == exp
+    observed_value = mean(range(1,big))
+    expected_value = big/2.0
+    assert observed_value == expected_value
 
-def test_complex():
+def test_mean_with_complex():
     # given that complex numbers are an unordered field
     # the arithmetic mean of complex numbers is meaningless
     num_list = [2 + 3j, 3 + 4j, -32 - 2j]
-    obs = mean(num_list)
-    exp = NotImplemented
-    assert obs == exp
+    observed_value = mean(num_list)
+    expected_value = NotImplemented
+    assert observed_value == expected_value
 ```
 
 Once these tests are written in a file called `test_mean.py`, the command `pytest` can be run on the terminal or command line from the directory containing the tests (note that you'll have to use `py.test` for older versions of the `pytest` package):
@@ -324,13 +324,13 @@ test_mean.py ....F
 ================================== FAILURES ===================================
 ________________________________ test_complex _________________________________
 
-    def test_complex():
+    def test_mean_with_complex():
         # given that complex numbers are an unordered field
         # the arithmetic mean of complex numbers is meaningless
         num_list = [2 + 3j, 3 + 4j, -32 - 2j]
-        obs = mean(num_list)
-        exp = NotImplemented
->       assert obs == exp
+        observed_value = mean(num_list)
+        expected_value = NotImplemented
+>       assert observed_value == expected_value
 E       assert (-9+1.6666666666666667j) == NotImplemented
 
 test_mean.py:34: AssertionError
@@ -400,11 +400,11 @@ collected 5 items
 
 test_mean.py .....
 
-test_mean.py::test_ints PASSED
-test_mean.py::test_zero PASSED
-test_mean.py::test_double PASSED
-test_mean.py::test_long PASSED
-test_mean.py::test_complex PASSED
+test_mean.py::test_mean_with_ints PASSED
+test_mean.py::test_mean_with_zero PASSED
+test_mean.py::test_mean_with_double PASSED
+test_mean.py::test_mean_with_long PASSED
+test_mean.py::test_mean_with_complex PASSED
 
 ========================== 5 passed in 2.57 seconds ===========================
 ```
