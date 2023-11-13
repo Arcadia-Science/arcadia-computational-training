@@ -438,10 +438,11 @@ In the `pytest` output, this will look exactly like running multiple tests that 
 "Decorators" are a Python way to enhance or wrap a function with additional behavior.
 They are added just before a function definition, using a name that starts with `@`, and can take arguments separate from the function arguments, for example:
 
-\@log_to_file("output.txt")
+<pre><code>
+@log_to_file("output.txt")
 def mean(num_list):
   ...
-
+</code></pre>
 </details>
 
 For example, here's a parametrized version of our test suite for `mean()`.
@@ -449,7 +450,7 @@ In this case, we decorate the test with two parameters that can be used within t
 The first parameter will be used to call the `mean()` function, and the second is its expected result, which the test will validate.
 We then provide a list of matching pairs of these parameters, each of which will run as a test:
 
-\```
+```
 @pytest.mark.parametrize("num_list,expected_value", [
     ([1,2,3,4,5], 3),
     ([0,2,4,6], 3),
@@ -458,7 +459,7 @@ We then provide a list of matching pairs of these parameters, each of which will
   def test_mean(num_list, expected_value):
     observed_value = mean(num_list)
     assert observed_value == expected_value
-\```
+```
 
 ## Integration tests
 
