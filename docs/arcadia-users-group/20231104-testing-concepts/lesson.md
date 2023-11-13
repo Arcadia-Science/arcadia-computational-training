@@ -536,24 +536,19 @@ mkdir -p .github/workflows
 Inside the `workflows` directory, you can create a YAML file (e.g. `ci.yml`) to define your continuous integration process:
 
 ```
-name: Continuous Integration
+name: pytest CI
 
 on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: [3.7, 3.8, 3.9, '3.10', '3.11'] 
-
+    runs-on: ubuntu-latest 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python 3.10 
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: 3.10
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -562,6 +557,10 @@ jobs:
       run: pytest
 ```
 
+Below, we break down how this workflow works:
+* `name`: Our workflow is named `pytest CI`.
+* `on`: The workflow will be triggered to run automatically whenever commits are pushed to the repository or whenever a pull request is created or updated with new commits.
+* `jobs`: Specifies what the workflow will actually run. In this case, we specify that we want to run on the latest version of the ubuntu operating system using python version 3.10. These instructions are enough to launch a computer with python running on it. Then, we specify that we want to install dependencies from a `requirements.txt` file using pip. Lastly, we run our tests using `pytest`.
 
 ### Triggering CI
 
