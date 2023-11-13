@@ -68,7 +68,9 @@ There are many ways to test software, such as assertions, exceptions, unit tests
 These kinds of tests, are embedded in the software itself and handle, as their name implies, exceptional cases rather than the norm. 
 * **Unit tests**: Unit tests investigate the behavior of units of code (such as functions, classes, or data structures).
 By validating each software unit across the valid range of its input and output parameters, tracking down unexpected behavior that may appear when the units are combined is made vastly simpler.
-* **Integration tests**: Integration tests check that various pieces of the software work together as expected. 
+Some examples of things a unit test might test include functions, individual Snakemake rules, a process in Nextflow, or a cell in a Jupyter notebook.
+* **Integration tests**: Integration tests check that various pieces of the software work together as expected.
+Some examples of things an integration test might test include a set of Snakemake rule or Nextflow processes or the execution of an entire Jupyter notebook.
 * **Regression tests**: Regression tests defend against new bugs, or regressions, which might appear due to new software and updates. Regression tests can also refer to test for decreases in performance (run time, memory usage, etc.) or in the qualit of some output (the resolution of a rendered graph, accuracy of a set of predictions, etc.).
 
 While each of these types of tests has a different definition, in practice there isn't always a firm delineation between each type.
@@ -522,6 +524,8 @@ git push -u origin main
 
 [GitHub Actions](https://github.com/features/actions) is a continuous integration service provided by GitHub.
 It's integrated directly into GitHub repositories and does not require additional accounts or external services.
+Note that GitHub Actions usage is free for standard GitHub-hosted runners in public repositories, and for self-hosted runners.
+For private repositories, each GitHub account receives a certain amount of free minutes and storage for use with GitHub-hosted runners, depending on the account's plan (see [here](https://docs.github.com/en/actions/learn-github-actions/usage-limits-billing-and-administration) for more information).
 
 To use GitHub Actions, create a directory called `.github` and within it, create another directory called `workflows`.
 
