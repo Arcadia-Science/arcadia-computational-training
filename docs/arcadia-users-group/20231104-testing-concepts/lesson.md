@@ -100,7 +100,7 @@ assert True == True
 Assertions halt code execution instantly if the comparison is false and do nothing if the comparison is true.
 These are therefore a good tool for guarding the function against inappropriate input:
 
-```
+```python
 def mean(num_list):
     assert len(num_list) != 0
     return sum(num_list)/len(num_list)
@@ -117,7 +117,7 @@ When an error is encountered, an informative exception is 'thrown' or 'raised'.
 
 For example, instead of the assertion in the case before, an exception can be used.
 
-```
+```python
 def mean(num_list):
     if len(num_list) == 0:
       raise Exception("The algebraic mean of an empty list is undefined. "
@@ -133,7 +133,7 @@ When wrapped in a try-except block, the exception can be intercepted before it r
 
 To add information or replace the message before it is passed upstream, the try-catch block can be used to catch-and-reraise the exception:
 
-```
+```python
 def mean(num_list):
     try:
         return sum(num_list)/len(num_list)
@@ -145,7 +145,7 @@ def mean(num_list):
 Alternatively, the exception can be handled appropriately for the use case.
 If an alternative behavior is preferred, the exception can be disregarded and a responsive behavior can be implemented like so:
 
-```
+```python
 def mean(num_list):
     try:
         return sum(num_list)/len(num_list)
@@ -155,7 +155,7 @@ def mean(num_list):
 
 If a single function might raise more than one type of exception, each can be caught and handled separately.
 
-```
+```python
 def mean(num_list):
     try:
         return sum(num_list)/len(num_list)
@@ -190,7 +190,7 @@ Before running the next code, save your `mean` function to a file called `mean.p
 
 You can use this code to save to file:
 
-```
+```python
 def mean(num_list):
     try:
         return sum(num_list)/len(num_list)
@@ -204,7 +204,7 @@ def mean(num_list):
 
 Now, back in your Jupyter Notebook run the following code:
 
-```
+```python
 from mean import *
 
 def test_mean_with_ints():
@@ -226,7 +226,7 @@ A single implemented function may be tested in numerous ways.
 
 In a file called `test_mean.py`, implement the following code:
 
-```
+```python
 from mean import *
 
 def test_mean_with_ints():
@@ -265,7 +265,7 @@ def test_mean_with_complex():
 
 Use Jupyter Notebook to import the `test_mean` package and run each test like this:
 
-```
+```python
 from test_mean import *
 
 test_mean_with_ints()
@@ -286,7 +286,7 @@ It would be a lot better if there were some way to run them all at once, just re
 Thankfully, that exists.
 Recall our tests:
 
-```
+```python
 from mean import *
 
 def test_mean_with_ints():
@@ -384,7 +384,7 @@ test_mean.py .....
 There are many ways this challenge could be solved.
 One way is to check for the presence of complex numbers before calculating the mean.
 
-```
+```python
 def mean(num_list):
     if any(isinstance(num, complex) for num in num_list):
        return NotImplemented
@@ -458,7 +458,7 @@ In this case, we decorate the test with two parameters that can be used within t
 The first parameter will be used to call the `mean()` function, and the second is its expected result, which the test will validate.
 We then provide a list of matching pairs of these parameters, each of which will run as a test:
 
-```
+```python
 @pytest.mark.parametrize("num_list,expected_value", [
     ([1,2,3,4,5], 3),
     ([0,2,4,6], 3),
@@ -477,7 +477,7 @@ See below for an conceptual example of an integration test.
 Consider three functions `add_one()`, `multiply_by_two()`, and `add_one_and_multiply_by_two()` as a simplistic example.
 Function `add_one()` increments a number by one, `multiply_by_two()` multiplies a number by two, and `add_one_and_multiply_by_two()` composes them as defined below:
 
-```
+```python
 def add_one(x):
     return x + 1
 
@@ -495,7 +495,7 @@ Testing `add_one_and_multiply_by_two()` will evaluate the integration of `add_on
 Integration tests still adhere to the practice of comparing expected outcomes with observed results.
 A sample `test_add_one_and_multiply_by_two()` is illustrated below:
 
-```
+```python
 def test_add_one_and_multiply_by_two():
     expected_value = 6
     observed_value = add_one_and_multiply_by_two(2)
@@ -553,7 +553,7 @@ Our `mean.py` `test_mean.py` files can be the contents of a repository on GitHub
 
 * Go to GitHub and [create a repository](https://github.com/new) called aug-mean. Do this in your own user account and don't add any files to the new repo (no README/LICENSE, etc.).
 * Turn the `aug-mean` directory that we've been working in on your computer into a git repository following the "…or create a new repository on the command line" instructions on GitHub:
-```
+```bash
 echo "# aug-mean" >> README.md
 git init
 git add README.md
@@ -580,7 +580,7 @@ mkdir -p .github/workflows
 
 Inside the `workflows` directory, you can create a YAML file (e.g. `ci.yml`) to define your continuous integration process:
 
-```
+```yaml
 name: pytest CI
 
 on: [push, pull_request]
@@ -615,7 +615,7 @@ Often times, developers want to check that their tests will pass not just with a
 This can be done using a matrix, which we demonstrate below.
 We specify lists of operating systems and python versions that we want to run our CI with, and then use a matrix call to run them all.
 
-```
+```yaml
 name: pytest CI
 
 on: [push, pull_request]
