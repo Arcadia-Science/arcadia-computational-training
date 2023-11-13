@@ -593,7 +593,7 @@ jobs:
     - name: Set up Python 3.10 
       uses: actions/setup-python@v2
       with:
-        python-version: 3.10
+        python-version: '3.10'
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -626,7 +626,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: [3.7, 3.8, 3.9, '3.10', '3.11'] 
+        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11'] 
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
