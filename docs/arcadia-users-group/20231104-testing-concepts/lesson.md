@@ -160,7 +160,7 @@ Most behaviors should be validated with unit tests.
 
 ## Unit tests
 
-Unit tests are so called because they exercise the functionality of the code by interrogating individual functions and methods.
+Unit tests are so called because they test the functionality of the code by interrogating individual functions and methods.
 Functions and methods can often be considered the atomic units of software but what is considered to be the smallest code _unit_ is subjective.
 Implementing unit tests often has the effect of encouraging both the code and the tests to be as small, well-defined, and modular as possible.
 In Python, unit tests typically take the form of test functions that call and make assertions about methods and functions in the code base.
@@ -194,11 +194,11 @@ Now, back in your Jupyter Notebook run the following code:
 ```
 from mean import *
 
-def test_ints():
+def test_mean_with_ints():
     num_list = [1, 2, 3, 4, 5]
-    obs = mean(num_list)
-    exp = 3
-    assert obs == exp
+    observed_value = mean(num_list)
+    expected_value = 3
+    assert observed_value == expected_value
 ```
 
 The test above:
@@ -216,38 +216,38 @@ In a file called `test_mean.py`, implement the following code:
 ```
 from mean import *
 
-def test_ints():
+def test_mean_with_ints():
     num_list = [1, 2, 3, 4, 5]
-    obs = mean(num_list)
-    exp = 3
-    assert obs == exp
+    observed_value = mean(num_list)
+    expected_value = 3
+    assert observed_value == expected_value
 
-def test_zero():
+def test_mean_with_zero():
     num_list=[0, 2, 4, 6]
-    obs = mean(num_list)
-    exp = 3
-    assert obs == exp
+    observed_value = mean(num_list)
+    expected_value = 3
+    assert observed_value == expected_value
 
-def test_double():
+def test_mean_with_double():
     # This one will fail in Python 2
     num_list=[1, 2, 3, 4]
-    obs = mean(num_list)
-    exp = 2.5
-    assert obs == exp
+    observed_value = mean(num_list)
+    expected_value = 2.5
+    assert observed_value == expected_value
 
-def test_long():
+def test_mean_with_long():
     big = 100000000
-    obs = mean(range(1,big))
-    exp = big/2.0
-    assert obs == exp
+    observed_value = mean(range(1,big))
+    expected_value = big/2.0
+    assert observed_value == expected_value
 
-def test_complex():
+def test_mean_with_complex():
     # given that complex numbers are an unordered field
     # the arithmetic mean of complex numbers is meaningless
     num_list = [2 + 3j, 3 + 4j, -32 - 2j]
-    obs = mean(num_list)
-    exp = NotImplemented
-    assert obs == exp
+    observed_value = mean(num_list)
+    expected_value = NotImplemented
+    assert observed_value == expected_value
 ```
 
 Use Jupyter Notebook to import the `test_mean` package and run each test like this:
@@ -255,15 +255,16 @@ Use Jupyter Notebook to import the `test_mean` package and run each test like th
 ```
 from test_mean import *
 
-test_ints()
-test_zero()
-test_double()
-test_long()
-test_complex()  ## Please note that this one might fail. You'll get an error message showing which tests failed
+test_mean_with_ints()
+test_mean_with_zero()
+test_mean_with_double()
+test_mean_with_long()
+test_mean_with_complex()  ## Please note that this one might fail. You'll get an error message showing which tests failed
 ```
 
 We just wrote and ran five tests for our `mean()` function~
 
+You may have noticed that several of the tests look very similar to each other -- they introduce an input, call `mean()`, and test its output against an expected value. We'll come back to this later, offering a way to write a single test that applies to multiple inputs.
 ## Using the test framework `pytest`
 
 We created a suite of tests for our mean function, but it was annoying to run them one at a time.
