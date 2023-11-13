@@ -562,6 +562,7 @@ Below, we break down how this workflow works:
 * `on`: The workflow will be triggered to run automatically whenever commits are pushed to the repository or whenever a pull request is created or updated with new commits.
 * `jobs`: Specifies what the workflow will actually run. In this case, we specify that we want to run on the latest version of the ubuntu operating system using python version 3.10. These instructions are enough to launch a computer with python running on it. Then, we specify that we want to install dependencies from a `requirements.txt` file using pip. Lastly, we run our tests using `pytest`.
 
+
 <details>
 <summary> Running GitHub Actions workflows on multiple operating systems using a matrix</summary>
 
@@ -620,3 +621,5 @@ pytest==7.4.3
 Pushing new changes to our branch automatically re-triggers the CI teststo re-run.
 When all of our tests pass, we'll see a big green check mark next stating that "All checks have passed" and a green check next to our commit in our commit history.
 If some of your checks don't pass, you can see what went wrong by clicking on the check which will launch the runtime information.
+
+Also note that while in this example we use pip and a `requirements.txt` file to install dependencies, dependencies can be installed in other ways such as with `conda`.
