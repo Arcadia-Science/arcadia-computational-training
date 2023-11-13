@@ -3,15 +3,26 @@
 > Note that this lesson has been modified from [The Carpentries Incubator](https://github.com/carpentries-incubator) lesson on [Python Testing](https://carpentries-incubator.github.io/python-testing/).
 > Parts are reproduced in full, but the major changes were included to shorten the lesson to 60 minutes.
 
-Everyone tests their software to some extent, if only by running it and trying it out.
-Most programmers do a certain amount of exploratory testing while they write new code or change old code.
-This may involve printing or plotting the outputs of your code as you program.
+Software testing is a critical practice in the development process aimed at ensuring that a program functions as intended and does not break when changes are made.
+It encompasses a range of activities designed to evaluate the correctness, performance, and usability among other aspects of a software application.
 
-Systematic testing codifies these behaviors, allowing them to be automatically applied quickly and repeatedly over entire code bases.
-Systematic testing cannot be done properly without a certain amount of automation because every change to the software means that the software needs to be tested all over again.
+At its core, software testing seeks to verify that your software does what it is supposed to do, handles various cases gracefully, and remains stable even as changes are introduced over time.
+It is the safety net that catches bugs or errors before they reach the end-users, and it's what gives developers the confidence to continue improving their code.
 
-This lesson introduces automated testing concepts and shows how to use Python constructs to start writing tests.
-While we use Python, many of the higher-level concepts are applicable to writing tests in other languages. 
+Everyone engages in software testing to some extent, often informally.
+This could be as simple as running the software to see what happens, or doing some exploratory testing as new code is written or old code is modified.
+Such testing might involve printing or plotting the outputs of your code as you work.
+
+However, informal testing has its limitations.
+It's manual, sporadic, and can become unmanageable, especially as the codebase grows and evolves.
+This is where systematic testing comes into play.
+
+Systematic testing takes the informal testing behaviors and codifies them, allowing for automation.
+This automation enables tests to be run quickly and repeatedly across the entire codebase, ensuring that every part of the software is validated every time a change is made.
+Without automation, it's nearly impossible to ensure that a change in one part of the software hasn't introduced a new bug elsewhere.
+
+This lesson introduces the concepts of automated testing and provides guidance on how to utilize Python constructs to start writing tests.
+Although we focus on Python, many of the higher-level concepts discussed are applicable to writing tests in other programming languages as well.
 
 <details>
  <summary>Implementing tests in other languages</summary>
