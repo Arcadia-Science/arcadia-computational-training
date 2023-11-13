@@ -5,7 +5,7 @@
 
 Everyone tests their software to some extent, if only by running it and trying it out.
 Most programmers do a certain amount of exploratory testing while they write new code or change old code.
-This may involve printing or plotting outputs of your code as you program.
+This may involve printing or plotting the outputs of your code as you program.
 
 Systematic testing codifies these behaviors, allowing them to be automatically applied quickly and repeatedly over entire code bases.
 Systematic testing cannot be done properly without a certain amount of automation because every change to the software means that the software needs to be tested all over again.
@@ -51,10 +51,10 @@ Now we can start learning about testing!
 
 ## An introduction to testing concepts
 
-There are many ways to test software, such as assertions, exceptions, unit tests, integration tests, and regresson tests.
+There are many ways to test software, such as assertions, exceptions, unit tests, integration tests, and regression tests.
 
 * **Exceptions and assertions**: While writing code, `exceptions` and `assertions` can be added to sound an alarm as runtime problems come up. 
-These kinds of tests, are embedded in the software iteself and handle, as their name implies, exceptional cases rather than the norm. 
+These kinds of tests, are embedded in the software itself and handle, as their name implies, exceptional cases rather than the norm. 
 * **Unit tests**: Unit tests investigate the behavior of units of code (such as functions, classes, or data structures).
 By validating each software unit across the valid range of its input and output parameters, tracking down unexpected behavior that may appear when the units are combined is made vastly simpler.
 * **Integration tests**: Integration tests check that various pieces of the software work together as expected. 
@@ -129,7 +129,7 @@ def mean(num_list):
         raise ZeroDivisionError(original_error.__str__() + "\n" +  msg)
 ```
 
-Alternatively, the exception can be handled apropriately for the use case.
+Alternatively, the exception can be handled appropriately for the use case.
 If an alternative behavior is preferred, the exception can be disregarded and a responsive behavior can be implemented like so:
 
 ```
@@ -478,7 +478,7 @@ Testing frameworks aid in constructing regression tests but don’t provide addi
 Continuous integration makes running tests as easy as possible by integrating the test suite into the development process. 
 Every time a change is made to the repository, the continuous integration system builds and checks that code.
 
-Based on instructions you provide, a continuous integration server can:
+Based on the instructions you provide, a continuous integration server can:
 
 - check out new code from a repository
 - spin up instances of supported operating systems (i.e. various versions of OSX, Linux, Windows, etc.).
