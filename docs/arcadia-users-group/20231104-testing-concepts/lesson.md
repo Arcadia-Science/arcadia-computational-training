@@ -562,6 +562,41 @@ Below, we break down how this workflow works:
 * `on`: The workflow will be triggered to run automatically whenever commits are pushed to the repository or whenever a pull request is created or updated with new commits.
 * `jobs`: Specifies what the workflow will actually run. In this case, we specify that we want to run on the latest version of the ubuntu operating system using python version 3.10. These instructions are enough to launch a computer with python running on it. Then, we specify that we want to install dependencies from a `requirements.txt` file using pip. Lastly, we run our tests using `pytest`.
 
+<details>
+<summary> Running GitHub Actions workflows on multiple operating systems using a matrix</summary>
+
+Often times, developers want to check that their tests will pass not just with an ubuntu operating system and one version of Python, but with many operating systems and many versions of Python.
+This can be done using a matrix, which we demonstrate below.
+We specify lists of operating systems and python versions that we want to run our CI with, and then use a matrix call to run them all.
+
+```
+name: pytest CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: [3.7, 3.8, 3.9, '3.10', '3.11'] 
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run tests
+      run: pytest
+```
+
+</details>
+
 ### Triggering CI
 
 1. Add `.github/workflows/ci.yml` to your repository
