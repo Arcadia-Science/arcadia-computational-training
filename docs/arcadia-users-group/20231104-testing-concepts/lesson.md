@@ -426,13 +426,17 @@ As we write more code, we would write more tests, and pytest would produce more 
 
 ### Parametrized tests
 
-Often, different unit tests of the same "unit" have similar logic, but are applied to different inputs; this is the case with our `mean()` test suite above. `pytest` offers a convenient mechanism to write just a single test and apply it to multiple inputs, called test parameterization. This way, adding a new test case is as simple as defining one more input and expected output.
+Often, different unit tests of the same "unit" have similar logic, but are applied to different inputs; this is the case with our `mean()` test suite above.
+`pytest` offers a convenient mechanism to write just a single test and apply it to multiple inputs, called test parameterization.
+This way, adding a new test case is as simple as defining one more input and expected output.
 
-To parametrize a test, we "decorate" it with its expected inputs and outputs, and `pytest` will expand the test to run as many times as needed to check all inputs. In the `pytest` output, this will look exactly like running multiple tests that have different functions.
+To parametrize a test, we "decorate" it with its expected inputs and outputs, and `pytest` will expand the test to run as many times as needed to check all inputs.
+In the `pytest` output, this will look exactly like running multiple tests that have different functions.
 
 <details>
 <summary> Python decorators </summary>
-"Decorators" are a Python way to enhance or wrap a function with additional behavior. They are added just before a function definition, using a name that starts with `@`, and can take arguments separate from the function arguments, for example:
+"Decorators" are a Python way to enhance or wrap a function with additional behavior.
+They are added just before a function definition, using a name that starts with `@`, and can take arguments separate from the function arguments, for example:
 
 \@log_to_file("output.txt")
 def mean(num_list):
@@ -440,17 +444,20 @@ def mean(num_list):
 
 </details>
 
-For example, here's a parametrized version of our test suite for `mean()`. In this case, we decorate the test with two parameters that can be used within the test: `num_list` and `expected_mean`. The first parameter will be used to call the `mean()` function, and the second is its expected result, which the test will validate. We then provide a list of matching pairs of these parameters, each of which will run as a test:
+For example, here's a parametrized version of our test suite for `mean()`.
+In this case, we decorate the test with two parameters that can be used within the test: `num_list` and `expected_mean`.
+The first parameter will be used to call the `mean()` function, and the second is its expected result, which the test will validate.
+We then provide a list of matching pairs of these parameters, each of which will run as a test:
 
 \```
-@pytest.mark.parametrize("num_list,exp", [
+@pytest.mark.parametrize("num_list,expected_value", [
     ([1,2,3,4,5], 3),
     ([0,2,4,6], 3),
     (range(1,10000), 10000/2.0),
   ])
-  def test_mean(num_list, exp):
-    obs = mean(num_list)
-    assert obs == exp
+  def test_mean(num_list, expected_value):
+    observed_value = mean(num_list)
+    assert observed_value == expected_value
 \```
 
 ## Integration tests
