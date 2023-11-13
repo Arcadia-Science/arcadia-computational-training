@@ -71,7 +71,7 @@ By validating each software unit across the valid range of its input and output 
 Some examples of things a unit test might test include functions, individual Snakemake rules, a process in Nextflow, or a cell in a Jupyter notebook.
 * **Integration tests**: Integration tests check that various pieces of the software work together as expected.
 Some examples of things an integration test might test include a set of Snakemake rule or Nextflow processes or the execution of an entire Jupyter notebook.
-* **Regression tests**: Regression tests defend against new bugs, or regressions, which might appear due to new software and updates. Regression tests can also refer to test for decreases in performance (run time, memory usage, etc.) or in the qualit of some output (the resolution of a rendered graph, accuracy of a set of predictions, etc.).
+* **Regression tests**: Regression tests defend against new bugs, or regressions, which might appear due to new software and updates. Regression tests can also refer to tests for decreases in performance (run time, memory usage, etc.) or in the quality of some output (the resolution of a rendered graph, accuracy of a set of predictions, etc.).
 
 While each of these types of tests has a different definition, in practice there isn't always a firm delineation between each type.
 
@@ -350,7 +350,7 @@ test_mean.py:34: AssertionError
 ===================== 1 failed, 4 passed in 2.71 seconds ======================
 ```
 
-In the above case, the pytest package sniffed out the tests in the directory and ran them together to produce a report of the sum of the files and functions matching the regular expression `[Tt]est[-_]*`.
+In the above case, the pytest package sniffed out the tests in the directory and ran them together to produce a report of the sum of the files and functions matching the regular expression `[Tt]est[-_].*`.
 
 The major benefit a testing framework provides is exactly that, a utility to find and run the tests automatically.
 With pytest, this is the command-line tool called `pytest`.
@@ -443,10 +443,18 @@ They are added just before a function definition, using a name that starts with 
 def mean(num_list):
   ...
 </code></pre>
+This code is equivalent to wrapping or "decorating" the `mean` function with the function `log_to_file("output.txt")`:
+<pre><code>
+def _mean(num_list):
+    ...
+
+mean = log_to_file("output.txt")(_mean)
+</code></pre>
 </details>
+The ampersand-based "decorator" syntax is just a clearer and more readable way of wrapping a function with another function. In this example, that other function is in fact `log_to_file("output.xt")`. How is this possible? `log_to_file` is a function that takes a filename as an input and _returns another function_ that itself takes a function as an argument and then returns a new "wrapped" function. 
 
 For example, here's a parametrized version of our test suite for `mean()`.
-In this case, we decorate the test with two parameters that can be used within the test: `num_list` and `expected_mean`.
+In this case, we decorate the test with two parameters that can be used within the test: `num_list` and `expected_value`.
 The first parameter will be used to call the `mean()` function, and the second is its expected result, which the test will validate.
 We then provide a list of matching pairs of these parameters, each of which will run as a test:
 
@@ -655,7 +663,7 @@ Since we need pytest, the `requirements.txt` file looks like this:
 pytest==7.4.3
 ```
 
-Pushing new changes to our branch automatically re-triggers the CI teststo re-run.
+Pushing new changes to our branch automatically re-triggers the CI tests to re-run.
 When all of our tests pass, we'll see a big green check mark next stating that "All checks have passed" and a green check next to our commit in our commit history.
 If some of your checks don't pass, you can see what went wrong by clicking on the check which will launch the runtime information.
 
