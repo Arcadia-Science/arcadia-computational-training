@@ -26,9 +26,9 @@ Although we focus on Python, many of the higher-level concepts discussed are app
 
 <details>
  <summary>Implementing tests in other languages</summary>
- While this lesson uses Python, almost all programming languages have robust (and often loved) packages dedicated to testing. 
+ While this lesson uses Python, almost all programming languages have robust (and often loved) packages dedicated to testing.
  In R, testing is orchestrated with the <a href="https://testthat.r-lib.org/">testthat package</a>.
- The <a href="https://r-pkgs.org">R packages</a> guide has a chapter dedicated to <a href=https://r-pkgs.org/testing-basics.html>testing</a>. 
+ The <a href="https://r-pkgs.org">R packages</a> guide has a chapter dedicated to <a href=https://r-pkgs.org/testing-basics.html>testing</a>.
  Other programming languages, such as Rust, have built-in testing features.
 </details>
 
@@ -38,11 +38,11 @@ This lesson will take advantage of the skills we've learned in many previous les
 We'll use [Jupyter Notebooks](https://training.arcadiascience.com/arcadia-users-group/20221024-jupyter-notebooks/lesson/), [GitHub](https://training.arcadiascience.com/workshops/20220920-intro-to-git-and-github/lesson/), [conda](https://training.arcadiascience.com/arcadia-users-group/20221017-conda/lesson/), and [Python](https://training.arcadiascience.com/arcadia-users-group/20230228-intro-to-python-1/lesson/).
 This is more overhead than we typically strive for in a lesson, but we hope that it's a chance to practice these skills to achieve a new goal.
 In the future, we may provide a [GitPod](https://www.gitpod.io/) environment for learners to use while working through this lesson, however if possible we would prefer to empower users to start implementing tests on their own computers using their own setup.
- 
+
 To start this lesson, we'll begin by creating a conda environment that has the tools we'll need.
 
 ```
-mamba create -n augtest jupyter pytest 
+mamba create -n augtest jupyter pytest
 conda activate augtest
 ```
 
@@ -64,8 +64,8 @@ Now we can start learning about testing!
 
 There are many ways to test software, such as assertions, exceptions, unit tests, integration tests, and regression tests.
 
-* **Exceptions and assertions**: While writing code, `exceptions` and `assertions` can be added to sound an alarm as runtime problems come up. 
-These kinds of tests, are embedded in the software itself and handle, as their name implies, exceptional cases rather than the norm. 
+* **Exceptions and assertions**: While writing code, `exceptions` and `assertions` can be added to sound an alarm as runtime problems come up.
+These kinds of tests, are embedded in the software itself and handle, as their name implies, exceptional cases rather than the norm.
 * **Unit tests**: Unit tests investigate the behavior of units of code (such as functions, classes, or data structures).
 By validating each software unit across the valid range of its input and output parameters, tracking down unexpected behavior that may appear when the units are combined is made vastly simpler.
 Some examples of things a unit test might test include functions, individual Snakemake rules, a process in Nextflow, or a cell in a Jupyter notebook.
@@ -77,9 +77,17 @@ While each of these types of tests has a different definition, in practice there
 
 ## Assertions
 
-Assertions are the simplest type of test.
+Perhaps the simplest test we can use in Python is to directly test, using an `if` statement, whether some condition is `True`, and exit the program otherwise:
+
+```
+size = 10
+if size > 5:
+    exit()
+```
+
+Python provides a shortcut for these type of checks, called _assertions_. Assertions are the simplest type of test.
 They are used as a tool for bounding acceptable behavior during runtime.
-The assert keyword in python has the following behavior:
+The `assert` keyword in Python has the same behavior as the `if` statement above, but it also provides some information about where the check happened and an optional message:
 
 ```
 assert True == False
@@ -94,9 +102,6 @@ Traceback (most recent call last):
 assert True == True
 ```
 
-```
-```
-
 Assertions halt code execution instantly if the comparison is false and do nothing if the comparison is true.
 These are therefore a good tool for guarding the function against inappropriate input:
 
@@ -109,6 +114,7 @@ def mean(num_list):
 The advantage of assertions is their ease of use.
 They are rarely more than one line of code.
 The disadvantage is that assertions halt execution indiscriminately and the helpfulness of the resulting error message is usually quite limited.
+In practice, assertions are almost never directly used in Python programs.
 
 ## Exceptions
 
@@ -127,7 +133,7 @@ def mean(num_list):
 ```
 
 Once an exception is raised, it will be passed upward in the program scope.
-An exception can be used to trigger additional error messages or an alternative behavior. 
+An exception can be used to trigger additional error messages or an alternative behavior.
 Rather than immediately halting code execution, the exception can be 'caught' upstream with a try-except block.
 When wrapped in a try-except block, the exception can be intercepted before it reaches global scope and halts execution.
 
@@ -181,7 +187,7 @@ For now, we'll write some tests for the mean function and simply run them indivi
 Later in this lesson, we'll use a test framework to collect and run them.
 Using a test framework makes running tests streamlined.
 
-Unit tests are typically made of three pieces, some set-up, a number of assertions, and some tear-down. 
+Unit tests are typically made of three pieces, some set-up, a number of assertions, and some tear-down.
 Set-up can be as simple as initializing the input values or as complex as creating and initializing concrete instances of a class.
 Ultimately, the test occurs when an assertion is made, comparing the observed and expected values.
 For example, let us test that our mean function successfully calculates the known value for a simple list.
@@ -452,7 +458,7 @@ def _mean(num_list):
 mean = log_to_file("output.txt")(_mean)
 </code></pre>
 </details>
-The ampersand-based "decorator" syntax is just a clearer and more readable way of wrapping a function with another function. In this example, that other function is in fact `log_to_file("output.xt")`. How is this possible? `log_to_file` is a function that takes a filename as an input and _returns another function_ that itself takes a function as an argument and then returns a new "wrapped" function. 
+The ampersand-based "decorator" syntax is just a clearer and more readable way of wrapping a function with another function. In this example, that other function is in fact `log_to_file("output.xt")`. How is this possible? `log_to_file` is a function that takes a filename as an input and _returns another function_ that itself takes a function as an argument and then returns a new "wrapped" function.
 
 For example, here's a parametrized version of our test suite for `mean()`.
 In this case, we decorate the test with two parameters that can be used within the test: `num_list` and `expected_value`.
@@ -467,7 +473,7 @@ import pytest
     ([0,2,4,6], 3),
     (range(1,10000), 10000/2.0),
   ])
-  def test_mean(num_list, expected_value):
+def test_mean(num_list, expected_value):
     observed_value = mean(num_list)
     assert observed_value == expected_value
 ```
@@ -536,7 +542,7 @@ Testing frameworks aid in constructing regression tests but don’t provide addi
 
 ## Continuous integration
 
-Continuous integration makes running tests as easy as possible by integrating the test suite into the development process. 
+Continuous integration makes running tests as easy as possible by integrating the test suite into the development process.
 Every time a change is made to the repository, the continuous integration system builds and checks that code.
 
 Based on the instructions you provide, a continuous integration server can:
@@ -590,10 +596,10 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.10 
+    - name: Set up Python 3.10
       uses: actions/setup-python@v2
       with:
         python-version: '3.10'
@@ -629,7 +635,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11'] 
+        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
