@@ -42,7 +42,7 @@ In the future, we may provide a [GitPod](https://www.gitpod.io/) environment for
 To start this lesson, we'll begin by creating a conda environment that has the tools we'll need.
 
 ```
-mamba env create -n augtest jupyter pytest
+mamba create -n augtest jupyter pytest
 conda activate augtest
 ```
 
@@ -281,9 +281,10 @@ test_mean_with_long()
 test_mean_with_complex()  ## Please note that this one might fail. You'll get an error message showing which tests failed
 ```
 
-We just wrote and ran five tests for our `mean()` function~
+We just wrote and ran five tests for our `mean()` function.
+You may have noticed that several of the tests look very similar to each other -- they introduce an input, call `mean()`, and test its output against an expected value.
+We'll come back to this later, offering a way to write a single test that applies to multiple inputs.
 
-You may have noticed that several of the tests look very similar to each other -- they introduce an input, call `mean()`, and test its output against an expected value. We'll come back to this later, offering a way to write a single test that applies to multiple inputs.
 ## Using the test framework `pytest`
 
 We created a suite of tests for our mean function, but it was annoying to run them one at a time.
