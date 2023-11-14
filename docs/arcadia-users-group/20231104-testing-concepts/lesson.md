@@ -42,7 +42,7 @@ In the future, we may provide a [GitPod](https://www.gitpod.io/) environment for
 To start this lesson, we'll begin by creating a conda environment that has the tools we'll need.
 
 ```
-mamba env create -n augtest jupyter pytest 
+mamba create -n augtest jupyter pytest 
 conda activate augtest
 ```
 
@@ -459,6 +459,8 @@ The first parameter will be used to call the `mean()` function, and the second i
 We then provide a list of matching pairs of these parameters, each of which will run as a test:
 
 ```python
+import pytest
+
 @pytest.mark.parametrize("num_list,expected_value", [
     ([1,2,3,4,5], 3),
     ([0,2,4,6], 3),
