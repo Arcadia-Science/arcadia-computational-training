@@ -126,8 +126,10 @@ For example, instead of the assertion in the case before, an exception can be us
 ```python
 def mean(num_list):
     if len(num_list) == 0:
-      raise Exception("The algebraic mean of an empty list is undefined. "
-                      "Please provide a list of numbers")
+      raise Exception(
+        "The algebraic mean of an empty list is undefined. "
+        "Please provide a list of numbers."
+    )
     else:
       return sum(num_list)/len(num_list)
 ```
@@ -143,7 +145,7 @@ To add information or replace the message before it is passed upstream, the try-
 def mean(num_list):
     try:
         return sum(num_list)/len(num_list)
-    except ZeroDivisionError as original_error :
+    except ZeroDivisionError as original_error:
         msg = "The algebraic mean of an empty list is undefined. Please provide a list of numbers."
         raise ZeroDivisionError(original_error.__str__() + "\n" +  msg)
 ```
@@ -155,7 +157,7 @@ If an alternative behavior is preferred, the exception can be disregarded and a 
 def mean(num_list):
     try:
         return sum(num_list)/len(num_list)
-    except ZeroDivisionError :
+    except ZeroDivisionError:
         return 0
 ```
 
@@ -165,9 +167,9 @@ If a single function might raise more than one type of exception, each can be ca
 def mean(num_list):
     try:
         return sum(num_list)/len(num_list)
-    except ZeroDivisionError :
+    except ZeroDivisionError:
         return 0
-    except TypeError as original_error :
+    except TypeError as original_error:
         msg = "The algebraic mean of an non-numerical list is undefined.\
                Please provide a list of numbers."
         raise TypeError(original_error.__str__() + "\n" +  msg)
@@ -200,9 +202,9 @@ You can use this code to save to file:
 def mean(num_list):
     try:
         return sum(num_list)/len(num_list)
-    except ZeroDivisionError :
+    except ZeroDivisionError:
         return 0
-    except TypeError as original_error :
+    except TypeError as original_error:
         msg = "The algebraic mean of an non-numerical list is undefined.\
                Please provide a list of numbers."
         raise TypeError(original_error.__str__() + "\n" +  msg)
@@ -260,13 +262,6 @@ def test_mean_with_long():
     expected_value = big/2.0
     assert observed_value == expected_value
 
-def test_mean_with_complex():
-    # given that complex numbers are an unordered field
-    # the arithmetic mean of complex numbers is meaningless
-    num_list = [2 + 3j, 3 + 4j, -32 - 2j]
-    observed_value = mean(num_list)
-    expected_value = NotImplemented
-    assert observed_value == expected_value
 ```
 
 Use Jupyter Notebook to import the `test_mean` package and run each test like this:
@@ -278,7 +273,6 @@ test_mean_with_ints()
 test_mean_with_zero()
 test_mean_with_double()
 test_mean_with_long()
-test_mean_with_complex()  ## Please note that this one might fail. You'll get an error message showing which tests failed
 ```
 
 We just wrote and ran five tests for our `mean()` function.
@@ -320,14 +314,6 @@ def test_mean_with_long():
     observed_value = mean(range(1,big))
     expected_value = big/2.0
     assert observed_value == expected_value
-
-def test_mean_with_complex():
-    # given that complex numbers are an unordered field
-    # the arithmetic mean of complex numbers is meaningless
-    num_list = [2 + 3j, 3 + 4j, -32 - 2j]
-    observed_value = mean(num_list)
-    expected_value = NotImplemented
-    assert observed_value == expected_value
 ```
 
 Once these tests are written in a file called `test_mean.py`, the command `pytest` can be run on the terminal or command line from the directory containing the tests (note that you'll have to use `py.test` for older versions of the `pytest` package):
@@ -339,22 +325,9 @@ pytest
 ```
 collected 5 items
 
-test_mean.py ....F
+test_mean.py .....
 
-================================== FAILURES ===================================
-________________________________ test_complex _________________________________
-
-    def test_mean_with_complex():
-        # given that complex numbers are an unordered field
-        # the arithmetic mean of complex numbers is meaningless
-        num_list = [2 + 3j, 3 + 4j, -32 - 2j]
-        observed_value = mean(num_list)
-        expected_value = NotImplemented
->       assert observed_value == expected_value
-E       assert (-9+1.6666666666666667j) == NotImplemented
-
-test_mean.py:34: AssertionError
-===================== 1 failed, 4 passed in 2.71 seconds ======================
+========================== 4 passed in 2.68 seconds ===========================
 ```
 
 In the above case, the pytest package sniffed out the tests in the directory and ran them together to produce a report of the sum of the files and functions matching the regular expression `[Tt]est[-_].*`.
@@ -364,13 +337,75 @@ With pytest, this is the command-line tool called `pytest`.
 When `pytest` is run, it will search all directories below where it was called, find all of the Python files in these directories whose names start or end with `test`, import them, and run all of the functions and classes whose names start with `test` or `Test`.
 This automatic registration of test code saves tons of time and provides a consistent organization framework across Python projects.
 
-When you run `pytest`, it will print a dot (`.`) on the screen for every test that passes, an `F` for every test that fails or where there was an unexpected error.
-In rarer situations you may also see an `s` indicating a skipped tests (because the test is not applicable on your system) or a `x` for a known failure (because the developers could not fix it promptly).
-After the dots, pytest will print summary information.
+When you run `pytest`, it will print a dot (`.`) on the screen for every test that passes, an `F` for every test that fails or where there was an unexpected error. After the dots, pytest will print summary information.
 
-**Challenge 1: Altering functions to pass all tests**
+To see what a test failure looks like, modify the `expected_value` in one of the tests and run pytest again. You should see something like this:
 
-Without changing the tests, alter the mean.py file from the previous section until it passes.
+```
+collected 5 items
+
+test_mean.py F....                                                                   [100%]
+
+========================================= FAILURES =========================================
+___________________________________ test_mean_with_ints ____________________________________
+
+    def test_mean_with_ints():
+        num_list = [1, 2, 3, 4, 5]
+        observed_value = mean(num_list)
+        expected_value = 4
+>       assert observed_value == expected_value
+E       assert 3.0 == 4
+
+test_mean.py:8: AssertionError
+================================= short test summary info ==================================
+FAILED test_mean.py::test_mean_with_ints - assert 3.0 == 4
+=============================== 1 failed, 4 passed in 0.86s ================================
+```
+Notice that pytest detects the failed test and provides detailed information about why the test failed
+by displaying the values of the variables used in the `assert` comparison. 
+In this case, this information is not surprising, since we triggered the failure by deliberately modifying the `expected_value` to an incorrect number. 
+But in more realistic scenarios, this information is often very helpful for understanding why a test is failing (and whether the failure indicates a true bug in the code or a bug in the test itself). 
+
+
+## Testing for expected exceptions
+In many cases, it is important to check that our code responds to unexpected inputs appropriately. 
+Recall that our `mean` function checks for a `TypeError` when attempting to calculate the mean.
+How can we test that it performs this check correctly and raises the expected exception?
+
+Pytest provides a mechanism to test for expected exceptions. It looks like this:
+
+```python
+def test_mean_with_non_numeric_list():
+    num_list = ['0', '1', '2']
+    with pytest.raises(TypeError):
+        mean(num_list)
+```
+Here, we use a `with` block to tell pytest that we expect the code within the `with` block
+to raise an exception. Pytest checks that this code does indeed raise an exception of the correct type,
+and if not, flags the test as a failure. 
+
+Try adding this function to `test_mean.py` and verify that all the tests pass. 
+(hint: don't forget to add `import pytest` at the top of `test_mean.py`, since our new test uses `pytest.raises`). 
+
+
+### Challenge 1: Altering functions to pass all tests
+A scenario we did not consider when writing our `mean` function is when the list of numbers passed to `mean` contains complex numbers. 
+Because the arithmetic mean of complex numbers may be difficult to interpret,
+suppose we decide that we don't want our function to handle this case.
+
+Let's write a test to reflect this. Add the following test to `test_mean.py`:
+```python
+def test_mean_with_complex():
+    num_list = [0, 1, 1 + 1j]
+    with pytest.raises(TypeError):
+        mean(num_list)
+```
+Try running the tests again. You should see that this test fails.
+This is because our `mean` function does not check for complex numbers, 
+and Python's builtin `sum` function is able to handle complex numbers, 
+so `mean` returns a result rather than raising an exception.
+
+Now, modify the function `mean` in `mean.py` from the previous section until our new test passes.
 When it passes, `pytest` will produce results like the following:
 
 ```
@@ -394,22 +429,21 @@ One way is to check for the presence of complex numbers before calculating the m
 ```python
 def mean(num_list):
     if any(isinstance(num, complex) for num in num_list):
-       return NotImplemented
+       raise TypeError("Calculating the mean of complex numbers is not supported.")
     else:
         try:
             return sum(num_list)/len(num_list)
-        except ZeroDivisionError :
+        except ZeroDivisionError:
             return 0
-        except TypeError as original_error :
+        except TypeError as original_error:
             msg = "The algebraic mean of an non-numerical list is undefined.\
                    Please provide a list of numbers."
             raise TypeError(original_error.__str__() + "\n" +  msg)
 ```
-
 </details>
 
 
-Note, using `pytest -v` will result in `pytest` listing which tests are executed and whether they pass or not:
+Note, using `pytest -v` (the 'v' stands for 'verbose') will result in `pytest` listing which tests are executed and whether they pass or not:
 
 ```
 pytest
@@ -441,7 +475,7 @@ To parametrize a test, we "decorate" it with its expected inputs and outputs, an
 In the `pytest` output, this will look exactly like running multiple tests that have different functions.
 
 <details>
-<summary> Python decorators </summary>
+<summary>About Python decorators </summary>
 "Decorators" are a Python way to enhance or wrap a function with additional behavior.
 They are added just before a function definition, using a name that starts with `@`, and can take arguments separate from the function arguments, for example:
 
@@ -450,15 +484,15 @@ They are added just before a function definition, using a name that starts with 
 def mean(num_list):
   ...
 </code></pre>
-This code is equivalent to wrapping or "decorating" the `mean` function with the function `log_to_file("output.txt")`:
+This code is equivalent to wrapping or "decorating" the <code>mean</code> function with the function <code>log_to_file("output.txt")</code>:
 <pre><code>
 def _mean(num_list):
     ...
 
 mean = log_to_file("output.txt")(_mean)
 </code></pre>
+The ampersand-based "decorator" syntax is just a clearer and more readable way of wrapping a function with another function. In this example, that other function is in fact <code>log_to_file("output.txt")</code>. This is possible because <code>log_to_file</code> is a function that takes a filename as an input and <i>returns another function</i> that itself takes a function as an argument and then returns a new "wrapped" function.
 </details>
-The ampersand-based "decorator" syntax is just a clearer and more readable way of wrapping a function with another function. In this example, that other function is in fact `log_to_file("output.xt")`. How is this possible? `log_to_file` is a function that takes a filename as an input and _returns another function_ that itself takes a function as an argument and then returns a new "wrapped" function.
 
 For example, here's a parametrized version of our test suite for `mean()`.
 In this case, we decorate the test with two parameters that can be used within the test: `num_list` and `expected_value`.
@@ -469,9 +503,9 @@ We then provide a list of matching pairs of these parameters, each of which will
 import pytest
 
 @pytest.mark.parametrize("num_list,expected_value", [
-    ([1,2,3,4,5], 3),
-    ([0,2,4,6], 3),
-    (range(1,10000), 10000/2.0),
+    ([1, 2, 3, 4, 5], 3),
+    ([0, 2, 4, 6], 3),
+    (range(1, 10000), 10000/2.0),
   ])
 def test_mean(num_list, expected_value):
     observed_value = mean(num_list)
