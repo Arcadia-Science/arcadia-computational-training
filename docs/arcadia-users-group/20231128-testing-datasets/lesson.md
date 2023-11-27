@@ -41,12 +41,17 @@ jupyter notebook
 ### Example function
 
 As a running example, similar to the `mean()` function we used in the previous lesson, we'll use `distribution()`, a simple function that returns the distribution of characters in text.
-This function is intentionally implemented inefficiently, to emulate an expensive function of the type typically found in computational biology workflows, that would require testing.
 
 ```python
 def distribution(text):
     return { char: text.count(char)/len(text) for char in text.lower() }
 ```
+
+As an aside, this function is intentionally implemented inefficiently; the same functionality can be implemented much faster in Python.
+We do this to later demonstrate what to do when a complex function -- of the type typically found in computational biology workflows -- is too slow to run on longer test inputs.
+
+If you're curious, the reason `distribution()` is inefficient is that an input text of length _n_ will be read _n^2_ times -- for each character in the text, `count()` is called, and it will in turn traverse the entire input.
+Instead, a single pass over the text can be used to keep running counts of the characters observed.
 
 Let's try it:
 
