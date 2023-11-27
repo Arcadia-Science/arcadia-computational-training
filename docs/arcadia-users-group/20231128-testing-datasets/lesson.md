@@ -88,6 +88,40 @@ DISTRIBUTION_INPUTS_AND_EXPECTED_OUTPUTS = [
 ]
 ```
 
+### Testing input files
+
+Some of the functions or workflows you will seek to test may take input files and produce output files.
+We'll extend our example function to to the same:
+
+```python
+def distribution_in_file(file_in, file_out):
+    with open(file_in) as fi, open(file_out, 'w') as fo:
+        counts = distribution(fi.read())
+        fo.write(str(counts))
+```
+
+Test input files are often checked in alongside the code and the tests. For simplicity, we'll just use files that are already present in the operating system.
+Let's try it:
+
+```
+distribution_in_file('/usr/share/dict/propernames', '/tmp/propernames.txt')
+```
+
+And examine the results:
+
+```sh
+cat /tmp/propernames.txt
+{'a': 0.0917388251813714, 'r': 0.06576175988766675, 'o': 0.0452843435525392, 'n': 0.06798502223262345, '\n': 0.15305406037912472, 'd': 0.021647554411420546, 'm': 0.014158670723145332, 'l': 0.04118886028551369, 'i': 0.06482564942663234, 'g': 0.00877603557219752, 't': 0.03276386613620407, 'h': 0.023636789141118653, 'e': 0.08190966534051018, 's': 0.025626023870816757, 'b': 0.005967704189094313, 'j': 0.002808331383103206, 'x': 0.0015211794991809033, 'f': 0.0062017318043529135, 'v': 0.007020828457758015, 'y': 0.024221858179265154, 'w': 0.003627428036508308, 'u': 0.021998595834308448, 'c': 0.015562836414696935, 'k': 0.010999297917154224, 'p': 0.005148607535689211, 'z': 0.0025743037678446056, 'q': 0.000468055230517201, '-': 0.0002340276152586005}
+```
+
+<details>
+  <summary>What is the <code>/usr/share/dict/propernames</code> file?</summary>
+
+The <code>/usr/share/dict/propernames</code> on macOS systems is is a text file that contains a list of common proper names, one per line.
+It's similar to the words file located at <code>/usr/share/dict/words</code> which contains a list of common words. 
+These files are typically used by spell-checking programs to verify the spelling of words and proper names.
+</details>
+
 ### Comparing file outputs
 
 We can directly compare an output file to a "reference" or "golden" output that is accessible to the test.
