@@ -130,7 +130,7 @@ For example, if you have a function that produces a data frame, you can write th
 Then, you could compare the output CSV file against a reference CSV file by their checksums.
 When using this strategy, it might be necessary to sort your data frame prior to writing a file.
 
-An example of comparing checksums within a test (maybe this should be a challenge?)
+An example of comparing checksums: 
 
 ```python
 import hashlib
