@@ -10,7 +10,38 @@ The creation of each test data set was encoded in the test itself.
 
 Below we discuss strategies for creating test data sets to help maintain some of these desirable qualities in real code bases.
 
-As a running example, similar to the `mean()` function we used in the previous lesson, we'll use `distribution()`, a simple function that returns the distribution of characters in text. This function is intentionally implemented inefficiently, to emulate an expensive function of the type typically found in computational biology workflows, that would require testing.
+## Lesson set up
+
+### Software installation
+
+This lesson will take advantage of the skills we've learned in many previous lessons.
+We'll use [Jupyter Notebooks](https://training.arcadiascience.com/arcadia-users-group/20221024-jupyter-notebooks/lesson/), [GitHub](https://training.arcadiascience.com/workshops/20220920-intro-to-git-and-github/lesson/), [conda](https://training.arcadiascience.com/arcadia-users-group/20221017-conda/lesson/), and [Python](https://training.arcadiascience.com/arcadia-users-group/20230228-intro-to-python-1/lesson/).
+This is more overhead than we typically strive for in a lesson, but we hope that it's a chance to practice these skills to achieve a new goal.
+In the future, we may provide a [GitPod](https://www.gitpod.io/) environment for learners to use while working through this lesson, however if possible we would prefer to empower users to start implementing tests on their own computers using their own setup.
+
+To start this lesson, we'll begin by creating a conda environment that has the tools we'll need.
+
+```
+mamba create -n augtest2 jupyter pytest pandas matplotlib seaborn pillow
+conda activate augtest2
+```
+
+We'll also create a folder to help us stay organized.
+```
+mkdir 20231128-aug-testing-lesson
+cd 20231128-aug-testing-lesson
+```
+
+Once our environment is activated, start a Jupyter notebook
+
+```
+jupyter notebook
+```
+
+### Example function
+
+As a running example, similar to the `mean()` function we used in the previous lesson, we'll use `distribution()`, a simple function that returns the distribution of characters in text.
+This function is intentionally implemented inefficiently, to emulate an expensive function of the type typically found in computational biology workflows, that would require testing.
 
 ```python
 def distribution(text):
@@ -18,9 +49,11 @@ def distribution(text):
 ```
 
 Let's try it:
+
 ```
 distribution('testing datasets')
 ```
+
 ```
 {'t': 0.25,
  'e': 0.125,
@@ -43,7 +76,8 @@ These test data are small and self-contained and the correct answer to the test 
 Functions like `[]` (list creation), or `range()` in Python and `c()`, `rep()`, `seq()`, `data.frame()`, and `list()` in R can be used to create test data that are relevant to a function.
 Some data-creation functions might be non-deterministic, but setting the seed ensures that the same output are produced each time.
 
-Often, we'll test a combination of "typical" inputs for which we verified the expected outputs, alongside edge cases - empty, very large, or nonsensical inputs. For `distribution()`, a typical in-test set of test cases could include:
+Often, we'll test a combination of "typical" inputs for which we verified the expected outputs, alongside edge cases - empty, very large, or nonsensical inputs.
+For `distribution()`, a typical in-test set of test cases could include:
 
 ```python
 DISTRIBUTION_INPUTS_AND_EXPECTED_OUTPUTS = [
@@ -54,6 +88,27 @@ DISTRIBUTION_INPUTS_AND_EXPECTED_OUTPUTS = [
 ]
 ```
 
+### Comparing file outputs
+
+We can directly compare an output file to a "reference" or "golden" output that is accessible to the test.
+Checksums can also be used to compare the results of a function against other types of files.
+For example, if you have a function that produces a data frame, you can write that object to a CSV file.
+Then, you could compare the output CSV file against a reference CSV file by their checksums.
+When using this strategy, it might be necessary to sort your data frame prior to writing a file.
+
+An example of comparing checksums within a test (maybe this should be a challenge?)
+
+```python
+import hashlib
+
+with open('expected.txt', 'rb') as expected, '/tmp/propernames.txt', 'rb') as actual:
+    assert hashlib.md5(expected.read()).hexdigest() == hashlib.md5(actual.read()).hexdigest()
+```
+
+Checksums can also be used to compare the results of a function against other types of files.
+For example, if you have a function that produces a data frame, you can write that object to a CSV file.
+Then, you could compare the output CSV file against a reference CSV file by their checksums.
+When using this strategy, it might be necessary to sort your data frame prior to writing a file.
 
 ### Testing image outputs
 
@@ -67,7 +122,7 @@ Even if you check metadata attributes about an image, the image itself might sti
 If you want to test the output image more thoroughly, you can compare the output produced by a test to a reference image stored in your test data.
 Both checksum comparisons and pixel comparisons are useful in this scenario.
 
-We'll modify our function to generate an image -- a histogram of letter counts:
+We'll create another function to generate an image -- a histogram of letter counts:
 
 ```python
 import matplotlib.pyplot as plt
@@ -85,13 +140,15 @@ def histogram(file_in, file_out):
 ```
 
 Let's try it:
+
 ```
 histogram('/usr/share/dict/propernames', '/tmp/propernames.png')
 ```
 
 <img src="fig/propernames.png" alt="Character frequency in /usr/share/dict/propernames" width="50%"/>
 
-To compare generated images to ground truth, we can use checksums as before, or we can visually compare them. For this, we'll use a Python image processing library which would require installation with `mamba install pillow`.
+To compare generated images to ground truth, we can use checksums as before, or we can visually compare them.
+For this, we'll use a Python image processing library.
 
 ```python
 from PIL import Image, ImageChops
@@ -121,31 +178,6 @@ But applying `image_diff()` highlights areas that have changed:
     <img src="fig/web2a.diff.png" alt="Visual diff of top and random sampling from inputs" style="width: 50%" />
 </div>
 
-## Comparing file outputs
-
-We can directly compare an output file to a "reference" or "golden" output that is accessible to the test.
-Checksums can also be used to compare the results of a function against other types of files.
-For example, if you have a function that produces a data frame, you can write that object to a CSV file.
-Then, you could compare the output CSV file against a reference CSV file by their checksums.
-When using this strategy, it might be necessary to sort your data frame prior to writing a file.
-
-An example of comparing checksums within a test (maybe this should be a challenge?)
-
-```python
-import hashlib
-
-with open('expected.txt', 'rb') as expected, '/tmp/propernames.txt', 'rb') as actual:
-    assert hashlib.md5(expected.read()).hexdigest() == hashlib.md5(actual.read()).hexdigest()
-```
-
-### Testing image outputs
-...
-
-Checksums can also be used to compare the results of a function against other types of files.
-For example, if you have a function that produces a data frame, you can write that object to a CSV file.
-Then, you could compare the output CSV file against a reference CSV file by their checksums.
-When using this strategy, it might be necessary to sort your data frame prior to writing a file.
-
 ## Test data sets for workflow integration tests
 
 Identifying a small data set that will quickly run through the entire workflow can be tricky.
@@ -153,13 +185,15 @@ Below we cover some strategies to help achieve this.
 
 ### Subsetting input data
 
-Sometimes, typical inputs (say, genomics data or images) are large and result in slow test times. For example, let's try `distribution_in_file` on a larger input (feel free to terminate the cell, if it takes too long):
+Sometimes, typical inputs (say, genomics data or images) are large and result in slow test times.
+For example, let's try `distribution_in_file` on a larger input (feel free to terminate the cell, if it takes too long):
 
 ```python
 distribution_in_file('/usr/share/dict/web2a', '/tmp/web2a.txt')
 ```
 
-Depending on the type of machine, this could take several minutes -- certainly more than we'd like a test to run. In this case, subsetting the data could shorten the test time significantly, while still checking core functionality.
+Depending on the type of machine, this could take several minutes -- certainly more than we'd like a test to run.
+In this case, subsetting the data could shorten the test time significantly, while still checking core functionality.
 
 Sometimes, you can subset your data by running `head` or `tail` on your input files, or sub sampling input samples to a lower number, and your workflow will still run.
 This is a great option when it works!
@@ -171,8 +205,9 @@ For example, let's try taking just the first 1,000 lines of `/usr/share/dict/web
 distribution_in_file('/tmp/web2a.head', '/tmp/web2a.head.txt')
 ```
 
-Runtime is much faster. Unfortunately, results are significantly different - because the input file is sorted, we're testing words that are more likely to start with letters like 'a', skewing the character distribution. Examining `/tmp/web2a.txt` vs `/tmp/web2a.head.txt`, we see that the letter 'a' appears at a frequency of 6.7% in the former, but 12.1% in the latter.
-Often times, simple subsetting strategies like this will fail in even more problematic ways -- subsampling in this manner can cause some tools in your workflow to produce no results, rendering the rest of the workflow unable to run or producing blank, meaningless outputs.
+Runtime is much faster.
+Unfortunately, results are significantly different - because the input file is sorted, we're testing words that are more likely to start with letters like 'a', skewing the character distribution.
+Examining `/tmp/web2a.txt` vs `/tmp/web2a.head.txt`, we see that the letter 'a' appears at a frequency of 6.7% in the former, but 12.1% in the latter.
 
 In this case can try sampling random lines from the file, instead of the first lines:
 
@@ -184,6 +219,8 @@ distribution_in_file('/tmp/web2a.rand', '/tmp/web2a.rand.txt')
 The frequency of 'a' is again 6.7%, and the distribution as a whole more similar to the distribution over the full dataset.
 
 Because it's relatively fast to subset data this way, you can always try this strategy first and see if produces a representative test data set before moving on to other strategies.
+
+Often times, with biological files, simple subsetting strategies like this will fail in even more problematic ways -- subsampling in this manner can cause some tools in your workflow to produce no results, rendering the rest of the workflow unable to run or producing blank, meaningless outputs.
 
 ### Subset input data by results
 
