@@ -99,10 +99,10 @@ Some of the functions or workflows you will seek to test may take input files an
 We'll extend our example function to to the same:
 
 ```python
-def distribution_in_file(file_in, file_out):
-    with open(file_in) as fi, open(file_out, 'w') as fo:
-        counts = distribution(fi.read())
-        fo.write(str(counts))
+def distribution_in_file(filepath_in, filepath_out):
+    with open(filepath_in) as file_in, open(filepath_out, 'w') as file_out:
+        counts = distribution(file_in.read())
+        file_out.write(str(counts))
 ```
 
 Test input files are often checked in alongside the code and the tests. For simplicity, we'll just use files that are already present in the operating system.
@@ -169,13 +169,13 @@ import seaborn as sns
 import pandas as pd
 
 def histogram(file_in, file_out):
-    with open(file_in) as fi, open(file_out, 'w') as fo:
-        counts = distribution(fi.read())
+    with open(filepath_in) as file_in, open(filepath_out, 'w') as file_out:
+        counts = distribution(file_in.read())
         df = pd.DataFrame(
             list(counts.items()), columns=['Character', 'Count']
         ).sort_values(by='Character')
         sns.barplot(data=df, x='Character', y='Count')
-        plt.savefig(file_out)
+        plt.savefig(filepath_out)
 ```
 
 Let's try it:
@@ -273,7 +273,7 @@ This is true for databases as well.
 Many workflows will rely on a database for at least one step -- identifying BLAST hits, performing functional annotation, etc.
 The size of the database will often be the driving factor in search times.
 When possible, you can generate a small test database as a drop in replacement.
-Sometimes, the developers of a tools will have already generated a small test database that you can use (see [this issue](https://github.com/eggnogdb/eggnog-mapper/issues/140) for an example for the [EggNOG ortholog annotation tool](http://eggnog-mapper.embl.de/).
+Sometimes, the developers of a tools will have already generated a small test database that you can use (see [this issue](https://github.com/eggnogdb/eggnog-mapper/issues/140) for an example for the [EggNOG ortholog annotation tool](http://eggnog-mapper.embl.de/)).
 Other times, you can take the same strategy as suggested above: run a full data set through your pipeline, identify a database hit that is in your data, and then subset the database and your input data to retain information relevant only to that hit.
 
 ### Parameterization to keep tests lightweight 
@@ -286,7 +286,7 @@ For example, the default k-mer length in MMSeq2 clustering uses more RAM than is
 
 ## Guiding principles for test data set creation
 
-1. **Small data**: Data should be small and run fast. Even for large multi-step workflows or big software libraries, tests shouldn't take more than a few minutes to run. The data itself should be storable in a GitHub repository and should be as small as possible to reliably capture the behavior of the tool or workflow.
+1. **Small data**: Data should be small and run fast. Even for large multi-step workflows or big software libraries, tests shouldn't take more than a few minutes to run. The data itself should be storable in a GitHub repository and should be as small as possible to reliably capture the behavior of the tool or workflow. If possible, files should be very small, but files under 50M and repos under 1G is reasonable when necessary. Note that GitHub disallows files larger than 100M.
 2. **Address known bugs**: Create new test each time someone submits an issue identifying a bug in your code. If possible, build and test and use test data from a minimum reproducible example that recreates the behavior of the error.
 3. **Representative data**: The test data should be representative of the actual data the software will handle. It should cover a variety of data types, structures, and edge cases to ensure the software behaves as expected in different scenarios.
 4. **Deterministic results**: Choose test data that will produce deterministic results, making the tests predictable and repeatable. This is crucial for verifying the accuracy and consistency of the software over time.
