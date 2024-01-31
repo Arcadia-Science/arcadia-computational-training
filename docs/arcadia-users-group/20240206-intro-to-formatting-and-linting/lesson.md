@@ -262,7 +262,7 @@ for time_ind in range(num_timepoints):
 ```
 
 ### Documentation conventions
-In the context of code style guides, "documentation" refers to human-readable text that is embedded in the source code to explain what the code does and how it works. It is very important to define standards and conventions for documentation because it is a major way--and sometimes the only way--to ensure that code is readily understandable by others. In python, documentation takes two forms: comments that can appear anywhere in the code and docstrings that accompany modules, classes, and functions.
+In the context of code style guides, "documentation" refers to human-readable text that is embedded in the source code to explain what the code does and how it works. It is very important to define standards and conventions for documentation because it is a major way--and sometimes the only way--to ensure that code is readily understandable by others. In Python, documentation takes two forms: comments that can appear anywhere in the code and docstrings that accompany modules, classes, and functions.
 
 #### Comments
 Comments are human-readable lines of text that can appear anywhere in the source code. In Python, they are denoted by the `#` character. Although they are ignored by the Python interpreter and might seem like an area where "anything goes", it is important to adhere to strict standards of grammar and style when writing comments, since they are often the only way to explain the purpose of a particular line or block of code.
