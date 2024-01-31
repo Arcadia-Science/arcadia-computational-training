@@ -143,7 +143,7 @@ Many of the conventions defined in PEP8 concern formatting and are automatically
 Naming conventions are an important element of code style. They determine how variables, functions, classes, modules, and other objects should be named. In Python, there are some strict rules about how to name each of these things:
 
 - variables, functions, and modules* should be named in `lower_snake_case`.
-- classe names should be `UpperCamelCase`.
+- class names should be `UpperCamelCase`.
 - global variables should be named in `ALL_CAPS_SNAKE_CASE`.
 - names should never begin with a number.
 
