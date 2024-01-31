@@ -299,23 +299,22 @@ def calculate_fibonacci(n):
 ```
 
 #### Things comments should *not* be used for
-There are two major ways in which comments are commonly misused. Note that avoiding these misuses is not specific to Python but is a general best practice that applies to all programming languages.
+There are two major ways in which comments are commonly misused. Note that avoiding these misuses is not specific to Python but is a general best practice that applies to all programming languages. The first is that, as we alluded to above, comments should not be redundant with the code. They should not simply restate what the code is doing and they should not include information that is apparent or readily inferred from the code itself. Here are some examples of such redundant comments:
+```python
+# find the minimum value and clamp it to 0.
+min_value = max(min(values), 0)
 
-1. As we alluded to above, comments should not be redundant with the code. They should not simply restate what the code is doing and they should not include information that is apparent or readily inferred from the code itself. Here are some examples of such redundant comments:
-    ```python
-    # find the minimum value and clamp it to 0.
-    min_value = max(min(values), 0)
+# get all the .txt files in the input directory.
+filepaths = input_dirpath.glob('*.txt')
 
-    # get all the .txt files in the input directory.
-    filepaths = input_dirpath.glob('*.txt')
+# create the directory if it doesn't already exist.
+if not os.path.exists(dirpath):
+    os.mkdir(dirpath)
+```
 
-    # create the directory if it doesn't already exist.
-    if not os.path.exists(dirpath):
-        os.mkdir(dirpath)
-    ```
+The second way that comments are sometimes misused is as a way to temporarily "disable" code by "commenting it out." While this is a common and convenient practice, it leads to various problems over time. Commented-out code is difficult to document, easy to forget about, exempt from formatting and linting checks, and over time will pollute the version history. Instead, there are several clearer and more maintainable approaches to "disabling" code: it can be moved into a conditional block with an appropriate condition, moved to its own file, or moved to its own branch on GitHub.
 
-1. Comments should *never* be used to temporarily "disable" code by "commenting it out." While this is a common and convenient practice, it leads to various problems over time. Commented-out code is difficult to document, easy to forget about, exempt from formatting and linting checks, and over time will pollute the version history. Instead, there are several clearer and more maintainable approaches to "disabling" code: it can be moved into a conditional block with an appropriate condition, moved to its own file, or moved to its own branch on GitHub. 
-    The best approach depends on the nature of the code and the reason it is being disabled; but in general, short blocks of code can often be moved into a conditional block, while longer blocks of code should be moved to their own file or branch. In all cases, always think carefully about whether or not the code in question can in fact simply be deleted; often it can be. In the event that is it needed later on, it can usually be recovered from the commit history of the repo on GitHub.
+The best approach depends on the nature of the code and the reason it is being disabled; but in general, short blocks of code can often be moved into a conditional block, while longer blocks of code should be moved to their own file or branch. In all cases, always first think carefully about whether or not the code in question can in fact simply be deleted; often it can be. (And in the event that it is needed later on, it can usually be recovered from the commit history of the repo on GitHub.)
 
 
 #### Docstrings
