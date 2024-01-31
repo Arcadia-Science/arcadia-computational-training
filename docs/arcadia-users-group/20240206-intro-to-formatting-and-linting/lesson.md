@@ -416,7 +416,7 @@ In general, choosing the appropriate set of lint rules to enforce is a context- 
 
 
 ### When to format and when to lint
-The short answer is early and often: because formatters and linters are fast and easy to run, it is best to run them frequently and as early as possible in the development process, when errors are easy to fix. Most IDEs can be configured to run formatters automatically each time a file is saved, and linters are often integrate with IDEs as well (this is how VS Code, for example, displays squiggly red lines under undefined variables).
+The short answer is early and often: because formatters and linters are fast and easy to run, it is best to run them frequently and as early as possible in the development process, when errors are easy to fix. Most IDEs can be configured to run formatters automatically each time a file is saved, and linters are often integrated with IDEs as well (this is how VS Code, for example, displays squiggly red lines under undefined variables).
 
 In addition, formatting and linting are usually run automatically as part of a continuous integration (CI) pipeline. Briefly, this means that, for example, whenever a PR is opened on GitHub, the same formatting and linting tools that a developer would run locally are run remotely on the code in the PR. This ensures that the code on the `main` branch in the GitHub repo--which is the "final" version of the code that will ultimately be shared with or deployed to users--is properly formatted and passes the project's linting rules, whether or not individual developers took the time to run these tools locally. 
 
