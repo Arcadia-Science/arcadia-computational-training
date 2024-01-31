@@ -9,6 +9,8 @@ This means that, when writing code, we need to have a system of rules and guidel
 
 *at a higher level, this is also, in part, the purpose of design patterns and application architectures, but that is a topic for a future lesson.
 
+These conventions are particularly important for us at Arcadia, as most of our code is developed collaboratively, which necessarily means that multiple people will read it. In addition, we often intend for the code we produce to be useful and understandable to others outside of Arcadia, and part of that is ensuring our code meets high standards for readability and comprehensibility. 
+
 
 ## An introductory example
 As an example to help illustrate why code formatting and style are so important, consider the following code:
@@ -135,7 +137,9 @@ There is a succinct overview of `black`'s formatting rules in [its documentation
 Although formatting conventions help constrain the very low-level aspects of how code is written, additional rules and conventions are required to ensure that code is both readable and understandable. These conventions are usually expressed in the form of style guides. Style guides define rules, conventions, and guidelines to which all code in a codebase should adhere. They concern both both low-level questions like how to name variables and functions, as well as higher-level considerations like documentation standards and some aspects of how code is organized or structured.
 
 ### PEP8 and Python style guides
-Many language have an official style guide. For Python, the official style guide is called [PEP8](https://peps.python.org/pep-0008/#introduction). In addition, Google's [Python style guide](https://google.github.io/styleguide/pyguide.html) is an important extension of PEP8 that defines additional standards, especially around comments and documentation. Most major Python projects follow at least PEP8, and we should strive to follow it at Arcadia as well. This is true no matter the scale of the project; it is a good practice to follow PEP8 even for small scripts and one-off analyses. As projects grow, it is usually wise to start imposing additional style conventions from Google' style guide on top of PEP8.
+Many language have an official style guide. For Python, the official style guide is called [PEP8](https://peps.python.org/pep-0008/#introduction). In addition, Google's [Python style guide](https://google.github.io/styleguide/pyguide.html) is an important extension of PEP8 that defines additional standards, especially around nomenclature, documentation, and code organization. Most major Python projects follow PEP8, and we should strive to follow it at Arcadia as well, as it is a foundational part of ensuring our code is readable and useful to others. 
+
+This is true no matter the scale of the project; it is a good practice to follow PEP8 even for small scripts and one-off analyses, as it is often hard to anticipate the lifetime of a project in advance. It is therefore prudent to assume that all of the code we write will always be read by others (inside, if not also outside, of Arcadia). As projects grow and it becomes more likely that we will need to maintain them for a long period of time, we can then readily impose additional style conventions from Google's style guide on top of PEP8.
 
 Many of the conventions defined in PEP8 concern formatting and are automatically enforced by using `black` to format our code. However, PEP8 also includes style conventions that we must follow manually. Here, we'll discuss two important categories of style conventions: naming conventions and documentation conventions.
 
