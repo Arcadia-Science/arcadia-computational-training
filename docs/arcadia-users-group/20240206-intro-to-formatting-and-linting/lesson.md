@@ -168,7 +168,7 @@ All names should be specific, descriptive, and  unambigious. When in doubt, err 
 
 - Function names should generally begin with a verb that corresponds to what they do. Functions that return a boolean value should have a name of the form `is_<something>` or `has_<something>`, functions that calculate something `calculate_<something>` or if they modify an object in-place, they should be named either `set_<something>` or `update_<something>`.
 
-- Variable names should not include type information (e.g., `list_of_ints` or `title_str`), since Python is a dynamically typed language and the type of a variable can change at runtime. The same goes for functions (e.g. `calculate_tm_score` instead of `calculate_tm_score_fn`). To express type information, type annotations should be used (this is a topic for a future lesson).
+- Variable names should not include type information (e.g., `list_of_ints` or `title_str`), since Python is a dynamically typed language and the type of a variable can change at runtime. The same goes for functions (e.g. `calculate_tm_score` instead of `calculate_tm_score_fn`). To express type information, type hints should be used (this is a topic for a future lesson, but if you're curious, check out [this overview of type hints](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)).
 
 - Where possible, use the plural form of a noun for variables that contain a collection of things (e.g., for a list of proteins, use `proteins` instead of `proteins_list`). 
 
