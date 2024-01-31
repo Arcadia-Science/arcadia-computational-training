@@ -220,7 +220,7 @@ The only exception to this general prohibition should be for variables defined i
 filepaths = ['data_1.txt', 'data_2.txt', 'data_3.csv']
 txt_filepaths = [f for f in filepaths if f.endswith('.txt')]
 
-# single-letter variable names in an anonymous lambda function
+# single-letter variable names in a lambda function
 numbers = [1, 2, 3, 4, 5]
 squared_numbers = list(map(lambda x: x**2, numbers))
 ```
@@ -230,10 +230,10 @@ txt_filepaths = [filepath for filepath in filepaths if filepath.endswith('.txt')
 
 squared_numbers = list(map(lambda value: value**2, numbers))
 ```
+<details>
+<summary><b>More about single-letter variable names in scientific programming</b></summary>
+Unfortunately, single-letter variable names are a tempting shortcut and seem to be common in scientific programming. Invariably, however, this comes at the price of readability. Consider the following example of iterating over the pixels in a timelapse image:
 
-Unfortunately, single-letter variable names are a tempting shortcut anad seem to be common in scientific programming. Invariably, however, this comes at the price of readability. 
-
-Consider the following example of iterating over the pixels in a timelapse image:
 ```python
 # create a random timelapse image with 3 timepoints
 image = np.random.rand(3, 100, 100)
@@ -264,6 +264,7 @@ for time_ind in range(num_timepoints):
                 f'and position ({row_ind}, {col_ind}) is {intensity}'
             )
 ```
+</details>
 
 ### Documentation conventions
 In the context of code style guides, "documentation" refers to human-readable text that is embedded in the source code to explain what the code does and how it works. It is very important to define standards and conventions for documentation because it is a major way--and sometimes the only way--to ensure that code is readily understandable by others. In Python, documentation takes two forms: comments that can appear anywhere in the code and docstrings that accompany modules, classes, and functions.
