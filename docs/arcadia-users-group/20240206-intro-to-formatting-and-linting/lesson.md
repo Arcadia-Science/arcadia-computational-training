@@ -36,7 +36,7 @@ Notice how this code is easier to read and easier to understand (if still somewh
 In this lesson, we'll discuss both formatting and style conventions, as well as tools to automatically format code and check that is complies with our style conventions.
 
 ## Lesson setup
-We'll create a simple Python project to demonstrate how to use the tools we'll be discussing.
+We'll create a Python project to demonstrate how to use the tools we'll be discussing.
 
 Create a new conda environment and activate it:
 ```bash
