@@ -311,6 +311,7 @@ filepaths = input_dirpath.glob('*.txt')
 if not os.path.exists(dirpath):
     os.mkdir(dirpath)
 ```
+Note, however, that the definition of "redundant" is somewhat subjective and context-dependent. In particular, it depends on the reader's familiarity with the codebase, the domain and context of the project, and with programming in general. When we can reasonably anticipate that readers of our code will be less familiar with one of these areas, it is perfectly okay to apply a more relaxed definition of redundancy. 
 
 The second way that comments are sometimes misused is as a way to temporarily "disable" code by "commenting it out." While this is a common and convenient practice, it leads to various problems over time. Commented-out code is difficult to document, easy to forget about, exempt from formatting and linting checks, and over time will pollute the version history. Instead, there are several clearer and more maintainable approaches to "disabling" code: it can be moved into a conditional block with an appropriate condition, moved to its own file, or moved to its own branch on GitHub.
 
