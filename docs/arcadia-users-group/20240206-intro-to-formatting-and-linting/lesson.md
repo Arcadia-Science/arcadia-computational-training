@@ -33,7 +33,7 @@ def calculate_quadratic_roots(quadratic_coeff, linear_coeff, constant_coeff):
 
     return root_1, root_2
 ```
-Notice how this code is easier to read and understand (if still somewhat opaque). This is due to several formatting and style changes. For one, spaces are used around the operators and the single long line has been broken into four separate lines, each of which does one specific thing. These changes generally makes code easier to read; they are a kind of *formatting convention*. In addition, the variable names are much longer and are more descriptive, which make it easier for reader to infer the meaning and intent the code; this is a kind of *style convention*. 
+Notice how this code is easier to read and understand (if still somewhat opaque). This is due to several formatting and style changes. For one, spaces are used around the operators and the single long line has been broken into four separate lines, each of which does one specific thing. These changes generally makes code easier to read; they are a kind of *formatting* convention. In addition, the variable names are much longer and are more descriptive, which make it easier for reader to infer the meaning and intent the code; this is a kind of *style* convention. 
 
 In this lesson, we'll discuss both formatting and style conventions, as well as tools to automatically format code and check that is complies with our style conventions.
 
@@ -126,7 +126,9 @@ Now, from the command line, run:
 ```bash
 black .
 ```
-This command tells `black` to reformat all the Python files in the current directory (the lone dot in the command is the relative path to the current directory). If you look at `main.py` now, you'll see that the code has been reformatted according to `black`'s rules.
+This command tells `black` to reformat all the Python files in the current directory (the lone dot in the command is the relative path to the current directory). By default, black considers any file ending with `.py` to be a Python file, and it will look for and reformat all such files in the directory path it is given (or any of that directory's subdirectories). 
+
+Take a look at `main.py` again. You should see that the code has been reformatted according to `black`'s rules.
 
 Now, try simplifying the calculation of `total_income` by removing the dividends from the sum, then run `black` again. You should see that, because the `total_income` line is shorter, it can fit on one line, so `black` automatically converts it back to a single line.
 
