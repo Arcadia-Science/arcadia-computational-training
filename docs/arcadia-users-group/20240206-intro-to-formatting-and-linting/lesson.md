@@ -33,7 +33,7 @@ def calculate_quadratic_roots(quadratic_coeff, linear_coeff, constant_coeff):
 
     return root_1, root_2
 ```
-Notice how this code is easier to read and easier to understand (if still somewhat opaque). Notice that there are several kinds of changes in this version. For one, spaces are used around the operators, which generally makes code easier to read; this is a kind of *formatting convention*. In addition, the variable names are much longer and are more descriptive, which make it easier for reader to infer the meaning of the code; this is a kind of *style convention*. 
+Notice how this code is easier to read and understand (if still somewhat opaque). This is due to several formatting and style changes. For one, spaces are used around the operators and the single long line has been broken into four separate lines, each of which does one specific thing. These changes generally makes code easier to read; they are a kind of *formatting convention*. In addition, the variable names are much longer and are more descriptive, which make it easier for reader to infer the meaning and intent the code; this is a kind of *style convention*. 
 
 In this lesson, we'll discuss both formatting and style conventions, as well as tools to automatically format code and check that is complies with our style conventions.
 
