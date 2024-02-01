@@ -164,7 +164,7 @@ class ProteinSequence:
 protein_sequence = ProteinSequence('MSKGEELFTG')
 ```
 
-All names should be specific, descriptive, and  unambigious. When in doubt, err on the side of verbosity, and always avoid unecessary abbreviations. Although the meaning of "descriptive" is obviously subjective, there are some general guidelines that all names, no matter how brief, should follow:
+All names should be specific, descriptive, and unambiguous. When in doubt, err on the side of verbosity, and always avoid unnecessary abbreviations. Although the meaning of "descriptive" is obviously subjective, there are some general guidelines that all names, no matter how brief, should follow:
 
 - Function names should generally begin with a verb that corresponds to what they do. Functions that return a boolean value should have a name of the form `is_<something>` or `has_<something>`, functions that calculate something `calculate_<something>` or if they modify an object in-place, they should be named either `set_<something>` or `update_<something>`.
 
