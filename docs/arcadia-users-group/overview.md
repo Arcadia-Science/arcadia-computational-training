@@ -20,25 +20,24 @@ The schedule is subject to change.
 
 | Date         | Tutorial            | Description   |
 | ------------ | ------------------- | ------------- |
-| Jan 23, 2024 | TBD | |
-| Feb 6, 2024  | TBD | |
-| Mar 5, 2024  | TBD | |
-| Mar 19, 2024 | TBD | |
-| Apr 16, 2024 | TBD | |
-| Apr 30, 2024 | TBD | |
-| May 14, 2024 | TBD | |
-| May 28, 2024 | TBD | |
-| Jun 11, 2024 | TBD | |
-| Jun 25, 2024 | TBD | |
-| Jul 9, 2024  | TBD | |
-| Jul 23, 2024 | TBD | |
-| Aug 6, 2024  | TBD | |
-| Aug 20, 2024 | TBD | |
-| Sep 3, 2024  | TBD | |
-| Sep 17, 2024 | TBD | |
-| Oct 1,  2024 | TBD | |
-| Oct 15, 2024 | TBD | |
-| Oct 29, 2024 | TBD | |
+| Feb 6, 2024  | [Code formatting, linting, and style guides](20240206-intro-to-formatting-and-linting/lesson.md) | This lesson dives into the essentials of Python code formatting, linting, and style guides. It emphasizes why consistent code style is crucial for readability and maintenance and introduces tools like black for auto-formatting and ruff for linting. The session also explains Python-specific conventions, such as PEP8 and the Google Python Style Guide, with practical examples to illustrate how these practices improve code quality.|
+| Mar 5, 2024  | GitHub Templates: new repos with set structures | |
+| Mar 19, 2024 | Office hours | |
+| Apr 16, 2024 | Intro to Machine Learning 1 | |
+| Apr 30, 2024 | Intro to Machine Learning 2 | |
+| May 14, 2024 | Office hours | |
+| May 28, 2024 | Code Organization (when do you make a class? when do you split something up?) | |
+| Jun 11, 2024 | Office hours | |
+| Jun 25, 2024 | Principles of Data Visualization | |
+| Jul 9, 2024  | Data Visualization for Pubs | |
+| Jul 23, 2024 | Interactive Data Visualization | |
+| Aug 6, 2024  | Office hours | |
+| Aug 20, 2024 | Numpy: matrices, arrays, and math | |
+| Sep 3, 2024  | Pandas: data frames in python | |
+| Sep 17, 2024 | Applied Machine Learning 1: scikit learn or similar | |
+| Oct 1,  2024 | Applied Machine Learning 2: pytorch or similar | |
+| Oct 15, 2024 | Office hours | |
+| Oct 29, 2024 | Chat GPT to empower biologists to code | |
 | Nov 12, 2024 | TBD | |
 | Dec 10, 2024 | TBD | |
 
