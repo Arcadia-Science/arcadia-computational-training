@@ -310,8 +310,8 @@ def calculate_fibonacci(n):
         return fibonacci(n - 1) + fibonacci(n - 2)
 ```
 
-#### Things comments should *not* be used for
-There are two major ways in which comments are commonly misused. Note that avoiding these misuses is not specific to Python but is a general best practice that applies to all programming languages. The first is that, as we alluded to above, comments should not be redundant with the code. They should not simply restate what the code is doing and they should not include information that is apparent or readily inferred from the code itself. Here are some examples of such redundant comments:
+#### Things that comments should *not* be used for
+There are two major ways in which comments are commonly misused. Note that avoiding these misuses is not specific to Python but is a general best practice that applies to all programming languages. The first is that, as we alluded to above, comments should not be redundant with the code. They should not simply restate what the code is doing and they should not include information that is apparent or readily inferred from the code itself. In addition to cluttering the codebase with redundant information, redundant comments also introduce a maintenance liability, as they must be manually kept in sync with the code when it changes. Even worse, when comments are not updated along with the code, the contradiction between the comment and the code will create confusion and ambiguity for future readers. Here are some examples of such redundant comments:
 ```python
 # find the minimum value and clamp it to 0.
 min_value = max(min(values), 0)
