@@ -133,6 +133,11 @@ Now, try simplifying the calculation of `total_income` by removing the dividends
 There is a succinct overview of `black`'s formatting rules in [its documentation](https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html). While it's good to be familiar with these rules, there is no need to memorize them. Indeed, the purpose of using a formatting tool like `black` is to eliminate the need to manually write your code according to any particular formatting conventions or even to think about formatting at all. 
 
 
+<details>
+<summary><b>Aside about <code>black</code> and <code>ruff</code></b></summary>
+Since its release in 2018, <code>black</code> has played an influential role in standardizing code formatting across the Python ecosystem. However, it has now been reimplemented by a tool called <code>ruff</code> that is designed to be a fast and comprehensive tool for formatting and linting code in Python (as we'll discuss below). This lesson uses <code>black</code> as an homage to its historical importance, but in practice, <code>ruff</code> is the tool we should be using for both formatting and linting.
+</details>
+
 ## Style guides
 Although formatting conventions help constrain the very low-level aspects of how code is written, additional rules and conventions are required to ensure that code is both readable and understandable. These conventions are usually expressed in the form of style guides. Style guides define rules, conventions, and guidelines to which all code in a codebase should adhere. They concern both both low-level questions like how to name variables and functions, as well as higher-level considerations like documentation standards and some aspects of how code is organized or structured.
 
@@ -286,7 +291,7 @@ Comments are human-readable lines of text that can appear anywhere in the source
 
 In particular, comments should be complete sentences with proper punctuation. They should be written in full English sentences and should be grammatically correct. Importantly, they should end with periods; this is not only grammatically correct but is also the only way to indicate to the reader that the comment is complete and was not accidentally truncated (or never completely written in the first place). 
 
-Most importantly, comments should generally be used to explain *why* a particular line or block of code is doing what it is doing, not *what* it is doing or *how* it is doing it (usually, this should be apparent from the code itself). 
+Most importantly, comments should generally be used to explain *why* a particular line or block of code is doing what it is doing, not *what* it is doing or *how* it is doing it (usually, this should be apparent from the code itself). Of course, comments are also appropriate when *what* the code is doing is not obvious or may appear to be counter-intuitive. Ideally, these cases should be rare, particularly as a codebase matures. Finally, when a line or short block of code is known to be a temporary fix or otherwise sub-optimal, a comment is a good way to indicate this to future readers. (Needless to say, these cases should also be rare.)
 
 Here is an example of a good comment that explains *why* a CSV file is loaded with a particular set of parameters:
 ```python
@@ -429,8 +434,7 @@ Found 8 errors.
 ```
 Notice that, among other issues, `ruff` has now noticed that our function (and indeed the `main.py` module itself) does not have a docstring. As an aside, the `warning` lines at the beginning of the output indicate a problem with our use of `ruff`: we have enabled so many lint rules that some of the rules are actually in conflict with one another, so `ruff` has to choose which ones to enforce. 
 
-In general, choosing the appropriate set of lint rules to enforce is a context- and project-dependent decision. As codebases grow and either become more complex or are developed by multiple people, it often makes sense to enforce increasingly strict and extensive linting rules. For our purposes at Arcadia, using the default rules that `ruff` enforces (i.e., using `ruff check` alone) is a great place to start; this will catch many common typos and bugs that will cause errors at runtime (like undefined and unused variables). 
-
+In general, choosing the appropriate set of lint rules to enforce is a context- and project-dependent decision. As codebases grow and either become more complex or are developed by multiple people, it often makes sense to enforce increasingly strict and extensive linting rules. For our purposes at Arcadia, using the default rules that `ruff` enforces (i.e., using `ruff check` alone) is a great place to start; this will catch many common typos and bugs that will cause errors at runtime (like undefined and unused variables). As we discuss below, we now have a template repository for Python projects at Arcadia that comes with reasonable default settings for `ruff`. 
 
 ### When to format and when to lint
 The short answer is early and often: because formatters and linters are fast and easy to run, it is best to run them frequently and as early as possible in the development process, when errors are easy to fix. Most IDEs can be configured to run formatters automatically each time a file is saved, and linters are often integrated with IDEs as well (this is how VS Code, for example, displays squiggly red lines under undefined variables).
@@ -438,7 +442,7 @@ The short answer is early and often: because formatters and linters are fast and
 In addition, formatting and linting are usually run automatically as part of a [continuous integration (CI) pipeline](https://training.arcadiascience.com/arcadia-users-group/20231104-testing-concepts/lesson/#continuous-integration). Briefly, this means that, for example, whenever a PR is opened on GitHub, the same formatting and linting tools that a developer would run locally are run remotely on the code in the PR. This ensures that the code on the `main` branch in the GitHub repo--which is the "final" version of the code that will ultimately be shared with or deployed to users--is properly formatted and passes the project's linting rules, whether or not individual developers took the time to run these tools locally. 
 
 ### Setting up formatting and linting in a new project
-Because formatting and linting are such common tasks, it is convenient to develop "templates" that define the formatting and linting tools that should be used for all projects within an organization. These templates often also include GitHub Actions workflows to run formatting and linting automatically as part of a CI pipeline as we discussed above. We're working on developing GitHub templates for Python and R projects at Arcadia; we will have a future AUG lesson on how to use these templates to quickly start new projects with the correct formatting and linting tools already set up.
+Because formatting and linting are such common tasks, it is convenient to develop "templates" that define the formatting and linting tools that should be used for all projects within an organization. These templates often also include GitHub Actions workflows to run formatting and linting automatically as part of a CI pipeline. At Arcadia, we've developed GitHub repo templates for [Python projects](https://github.com/Arcadia-Science/python-analysis-template), for [Snakemake pipelines](https://github.com/Arcadia-Science/snakemake-template), and for [R projects](https://github.com/Arcadia-Science/r-template). These templates should allow you to start new projects with the correct formatting and linting tools already set up. Later this year, we'll have an AUG lesson about how to use these templates.
 
 
 ## Beyond formatting and linting: software architecture and design patterns
