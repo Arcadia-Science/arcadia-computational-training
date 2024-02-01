@@ -214,7 +214,7 @@ user_input = input('Enter your name: ')
 #### Aside about single-letter variable names
 Although PEP8 and other style guides do not explicitly forbid the use of single-letter variable names, they are strongly discouraged in most contexts. This is because single-letter variable names are, by definition, not descriptive. They can also be quite literally ambiguous; it is often hard to visually detect the difference between `i`, `j`, `l`, and `1`, for example. Finally, a subtler reason to avoid single-character variable names is that they can make refactoring harder, as it may be more cumbersome to search for and rename single-character variable names than more descriptive ones.
 
-The only exception to this general prohibition should be for variables defined in a very local or narrow scope such as a short `for` loop or in a lambda function. Here are two examples where single-letter variable names is used within a single line (which is as narrow a scope as possible):
+One exception to this general prohibition should be for variables defined in a very local or narrow scope such as a short `for` loop or in a lambda function. Here are two examples where single-letter variable names is used within a single line (which is as narrow a scope as possible):
 ```python
 # single-letter variable names in a list comprehension
 filepaths = ['data_1.txt', 'data_2.txt', 'data_3.csv']
@@ -230,15 +230,27 @@ txt_filepaths = [filepath for filepath in filepaths if filepath.endswith('.txt')
 
 squared_numbers = list(map(lambda value: value**2, numbers))
 ```
+
+Another scenario in which single-letter variable names may be acceptable is when implementing mathematical formulas as they appear in a publication or as they are typically written in the literature. In these cases, it may be clearer to retain the original single-letter names rather than replacing them with more descriptive names. For example, consider the formula for the force of gravity between two objects:
+```python
+# Calculate the force of gravity between two objects.
+F = G * m_1 * m_2 / d**2
+```
+Here, the formula is well-known and the meaning of `G`, `m_1`, `m_2`, and `d` would be clear to anyone who is familiar with the formula. Using longer, more descriptive variable names in this case could make the code harder to read:
+```python
+force_of_gravity = gravitational_constant * mass_1 * mass_2 / distance_mass_1_mass_2**2
+```
+However, if the single-letter names used in an equation are also used in other places in the code, then it is probably better to use more descriptive names throughout, as the clarity of the single-letter names heavily depends on their use in the context of a well-known or well-documented equation. 
+
 <details>
 <summary><b>More about single-letter variable names in scientific programming</b></summary>
-Unfortunately, single-letter variable names are a tempting shortcut and seem to be common in scientific programming. Invariably, however, this comes at the price of readability. Consider the following example of iterating over the pixels in a timelapse image:
+Unfortunately, single-letter variable names seem to be common in scientific programming. As we discussed above, this may be acceptable when they are are used in the context a well-known mathematical formula. But in many cases, their use is simply a shortcut that comes at the price of readability. Consider the following example of iterating over the pixels in a timelapse image:
 
 ```python
-# create a random timelapse image with 3 timepoints
+# Create a random timelapse image with 3 timepoints.
 image = np.random.rand(3, 100, 100)
 
-# iterate over the pixels in the image
+# Iterate over the pixels in the image.
 N_T, N_X, N_Y = image.shape
 for t in range(N_T):
     for x in range(N_X):
@@ -250,10 +262,10 @@ Although this code is compact, it is hard to keep track of the many single-chara
 
 This version of the code, with more descriptive variable names, is much clearer:
 ```python
-# create a random timelapse image with 3 timepoints
+# Create a random timelapse image with 3 timepoints.
 image = np.random.rand(3, 100, 100)
 
-# iterate over the pixels in the image
+# Iterate over the pixels in the image.
 num_timepoints, num_rows, num_cols = image.shape
 for time_ind in range(num_timepoints):
     for row_ind in range(num_rows):
