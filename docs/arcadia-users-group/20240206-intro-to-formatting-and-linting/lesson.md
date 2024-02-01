@@ -437,7 +437,13 @@ Found 8 errors.
 ```
 Notice that, among other issues, `ruff` has now noticed that our function (and indeed the `main.py` module itself) does not have a docstring. As an aside, the `warning` lines at the beginning of the output indicate a problem with our use of `ruff`: we have enabled so many lint rules that some of the rules are actually in conflict with one another, so `ruff` has to choose which ones to enforce. 
 
-In general, choosing the appropriate set of lint rules to enforce is a context- and project-dependent decision. As codebases grow and either become more complex or are developed by multiple people, it often makes sense to enforce increasingly strict and extensive linting rules. For our purposes at Arcadia, using the default rules that `ruff` enforces (i.e., using `ruff check` alone) is a great place to start; this will catch many common typos and bugs that will cause errors at runtime (like undefined and unused variables). As we discuss below, we now have a template repository for Python projects at Arcadia that comes with reasonable default settings for `ruff`. 
+In general, choosing the appropriate set of lint rules to enforce is a context- and project-dependent decision. As codebases grow and become more complex, or when codebases are developed by multiple people, it often makes sense to enforce increasingly strict and extensive linting rules. For our purposes at Arcadia, the default rules that `ruff` enforces (i.e., using `ruff check` alone) is a great place to start; this will catch many common typos and bugs that will cause errors at runtime (like undefined and unused variables). As we discuss below, we now have a template repository for Python projects at Arcadia that comes with reasonable default settings for `ruff`.
+
+Finally, note that many linters can automatically fix some of the issues that they detect. You can try this out with `ruff` by running:
+```bash
+ruff check --fix .
+```
+The `--fix` flag tells `ruff` to fix as many of the lint errors as it can. Of course, this only goes so far, as many errors (like the missing docstrings) cannot be fixed automatically. (This will probably change in the future, as LLMs become more reliable and are incorporated into linters or even used to replace them entirely.)
 
 ### When to format and when to lint
 The short answer is early and often: because formatters and linters are fast and easy to run, it is best to run them frequently and as early as possible in the development process, when errors are easy to fix. Most IDEs can be configured to run formatters automatically each time a file is saved, and linters are often integrated with IDEs as well (this is how VS Code, for example, displays squiggly red lines under undefined variables).
