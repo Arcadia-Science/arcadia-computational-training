@@ -9,6 +9,8 @@ This means that, when writing code, we need to have a system of rules and guidel
 
 *at a higher level, this is also, in part, the purpose of design patterns and application architectures, but that is a topic for a future lesson.
 
+These conventions are particularly important for us at Arcadia, as most of our code is developed collaboratively, which necessarily means that multiple people will read it. In addition, we often intend for the code we produce to be useful and understandable to others outside of Arcadia, and part of that is ensuring our code meets high standards for readability and comprehensibility. 
+
 
 ## An introductory example
 As an example to help illustrate why code formatting and style are so important, consider the following code:
@@ -31,12 +33,12 @@ def calculate_quadratic_roots(quadratic_coeff, linear_coeff, constant_coeff):
 
     return root_1, root_2
 ```
-Notice how this code is easier to read and easier to understand (if still somewhat opaque). Notice that there are several kinds of changes in this version. For one, spaces are used around the operators, which generally makes code easier to read; this is a kind of *formatting convention*. In addition, the variable names are much longer and are more descriptive, which make it easier for reader to infer the meaning of the code; this is a kind of *style convention*. 
+Notice how this code is easier to read and understand (if still somewhat opaque). This is due to several formatting and style changes. For one, spaces are used around the operators and the single long line has been broken into four separate lines, each of which does one specific thing. These changes generally makes code easier to read; they are a kind of *formatting* convention. In addition, the variable names are much longer and are more descriptive, which make it easier for reader to infer the meaning and intent the code; this is a kind of *style* convention. 
 
 In this lesson, we'll discuss both formatting and style conventions, as well as tools to automatically format code and check that is complies with our style conventions.
 
 ## Lesson setup
-We'll create a simple Python project to demonstrate how to use the tools we'll be discussing.
+We'll create a Python project to demonstrate how to use the tools we'll be discussing.
 
 Create a new conda environment and activate it:
 ```bash
@@ -124,18 +126,27 @@ Now, from the command line, run:
 ```bash
 black .
 ```
-This command tells `black` to reformat all the Python files in the current directory (the lone dot in the command is the relative path to the current directory). If you look at `main.py` now, you'll see that the code has been reformatted according to `black`'s rules.
+This command tells `black` to reformat all the Python files in the current directory (the lone dot in the command is the relative path to the current directory). By default, black considers any file ending with `.py` to be a Python file, and it will look for and reformat all such files in the directory path it is given (or any of that directory's subdirectories). 
+
+Take a look at `main.py` again. You should see that the code has been reformatted according to `black`'s rules.
 
 Now, try simplifying the calculation of `total_income` by removing the dividends from the sum, then run `black` again. You should see that, because the `total_income` line is shorter, it can fit on one line, so `black` automatically converts it back to a single line.
 
 There is a succinct overview of `black`'s formatting rules in [its documentation](https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html). While it's good to be familiar with these rules, there is no need to memorize them. Indeed, the purpose of using a formatting tool like `black` is to eliminate the need to manually write your code according to any particular formatting conventions or even to think about formatting at all. 
 
 
+<details>
+<summary><b>Aside about <code>black</code> and <code>ruff</code></b></summary>
+Since its release in 2018, <code>black</code> has played an influential role in standardizing code formatting across the Python ecosystem. However, it has now been reimplemented by a tool called <code>ruff</code> that is designed to be a fast and comprehensive tool for formatting and linting code in Python (as we'll discuss below). This lesson uses <code>black</code> as an homage to its historical importance, but in practice, <code>ruff</code> is the tool we should be using for both formatting and linting.
+</details>
+
 ## Style guides
-Although formatting conventions help constrain the very low-level aspects of how code is written, additional rules and conventions are required to ensure that code is both readable and understandable. These conventions are usually expressed in the form of style guides. Style guides define rules, conventions, and guidelines to which all code in a codebase should adhere. They concern both both low-level questions like how to name variable and functions, as well as higher-level considerations like documentation standards and some aspects of how code is organized or structured.
+Although formatting conventions help constrain the very low-level aspects of how code is written, additional rules and conventions are required to ensure that code is both readable and understandable. These conventions are usually expressed in the form of style guides. Style guides define rules, conventions, and guidelines to which all code in a codebase should adhere. They concern both both low-level questions like how to name variables and functions, as well as higher-level considerations like documentation standards and some aspects of how code is organized or structured.
 
 ### PEP8 and Python style guides
-Many language have an official style guide. For Python, the official style guide is called [PEP8](https://peps.python.org/pep-0008/#introduction). In addition, Google's [Python style guide](https://google.github.io/styleguide/pyguide.html) is an important extension of PEP8 that defines additional standards, especially around comments and documentation. Most major Python projects follow at least PEP8, and we should strive to follow it at Arcadia as well. This is true no matter the scale of the project; it is a good practice to follow PEP8 even for small scripts and one-off analyses. As projects grow, it is usually wise to start imposing additional style conventions from Google' style guide on top of PEP8.
+Many language have an official style guide. For Python, the official style guide is called [PEP8](https://peps.python.org/pep-0008/#introduction). In addition, Google's [Python style guide](https://google.github.io/styleguide/pyguide.html) is an important extension of PEP8 that defines additional standards, especially around nomenclature, documentation, and code organization. Most major Python projects follow PEP8, and we should strive to follow it at Arcadia as well, as it is a foundational part of ensuring our code is readable and useful to others. 
+
+This is true no matter the scale of the project; it is a good practice to follow PEP8 even for small scripts and one-off analyses, as it is often hard to anticipate the lifetime of a project in advance. It is therefore prudent to assume that all of the code we write will always be read by others (inside, if not also outside, of Arcadia). As projects grow and it becomes more likely that we will need to maintain them for a long period of time, we can then readily impose additional style conventions from Google's style guide on top of PEP8.
 
 Many of the conventions defined in PEP8 concern formatting and are automatically enforced by using `black` to format our code. However, PEP8 also includes style conventions that we must follow manually. Here, we'll discuss two important categories of style conventions: naming conventions and documentation conventions.
 
@@ -143,7 +154,7 @@ Many of the conventions defined in PEP8 concern formatting and are automatically
 Naming conventions are an important element of code style. They determine how variables, functions, classes, modules, and other objects should be named. In Python, there are some strict rules about how to name each of these things:
 
 - variables, functions, and modules* should be named in `lower_snake_case`.
-- classe names should be `UpperCamelCase`.
+- class names should be `UpperCamelCase`.
 - global variables should be named in `ALL_CAPS_SNAKE_CASE`.
 - names should never begin with a number.
 
@@ -160,11 +171,11 @@ class ProteinSequence:
 protein_sequence = ProteinSequence('MSKGEELFTG')
 ```
 
-All names should be specific, descriptive, and  unambigious. When in doubt, err on the side of verbosity, and always avoid unecessary abbreviations. Although the meaning of "descriptive" is obviously subjective, there are some general guidelines that all names, no matter how brief, should follow:
+All names should be specific, descriptive, and unambiguous. When in doubt, err on the side of verbosity, and always avoid unnecessary abbreviations. Although the meaning of "descriptive" is obviously subjective, there are some general guidelines that all names, no matter how brief, should follow:
 
 - Function names should generally begin with a verb that corresponds to what they do. Functions that return a boolean value should have a name of the form `is_<something>` or `has_<something>`, functions that calculate something `calculate_<something>` or if they modify an object in-place, they should be named either `set_<something>` or `update_<something>`.
 
-- Variable names should not include type information (e.g., `list_of_ints` or `title_str`), since Python is a dynamically typed language and the type of a variable can change at runtime. The same goes for functions (e.g. `calculate_tm_score` instead of `calculate_tm_score_fn`). To express type information, type annotations should be used (this is a topic for a future lesson).
+- Variable names should not include type information (e.g., `list_of_ints` or `title_str`), since Python is a dynamically typed language and the type of a variable can change at runtime. The same goes for functions (e.g. `calculate_tm_score` instead of `calculate_tm_score_fn`). To express type information, type hints should be used (this is a topic for a future lesson, but if you're curious, check out [this overview of type hints](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)).
 
 - Where possible, use the plural form of a noun for variables that contain a collection of things (e.g., for a list of proteins, use `proteins` instead of `proteins_list`). 
 
@@ -210,13 +221,13 @@ user_input = input('Enter your name: ')
 #### Aside about single-letter variable names
 Although PEP8 and other style guides do not explicitly forbid the use of single-letter variable names, they are strongly discouraged in most contexts. This is because single-letter variable names are, by definition, not descriptive. They can also be quite literally ambiguous; it is often hard to visually detect the difference between `i`, `j`, `l`, and `1`, for example. Finally, a subtler reason to avoid single-character variable names is that they can make refactoring harder, as it may be more cumbersome to search for and rename single-character variable names than more descriptive ones.
 
-The only exception to this general prohibition should be for variables defined in a very local or narrow scope such as a short `for` loop or in a lambda function. Here are two examples where single-letter variable names is used within a single line (which is as narrow a scope as possible):
+One exception to this general prohibition should be for variables defined in a very local or narrow scope such as a short `for` loop or in a lambda function. Here are two examples where single-letter variable names is used within a single line (which is as narrow a scope as possible):
 ```python
 # single-letter variable names in a list comprehension
 filepaths = ['data_1.txt', 'data_2.txt', 'data_3.csv']
 txt_filepaths = [f for f in filepaths if f.endswith('.txt')]
 
-# single-letter variable names in an anonymous lambda function
+# single-letter variable names in a lambda function
 numbers = [1, 2, 3, 4, 5]
 squared_numbers = list(map(lambda x: x**2, numbers))
 ```
@@ -227,14 +238,26 @@ txt_filepaths = [filepath for filepath in filepaths if filepath.endswith('.txt')
 squared_numbers = list(map(lambda value: value**2, numbers))
 ```
 
-Unfortunately, single-letter variable names are a tempting shortcut anad seem to be common in scientific programming. Invariably, however, this comes at the price of readability. 
-
-Consider the following example of iterating over the pixels in a timelapse image:
+Another scenario in which single-letter variable names may be acceptable is when implementing mathematical formulas as they appear in a publication or as they are typically written in the literature. In these cases, it may be clearer to retain the original single-letter names rather than replacing them with more descriptive names. For example, consider the formula for the force of gravity between two objects:
 ```python
-# create a random timelapse image with 3 timepoints
+# Calculate the force of gravity between two objects.
+F = G * m_1 * m_2 / d**2
+```
+Here, the formula is well-known and the meaning of `G`, `m_1`, `m_2`, and `d` would be clear to anyone who is familiar with the formula. Using longer, more descriptive variable names in this case could make the code harder to read:
+```python
+force_of_gravity = gravitational_constant * mass_1 * mass_2 / distance_mass_1_mass_2**2
+```
+However, if the single-letter names used in an equation are also used in other places in the code, then it is probably better to use more descriptive names throughout, as the clarity of the single-letter names heavily depends on their use in the context of a well-known or well-documented equation. 
+
+<details>
+<summary><b>More about single-letter variable names in scientific programming</b></summary>
+Unfortunately, single-letter variable names seem to be common in scientific programming. As we discussed above, this may be acceptable when they are are used in the context a well-known mathematical formula. But in many cases, their use is simply a shortcut that comes at the price of readability. Consider the following example of iterating over the pixels in a timelapse image:
+
+```python
+# Create a random timelapse image with 3 timepoints.
 image = np.random.rand(3, 100, 100)
 
-# iterate over the pixels in the image
+# Iterate over the pixels in the image.
 N_T, N_X, N_Y = image.shape
 for t in range(N_T):
     for x in range(N_X):
@@ -246,10 +269,10 @@ Although this code is compact, it is hard to keep track of the many single-chara
 
 This version of the code, with more descriptive variable names, is much clearer:
 ```python
-# create a random timelapse image with 3 timepoints
+# Create a random timelapse image with 3 timepoints.
 image = np.random.rand(3, 100, 100)
 
-# iterate over the pixels in the image
+# Iterate over the pixels in the image.
 num_timepoints, num_rows, num_cols = image.shape
 for time_ind in range(num_timepoints):
     for row_ind in range(num_rows):
@@ -260,16 +283,17 @@ for time_ind in range(num_timepoints):
                 f'and position ({row_ind}, {col_ind}) is {intensity}'
             )
 ```
+</details>
 
 ### Documentation conventions
-In the context of code style guides, "documentation" refers to human-readable text that is embedded in the source code to explain what the code does and how it works. It is very important to define standards and conventions for documentation because it is a major way--and sometimes the only way--to ensure that code is readily understandable by others. In python, documentation takes two forms: comments that can appear anywhere in the code and docstrings that accompany modules, classes, and functions.
+In the context of code style guides, "documentation" refers to human-readable text that is embedded in the source code to explain what the code does and how it works. It is very important to define standards and conventions for documentation because it is a major way--and sometimes the only way--to ensure that code is readily understandable by others. In Python, documentation takes two forms: comments that can appear anywhere in the code and docstrings that accompany modules, classes, and functions.
 
 #### Comments
 Comments are human-readable lines of text that can appear anywhere in the source code. In Python, they are denoted by the `#` character. Although they are ignored by the Python interpreter and might seem like an area where "anything goes", it is important to adhere to strict standards of grammar and style when writing comments, since they are often the only way to explain the purpose of a particular line or block of code.
 
 In particular, comments should be complete sentences with proper punctuation. They should be written in full English sentences and should be grammatically correct. Importantly, they should end with periods; this is not only grammatically correct but is also the only way to indicate to the reader that the comment is complete and was not accidentally truncated (or never completely written in the first place). 
 
-Most importantly, comments should generally be used to explain *why* a particular line or block of code is doing what it is doing, not *what* it is doing or *how* it is doing it (usually, this should be apparent from the code itself). 
+Most importantly, comments should generally be used to explain *why* a particular line or block of code is doing what it is doing, not *what* it is doing or *how* it is doing it (usually, this should be apparent from the code itself). Of course, comments are also appropriate when *what* the code is doing is not obvious or may appear to be counter-intuitive. Ideally, these cases should be rare, particularly as a codebase matures. Finally, when a line or short block of code is known to be a temporary fix or otherwise sub-optimal, a comment is a good way to indicate this to future readers. (Needless to say, these cases should also be rare.)
 
 Here is an example of a good comment that explains *why* a CSV file is loaded with a particular set of parameters:
 ```python
@@ -293,25 +317,24 @@ def calculate_fibonacci(n):
         return fibonacci(n - 1) + fibonacci(n - 2)
 ```
 
-#### Things comments should *not* be used for
-There are two major ways in which comments are commonly misused. Note that avoiding these misuses is not specific to Python but is a general best practice that applies to all programming languages.
+#### Things that comments should *not* be used for
+There are two major ways in which comments are commonly misused. Note that avoiding these misuses is not specific to Python but is a general best practice that applies to all programming languages. The first is that, as we alluded to above, comments should not be redundant with the code. They should not simply restate what the code is doing and they should not include information that is apparent or readily inferred from the code itself. In addition to cluttering the codebase with redundant information, redundant comments also introduce a maintenance liability, as they must be manually kept in sync with the code when it changes. Even worse, when comments are not updated along with the code, the contradiction between the comment and the code will create confusion and ambiguity for future readers. Here are some examples of such redundant comments:
+```python
+# find the minimum value and clamp it to 0.
+min_value = max(min(values), 0)
 
-1. As we alluded to above, comments should not be redundant with the code. They should not simply restate what the code is doing and they should not include information that is apparent or readily inferred from the code itself. Here are some examples of such redundant comments:
-    ```python
-    # find the minimum value and clamp it to 0.
-    min_value = max(min(values), 0)
+# get all the .txt files in the input directory.
+filepaths = input_dirpath.glob('*.txt')
 
-    # get all the .txt files in the input directory.
-    filepaths = input_dirpath.glob('*.txt')
+# create the directory if it doesn't already exist.
+if not os.path.exists(dirpath):
+    os.mkdir(dirpath)
+```
+Note, however, that the definition of "redundant" is somewhat subjective and context-dependent. In particular, it depends on the reader's familiarity with the codebase, the domain and context of the project, and with programming in general. When we can reasonably anticipate that readers of our code will be less familiar with one of these areas, it is perfectly okay to apply a more relaxed definition of redundancy. 
 
-    # create the directory if it doesn't already exist.
-    if not os.path.exists(dirpath):
-        os.mkdir(dirpath)
-    ```
+The second way that comments are sometimes misused is as a way to temporarily "disable" code by "commenting it out." While this is a common and convenient practice, it leads to various problems over time. Commented-out code is difficult to document, easy to forget about, exempt from formatting and linting checks, and over time will pollute the version history. Instead, there are several clearer and more maintainable approaches to "disabling" code: it can be moved into a conditional block with an appropriate condition, moved to its own file, or moved to its own branch on GitHub.
 
-1. Comments should *never* be used to temporarily "disable" code by "commenting it out." While this is a common and convenient practice, it leads to various problems over time. Commented-out code is difficult to document, easy to forget about, exempt from formatting and linting checks, and over time will pollute the version history. Instead, there are several clearer and more maintainable approaches to "disabling" code: it can be moved into a conditional block with an appropriate condition, moved to its own file, or moved to its own branch on GitHub. 
-    The best approach depends on the nature of the code and the reason it is being disabled; but in general, short blocks of code can often be moved into a conditional block, while longer blocks of code should be moved to their own file or branch. In all cases, always think carefully about whether or not the code in question can in fact simply be deleted; often it can be. In the event that is it needed later on, it can usually be recovered from the commit history of the repo on GitHub.
-
+The best approach depends on the nature of the code and the reason it is being disabled; but in general, short blocks of code can often be moved into a conditional block, while longer blocks of code should be moved to their own file or branch. In all cases, always first think carefully about whether or not the code in question can in fact simply be deleted; often it can be. (And in the event that it is needed later on, it can usually be recovered from the commit history of the repo on GitHub.)
 
 #### Docstrings
 Docstrings (short for "documentation strings") are triple-quoted strings that appear directly after the declaration of a module, class, or function and are used to describe what the module, class, or function does, what its inputs are, and what its outputs are. They are treated in a special way by the Python interpreter; they are accessible at runtime and can be used to automatically generate documentation for a Python codebase. (As an aside, many languages have a similar feature, but the term "docstring" is Python-specific.)
@@ -356,6 +379,8 @@ def calculate_roots(quadratic_coeff, linear_coeff, constant_coeff):
 ```
 This version of the function is both easy to read and easy to understand; the docstring explains exactly what the function does, what its inputs are, and what its outputs are, and the implementation is transparent and easy to follow thanks to the descriptive variable names.
 
+#### Documentation in code generated by ChatGPT
+Unfortunately, ChatGPT tends to include abundant redundant comments in the code that it generates. While this may be beneficial from a pedagogical perspective, it is not conducive to generating code that can be readily incorporated into an existing codebase. When using code generated by ChatGPT, it is important to check for and remove any redundant comments before including the code in your project. This is in addition to, of course, verifying that the code itself is correct and adheres to the project's other style guidelines. 
 
 ## Linting
 "Linting" refers to the analysis of source code to detect syntax errors, potential bugs, and violations of style conventions. Linters are similar to formatters in the sense that they analyze source code and are used to ensure that code adheres to certain standards, but unlike formatters, they typically do not modify the code itself. Instead, linters typically flag issues (or "lint errors") for the developer to fix.
@@ -412,13 +437,21 @@ Found 8 errors.
 ```
 Notice that, among other issues, `ruff` has now noticed that our function (and indeed the `main.py` module itself) does not have a docstring. As an aside, the `warning` lines at the beginning of the output indicate a problem with our use of `ruff`: we have enabled so many lint rules that some of the rules are actually in conflict with one another, so `ruff` has to choose which ones to enforce. 
 
-In general, choosing the appropriate set of lint rules to enforce is a context- and project-dependent decision. As codebases grow and either become more complex or are developed by multiple people, it often makes sense to enforce increasingly strict and extensive linting rules. For our purposes at Arcadia, using the default rules that `ruff` enforces (i.e., using `ruff check` alone) is a great place to start; this will catch many common typos and bugs that will cause errors at runtime (like undefined and unused variables). 
+In general, choosing the appropriate set of lint rules to enforce is a context- and project-dependent decision. As codebases grow and become more complex, or when codebases are developed by multiple people, it often makes sense to enforce increasingly strict and extensive linting rules. For our purposes at Arcadia, the default rules that `ruff` enforces (i.e., using `ruff check` alone) is a great place to start; this will catch many common typos and bugs that will cause errors at runtime (like undefined and unused variables). As we discuss below, we now have a template repository for Python projects at Arcadia that comes with reasonable default settings for `ruff`.
 
+Finally, note that many linters can automatically fix some of the issues that they detect. You can try this out with `ruff` by running:
+```bash
+ruff check --fix .
+```
+The `--fix` flag tells `ruff` to fix as many of the lint errors as it can. Of course, this only goes so far, as many errors (like the missing docstrings) cannot be fixed automatically. (This will probably change in the future, as LLMs become more reliable and are incorporated into linters or even used to replace them entirely.)
 
 ### When to format and when to lint
-The short answer is early and often: because formatters and linters are fast and easy to run, it is best to run them frequently and as early as possible in the development process, when errors are easy to fix. Most IDEs can be configured to run formatters automatically each time a file is saved, and linters are often integrate with IDEs as well (this is how VS Code, for example, displays squiggly red lines under undefined variables).
+The short answer is early and often: because formatters and linters are fast and easy to run, it is best to run them frequently and as early as possible in the development process, when errors are easy to fix. Most IDEs can be configured to run formatters automatically each time a file is saved, and linters are often integrated with IDEs as well (this is how VS Code, for example, displays squiggly red lines under undefined variables).
 
-In addition, formatting and linting are usually run automatically as part of a continuous integration (CI) pipeline. Briefly, this means that, for example, whenever a PR is opened on GitHub, the same formatting and linting tools that a developer would run locally are run remotely on the code in the PR. This ensures that the code on the `main` branch in the GitHub repo--which is the "final" version of the code that will ultimately be shared with or deployed to users--is properly formatted and passes the project's linting rules, whether or not individual developers took the time to run these tools locally. 
+In addition, formatting and linting are usually run automatically as part of a [continuous integration (CI) pipeline](https://training.arcadiascience.com/arcadia-users-group/20231104-testing-concepts/lesson/#continuous-integration). Briefly, this means that, for example, whenever a PR is opened on GitHub, the same formatting and linting tools that a developer would run locally are run remotely on the code in the PR. This ensures that the code on the `main` branch in the GitHub repo--which is the "final" version of the code that will ultimately be shared with or deployed to users--is properly formatted and passes the project's linting rules, whether or not individual developers took the time to run these tools locally. 
+
+### Setting up formatting and linting in a new project
+Because formatting and linting are such common tasks, it is convenient to develop "templates" that define the formatting and linting tools that should be used for all projects within an organization. These templates often also include GitHub Actions workflows to run formatting and linting automatically as part of a CI pipeline. At Arcadia, we've developed GitHub repo templates for [Python projects](https://github.com/Arcadia-Science/python-analysis-template), for [Snakemake pipelines](https://github.com/Arcadia-Science/snakemake-template), and for [R projects](https://github.com/Arcadia-Science/r-template). These templates should allow you to start new projects with the correct formatting and linting tools already set up. Later this year, we'll have an AUG lesson about how to use these templates.
 
 
 ## Beyond formatting and linting: software architecture and design patterns
