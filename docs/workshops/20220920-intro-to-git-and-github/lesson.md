@@ -221,6 +221,12 @@ Then, you should see:
 Hi username! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
+This may be all of the set up you need to do.
+However, if you continue have issues, you may need to load your key into the SSH agent with: 
+```
+ssh-add ~/.ssh/20220920-github-workshop
+```
+
 ## Getting started with version control
 
 Now that we've established a secure connection between our computers and GitHub, it's time to learn how to start a version controlled repository and add files to it.
