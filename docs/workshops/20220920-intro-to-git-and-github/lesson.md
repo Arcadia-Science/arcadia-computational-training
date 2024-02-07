@@ -208,7 +208,15 @@ To confirm that you have set up authentication properly, run the following comma
 ssh -i ~/.ssh/20220920-github-workshop -T git@github.com
 ```
 
-You should see:
+First, you'll see a message like:
+```
+The authenticity of host 'ssh.github.com (192.30.255.122)' can't be established.
+ECDSA key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM.
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+
+Type `yes` and hit enter.
+Then, you should see:
 ```
 Hi username! You've successfully authenticated, but GitHub does not provide shell access.
 ```
