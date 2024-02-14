@@ -20,7 +20,7 @@ The schedule is subject to change.
 
 | Date         | Tutorial            | Description   |
 | ------------ | ------------------- | ------------- |
-| Mar 5, 2024  | GitHub Templates: new repos with set structures | |
+| Mar 5, 2024  | [GitHub Templates: new repos with set structures](20240305-github-templates/lesson.md) | This lesson provides an overview of how to for create a new repository from a GitHub template. Using a Python analysis repository as an example, it walks through the function of each file in the template and the benefits that come from using templates.|
 | Mar 19, 2024 | Office hours | |
 | Apr 16, 2024 | Intro to Machine Learning 1 | |
 | Apr 30, 2024 | Intro to Machine Learning 2 | |
