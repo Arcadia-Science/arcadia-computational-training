@@ -35,8 +35,24 @@ On the New Repository launch screen, select the template you wish to start from 
 In either case, fill out the rest of the new repository information and click the "Create repository" button.
 This will generate a new repository that already has all of the files and folders that were in the template.
 
-After your new repository is created, *create a new branch* before you start making any changes.
-Do your work in branches and when you are ready to merge your changes into the `main` branch, open a Pull Request and request a review.
+
+!!! warning "Working in branches"
+
+    After your new repository is created, **create a new branch** before you start making any changes.
+    Do your work in branches and when you are ready to merge your changes into the `main` branch, open a Pull Request and request a review.
+    For more on how to use branches, [see this lesson](https://training.arcadiascience.com/workshops/20220920-intro-to-git-and-github/lesson/#working-on-branches).
+    For more on why we think code review is important, [see this blog post](https://www.codegram.com/blog/an-ode-to-code-reviews/) (note we didn't write this blog post, we just agree with a lot of the content). 
+    **We recommend setting up branch protection rules** that can prevent code from making it into `main` with out a Pull Request and review.
+    <details>
+    <summary>How to set up branch protection rules in your repository</summary>
+    Branch protection rules are configured by clicking on the "branches" menu item on the lefthand side of the repo "settings" page.
+    The following Branch protection rules should be enabled:
+    <li>**Require a pull request before merging**: this blocks *anyone* from pushing directly to the main branch (this is particularly important to prevent accidental pushes directly to the public repo `main` when updating the public repo from the private repo).</li>
+    <li>**Require approvals:** this requires that there be at least one approving reviews before a PR can be merged. For public repos, the minimum number should probably be two (since public PRs may be from untrusted external users).</li>
+    <li>**Require status checks to pass before merging**: this blocks PRs from being merged until all of the CI checks are passing.</li>
+    <li>**Dismiss stale pull request approvals when new commits are pushed”:** this should be enabled in the public repo to require that the most recent reviewable commit has been reviewed and approved (we don’t need this requirement in the private repo, since we can trust internal folks not to push substantive commits without review).</li>
+    <li>**Require linear history**”: this prevents PRs from being merged without squash-merging (this will need to be overridden when merging sync PRs).</li>
+    </details>
 
 ## Anatomy of a template: Python analysis template
 

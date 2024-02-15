@@ -22,6 +22,9 @@ theme:
 markdown_extensions:
     - attr_list
     - md_in_html
+    - admonition
+    - pymdownx.details
+    - pymdownx.superfences
 
 # organize site structure and give a title for each page
 # paths are relative to the docs directory
