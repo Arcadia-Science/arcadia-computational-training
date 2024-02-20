@@ -28,13 +28,19 @@ We can then use that to generate a future organization standard template.
 ### Repository Initialization
 
 There are two ways to create a new repo with a template.
-First, you can navigate to the template you want to start from (e.x. https://github.com/Arcadia-Science/python-analysis-template) and click the green "Use this template" button in the upper right hand corner.
-This will take you to the New Repository launch screen with the "Repository template" section already filled out.
-Alternatively, you can click the "+" button in the upper right hand corner of any GitHub page and select "New repository" from the drop down menu.
-On the New Repository launch screen, select the template you wish to start from in the "Repository template" drop down menu.
-In either case, fill out the rest of the new repository information and click the "Create repository" button.
-This will generate a new repository that already has all of the files and folders that were in the template.
 
+#### Option 1
+
+1. Navigate to the template you want to start from (e.x. https://github.com/Arcadia-Science/python-analysis-template).
+2. Click the green "Use this template" button in the upper right hand corner.
+3. This will take you to the New Repository launch screen with the "Repository template" section already filled out.
+4. Fill out the rest of the new repository information and click the "Create repository" button. This will generate a new repository that already has all of the files and folders that were in the template.
+
+#### Option 2
+
+1. Click the "+" button in the upper right hand corner of any GitHub page and select "New repository" from the drop down menu.
+2. On the New Repository launch screen, select the template you wish to start from in the "Repository template" drop down menu.
+3. Fill out the rest of the new repository information and click the "Create repository" button. This will generate a new repository that already has all of the files and folders that were in the template.
 
 !!! warning "Working in branches"
 
@@ -47,11 +53,9 @@ This will generate a new repository that already has all of the files and folder
     <summary>How to set up branch protection rules in your repository</summary>
     Branch protection rules are configured by clicking on the "branches" menu item on the lefthand side of the repo "settings" page.
     The following Branch protection rules should be enabled:
-    <li>**Require a pull request before merging**: this blocks *anyone* from pushing directly to the main branch (this is particularly important to prevent accidental pushes directly to the public repo `main` when updating the public repo from the private repo).</li>
-    <li>**Require approvals:** this requires that there be at least one approving reviews before a PR can be merged. For public repos, the minimum number should probably be two (since public PRs may be from untrusted external users).</li>
+    <li>**Require a pull request before merging**: this blocks *anyone* from pushing directly to the main branch.</li>
+    <li>**Require approvals:** this requires that there be at least one approving review before a PR can be merged.</li>
     <li>**Require status checks to pass before merging**: this blocks PRs from being merged until all of the CI checks are passing.</li>
-    <li>**Dismiss stale pull request approvals when new commits are pushed”:** this should be enabled in the public repo to require that the most recent reviewable commit has been reviewed and approved (we don’t need this requirement in the private repo, since we can trust internal folks not to push substantive commits without review).</li>
-    <li>**Require linear history**”: this prevents PRs from being merged without squash-merging (this will need to be overridden when merging sync PRs).</li>
     </details>
 
 ## Anatomy of a template: Python analysis template
@@ -86,3 +90,4 @@ Below we go through each file in the [`python-analysis-template`](https://github
 	* When Snakemake upgraded to version 8, the command line interface changed and a syntax update was needed to launch a workflow with conda. Keith caught this change and documented it in the Snakemake template README.md file. When I started a new snakemake workflow, I used Keith's template documentation to launch my workflow and didn't need to spend time looking up the new command.
 	* The version of Snakemake installed in the Snakemake template [causes a `TypeError`](https://github.com/Arcadia-Science/snakemake-template/issues/2). I reported this issue on the template and how I fixed it so that future Snakemake workflow repositories know how to fix it. Eventually, we will incorporate this change into the template itself.
 - **Documentation and training:** The templates themselves are centralized sources of best-practice documentation. Interfacing with this documentation and with the tools and conventions used in the templates trains users on those best practices.
+- **Consistency across the organization:** With templates, we can achieve standardization across the organization in our package managers, directory structures, linting tools, etc. This makes it easier for someone to familiarize themselves with your work and to understand what different files or tools do.
