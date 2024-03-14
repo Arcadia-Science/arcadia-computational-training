@@ -61,7 +61,7 @@
 
    # filter to peptides clusters with many members that have the same bioactivity --------
    
-   # read in cluster information from mmseqs2 linclust
+   # read in cluster information from mmseqs2 easy-cluster (result from step 5)
    clusters <- read_tsv("~/Downloads/backup_peptipedia_29_03_2023/mmseqs/peptipedia_minlen10-0.3_cluster.tsv",
                         col_names = c("rep", "member"))
 
