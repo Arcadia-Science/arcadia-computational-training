@@ -4,12 +4,12 @@
 1. Download the peptipedia database:  https://drive.google.com/file/d/1x3yHNl8k5teHlBI2FMgl966o51s0T8i_/view?usp=sharing. The link for this database is provided by the [peptipedia GitHub repo](https://github.com/ProteinEngineering-PESB2/Peptipedia2.0).
 2. Unzip the database.
 3. The unzipped archive contains three files, `backup_sql.zip`, `peptipedia_csv.zip`, and `peptipedia_fasta.zip`.
-Unzipping `peptipedia_fasta.zip` results in a FASTA file `peptipedia.fasta` that contains all of the peptide sequences from the peptipedia database.
-Unzipping `peptipedia_csv.zip` results in a CSV file `peptipedia.csv` that records the peptide id, peptide sequence, and predicted bioactivity labels.
-Unzipping `backup_sql.zip` results in a postgres SQL dump file `backup_dump.sql`.
-This file contains metadata associated with the peptide sequences.
-To extract the metadata to separate CSV tables, we used the python code:
-```python
+   Unzipping `peptipedia_fasta.zip` results in a FASTA file `peptipedia.fasta` that contains all of the peptide sequences from the peptipedia database.
+   Unzipping `peptipedia_csv.zip` results in a CSV file `peptipedia.csv` that records the peptide id, peptide sequence, and predicted bioactivity labels.
+   Unzipping `backup_sql.zip` results in a postgres SQL dump file `backup_dump.sql`.
+   This file contains metadata associated with the peptide sequences.
+   To extract the metadata to separate CSV tables, we used the python code:
+```py
 import re
 
 output_file_prefix = 'table_'
@@ -35,21 +35,21 @@ with open('backup_dump.sql', 'r') as dump_file:
 ```
 
 4. Filter to peptides that are at least k in length. MMSeqs2 clustering in step 4 will fail if any of the sequences are below the k-mer length used for clustering.
-```bash
-seqkit seq --min-len 10 -o peptipedia_minlen10.fasta peptipedia.fasta
-```
+   ```bash
+   seqkit seq --min-len 10 -o peptipedia_minlen10.fasta peptipedia.fasta
+   ```
 
 5. Cluster the sequences.
-Using a low identity threshold (10%), this step determines which peptides in the input database have similar sequences.
-We will subsequently use this information to artificially generate a data set where the peptides or their characteristics are predictive of bioactivity labels.
-```bash
-mmseqs easy-cluster peptipedia_minlen10.fasta mmseqs/peptipedia_minlen10-0.1 tmp --min-seq-id 0.1
-```
+   Using a low identity threshold (10%), this step determines which peptides in the input database have similar sequences.
+   We will subsequently use this information to artificially generate a data set where the peptides or their characteristics are predictive of bioactivity labels.
+   ```bash
+   mmseqs easy-cluster peptipedia_minlen10.fasta mmseqs/peptipedia_minlen10-0.1 tmp --min-seq-id 0.1
+   ```
 
 6. Filter to large clusters composed of peptides that all have the same bioactivity prediction and write a TSV file.
-Many of the peptides that end up in clusters have multiple bioactivity predictions (e.g. antimicrobial and therapeutic).
-The script below filters to peptide clusters that all have at least one bioactivity label that is the same.
-It also adds additional metadata (GO, PFAM) from the SQL database to the data.frame of peptide information.
+   Many of the peptides that end up in clusters have multiple bioactivity predictions (e.g. antimicrobial and therapeutic).
+   The script below filters to peptide clusters that all have at least one bioactivity label that is the same.
+   It also adds additional metadata (GO, PFAM) from the SQL database to the data.frame of peptide information.
 ```r
 library(tidyverse)
 library(janitor)
