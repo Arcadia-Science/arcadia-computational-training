@@ -55,28 +55,29 @@
    library(janitor)
    
    # The goal of this script is to create a demo machine learning data set from peptides and their metadata.
-   # It filters peptides in the peptipedia database to clusters of similar peptides
-   # (10% identity or greater) that all have the same bioactivity label.
-   # It then joins selected peptides to their metadata
-
-   # filter to peptides clusters with many members that have the same bioactivity --------
+   # It filters peptides in the peptipedia database to large clusters of similar peptides
+   # (80% identity or greater) that all have the same bioactivity label.
+   # It then joins selected peptides to their metadata.
    
-   # read in cluster information from mmseqs2 easy-cluster (result from step 5)
-   clusters <- read_tsv("~/Downloads/backup_peptipedia_29_03_2023/mmseqs/peptipedia_minlen10-0.3_cluster.tsv",
-                        col_names = c("rep", "member"))
+   # filter to peptides clusters with many members that have the same bioactivity --------
 
+   # read in cluster information from mmseqs2 linclust
+   clusters <- read_tsv("~/Downloads/backup_peptipedia_29_03_2023/mmseqs/peptipedia_minlen10-0.8_cluster.tsv",
+                        col_names = c("rep", "member"))
+   
    # read in peptide bioactivity information
    peptide_bioactivity <- read_csv('~/Downloads/backup_peptipedia_29_03_2023/peptipedia.csv') %>%
      clean_names()
-
-   # filter to clusters that have many members
+   
+   # make the data set a little bit smaller by filtering to clusters that have > 5 members
+   # otherwise, the lines of code to find clusters with all of the same bioactivity takes too long
    cluster_sizes <- clusters %>%
      group_by(rep) %>%
      tally() %>%
      arrange(desc(n))
    
    large_clusters <- cluster_sizes %>%
-     filter(n > 10)
+     filter(n > 2)
    
    clusters_filtered <- clusters %>%
      filter(rep %in% large_clusters$rep)
@@ -85,34 +86,51 @@
    peptide_bioactivity_filtered <- peptide_bioactivity %>%
      filter(idpeptide %in% clusters_filtered$member)
    
-   peptide_bioactivity_filtered_with_clusters <- left_join(clusters_filtered, peptide_bioactivity_filtered, by = c("member" = "idpeptide"))
-   
    # filter to clusters that all have the same bioactivity for at least one bioactivity label
    # (e.g. all peptides have a predicted bioactivity of "antimicrobial" in a given cluster)
-   peptide_bioactivity_filtered_with_clusters_long <- peptide_bioactivity_filtered_with_clusters %>%
+   peptide_bioactivity_with_clusters <- left_join(clusters_filtered, peptide_bioactivity_filtered,
+                                                  by = c("member" = "idpeptide"))
+   
+   peptide_bioactivity_with_clusters_long <- peptide_bioactivity_with_clusters %>%
      pivot_longer(cols = starts_with("allergen"):last_col(), names_to = "bioactivity", values_to = "value")
    
    # Find clusters where all members have a 1 for any bioactivity
-   clusters_all_1_any_bioactivity <- peptide_bioactivity_filtered_with_clusters_long %>%
+   clusters_all_1_any_bioactivity <- peptide_bioactivity_with_clusters_long %>%
      group_by(rep, bioactivity) %>%
      summarise(all_ones = all(value == 1), .groups = 'drop') %>%
      filter(all_ones) %>%
      distinct(rep, .keep_all = TRUE)
    
-   peptide_group_bioactivities <- peptide_bioactivity_filtered_with_clusters %>%
+   # filter to those clusters where all members have at least 1 bioactivity the same
+   peptide_group_bioactivities <- peptide_bioactivity_with_clusters %>%
      filter(rep %in% clusters_all_1_any_bioactivity$rep) %>%
      left_join(clusters_all_1_any_bioactivity, by = "rep") %>%
-     select(rep, member, member_sequence = sequence, group_bioactivity = bioactivity)
+     # select only the representative for the cluster so that there can't be pollution between test and train data no matter how it is split;
+     # sequences will at most be < 80% similar to any other sequence in the dataset.
+     filter(rep == member) %>%
+     select(peptipedia_peptide_id = rep, peptide_sequence = sequence, group_bioactivity = bioactivity)
+
+   # remove peptides where there are very few representatives (< 50)
+   few_peptides_with_group_bioactivity <- peptide_group_bioactivities %>%
+     group_by(group_bioactivity) %>%
+     tally() %>%
+     filter(n < 50)
    
+   peptide_group_bioactivities_filtered <- peptide_group_bioactivities %>%
+     filter(!group_bioactivity %in% few_peptides_with_group_bioactivity$group_bioactivity)
+
    # Record all bioactivity predictions for each peptide by concatenating the bioactivity names
-   peptide_bioactivities_concatenated <- peptide_bioactivity_filtered_with_clusters_long %>%
+   peptide_bioactivities_concatenated <- peptide_bioactivity_with_clusters_long %>%
      filter(value == 1) %>%
-     group_by(member) %>%
+     filter(rep == member) %>%
+     select(peptipedia_peptide_id = rep, bioactivity, value) %>%
+     group_by(peptipedia_peptide_id) %>%
      summarise(all_bioactivities = str_c(bioactivity, collapse = ";"), .groups = 'drop')
-   
+
+
    # Join this back to your original (or relevant) dataset to add the concatenated bioactivities column
-   final_dataset <- peptide_group_bioactivities %>%
-     left_join(peptide_bioactivities_concatenated, by = "member") %>%
+   final_dataset <- peptide_group_bioactivities_filtered %>%
+     left_join(peptide_bioactivities_concatenated, by = "peptipedia_peptide_id") %>%
      distinct()
    
    # join with other peptide metadata ----------------------------------------
@@ -120,24 +138,24 @@
    gene_ontology <- read_csv("~/Downloads/backup_peptipedia_29_03_2023/table_public.gene_ontology.csv",
                              col_names = c("peptideid", "go_id", "go_description", "go_category")) %>%
      select(peptideid, go_id)
-   
+
    pfam <- read_csv("~/Downloads/backup_peptipedia_29_03_2023/table_public.pfam.csv",
                     col_names = c("peptideid", "pfam_id", "pfam_name", "pfam_type"))
 
    final_dataset <- final_dataset %>%
-     left_join(gene_ontology, by = c("member" = "peptideid")) %>%
-     left_join(pfam, by = c("member" = "peptideid")) %>%
+     left_join(gene_ontology, by = c("peptipedia_peptide_id" = "peptideid")) %>%
+     left_join(pfam, by = c("peptipedia_peptide_id" = "peptideid")) %>%
      distinct()
-   
-   final_dataset %>% group_by(group_bioactivity) %>% tally()
 
-   write_tsv(final_dataset, "~/Downloads/backup_peptipedia_29_03_2023/peptides_for_ml_tmp.tsv")
+   final_dataset %>% group_by(group_bioactivity) %>% tally() %>% arrange(desc(n)) %>% knitr::kable()
+
+   write_tsv(final_dataset, "~/Downloads/backup_peptipedia_29_03_2023/peptides_for_ml_tmp2.tsv")
    ```
 
 
 6. Convert the output TSV to a FASTA file that can be used to calculate peptide characteristics (molecular weight, etc).
    ```bash
-   cut -f2,3 peptides_for_ml_tmp.tsv | tail -n +2 | seqkit tab2fx > peptides_for_ml.fasta
+   cut -f1,2 peptides_for_ml_tmp.tsv | tail -n +2 | seqkit tab2fx > peptides_for_ml.fasta
    ```
 
 7. Calculate peptide characteristics (length, mw, etc.)
@@ -153,11 +171,10 @@
    peptide_characterization <- read_tsv("~/Downloads/backup_peptipedia_29_03_2023/peptides_for_ml_characterized.tsv")
    
    final_dataset <- final_dataset %>%
-     left_join(peptide_characterization, by = c("member" = "peptide_id")) %>%
-     mutate(length = nchar(member_sequence)) %>%
-     select(-rep) %>% # remove the mmseqs2 rep column since it shouldn't be used for prediction and is an artifact of dataset creation.
-     rename(peptipedia_peptide_id = member, peptide_sequence = member_sequence)
-   
+     left_join(peptide_characterization, by = c("peptipedia_peptide_id" = "peptide_id")) %>%
+     mutate(length = nchar(peptide_sequence)) %>%
+     rename(bioactivity = group_bioactivity)
+ 
    write_tsv(final_dataset, "peptides_ml_dataset.tsv")
    ```
 
@@ -167,97 +184,73 @@
    
    set.seed(123)
    
-   final_dataset <- read_tsv("petides_ml_dataset.tsv")
+   final_dataset <- read_tsv("peptides_ml_dataset.tsv")
    final_dataset_filtered <- final_dataset %>%
      select(-peptipedia_peptide_id, -peptide_sequence, -all_bioactivities, -go_id, -pfam_id,
-            -pfam_name, -pfam_type)
-   trainingIndex <- createDataPartition(final_dataset_filtered$group_bioactivity, p = .8, list = FALSE)
+           -pfam_name, -pfam_type)
+   trainingIndex <- createDataPartition(final_dataset_filtered$bioactivity, p = .8, list = FALSE)
    trainingData <- final_dataset_filtered[trainingIndex, ]
    testData <- final_dataset_filtered[-trainingIndex, ]
    
    control <- trainControl(method="cv", number=10) # 10-fold cross-validation
-   model <- train(group_bioactivity ~ ., data=trainingData, method="rf", trControl=control)
+   model <- train(bioactivity ~ ., data=trainingData, method="rf", trControl=control)
    
    predictions <- predict(model, newdata=testData)
-   confusionMatrix(predictions, as.factor(testData$group_bioactivity))
+   confusionMatrix(predictions, as.factor(testData$bioactivity))
    ```
 
    The `confusionMatrix()` command prints the following two results to the console.
    The model has the following accuracy:
    ```
    Overall Statistics
-   
-                  Accuracy : 0.9362
-                  95% CI : (0.9247, 0.9465)
-       No Information Rate : 0.3406
-       P-Value [Acc > NIR] : < 2.2e-16
-
-                  Kappa : 0.9197
-
-    Mcnemar's Test P-Value : NA
+                                          
+               Accuracy : 0.6188          
+                 95% CI : (0.5805, 0.6559)
+    No Information Rate : 0.2496          
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.5316          
+                                          
+   Mcnemar's Test P-Value : NA
    ```
 
    and with per class performance of:
    ```
-                                  Reference
-   Prediction                       allergen amphibian_defense angiogenic anti_gram anti_hiv antibacterial_antibiotic anticancer antifungal antimicrobial bioactive cell_cell_communication cell_penetrating cell_sensing coagulation_or_anticoagulation defense growth_factor hormone immunological_activity metabolic nematode neurological_activity other_activity propeptide signal_peptide therapeutic toxins
-     allergen                              8                 0          0         0        0                        0          0          0             0         0                       0                0            0                              0       0             0       0                      0         0        0                     0              0          0              0           0      0
-     amphibian_defense                     0                 2          0         0        0                        0          0          0             0         0                       0                0            0                              0       0             0       0                      0         0        0                     0              0          0              0           0      0
-     angiogenic                            0                 0          2         0        0                        0          0          0             0         0                       0                0            0                              0       0             0       0                      0         0        0                     0              0          0              0           0      0
-     anti_gram                             0                 0          0         4        0                        0          0          0             0         0                       0                0            0                              0       0             0       0                      0         0        0                     0              0          0              0           0      0
-     anti_hiv                              0                 0          0         0        4                        0          0          0             1         0                       0                0            0                              0       0             0       0                      0         0        0                     0              0          0              0           0      0
-     antibacterial_antibiotic              0                 0          0         0        0                       13          0          0             0         0                       0                0            0                              0       0             0       0                      0         0        0                     0              0          0              1           0      0
-     anticancer                            0                 0          0         0        0                        0          3          0             0         0                       0                0            0                              0       0             0       0                      0         0        0                     0              0          0              0           0      0
-     antifungal                            0                 0          0         0        0                        0          0          1             0         0                       0                0            0                              0       0             0       0                      0         0        0                     0              0          0              0           0      0
-     antimicrobial                         0                 3          0         2        0                        2          0          1           439         0                       0                0            0                              1       0             0       0                      2         2        0                     5              0          1              2           5      1
-     bioactive                             0                 0          0         0        0                        0          0          0             0         9                       0                0            0                              0       0             0       1                      0         0        0                     0              0          0              0           0      0
-     cell_cell_communication               0                 0          0         0        0                        0          0          0             0         0                       4                0            0                              0       0             0       0                      0         0        0                     0              0          0              0           0      0
-     cell_penetrating                      0                 0          0         0        0                        0          0          0             0         0                       0                5            0                              0       0             0       0                      0         0        0                     0              0          0              0           0      0
-     cell_sensing                          0                 0          0         0        0                        0          0          0             0         0                       0                0            4                              0       0             0       0                      0         0        0                     0              0          0              0           0      0
-     coagulation_or_anticoagulation        0                 0          0         0        0                        0          0          0             0         0                       0                0            0                             42       0             0       1                      0         0        0                     0              0          0              0           0      0
-     defense                               0                 0          0         0        0                        0          0          0             0         0                       0                0            0                              0       5             0       0                      0         0        0                     0              0          0              0           0      0
-     growth_factor                         0                 0          0         0        0                        0          0          0             0         0                       0                0            0                              0       0            31       0                      0         0        0                     0              0          0              2           0      0
-     hormone                               0                 0          0         0        0                        0          0          0             2         0                       0                0            0                              0       0             0      80                      0         0        0                     1              0          1              1           1      0
-     immunological_activity                0                 0          0         0        1                        0          0          0             1         0                       0                0            0                              0       0             0       0                    155         0        0                     1              0          0              0           0      0
-     metabolic                             0                 0          0         0        0                        0          0          0             0         0                       0                0            0                              0       0             0       0                      0        16        0                     0              0          0              0           0      0
-     nematode                              0                 0          0         0        0                        0          0          0             0         0                       0                0            0                              0       0             0       0                      0         0        1                     0              0          0              0           0      0
-     neurological_activity                 0                 0          0         0        0                        0          0          0             0         0                       0                0            0                              0       0             0       1                      0         0        0                    31              0          0              0           0      0
-     other_activity                        0                 0          0         0        0                        0          0          0             0         0                       0                0            0                              0       0             0       0                      0         0        0                     0              2          0              0           0      0
-     propeptide                            0                 0          0         0        0                        0          0          0             0         1                       0                0            0                              0       0             1       1                      0         0        0                     0              0         97              3           2      0
-     signal_peptide                        3                 0          0         0        0                        2          0          0             2         0                       0                0            0                              1       0            12       0                      6         0        1                     1              0         26            678          10      0
-     therapeutic                           0                 0          0         0        0                        1          0          0             5         1                       0                0            0                              0       0             0       0                      0         0        0                     5              0          0              2         252      0
-     toxins                                0                 0          0         0        0                        0          0          0             0         0                       0                0            0                              0       0             0       0                      0         0        0                     0              0          0              0           0      6
+                                Reference
+   Prediction                 amphibian_defense anti_gram antibacterial_antibiotic antimicrobial growth_factor hormone immunological_activity neurological_activity propeptide signal_peptide therapeutic
+   amphibian_defense                        0         0                        0             3             0       0                      0                     0          0              0           0
+   anti_gram                                0         0                        0             1             0       0                      0                     0          0              0           0
+   antibacterial_antibiotic                 0         0                        0             0             0       0                      0                     0          1              3           0
+   antimicrobial                           12         9                        9           119             0       9                      9                     4          3             16          11
+   growth_factor                            0         0                        0             0             0       0                      0                     0          0              0           0
+   hormone                                  0         0                        0             3             2       8                      1                     4          3              5           3
+   immunological_activity                   3         0                        0            10             0       3                     47                     3          1              1           2
+   neurological_activity                    0         0                        0             0             0       0                      1                     0          0              1           1
+   propeptide                               0         0                        1             9             1       1                      1                     1         59             10           2
+   signal_peptide                           1         0                        6             9             9      14                      2                     9         18            120           1
+   therapeutic                              1         1                        3            11             0       1                      0                     1          2              0          56
 
 
    Statistics by Class:
-   
-                        Class: allergen Class: amphibian_defense Class: angiogenic Class: anti_gram Class: anti_hiv Class: antibacterial_antibiotic Class: anticancer Class: antifungal Class: antimicrobial Class: bioactive Class: cell_cell_communication Class: cell_penetrating Class: cell_sensing Class: coagulation_or_anticoagulation Class: defense Class: growth_factor Class: hormone Class: immunological_activity Class: metabolic Class: nematode Class: neurological_activity Class: other_activity
-   Sensitivity                 0.727273                0.4000000         1.0000000         0.666667        0.800000                        0.722222          1.000000         0.5000000               0.9756         0.818182                       1.000000                1.000000            1.000000                               0.95455       1.000000              0.70455        0.95238                       0.95092         0.888889       0.5000000                      0.70455             1.0000000
-   Specificity                 1.000000                1.0000000         1.0000000         1.000000        0.999504                        0.999501          1.000000         1.0000000               0.9828         0.999503                       1.000000                1.000000            1.000000                               0.99949       1.000000              0.99899        0.99691                       0.99839         1.000000       1.0000000                      0.99949             1.0000000
-   Pos Pred Value              1.000000                1.0000000         1.0000000         1.000000        0.800000                        0.928571          1.000000         1.0000000               0.9421         0.900000                       1.000000                1.000000            1.000000                               0.97674       1.000000              0.93939        0.93023                       0.98101         1.000000       1.0000000                      0.96875             1.0000000
-   Neg Pred Value              0.998511                0.9985156         1.0000000         0.999009        0.999504                        0.997511          1.000000         0.9995054               0.9929         0.999006                       1.000000                1.000000            1.000000                               0.99899       1.000000              0.99347        0.99793                       0.99571         0.999003       0.9995054                      0.99347             1.0000000
-   Prevalence                  0.005437                0.0024716         0.0009886         0.002966        0.002472                        0.008898          0.001483         0.0009886               0.2224         0.005437                       0.001977                0.002472            0.001977                               0.02175       0.002472              0.02175        0.04152                       0.08057         0.008898       0.0009886                      0.02175             0.0009886
-   Detection Rate              0.003955                0.0009886         0.0009886         0.001977        0.001977                        0.006426          0.001483         0.0004943               0.2170         0.004449                       0.001977                0.002472            0.001977                               0.02076       0.002472              0.01532        0.03955                       0.07662         0.007909       0.0004943                      0.01532             0.0009886
-   Detection Prevalence        0.003955                0.0009886         0.0009886         0.001977        0.002472                        0.006920          0.001483         0.0004943               0.2304         0.004943                       0.001977                0.002472            0.001977                               0.02126       0.002472              0.01631        0.04251                       0.07810         0.007909       0.0004943                      0.01582             0.0009886
-   Balanced Accuracy           0.863636                0.7000000         1.0000000         0.833333        0.899752                        0.860862          1.000000         0.7500000               0.9792         0.908842                       1.000000                1.000000            1.000000                               0.97702       1.000000              0.85177        0.97464                       0.97465         0.944444       0.7500000                      0.85202             1.0000000
-                        Class: propeptide Class: signal_peptide Class: therapeutic Class: toxins
-   Sensitivity                    0.77600                0.9840             0.9333      0.857143
-   Specificity                    0.99579                0.9520             0.9920      1.000000
-   Pos Pred Value                 0.92381                0.9137             0.9474      1.000000
-   Neg Pred Value                 0.98540                0.9914             0.9898      0.999504
-   Prevalence                     0.06179                0.3406             0.1335      0.003460
-   Detection Rate                 0.04795                0.3351             0.1246      0.002966
-   Detection Prevalence           0.05190                0.3668             0.1315      0.002966
-   Balanced Accuracy              0.88589                0.9680             0.9627      0.928571
+
+                        Class: amphibian_defense Class: anti_gram Class: antibacterial_antibiotic Class: antimicrobial Class: growth_factor Class: hormone Class: immunological_activity Class: neurological_activity Class: propeptide Class: signal_peptide Class: therapeutic
+   Sensitivity                          0.000000         0.000000                        0.000000               0.7212              0.00000        0.22222                       0.77049                     0.000000           0.67816                0.7692            0.73684
+   Specificity                          0.995342         0.998464                        0.993769               0.8347              1.00000        0.96640                       0.96167                     0.995305           0.95470                0.8634            0.96581
+   Pos Pred Value                       0.000000         0.000000                        0.000000               0.5920                  NaN        0.27586                       0.67143                     0.000000           0.69412                0.6349            0.73684
+   Neg Pred Value                       0.974164         0.984848                        0.971081               0.9000              0.98185        0.95570                       0.97631                     0.966565           0.95139                0.9237            0.96581
+   Prevalence                           0.025719         0.015129                        0.028744               0.2496              0.01815        0.05446                       0.09228                     0.033283           0.13162                0.2360            0.11498
+   Detection Rate                       0.000000         0.000000                        0.000000               0.1800              0.00000        0.01210                       0.07110                     0.000000           0.08926                0.1815            0.08472
+   Detection Prevalence                 0.004539         0.001513                        0.006051               0.3041              0.00000        0.04387                       0.10590                     0.004539           0.12859                0.2859            0.11498
+   Balanced Accuracy                    0.497671         0.499232                        0.496885               0.7779              0.50000        0.59431                       0.86608                     0.497653           0.81643                0.8163            0.85133
    ```
 
 ## Documentation of data set contents
 
 ### Column descriptions
 
-* `peptipedia_peptide_id`: cluster member peptide id.
-* `peptide_sequence`: cluster member peptide sequence.
-* `group_bioactivity`: bioactivity label that is the same between all peptides in a given cluster.
+* `peptipedia_peptide_id`: peptide id of the peptide in the peptipedia database. All peptides were representative sequences in mmseqs2 clustering (80% threshold).
+* `peptide_sequence`: peptide sequence.
+* `bioactivity`: bioactivity label for the peptide. This was derived by taking all bioactivity labels for all peptides in a cluster and selecting only clusters where all peptides had at least one label that was assigned to all peptides. We kept the first of such labels and use this as the "bioactivity" label for the peptide.
 * `all_bioactivities`: all predicted bioactivities for a given peptide.
 * `go_id`: gene ontology ID.
 * `pfam_id`: PFAM (protein family) ID.
@@ -278,10 +271,6 @@
 * `z4_electronegativity_etc`: Zscale relating to electronegativity, heat of formation, electrophilicity and hardness.
 * `z5_electronegativity_etc`: Zscale relating to electronegativity, heat of formation, electrophilicity and hardness.
 * `length`: length in amino acids of the peptide.
-
-### Notes about the data set
-
-* We artificially generated similarity in peptides with specific bioactivity labels by clustering at 30% identity. The opposite of this should be done in real ML applications -- sequences that are similar in content should be removed so the same signal isn't repeated over and over again and so that there isn't pollution between the training and testing data sets.
 
 ## Potential future additions or improvements
 
