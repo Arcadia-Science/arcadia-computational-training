@@ -1,0 +1,476 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20230214-code-review-for-pubs/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Code review during the pub process - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#code-review-during-the-pub-process" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Code review during the pub process
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#code-review-faq-and-discussion" class="md-nav__link">
+    Code review FAQ and discussion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-the-pub-process-and-how-it-relates-to-code-review" class="md-nav__link">
+    Overview of the pub process and how it relates to code review
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimums-for-passing-code-review-a-checklist" class="md-nav__link">
+    Minimums for passing code review: a checklist
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#most-common-pain-points-with-code-review" class="md-nav__link">
+    Most common pain points with code review
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-refresher" class="md-nav__link">
+    GitHub refresher
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources-to-help-you-thrive-through-code-review" class="md-nav__link">
+    Resources to help you thrive through code review
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-directions" class="md-nav__link">
+    Future directions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="code-review-during-the-pub-process">Code review during the pub process</h1>
+<p>At Arcadia, one of our central tenets is that our science should be maximally useful.
+We believe that useful computing is innovative, usable, reproducible, and timely.</p>
+<p>Increase reproducibility and usability of the computational products we put out by making sure:</p>
+<ol>
+<li>Our code is readable and well-documented.</li>
+<li>The software (and versions!) and resources we used are documented.</li>
+<li>It's clear how data inputs and outputs relate to the code.</li>
+</ol>
+<h2 id="code-review-faq-and-discussion">Code review FAQ and discussion</h2>
+<p><strong>Question:</strong> Is code review really necessary for things like figures, or things that just use existing methods and don't write new analysis code?</p>
+<p><strong>Thoughts:</strong> We think so!
+For command line tools, the parameters you specify or the versions of tools you use can make a pretty big impact on results, so writing these things down explicity can be really helpful for interpretation of the results or for comparing to new results generated by the same tools.
+It's also super helpful for other people to see what you ran so they can use it as a recipe for a reasonable way to analyze their data -- think of it like a tutorial in disguise.
+For figures, we think filtering steps or transformations are important to capture.
+Even if you don't do any of these steps, your figure code is also like a tutorial in disguise – since we provide our input data and pubs openly, providing the code use to make a plot allows other people to interface with our results or to accomplish something similar to what we did.
+We get that coding a pub-ready figure is a big task – it's totally fine to edit titles, labels, and fonts in Illustrator/Photoshop after making the plot (just be careful not to edit the data!).</p>
+<p>Imagine a world in which you pick up a manuscript that has some really interesting new result.
+Wouldn't it be cool if you could you could access the code for the figures inline, and recreate them all, but zooming in on the results you specifically care about?
+Or even cooler – what if you could follow the exact recipe documented in the manuscript for your data, and then quickly add your observations to the plots in the original manuscript?
+<a href="https://www.nature.com/articles/s42005-020-00403-4">Executable manuscripts</a> are a thing, but they're hard for reasons beyond code and data availability. 
+Even still, providing the code we use – including for our figures – is both a key component to achieving these products and a suitable minimum replacement when the full thing isn't possible.</p>
+<p><strong>Question:</strong> Could code review happen after version 1 of the pub?</p>
+<p><strong>Thoughts:</strong> The goal of code review in the pub release process is to make sure someone inside or outside of Arcadia could pick up the code you used and with minimal effort, reproduce the results you got and reuse the code you wrote.
+We think that code review prior to the release of the first version of a pub will increase the usefulness of the computational products we're releasing to the world.</p>
+<p>Our goal is to have the code review component of the pub release process become a formality; we want code review to happen quickly after a unit of code is written (a new function, a new analysis notebook, a new figure) so that the feedback you get is actually useful and doesn't slow you down.
+If we can get to that point, the checks in the pub release cycle will be super quick.
+To make this process faster and to reduce the heat around version 1 pub releases, we've created <a href="#minimums-for-passing-code-review-a-checklist">a checklist</a> of the five things that are needed to approve code associated with the first release of a pub.
+Any other suggestions you get are just that – suggestions – and can be punted to later pub releases or ignored.</p>
+<h2 id="overview-of-the-pub-process-and-how-it-relates-to-code-review">Overview of the pub process and how it relates to code review</h2>
+<p><img alt="" src="../overview.png" /></p>
+<p>Check out the <a href="https://www.notion.so/arcadiascience/What-to-expect-from-code-review-during-the-pub-process-eac7ab5083ff4d88bf3039686b9281b7">What to expect from code review during the pub process</a> Notion page for an up-to-date guide through this process.</p>
+<h2 id="minimums-for-passing-code-review-a-checklist">Minimums for passing code review: a checklist</h2>
+<ol>
+<li>All software packages and their versions are documented.</li>
+<li>Data inputs and outputs are documented.</li>
+<li>Only relative paths (not absolute paths) are used and the relative paths reference files in the repo or there is documentation for how to get the file.</li>
+<li>Enough comments and/or documentation are provided so it's clear what the code does.</li>
+<li>DOI for pub is linked in the README.</li>
+</ol>
+<h2 id="most-common-pain-points-with-code-review">Most common pain points with code review</h2>
+<ol>
+<li>Pushing to <code>main</code> or <code>master</code> instead of to a branch and opening a pull request</li>
+<li>Requesting review of the entire repo instead of requesting periodic reviews</li>
+</ol>
+<h2 id="github-refresher">GitHub refresher</h2>
+<p><center></p>
+<figure>
+<p><img alt="Image title" src="../../../workshops/20220920-intro-to-git-and-github/allison_horst_git_overview.png" width="900" />
+  </p>
+<figcaption> Figure by Allison Horst. <a href='https://twitter.com/allison_horst/status/1563210538510737409?s=20&t=USB46onUf9i7zYnkqjUSPQ' target='_blank'>www.twitter.com/allison_horst</a> </figcaption>
+</figure>
+<p></center></p>
+<ol>
+<li>Make a new folder wherever your GitHub repos live. Name it <code>tmp-yourinitials-aug</code>.</li>
+<li>Download <a href="https://raw.githubusercontent.com/Arcadia-Science/2022-prjna853785-sourmash/main/scripts/utils.R">this file</a> as our pretend code that we've been working on. Save it in your new folder.</li>
+<li>Create an empty, private repository in the Arcadia-Science organization. Use the same name as the local folder we made.</li>
+<li>Copy and paste the instructions given to you on the screen.</li>
+<li>Create and checkout a new branch with <code>git checkout -b ter/init-pr</code>. Name it <code>yourinitials/init-pr</code>.</li>
+<li>Use <code>git add</code>, <code>git commit</code>, and <code>git push</code> to add our file to a branch in your new repository.</li>
+<li>Open a pull request and explain your changes.</li>
+<li>Convert your PR to a draft.</li>
+<li>Convert it back to "ready for review" and request review from someone.</li>
+</ol>
+<h2 id="resources-to-help-you-thrive-through-code-review">Resources to help you thrive through code review</h2>
+<ol>
+<li>Your code review partner, AUG office hours, and the #software-questions channel</li>
+<li><a href="https://github.com/Arcadia-Science/arcadia-software-handbook">Arcadia software handbook</a></li>
+<li><a href="../../../workshops/20220920-intro-to-git-and-github/lesson/">GitHub workshop</a> and <a href="https://www.youtube.com/watch?v=fRUrbWC3htc">recording</a></li>
+</ol>
+<h2 id="future-directions">Future directions</h2>
+<p>We really want the code review process to be as painless as possible.
+When we identify things that people do over and over again – building a binder from an R repo, <a href="https://github.com/Arcadia-Science/nextflow-template-repository">writing a Nextflow pipeline</a> – we can build templates that you can clone at the start of a project and use to cut down on repetitive work.</p>
+<p>If you have any other ideas of how we can help, we're always happy to try new things!</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

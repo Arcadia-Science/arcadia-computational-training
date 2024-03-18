@@ -1,0 +1,676 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20231128-testing-datasets/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Building test data sets - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#building-test-data-sets" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Building test data sets
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-set-up" class="md-nav__link">
+    Lesson set up
+  </a>
+  
+    <nav class="md-nav" aria-label="Lesson set up">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#software-installation" class="md-nav__link">
+    Software installation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-function" class="md-nav__link">
+    Example function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-data-for-functions-and-scripts" class="md-nav__link">
+    Test data for functions and scripts
+  </a>
+  
+    <nav class="md-nav" aria-label="Test data for functions and scripts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-data-within-the-test-itself" class="md-nav__link">
+    Creating data within the test itself
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-input-files" class="md-nav__link">
+    Testing input files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparing-file-outputs" class="md-nav__link">
+    Comparing file outputs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-image-outputs" class="md-nav__link">
+    Testing image outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-data-sets-for-workflow-integration-tests" class="md-nav__link">
+    Test data sets for workflow integration tests
+  </a>
+  
+    <nav class="md-nav" aria-label="Test data sets for workflow integration tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subsetting-input-data" class="md-nav__link">
+    Subsetting input data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subset-input-data-by-results" class="md-nav__link">
+    Subset input data by results
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#making-databases-small" class="md-nav__link">
+    Making databases small
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameterization-to-keep-tests-lightweight" class="md-nav__link">
+    Parameterization to keep tests lightweight
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guiding-principles-for-test-data-set-creation" class="md-nav__link">
+    Guiding principles for test data set creation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="building-test-data-sets">Building test data sets</h1>
+<p>In our previous lesson, we covered different types of tests.
+In the unit test section, we used five functions to test that our <code>mean()</code> function produced the output that we expected it to.
+For each of these functions, we started by defining our test data, <code>num_list</code>, a list of numbers for which we wanted to calculate the mean.</p>
+<p>These test data were small; each list only had five numbers in it.
+The "correct" answer to the test was clear with relatively little human effort (we could take a few seconds to calculate the mean of each list in our own heads).
+The creation of each test data set was encoded in the test itself.</p>
+<p>Below we discuss strategies for creating test data sets to help maintain some of these desirable qualities in real code bases.</p>
+<h2 id="lesson-set-up">Lesson set up</h2>
+<h3 id="software-installation">Software installation</h3>
+<p>This lesson will take advantage of the skills we've learned in many previous lessons.
+We'll use <a href="https://training.arcadiascience.com/arcadia-users-group/20221024-jupyter-notebooks/lesson/">Jupyter Notebooks</a>, <a href="https://training.arcadiascience.com/workshops/20220920-intro-to-git-and-github/lesson/">GitHub</a>, <a href="https://training.arcadiascience.com/arcadia-users-group/20221017-conda/lesson/">conda</a>, and <a href="https://training.arcadiascience.com/arcadia-users-group/20230228-intro-to-python-1/lesson/">Python</a>.
+This is more overhead than we typically strive for in a lesson, but we hope that it's a chance to practice these skills to achieve a new goal.
+In the future, we may provide a <a href="https://www.gitpod.io/">GitPod</a> environment for learners to use while working through this lesson, however if possible we would prefer to empower users to start implementing tests on their own computers using their own setup.</p>
+<p>To start this lesson, we'll begin by creating a conda environment that has the tools we'll need.</p>
+<div class="highlight"><pre><span></span><code>mamba create -n augtest2 jupyter pytest pandas matplotlib seaborn pillow
+conda activate augtest2
+</code></pre></div>
+<p>We'll also create a folder to help us stay organized.
+<div class="highlight"><pre><span></span><code>mkdir 20231128-aug-testing-lesson
+cd 20231128-aug-testing-lesson
+</code></pre></div></p>
+<p>Once our environment is activated, start a Jupyter notebook</p>
+<div class="highlight"><pre><span></span><code>jupyter notebook
+</code></pre></div>
+<h3 id="example-function">Example function</h3>
+<p>As a running example, similar to the <code>mean()</code> function we used in the previous lesson, we'll use <code>distribution()</code>, a simple function that returns the distribution of characters in text.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">distribution</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="n">char</span><span class="p">:</span> <span class="n">text</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">char</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="p">}</span>
+</code></pre></div>
+<p>As an aside, this function is intentionally implemented inefficiently; the same functionality can be implemented much faster in Python.
+We do this to later demonstrate what to do when a complex function -- of the type typically found in computational biology workflows -- is too slow to run on longer test inputs.</p>
+<p>If you're curious, the reason <code>distribution()</code> is inefficient is that an input text of length <em>n</em> will be read <em>n^2</em> times -- for each character in the text, <code>count()</code> is called, and it will in turn traverse the entire input.
+Instead, a single pass over the text can be used to keep running counts of the characters observed.</p>
+<p>Let's try it:</p>
+<div class="highlight"><pre><span></span><code>distribution(&#39;testing datasets&#39;)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>{&#39;t&#39;: 0.25,
+ &#39;e&#39;: 0.125,
+ &#39;s&#39;: 0.1875,
+ &#39;i&#39;: 0.0625,
+ &#39;n&#39;: 0.0625,
+ &#39;g&#39;: 0.0625,
+ &#39; &#39;: 0.0625,
+ &#39;d&#39;: 0.0625,
+ &#39;a&#39;: 0.125}
+</code></pre></div>
+<h2 id="test-data-for-functions-and-scripts">Test data for functions and scripts</h2>
+<h3 id="creating-data-within-the-test-itself">Creating data within the test itself</h3>
+<p>As seen in our previous lesson and described above, one strategy is to create test data within the test using built-in functions or data structures.
+When possible, this is a great strategy.
+These test data are small and self-contained and the correct answer to the test is easy to figure out.
+Functions like <code>[]</code> (list creation), or <code>range()</code> in Python and <code>c()</code>, <code>rep()</code>, <code>seq()</code>, <code>data.frame()</code>, and <code>list()</code> in R can be used to create test data that are relevant to a function.
+Some data-creation functions might be non-deterministic, but setting the seed ensures that the same output are produced each time.</p>
+<p>Often, we'll test a combination of "typical" inputs for which we verified the expected outputs, alongside edge cases - empty, very large, or nonsensical inputs.
+For <code>distribution()</code>, a typical in-test set of test cases could include:</p>
+<div class="highlight"><pre><span></span><code><span class="n">DISTRIBUTION_INPUTS_AND_EXPECTED_OUTPUTS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">{}),</span>                                    <span class="c1"># An empty string should produce an empty output</span>
+    <span class="p">(</span><span class="s1">&#39;abcc&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">}),</span>  <span class="c1"># Typical short input</span>
+    <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>                                 <span class="c1"># Nonsensical input (wrong type)</span>
+    <span class="o">...</span>
+<span class="p">]</span>
+</code></pre></div>
+<h3 id="testing-input-files">Testing input files</h3>
+<p>Some of the functions or workflows you will seek to test may take input files and produce output files.
+We'll extend our example function to to the same:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">distribution_in_file</span><span class="p">(</span><span class="n">filepath_in</span><span class="p">,</span> <span class="n">filepath_out</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath_in</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_in</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath_out</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_out</span><span class="p">:</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="n">distribution</span><span class="p">(</span><span class="n">file_in</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="n">file_out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">counts</span><span class="p">))</span>
+</code></pre></div>
+<p>Test input files are often checked in alongside the code and the tests. For simplicity, we'll just use files that are already present in the operating system.
+Let's try it:</p>
+<div class="highlight"><pre><span></span><code>distribution_in_file(&#39;/usr/share/dict/propernames&#39;, &#39;/tmp/propernames.txt&#39;)
+</code></pre></div>
+<p>And examine the results:</p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>/tmp/propernames.txt
+<span class="o">{</span><span class="s1">&#39;a&#39;</span>:<span class="w"> </span><span class="m">0</span>.0917388251813714,<span class="w"> </span><span class="s1">&#39;r&#39;</span>:<span class="w"> </span><span class="m">0</span>.06576175988766675,<span class="w"> </span><span class="s1">&#39;o&#39;</span>:<span class="w"> </span><span class="m">0</span>.0452843435525392,<span class="w"> </span><span class="s1">&#39;n&#39;</span>:<span class="w"> </span><span class="m">0</span>.06798502223262345,<span class="w"> </span><span class="s1">&#39;\n&#39;</span>:<span class="w"> </span><span class="m">0</span>.15305406037912472,<span class="w"> </span><span class="s1">&#39;d&#39;</span>:<span class="w"> </span><span class="m">0</span>.021647554411420546,<span class="w"> </span><span class="s1">&#39;m&#39;</span>:<span class="w"> </span><span class="m">0</span>.014158670723145332,<span class="w"> </span><span class="s1">&#39;l&#39;</span>:<span class="w"> </span><span class="m">0</span>.04118886028551369,<span class="w"> </span><span class="s1">&#39;i&#39;</span>:<span class="w"> </span><span class="m">0</span>.06482564942663234,<span class="w"> </span><span class="s1">&#39;g&#39;</span>:<span class="w"> </span><span class="m">0</span>.00877603557219752,<span class="w"> </span><span class="s1">&#39;t&#39;</span>:<span class="w"> </span><span class="m">0</span>.03276386613620407,<span class="w"> </span><span class="s1">&#39;h&#39;</span>:<span class="w"> </span><span class="m">0</span>.023636789141118653,<span class="w"> </span><span class="s1">&#39;e&#39;</span>:<span class="w"> </span><span class="m">0</span>.08190966534051018,<span class="w"> </span><span class="s1">&#39;s&#39;</span>:<span class="w"> </span><span class="m">0</span>.025626023870816757,<span class="w"> </span><span class="s1">&#39;b&#39;</span>:<span class="w"> </span><span class="m">0</span>.005967704189094313,<span class="w"> </span><span class="s1">&#39;j&#39;</span>:<span class="w"> </span><span class="m">0</span>.002808331383103206,<span class="w"> </span><span class="s1">&#39;x&#39;</span>:<span class="w"> </span><span class="m">0</span>.0015211794991809033,<span class="w"> </span><span class="s1">&#39;f&#39;</span>:<span class="w"> </span><span class="m">0</span>.0062017318043529135,<span class="w"> </span><span class="s1">&#39;v&#39;</span>:<span class="w"> </span><span class="m">0</span>.007020828457758015,<span class="w"> </span><span class="s1">&#39;y&#39;</span>:<span class="w"> </span><span class="m">0</span>.024221858179265154,<span class="w"> </span><span class="s1">&#39;w&#39;</span>:<span class="w"> </span><span class="m">0</span>.003627428036508308,<span class="w"> </span><span class="s1">&#39;u&#39;</span>:<span class="w"> </span><span class="m">0</span>.021998595834308448,<span class="w"> </span><span class="s1">&#39;c&#39;</span>:<span class="w"> </span><span class="m">0</span>.015562836414696935,<span class="w"> </span><span class="s1">&#39;k&#39;</span>:<span class="w"> </span><span class="m">0</span>.010999297917154224,<span class="w"> </span><span class="s1">&#39;p&#39;</span>:<span class="w"> </span><span class="m">0</span>.005148607535689211,<span class="w"> </span><span class="s1">&#39;z&#39;</span>:<span class="w"> </span><span class="m">0</span>.0025743037678446056,<span class="w"> </span><span class="s1">&#39;q&#39;</span>:<span class="w"> </span><span class="m">0</span>.000468055230517201,<span class="w"> </span><span class="s1">&#39;-&#39;</span>:<span class="w"> </span><span class="m">0</span>.0002340276152586005<span class="o">}</span>
+</code></pre></div>
+<details>
+  <summary>What is the <code>/usr/share/dict/propernames</code> file?</summary>
+
+The <code>/usr/share/dict/propernames</code> on macOS systems is is a text file that contains a list of common proper names, one per line.
+It's similar to the words file located at <code>/usr/share/dict/words</code> which contains a list of common words. 
+These files are typically used by spell-checking programs to verify the spelling of words and proper names.
+</details>
+
+<h3 id="comparing-file-outputs">Comparing file outputs</h3>
+<p>We can directly compare an output file to a "reference" or "golden" output that is accessible to the test.
+Checksums can also be used to compare the results of a function against other types of files.
+For example, if you have a function that produces a data frame, you can write that object to a CSV file.
+Then, you could compare the output CSV file against a reference CSV file by their checksums.
+When using this strategy, it might be necessary to sort your data frame prior to writing a file.</p>
+<p>An example of comparing checksums: </p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">hashlib</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;expected.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">expected</span><span class="p">,</span> <span class="s1">&#39;/tmp/propernames.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">actual</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">expected</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span> <span class="o">==</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">actual</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+</code></pre></div>
+<p>Checksums can also be used to compare the results of a function against other types of files.
+For example, if you have a function that produces a data frame, you can write that object to a CSV file.
+Then, you could compare the output CSV file against a reference CSV file by their checksums.
+When using this strategy, it might be necessary to sort your data frame prior to writing a file.</p>
+<h3 id="testing-image-outputs">Testing image outputs</h3>
+<p>Often times, a function or a script produces an image output.
+Images are trickier to test than some other outputs, but can still be used in unit tests.
+If a function produces the image and an image object is produced in your coding environment, you can sometimes check the metadata of the image to make sure it matches expected values.
+This includes dimensions, color profiles, or file formats.
+These types of tests have the built-in benefit of testing whether the function produces an image successfully on top of confirming attributes about the image.</p>
+<p>Even if you check metadata attributes about an image, the image itself might still be different than expected.
+If you want to test the output image more thoroughly, you can compare the output produced by a test to a reference image stored in your test data.
+Both checksum comparisons and pixel comparisons are useful in this scenario.</p>
+<p>We'll create another function to generate an image -- a histogram of letter counts:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="k">def</span> <span class="nf">histogram</span><span class="p">(</span><span class="n">file_in</span><span class="p">,</span> <span class="n">file_out</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath_in</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_in</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath_out</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_out</span><span class="p">:</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="n">distribution</span><span class="p">(</span><span class="n">file_in</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Character&#39;</span><span class="p">,</span> <span class="s1">&#39;Count&#39;</span><span class="p">]</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Character&#39;</span><span class="p">)</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Character&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Count&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filepath_out</span><span class="p">)</span>
+</code></pre></div>
+<p>Let's try it:</p>
+<div class="highlight"><pre><span></span><code>histogram(&#39;/usr/share/dict/propernames&#39;, &#39;/tmp/propernames.png&#39;)
+</code></pre></div>
+<p><img src="fig/propernames.png" alt="Character frequency in /usr/share/dict/propernames" width="50%"/></p>
+<p>To compare generated images to ground truth, we can use checksums as before, or we can visually compare them.
+For this, we'll use a Python image processing library.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageChops</span>
+
+<span class="k">def</span> <span class="nf">image_diff</span><span class="p">(</span><span class="n">file1</span><span class="p">,</span> <span class="n">file2</span><span class="p">,</span> <span class="n">file_out</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare file1 and file2; if different, store diff to file_out and assert.&quot;&quot;&quot;</span>
+    <span class="n">img1</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file1</span><span class="p">)</span>
+    <span class="n">img2</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file2</span><span class="p">)</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">ImageChops</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">img2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">diff</span><span class="o">.</span><span class="n">getbbox</span><span class="p">():</span>
+        <span class="c1"># Diff is the same as an empty image, i.e. `img1` and `img2` are identical.</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Images differ, store a comparison of them.</span>
+        <span class="n">ImageChops</span><span class="o">.</span><span class="n">blend</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">file_out</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Images differ, comparison in </span><span class="si">{</span><span class="n">file_out</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>For example, the histograms of the two samples discussed earlier -- the head of <code>/usr/share/dict/web2a</code> and a random sample from it - look relatively similar:</p>
+<p><img src="fig/web2a.head.png" alt="Character frequency in the head of /usr/share/dict/web2a" style="width: 50%; float: left;" />
+<img src="fig/web2a.rand.png" alt="Character frequency in a random subset of /usr/share/dict/web2a" style="width: 50%; float: right;" /></p>
+<p>But applying <code>image_diff()</code> highlights areas that have changed:</p>
+<div align="center">
+    <img src="fig/web2a.diff.png" alt="Visual diff of top and random sampling from inputs" style="width: 50%" />
+</div>
+
+<h2 id="test-data-sets-for-workflow-integration-tests">Test data sets for workflow integration tests</h2>
+<p>Identifying a small data set that will quickly run through the entire workflow can be tricky.
+Below we cover some strategies to help achieve this.</p>
+<h3 id="subsetting-input-data">Subsetting input data</h3>
+<p>Sometimes, typical inputs (say, genomics data or images) are large and result in slow test times.
+For example, let's try <code>distribution_in_file</code> on a larger input (feel free to terminate the cell, if it takes too long):</p>
+<div class="highlight"><pre><span></span><code><span class="n">distribution_in_file</span><span class="p">(</span><span class="s1">&#39;/usr/share/dict/web2a&#39;</span><span class="p">,</span> <span class="s1">&#39;/tmp/web2a.txt&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Depending on the type of machine, this could take several minutes -- certainly more than we'd like a test to run.
+In this case, subsetting the data could shorten the test time significantly, while still checking core functionality.</p>
+<p>Sometimes, you can subset your data by running <code>head</code> or <code>tail</code> on your input files, or sub sampling input samples to a lower number, and your workflow will still run.
+This is a great option when it works!</p>
+<p>For example, let's try taking just the first 1,000 lines of <code>/usr/share/dict/web2a</code> as a test file:</p>
+<div class="highlight"><pre><span></span><code>!head -1000 /usr/share/dict/web2a &gt; /tmp/web2a.head
+distribution_in_file(&#39;/tmp/web2a.head&#39;, &#39;/tmp/web2a.head.txt&#39;)
+</code></pre></div>
+<p>Runtime is much faster.
+Unfortunately, results are significantly different - because the input file is sorted, we're testing words that are more likely to start with letters like 'a', skewing the character distribution.
+Examining <code>/tmp/web2a.txt</code> vs <code>/tmp/web2a.head.txt</code>, we see that the letter 'a' appears at a frequency of 6.7% in the former, but 12.1% in the latter.</p>
+<p>In this case can try sampling random lines from the file, instead of the first lines:</p>
+<div class="highlight"><pre><span></span><code>!sort -R /usr/share/dict/web2a | head -1000 &gt; /tmp/web2a.rand
+distribution_in_file(&#39;/tmp/web2a.rand&#39;, &#39;/tmp/web2a.rand.txt&#39;)
+</code></pre></div>
+<p>The frequency of 'a' is again 6.7%, and the distribution as a whole more similar to the distribution over the full dataset.</p>
+<p>Because it's relatively fast to subset data this way, you can always try this strategy first and see if produces a representative test data set before moving on to other strategies.</p>
+<p>Often times, with biological files, simple subsetting strategies like this will fail in even more problematic ways -- subsampling in this manner can cause some tools in your workflow to produce no results, rendering the rest of the workflow unable to run or producing blank, meaningless outputs.</p>
+<h3 id="subset-input-data-by-results">Subset input data by results</h3>
+<p>One strategy to circumvent this issue is to run the workflow from start to finish on a full data set and then to cleverly subset the results.
+For example, if you are writing a workflow that performs genome assembly, you could assemble all reads, map the reads back to your assembly, and extract all of the reads that map to one contiguous sequence.
+This would effectively subset the number of reads you're working with but ensure that those reads will still assemble.</p>
+<h3 id="making-databases-small">Making databases small</h3>
+<p>This is true for databases as well.
+Many workflows will rely on a database for at least one step -- identifying BLAST hits, performing functional annotation, etc.
+The size of the database will often be the driving factor in search times.
+When possible, you can generate a small test database as a drop in replacement.
+Sometimes, the developers of a tools will have already generated a small test database that you can use (see <a href="https://github.com/eggnogdb/eggnog-mapper/issues/140">this issue</a> for an example for the <a href="http://eggnog-mapper.embl.de/">EggNOG ortholog annotation tool</a>).
+Other times, you can take the same strategy as suggested above: run a full data set through your pipeline, identify a database hit that is in your data, and then subset the database and your input data to retain information relevant only to that hit.</p>
+<h3 id="parameterization-to-keep-tests-lightweight">Parameterization to keep tests lightweight</h3>
+<p>You may need to introduce new user-controlled parameters into your workflow to reduce run times or API calls.
+For example, if your workflow queries a database or an API and by default returns the top 500 hits, you may need to parameterize this value to reduce the number of returned hits to something much smaller (like 3).
+(An alternative in this case would be to select a test data set that only returns a small number of hits because it doesn't have many matches in the database.)
+Parameterization can also reduce run time or RAM required to run your pipeline.
+For example, the default k-mer length in MMSeq2 clustering uses more RAM than is available for GitHub Actions workflows; <a href="https://github.com/Arcadia-Science/reads2transcriptome/blob/a2105ba9616fbdf1e736440ef12c47442a873d18/conf/test.config#L30">parameterizing this value</a> reduces the RAM required to run an integration test on workflows that use MMSeqs2.</p>
+<h2 id="guiding-principles-for-test-data-set-creation">Guiding principles for test data set creation</h2>
+<ol>
+<li><strong>Small data</strong>: Data should be small and run fast. Even for large multi-step workflows or big software libraries, tests shouldn't take more than a few minutes to run. The data itself should be storable in a GitHub repository and should be as small as possible to reliably capture the behavior of the tool or workflow. If possible, files should be very small, but files under 50M and repos under 1G is reasonable when necessary. Note that GitHub disallows files larger than 100M.</li>
+<li><strong>Address known bugs</strong>: Create new test each time someone submits an issue identifying a bug in your code. If possible, build and test and use test data from a minimum reproducible example that recreates the behavior of the error.</li>
+<li><strong>Representative data</strong>: The test data should be representative of the actual data the software will handle. It should cover a variety of data types, structures, and edge cases to ensure the software behaves as expected in different scenarios.</li>
+<li><strong>Deterministic results</strong>: Choose test data that will produce deterministic results, making the tests predictable and repeatable. This is crucial for verifying the accuracy and consistency of the software over time.</li>
+<li><strong>Modular and reusable</strong>: When possible, design test data in a modular fashion, making it reusable across different tests. This promotes efficiency and consistency in testing.</li>
+<li><strong>Documented</strong>: Document the source and structure of the test data, along with any assumptions or simplifications made. This helps other developers understand the purpose and limitations of the test data.</li>
+</ol>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

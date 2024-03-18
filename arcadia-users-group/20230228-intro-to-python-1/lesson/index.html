@@ -1,0 +1,978 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20230228-intro-to-python-1/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Introduction to Python, Part 1 - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-python-part-1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction to Python, Part 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-fundamentals-of-python" class="md-nav__link">
+    0. Fundamentals of Python
+  </a>
+  
+    <nav class="md-nav" aria-label="0. Fundamentals of Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-jupyter-notebooks" class="md-nav__link">
+    0.1 Jupyter Notebooks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-python-version" class="md-nav__link">
+    0.2 Python Version
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-variables" class="md-nav__link">
+    1. Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-data-types" class="md-nav__link">
+    2. Data types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-using-variables" class="md-nav__link">
+    3. Using variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-built-in-python-functions" class="md-nav__link">
+    4. Built-in Python functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-typecasting" class="md-nav__link">
+    5. Typecasting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p1-practice" class="md-nav__link">
+    P1. Practice
+  </a>
+  
+    <nav class="md-nav" aria-label="P1. Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practice-1" class="md-nav__link">
+    Practice 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-2" class="md-nav__link">
+    Practice 2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-defining-a-custom-function" class="md-nav__link">
+    6. Defining a custom function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-indentation-and-code-blocks" class="md-nav__link">
+    7. Indentation and code blocks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-comments" class="md-nav__link">
+    8. Comments
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p2-practice" class="md-nav__link">
+    P2. Practice
+  </a>
+  
+    <nav class="md-nav" aria-label="P2. Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practice-3" class="md-nav__link">
+    Practice 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practice-4" class="md-nav__link">
+    Practice 4
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-running-python-from-the-command-line" class="md-nav__link">
+    9. Running Python from the command line
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Running Python from the command line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-receiving-user-input-with-input" class="md-nav__link">
+    9.1 Receiving user input with input()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p3-practice" class="md-nav__link">
+    P3. Practice
+  </a>
+  
+    <nav class="md-nav" aria-label="P3. Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practice-5" class="md-nav__link">
+    Practice 5.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-problem-set" class="md-nav__link">
+    10. Problem Set
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="introduction-to-python-part-1">Introduction to Python, Part 1</h1>
+<p>Follow along in <strong>Binder</strong> by clicking the badge below:  </p>
+<p><a href="https://mybinder.org/v2/gh/Arcadia-Science/arcadia-computational-training/HEAD?labpath=docs%2Farcadia-users-group%2F20230228-intro-to-python-1%2Fplayground.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<hr />
+<h2 id="0-fundamentals-of-python">0. Fundamentals of Python</h2>
+<p>Python is a popular programming language. It was designed to be easy to read in comparison to other programming languages, so it's a great first programming language to learn. </p>
+<p><strong>This lesson</strong> covers the following basics of Python, such as:
+- variables
+- data types
+- built-in functions
+- creating custom functions
+- running Python from the command line</p>
+<p>Over the following lessons, we'll cover more basics of Python, including:
+- data structures
+- loops
+- conditional expressions
+- packages
+- methods
+- debugging
+- ... and more!</p>
+<p>At the end of this workshop series, you'll have enough experience with Python to be able to write your own basic Python scripts. You'll also have enough knowledge of Python to be able to use the OpenTrons API (Application-Program Interface) to control our in-house liquid handling robot, covered in the upcoming Intro to OpenTrons series.</p>
+<hr />
+<h3 id="01-jupyter-notebooks">0.1 Jupyter Notebooks</h3>
+<p>For the first workshop, we'll work in an interactive computing environment called a Jupyter notebook. To run a "cell" of code in Jupyter, you'll press <kbd>Shift</kbd>+<kbd>Return</kbd> from inside the cell. The result of the cell - the output - will display just below the cell.</p>
+<p>You can tell if a cell has successfully executed based on the <code>[ ]</code> text to the left of the cell. A cell that is in progress has an asterisk <code>[*]</code>, and a cell that has completed has a number <code>[1]</code>.</p>
+<p>For more on Jupyter notebooks, you can check out this <a href="https://training.arcadiascience.com/arcadia-users-group/20221024-jupyter-notebooks/lesson/">AUG Lesson</a>. </p>
+<blockquote>
+<p><strong>Fun fact!</strong></p>
+<p>The Python programming language is not named for snakes, but instead for Monty Python, a signifier of the idea that the language should be <a href="https://en.wikipedia.org/wiki/Python_(programming_language)#Design_philosophy_and_features">fun to use</a>.<br />
+Despite this, many Python tools and packages make reference to snakes, such as packages you may have heard us talk about before: <a href="https://www.anaconda.com/products/distribution">Anaconda</a>, <a href="https://docs.conda.io/en/latest/">conda</a>, <a href="https://mamba.readthedocs.io/en/latest/">mamba</a>, <a href="https://snakemake.readthedocs.io/en/stable/">snakemake</a>, etc.</p>
+</blockquote>
+<hr />
+<h3 id="02-python-version">0.2 Python Version</h3>
+<p>This lesson is written for Python version 3 and above. You can figure out what version of Python you're running using the cell below. (We'll explain how the cell below works at the end of the lesson.)</p>
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">python</span> <span class="o">--</span><span class="n">version</span>
+</code></pre></div>
+<pre><code>Python 3.11.0
+</code></pre>
+<hr />
+<h2 id="1-variables">1. Variables</h2>
+<p>Variables in programming languages are containers for assigning values.</p>
+<p>Below, we assign the value <code>1</code> to the variable <code>x</code> and the value <code>4</code> to the variable <code>y</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">4</span>
+</code></pre></div>
+<p>When we ask Python to evalute <code>x + y</code>, it substitutes the value <code>1</code> for <code>x</code> and the value <code>4</code> for <code>y</code>.</p>
+<p>Running the cell below returns the output value of the expression <code>x + y</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</code></pre></div>
+<pre><code>5
+</code></pre>
+<hr />
+<h2 id="2-data-types">2. Data types</h2>
+<p>Variables in Python come in a variety of types, such as:
+- <code>int</code> or <strong>integer</strong>: whole numbers such as <code>1</code>, <code>2</code>, <code>3</code>, etc.
+- <code>float</code> or <strong>floating-point number</strong>: numbers including decimals, e.g. <code>1.03</code>.
+- <code>str</code> or <strong>string</strong>: chains of alphanumeric characters flanked by quotation marks, e.g. <code>"apple"</code>.<br />
+    Double-quotes are stylistically perferred, but single-quotes also work.<br />
+    If you need to include quotation marks in a string, you can use the other option to "escape" the quotation mark.</p>
+<p>Python is able to natively perform certain operations using these datatypes, such as basic addition <code>+</code>, subtraction <code>-</code>, multiplication <code>*</code>, division <code>/</code>, etc.</p>
+<div class="highlight"><pre><span></span><code><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="mf">3.4</span> <span class="o">/</span> <span class="mi">5</span>
+</code></pre></div>
+<pre><code>2.36
+</code></pre>
+<p>Python also has some helpful intuitive operations – for example, you can join two strings together with a <code>+</code> operator as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;pine&quot;</span> <span class="o">+</span> <span class="s2">&quot;apple&quot;</span>
+</code></pre></div>
+<pre><code>'pineapple'
+</code></pre>
+<p>Certain operations are not supported by default in Python - for example, you can't add a <code>str</code> with an <code>int</code>. Running the code below will cause a <code>TypeError</code>. Python is quite helpful in explaining errors you might encounter. Read the error message below and see if it makes sense to you.</p>
+<p>In general, you should expect to encounter <em>lots</em> of these errors, or "bugs", when you start getting into programming.<br />
+<strong>This is totally normal!</strong>   </p>
+<p>If you're ever confused about the source of an error, websites such as <a href="https://stackoverflow.com/">StackOverflow</a> are great places to look for answers.<br />
+One skill in learning to programming is learning what part of an error message to Google.</p>
+<div class="highlight"><pre><span></span><code><span class="mi">3</span> <span class="o">+</span> <span class="s2">&quot;5&quot;</span>
+</code></pre></div>
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+Cell In[17], line 1
+----&gt; 1 3 + "5"
+
+
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+</code></pre>
+<blockquote>
+<p><strong>Fun Fact!</strong></p>
+<p>The term "bug" predates modern computers, but there are real examples of actual insects interfering with the function of a computer, such as this <a href="https://education.nationalgeographic.org/resource/worlds-first-computer-bug">"bug" found at Harvard in 1947</a>. </p>
+</blockquote>
+<hr />
+<h2 id="3-using-variables">3. Using variables</h2>
+<p>You assign variables in Python using the <code>variable = value</code> syntax. You can perform operations on a mix of hard-coded values and variables interchangeably. This is very useful when you expect to use a variable in many different places in your script - Python keeps track of its value so you don't have to.</p>
+<p>If you use variable names that correspond to the value the variable holds (think <code>wind_mph</code> for wind speed), this can also help make your code more readable for yourself and others.</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">6</span> <span class="o">+</span> <span class="n">a</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+
+<span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
+</code></pre></div>
+<pre><code>15
+</code></pre>
+<p>You can assign a different value to a variable later in your code, which replaces the original value. This can be useful, but it's also important to be careful not to overwrite variables you want to keep!</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre></div>
+<pre><code>11
+</code></pre>
+<hr />
+<h2 id="4-built-in-python-functions">4. Built-in Python functions</h2>
+<p>In addition to managing variables and values, Python also provides a variety of <a href="https://docs.python.org/3/library/functions.html">built-in functions</a>.<br />
+A <strong>function</strong> is a block of organized, reusable code that accomplishes a specific task.</p>
+<p>Functions are "called" by chaining the function name with parentheses <code>()</code>. Parameters of that function can be typed between the parentheses to tell the function what to do.</p>
+<p>For example, the <code>print()</code> function takes any value and prints it as output.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+</code></pre></div>
+<pre><code>Hello, world!
+11
+</code></pre>
+<p>We can call a function from within another function call. For example, the <code>type()</code> function gives the type of a Python value.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">))</span>
+</code></pre></div>
+<pre><code>&lt;class 'int'&gt;
+&lt;class 'str'&gt;
+</code></pre>
+<hr />
+<h2 id="5-typecasting">5. Typecasting</h2>
+<p>A bit earlier, we tried to evalute the expression <code>3 + '5'</code>. This failed because we were trying to add an <code>int</code> and a <code>str</code>, which isn't natively supported operation with the <code>+</code> operand.</p>
+<p>If we wanted to actually get the sum of 3 + 5 in this case, but <code>'5'</code> is given as a <code>str</code>, we can actually <strong>force</strong> <code>'5'</code> to be an <code>int</code> instead using typecasting, as below:</p>
+<div class="highlight"><pre><span></span><code><span class="mi">3</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;5&quot;</span><span class="p">)</span>
+</code></pre></div>
+<pre><code>8
+</code></pre>
+<p>You can see that now, instead of throwing a <code>TypeError</code>, the expression returns the expected value.  </p>
+<p>We typecast in Python by calling our data type as a function, e.g. <code>str()</code>, <code>int()</code>, <code>float()</code>, etc.<br />
+In some cases, you can't cast a value into another type; for example, running the code below throws a <code>ValueError</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;banana&quot;</span><span class="p">)</span>
+</code></pre></div>
+<pre><code>---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+Cell In[24], line 1
+----&gt; 1 int("banana")
+
+
+ValueError: invalid literal for int() with base 10: 'banana'
+</code></pre>
+<p>This example is probably pretty intuitive, as it's hard to imagine how you would turn the string <code>'banana'</code> into an integer.<br />
+But there are plenty of cases where typecasting won't work, so be aware that this isn't a perfect solution.</p>
+<hr />
+<h2 id="p1-practice">P1. Practice</h2>
+<p>Let's try some things with basic Python variables!</p>
+<blockquote>
+<h3 id="practice-1">Practice 1</h3>
+<p>What values do <code>x</code> and <code>y</code> have after each of the following statements?</p>
+</blockquote>
+<details>
+    <summary> Practice 1 Answer </summary>
+    <code>x</code> = 25, <code>y</code> does not yet exist <br>
+    <code>x</code> = 25, <code>y</code> = 6 <br>
+    <code>x</code> = 100.0, <code>y</code> = 6 <br>
+    <code>x</code> = 100.0, <code>y</code> = 10 <br>
+</details>
+
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mf">4.0</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">4</span>
+</code></pre></div>
+<blockquote>
+<h3 id="practice-2">Practice 2</h3>
+<p>What is the expected value of <code>m</code> at the end of the cell below?</p>
+</blockquote>
+<details>
+    <summary> Practice 2 Answer </summary>
+    This is a trick question! You might have expected the cell below to throw a <code>TypeError</code> because we're multiplying an <code>int</code> with a <code>str</code>. But <code>`4 * '15'`</code> is actually a special operation in Python; it's telling Python to repeat the string <code>'15'</code> four times. Therefore, the correct answer is <code>'15151515'</code>
+</details>
+
+<div class="highlight"><pre><span></span><code><span class="n">i</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">j</span> <span class="o">=</span> <span class="s2">&quot;5&quot;</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+
+<span class="n">l</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">l</span> <span class="o">*</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="6-defining-a-custom-function">6. Defining a custom function</h2>
+<p>In addition to working with built-in functions, you can also define your own functions in Python. This is one of the most powerful ways to use the language, as it allows you to write one block of code which you can use repeatedly in your scripts.</p>
+<p>Let's write our first function, called <code>hello_world()</code>.</p>
+<p>To define a custom function, you can start by writing <code>def</code>, followed by the desired name of your function, and parentheses <code>()</code>. Finish the line with a colon <code>:</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>When you execute the cell above, nothing prints out. Why?<br />
+The answer is that using the code above, you've only told Python that you're defining a function called <code>hello_world()</code>, which itself calls <code>print()</code>. To run the function, you have to call it using the parentheses operator, as below.</p>
+<div class="highlight"><pre><span></span><code><span class="n">hello_world</span><span class="p">()</span>
+</code></pre></div>
+<pre><code>Hello world!
+</code></pre>
+<hr />
+<h2 id="7-indentation-and-code-blocks">7. Indentation and code blocks</h2>
+<p>You've defined a function above, but how does Python know when the function ends?<br />
+Python uses <strong>indentation</strong> to signify the scope of a function. In the code block below, we define a function, then define a variable, and finally pass the variable to the function.</p>
+<p>The line break and lack of indentation after the end of the function's scope tells Python that the function is completed.  </p>
+<blockquote>
+<p><strong>Note:</strong><br />
+This indentation syntax is uncommon among programming languages – often, languages require specific characters to set the scope of the code.
+For example, in <strong>C</strong> (another programming language), you end every code line with a semicolon <code>;</code>.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">hello_name</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span>
+
+<span class="n">my_name</span> <span class="o">=</span> <span class="s2">&quot;Guido&quot;</span>
+
+<span class="n">hello_name</span><span class="p">(</span><span class="n">my_name</span><span class="p">)</span>
+</code></pre></div>
+<pre><code>'Hello Guido!'
+</code></pre>
+<p>You might notice some differences in the code above to the <code>hello_world</code> function we defined previously. Let's go over these differences.</p>
+<ul>
+<li>
+<p>There is now a variable <code>name</code> in the parentheses of the <code>hello_name</code> definition.<br />
+    This is how we define <strong>arguments</strong> of functions, or their input parameters. For example, the <code>print()</code> function accepts a comma-separated list of values as its arguments. Arguments act as placeholders – in the above example, <code>name</code> has no explicit value. But any value or variable placed into <code>hello_name</code> gets treated as the <code>name</code> variable, which is then kept through the rest of the function.</p>
+</li>
+<li>
+<p>The function ends with a <strong><code>return</code></strong> statement instead of a <code>print()</code> call.<br />
+    Most Python functions should end with a <strong><code>return</code></strong> statement. This is the value that the function spits out when it finishes running. If a function lacks a <strong><code>return</code></strong> statement, it will instead return <strong><code>None</code></strong>, a special value of the type <code>NoneType</code>.</p>
+</li>
+</ul>
+<p>An important thing to know is that the output of functions can themselves be assigned to variables, as exemplified below. Combining function calls with variable assignment is a powerful way of using Python functions to modify or generate new variables.</p>
+<div class="highlight"><pre><span></span><code><span class="n">sentence_1</span> <span class="o">=</span> <span class="n">hello_name</span><span class="p">(</span><span class="n">my_name</span><span class="p">)</span>
+<span class="n">sentence_2</span> <span class="o">=</span> <span class="s2">&quot;My name is Python!&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sentence_1</span><span class="p">,</span> <span class="n">sentence_2</span><span class="p">)</span>
+</code></pre></div>
+<pre><code>Hello Guido! My name is Python!
+</code></pre>
+<hr />
+<h2 id="8-comments">8. Comments</h2>
+<p>A crucial part of writing good code is being able to understand what it does later.<br />
+For example, consider how mystifying it can be to try to read the code block below.</p>
+<blockquote>
+<p>Note: the <code>**</code> operand is the exponential.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">factor</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="n">step_one</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">b</span>
+    <span class="n">step_q</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span>
+    <span class="n">step_two_a</span> <span class="o">=</span> <span class="n">step_one</span> <span class="o">+</span> <span class="p">(</span><span class="n">b</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">step_q</span><span class="p">)</span>
+    <span class="n">step_two_b</span> <span class="o">=</span> <span class="n">step_one</span> <span class="o">-</span> <span class="p">(</span><span class="n">b</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">step_q</span><span class="p">)</span>
+    <span class="n">step_p</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">a</span>
+    <span class="n">step_three_a</span> <span class="o">=</span> <span class="n">step_two_a</span> <span class="o">/</span> <span class="n">step_p</span>
+    <span class="n">step_three_b</span> <span class="o">=</span> <span class="n">step_two_b</span> <span class="o">/</span> <span class="n">step_p</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">step_three_a</span><span class="p">,</span> <span class="n">step_three_b</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="n">factor</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</code></pre></div>
+<pre><code>(15.0, -22.0)
+</code></pre>
+<p>The function above is definitely an example of inefficiently written code, but let's put that aside for now.<br />
+If you ended up writing the function above, it might be helpful to be able to know what the overall goal of the code is, and perhaps what each step is doing.</p>
+<p>This is where <strong>comments</strong> come to the rescue. Comments in Python begin on the left with a hash mark (<code>#</code>) and are ignored by the Python interpreter. Comments can also be written in blocks demarcated with triple-double-quotes (<code>"""</code>). You can even include a comment in the same line as functional code!</p>
+<p>Consider the code below with comments - how does the code feel with comments and additional line breaks included?</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Applies the quadratic formula to find the intercepts of a quadratic equation of the format y = ax**2 + bx + c</span>
+<span class="k">def</span> <span class="nf">factor</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;  This is a block comment.</span>
+
+<span class="sd">    The formula is:</span>
+<span class="sd">    -b +/- sqrt(b**2 - 4ac) / 2a</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">step_one</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">b</span> <span class="c1"># evaluates -b</span>
+    <span class="n">step_q</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span> <span class="c1"># evaluates 4ac</span>
+
+    <span class="n">step_two_a</span> <span class="o">=</span> <span class="n">step_one</span> <span class="o">+</span> <span class="p">(</span><span class="n">b</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">step_q</span><span class="p">)</span> <span class="c1"># evaluates the numerator with addition</span>
+    <span class="n">step_two_b</span> <span class="o">=</span> <span class="n">step_one</span> <span class="o">-</span> <span class="p">(</span><span class="n">b</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">step_q</span><span class="p">)</span> <span class="c1"># evaluates the numerator with subtraction</span>
+
+    <span class="n">step_p</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">a</span> <span class="c1"># evaluates the denominator</span>
+
+    <span class="n">step_three_a</span> <span class="o">=</span> <span class="n">step_two_a</span> <span class="o">/</span> <span class="n">step_p</span> <span class="c1"># gets the right intercept</span>
+    <span class="n">step_three_b</span> <span class="o">=</span> <span class="n">step_two_b</span> <span class="o">/</span> <span class="n">step_p</span> <span class="c1"># gets the left intercept</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">step_three_a</span><span class="p">,</span> <span class="n">step_three_b</span> <span class="c1"># combines the intercept into a tuple</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="c1"># Defines a, b, and c </span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="c1"># Run the actual function, returning result</span>
+<span class="n">factor</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+</code></pre></div>
+<pre><code>(15.0, -22.0)
+</code></pre>
+<hr />
+<h2 id="p2-practice">P2. Practice</h2>
+<p>Let's try writing some basic Python functions.</p>
+<blockquote>
+<h3 id="practice-3">Practice 3</h3>
+<p>Write a function called <code>greetings()</code> that takes two arguments: <code>greeting</code> and <code>name</code> and returns the string <code>'Greeting, Name!'</code></p>
+</blockquote>
+<details>
+<summary> Practice 3 Sample Answer </summary>
+    <pre><code><b>def</b> greetings(greeting, name):
+    <b>return</b> greeting + ', ' + name + '!'
+</code></pre>
+</details>
+
+<div class="highlight"><pre><span></span><code><span class="c1">###########################################</span>
+<span class="c1"># Write your function in the space below. #</span>
+<span class="c1">## Then run the cell to check your work. ##</span>
+
+
+
+<span class="c1">###########################################</span>
+
+<span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Bonjour&quot;</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Jacques&quot;</span>
+
+<span class="n">greetings</span><span class="p">(</span><span class="n">greeting</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+</code></pre></div>
+<pre><code>Bonjour, Jacques!
+</code></pre>
+<blockquote>
+<h3 id="practice-4">Practice 4</h3>
+<p>What happens if you pass the variable <code>robot_name</code> below to your <code>greetings()</code> function?</p>
+<p>How could you modify the function to avoid this error?</p>
+</blockquote>
+<details>
+<summary> Practice 4 Sample Answer </summary>
+    <pre><code><b>def</b> greetings(greeting, name):
+    <b>return</b> greeting + ', ' + str(name) + '!'
+</code></pre>
+</details>
+
+<div class="highlight"><pre><span></span><code><span class="c1">###############################################</span>
+<span class="c1"># Write your new function in the space below. #</span>
+<span class="c1">#### Then run the cell to check your work. ####</span>
+
+
+
+
+<span class="c1">###############################################</span>
+
+<span class="n">robot_name</span> <span class="o">=</span> <span class="mi">120</span>
+
+<span class="n">greetings</span><span class="p">(</span><span class="n">greeting</span><span class="p">,</span> <span class="n">robot_name</span><span class="p">)</span>
+</code></pre></div>
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+Cell In[34], line 12
+      1 ###############################################
+      2 # Write your new function in the space below. #
+      3 #### Then run the cell to check your work. ####
+   (...)
+      7 
+      8 ###############################################
+     10 robot_name = 120
+---&gt; 12 greetings(greeting, robot_name)
+
+
+Cell In[40], line 6, in greetings(greeting, name)
+      5 def greetings(greeting, name):
+----&gt; 6     print(greeting + ", " + name + "!")
+
+
+TypeError: can only concatenate str (not "int") to str
+</code></pre>
+<hr />
+<h2 id="9-running-python-from-the-command-line">9. Running Python from the command line</h2>
+<p>In this lesson, we've taken advantage of the interactive computing experience offered by Jupyter notebooks. <br />
+This computing environment is nice because it allows you to link input code to output data more easily.<br />
+However, there are other ways to execute Python code.</p>
+<p>For example, you can write Python code into a text file ending with <code>.py</code>.<br />
+We've included a script in the lesson folder called <code>hello_world.py</code>. Its contents are as follows:
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+</code></pre></div>
+You can execute that script using the command line as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">python</span> <span class="n">hello_world</span><span class="o">.</span><span class="n">py</span>
+</code></pre></div>
+<pre><code>Hello world!
+</code></pre>
+<p>The cell above starts with a special Jupyter operator, the exclamation point <code>!</code>, which passes code directly to a shell.<br />
+This is the same as using <code>python hello_world.py</code> in your command line terminal.  </p>
+<p>Code executed through a Python script works just the same as code executed in Jupyter, and comes with some advantages:
+- it's the most common way to use Python
+- it's easier to compartmentalize code that runs different functions
+- it doesn't requires setting up a Jupyter environment, which can be confusing</p>
+<p>In general, Jupyter notebooks are a helpful way to write exploratory code, while functions you've finalized and plan to use repeatedly are better off being stored in scripts.</p>
+<hr />
+<h3 id="91-receiving-user-input-with-input">9.1 Receiving user input with <code>input()</code></h3>
+<p>The built-in function <code>input()</code> prompts the user for input and accepts the response.<br />
+<code>input()</code> takes a <code>str</code> argument which can be used to describe what the function is trying to get from the user as input.</p>
+<p>This is one way to be able to interact with a Python script interactively.<br />
+In the example below, the user is prompted to input a day of the week.</p>
+<div class="highlight"><pre><span></span><code><span class="n">weekday</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;What day of the week is it?&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It sounds like it&#39;s &quot;</span> <span class="o">+</span> <span class="n">weekday</span><span class="p">)</span>
+</code></pre></div>
+<pre><code>What day of the week is it? Wednesday
+
+
+It sounds like it's Wednesday
+</code></pre>
+<p>You can use this function to prompt a user for input as part of a Python script.<br />
+Try running the script <code>hello_name.py</code> from a Terminal to see how the input function could be used.</p>
+<p>The contents of the script are shown below.
+<div class="highlight"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;What&#39;s your name?&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<hr />
+<h2 id="p3-practice">P3. Practice</h2>
+<p>Let's try writing a Python script.</p>
+<blockquote>
+<h3 id="practice-5">Practice 5.</h3>
+<p>Write a Python script in a file called <code>greetings.py</code>.<br />
+The script should prompt the user for a greeting and a name as interactive input, and print<br />
+<code>{Greeting}, {Name}!</code>  </p>
+</blockquote>
+<p>You'll need to test the script using the terminal, in part because Jupyter doesn't reliably allow user input in output blocks.</p>
+<hr />
+<h2 id="10-problem-set">10. Problem Set</h2>
+<p>To really get familiar with coding in Python (or any other language), the best way is to <strong>write a lot of code</strong>.<br />
+We recommend working through a problem set to practice some more with coding in Python. The problem set will also cover some of the basics we covered in a bit more detail. We expect the problem set won't take longer than ~1-2 hrs to complete.</p>
+<p>You can find the problem set at this <a href="https://colab.research.google.com/drive/1zJQIp-LbaK9K8Y6FbCAKVSGZA-kxJca7#scrollTo=2c08df7c-86a5-430c-95a3-a90719c3f81d">Google CoLab Document</a>.<br />
+CoLab works just like a Jupyter notebook, but it automatically saves your changes and keeps them as a cloud document.<br />
+<strong>To get started on the problem set, make sure to first <mark>click "File" &gt; "Save a copy in Drive"</mark> to make sure you don't lose your progress!</strong></p>
+<p>We'll have AUG office hours next week for you to stop by and work on your problem set with other Arcadians as well as to work through any bugs in your code.<br />
+If you're stumped, we also have an <a href="https://github.com/Arcadia-Science/arcadia-computational-training/blob/main/docs/arcadia-users-group/20230228-intro-to-python-1/problem_set_1_answers.ipynb">Answer Key</a> that you can check.</p>
+<p>Feel free to ping the <code>#software-questions</code> Slack channel for anything that comes up in the meantime!</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

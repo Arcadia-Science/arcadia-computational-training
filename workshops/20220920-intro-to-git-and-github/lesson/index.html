@@ -1,0 +1,1247 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/workshops/20220920-intro-to-git-and-github/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Hands on introduction to Git and GitHub - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hands-on-introduction-to-git-and-github" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Hands on introduction to Git and GitHub
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../arcadia-users-group/overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#version-control" class="md-nav__link">
+    Version control
+  </a>
+  
+    <nav class="md-nav" aria-label="Version control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-control-with-git-and-github" class="md-nav__link">
+    Version control with Git and GitHub
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up" class="md-nav__link">
+    Setting up
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signing-up-for-a-github-account" class="md-nav__link">
+    Signing up for a GitHub account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-a-unix-shell-git" class="md-nav__link">
+    Accessing a Unix shell &amp; Git
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first-time-setup-and-configuration" class="md-nav__link">
+    First time setup and configuration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started-with-version-control" class="md-nav__link">
+    Getting started with version control
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting started with version control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-your-first-repository-on-github" class="md-nav__link">
+    Creating your first repository on GitHub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloning-a-repository-from-remote-to-local" class="md-nav__link">
+    Cloning a repository from remote to local
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-basic-git-workflow" class="md-nav__link">
+    The basic Git workflow
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-on-branches" class="md-nav__link">
+    Working on branches
+  </a>
+  
+    <nav class="md-nav" aria-label="Working on branches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integrating-changes-into-main-using-pull-requests" class="md-nav__link">
+    Integrating changes into main using pull requests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pulling-changes-from-the-remote-repository-back-to-the-local-repostory" class="md-nav__link">
+    Pulling changes from the remote repository back to the local repostory
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bringing-the-whole-process-together" class="md-nav__link">
+    Bringing the whole process together
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undoing-changes" class="md-nav__link">
+    Undoing Changes
+  </a>
+  
+    <nav class="md-nav" aria-label="Undoing Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#restoring-a-file-to-its-state-at-the-previous-commit" class="md-nav__link">
+    Restoring a file to its state at the previous commit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restoring-the-staging-area" class="md-nav__link">
+    Restoring the staging area
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverting-a-commit" class="md-nav__link">
+    Reverting a commit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-branch-from-a-previous-commit" class="md-nav__link">
+    Creating a branch from a previous commit
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-goodies" class="md-nav__link">
+    GitHub Goodies
+  </a>
+  
+    <nav class="md-nav" aria-label="GitHub Goodies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issues" class="md-nav__link">
+    Issues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#releases" class="md-nav__link">
+    Releases
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitignore" class="md-nav__link">
+    .gitignore
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#links-to-other-goodies" class="md-nav__link">
+    Links to other goodies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="hands-on-introduction-to-git-and-github">Hands on introduction to Git and GitHub</h1>
+<h2 id="version-control">Version control</h2>
+<p><center></p>
+<figure>
+<p><img alt="Image title" src="../phd101212s.png" width="400" />
+  </p>
+<figcaption> 'Piled Higher and Deeper' by Jorge Cham <a href='http://www.phdcomics.com/comics/archive.php?comicid=1531' target='_blank'>www.phdcomics.com</a> </figcaption>
+</figure>
+<p></center></p>
+<p>Version control keeps track of changes to a file over time.
+While the document above is technically under version control, using file names can be chaotic and unreliable especially when files are passed between multiple people working on different computers.</p>
+<p><center></p>
+<figure>
+<p><img alt="Image title" src="../version_control_diff_lines.png" width="600" />
+  </p>
+<figcaption> Figure 6 in DOI 10.1093/gigascience/giaa140 <a href='https://doi.org/10.1093/gigascience/giaa140' target='_blank'>www.academic.oup.com/gigascience</a> </figcaption>
+</figure>
+<p></center></p>
+<p>Version control systems work by tracking incremental differences -- delineated by commits -- in files and keeping a history of those changes. 
+This allows you to return to return to previous versions at any time.
+The file name doesn't change and only one version of a file is displayed at a time, but the full history is accessible.
+This is similar to the version control that occurs in programs like Google Docs or Microsoft Word.</p>
+<h4 id="version-control-with-git-and-github">Version control with Git and GitHub</h4>
+<p><strong><a href="https://git-scm.com/">Git</a></strong> is a <a href="https://www.gnu.org/philosophy/free-sw.en.html">free</a>, <a href="https://en.wikipedia.org/wiki/Distributed_version_control">distributed</a> version control system.
+The complete history of your project is safely stored in a hidden <code>.git</code> repository.
+A <strong>repository</strong> is like a project folder or directory on your computer.
+It contains all of the files and folders for a project as well as the history of those files.
+Changes to files are recorded as <strong>commits</strong>.
+A <strong>commit</strong> is marked by the user when they're ready to check in a set of changes to a file.
+You can always go back to a previous commit.</p>
+<p><strong>GitHub</strong> is an internet service for hosting files that are under git version control.
+You can think of it like social media for code and small text files.
+GitHub houses repositories in a central locations.
+Repositories on GitHub are referred to as <strong>remote</strong> repositories.
+Users can create a <strong>local</strong> copy of a repository by <strong>cloning</strong> (downloading) it to their computer, or to a computer in the cloud that they have access to.</p>
+<p>You don't need GitHub to use the Git version control system.
+By using the Git command line interface, you can use version control locally without ever <strong>pushing</strong> your files to a remote repository on GitHub. </p>
+<p>You also don't need to know the Git command line interface to take advantage of the version control system: Git is well-integrated into GitHub, so if you know the basic terminology and definitions, you can still version control your project through GitHub alone.</p>
+<p>However, both Git and GitHub are most powerful when combined together.
+This workshop will teach you the basics of Git and GitHub so you can leverage both in your research.</p>
+<h2 id="setting-up">Setting up</h2>
+<h4 id="signing-up-for-a-github-account">Signing up for a GitHub account</h4>
+<p>You will need a GitHub account for today's workshop.
+If you already have one, you can use your current username (e.g. there is no need to create an Arcadia-specific GitHub username).
+If you don't, sign up at <a href="https://github.com/">github.com</a>.
+Usernames are public so choose accordingly.</p>
+<h4 id="accessing-a-unix-shell-git">Accessing a Unix shell &amp; Git</h4>
+<p>For this lesson, we need to have access to a Unix shell. 
+If you're not sure how to open a terminal on your computer, see <a href="https://swcarpentry.github.io/shell-novice/setup.html">these instructions</a>.</p>
+<p>Many computers come with Git installed.
+Once you have a Unix shell open, run the following command to see if <code>git</code> is installed:
+<div class="highlight"><pre><span></span><code>which git
+</code></pre></div></p>
+<p>You should see something like:
+<div class="highlight"><pre><span></span><code>/usr/bin/git
+</code></pre></div></p>
+<p>If you don't, you'll need to install <code>git</code>.
+If Git is not already installed on your computer, see <a href="https://carpentries.github.io/workshop-template/#git">these instructions</a>.</p>
+<h4 id="first-time-setup-and-configuration">First time setup and configuration</h4>
+<p>Whenever you use Git for the first time on a computer, there are a few things you need to set up.
+Unless you need to change something, these commands only need to be used the first time you use Git on a computer.</p>
+<p>First, set your name and email:
+<div class="highlight"><pre><span></span><code>git config --global user.name &quot;My Name&quot;
+git config --global user.email &quot;myemail@gmail.com&quot;
+</code></pre></div></p>
+<blockquote>
+<p>Your email and user name is recorded with every commit.
+This helps ensure integrity and authenticity of the history.
+Most people keep their email public, but if you are concerned about privacy, check GitHub's tips to <a href="https://help.github.com/articles/keeping-your-email-address-private/">hide your email</a>.</p>
+</blockquote>
+<p>Next, we'll set up a key pair. 
+GitHub <a href="https://docs.github.com/en/rest/overview/other-authentication-methods">recently discontinued password authentication</a>. 
+Cryptographic keys are a convenient and secure way to authenticate without having to use passwords and are an authentication method still supported by GitHub. 
+They consist of a pair of files called the public and private keys: the public part can be shared with whoever you'd like to authenticate with (in our case, GitHub), and the private part is kept "secret" on your machine. 
+The private key should never be shared in an unencrypted way with anyone -- this includes over email, slack, etc. 
+If your private key is accidentally shared, you should stop using it for authentication and create a new key pair.
+Things that are encrypted with the public key can be be decrypted with the private key, but it is computationally intractable (ie, it would take on the order of thousands of years) to determine a private key from a public key. 
+You can read more about it <a href="https://en.wikipedia.org/wiki/Public-key_cryptography">here</a>.</p>
+<div class="highlight"><pre><span></span><code>cd ~
+mkdir -p .ssh
+cd .ssh
+ssh-keygen
+</code></pre></div>
+<p>The <code>ssh-keygen</code> program will prompt you to input a key file name (below, we use <code>20220920-github-workshop</code>) and a passphrase.
+It's ok to leave the passphrase blank; if you put in a passphrase, you'll need to remember it and type it every time you use the key file.</p>
+<div class="highlight"><pre><span></span><code>ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/jovyan/.ssh/id_rsa): 20220920-github-workshop
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+
+Your identification has been saved in 20220920-github-workshop.
+Your public key has been saved in 20220920-github-workshop.pub.
+The key fingerprint is:
+SHA265:
+The key&#39;s randomart image is:
+</code></pre></div>
+<p>Next, we'll check the key files permissions.
+Permissions control who has access to a file on your computer, and key files need to have very restricted permissions.</p>
+<div class="highlight"><pre><span></span><code>ls -lah
+</code></pre></div>
+<p>We see:
+<div class="highlight"><pre><span></span><code>total 16K
+drwxr-xr-x 2 jovyan jovyan 4.0K Sep  9 20:21 .
+drwxr-xr-x 1 jovyan jovyan 4.0K Sep  9 20:20 ..
+-rw------- 1 jovyan jovyan 1.7K Sep  9 20:21 20220920-github-workshop
+-rw-r--r-- 1 jovyan jovyan  445 Sep  9 20:21 20220920-github-workshop.pub
+</code></pre></div></p>
+<p>We are the only user who has read access to our private key file, so our permissions are fine.</p>
+<p>When we ran <code>ls</code>, we saw that the <code>ssh-keygen</code> program generated two files. 
+The first file <code>20220920-github-workshop</code> is the private key file and should never be shared.
+The second file <code>20220920-github-workshop.pub</code> is the public key file that we'll upload to GitHub. 
+We can tell it's the public key file because it ends in <code>.pub</code>.</p>
+<p>Next, we need to get our public key file uploaded to GitHub so we can use it for authentication.
+GitHub will need the text in the public key file.
+You can view it by running <code>cat</code>:</p>
+<div class="highlight"><pre><span></span><code>cat 20220920-github-workshop.pub
+</code></pre></div>
+<p>Your public key file text should look something like this:
+<div class="highlight"><pre><span></span><code>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtrKIjBDjfAt3sIfHOPKEE/RkcuPAfdl0xO7M+CBQNWuYqST2bW20yRFu4lpCyNuz7uG12DgIVMmLMdlfGlGjJpj/B/f3FUw6XxIaAzQIfYtg+Q+qJ0M2GSaooeEoKi9lgiJsR69fwAoVPgI0kyyA4253F/SLVD/QpWMQgcN5m43tPztc9vp1Lt5u8PZmZJUBMyMolOgtvRUYDKx7MRb9nWO/Rmzeibj96hLEm8GHiERRGDpHK1BOryiq2jI9C2+o3ujj+SWCeqRVTdBp7raSzhwPWCsLpNRX1MNQ9t+807eDV8pUDnJ6gfHZndcQ23k+OMwhTdhPk74drz2k5X+/h jovyan@jupyter-arcadia-2dscience-2dtional-2dtraining-2dgi36ozk6
+</code></pre></div></p>
+<p>To upload the key file text, navigate to GitHub and click on settings.</p>
+<p><center>
+<img alt="" src="../github_settings.png" width="300" />
+</center></p>
+<p>Then use the menu on the left hand side of the page to navigate to the <code>SSH and GPG keys</code> tab.</p>
+<p><center>
+<img alt="" src="../github_ssh_tab.png" width="300" />
+</center></p>
+<p>Once there, select <code>New SSH key</code>.</p>
+<p><center>
+<img alt="" src="../github_new_ssh.png" width="500" />
+</center></p>
+<p>Give your key a descriptive name (such as <code>20220920-github-workshop</code>) and then paste in the contents of your public key file to text editor.</p>
+<p><center>
+<img alt="" src="../github_ssh.png" width="900" />
+</center></p>
+<p>The very last thing we need to do is tell our computers which key file to use when we want to authenticate with GitHub.
+We do this by creating a <code>config</code> file in our <code>.ssh</code> directory.
+We'll use nano to do this.
+Type the following contents into your <code>config</code> file and save it as <code>config</code>.</p>
+<div class="highlight"><pre><span></span><code>nano config
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Host github.com
+ User git
+ HostName ssh.github.com
+ IdentityFile ~/.ssh/20220920-github-workshop
+</code></pre></div>
+<p>Follow the command prompts in the bottom ribbon of nano to exit.</p>
+<p>To confirm that you have set up authentication properly, run the following command:</p>
+<div class="highlight"><pre><span></span><code>ssh -i ~/.ssh/20220920-github-workshop -T git@github.com
+</code></pre></div>
+<p>First, you'll see a message like:
+<div class="highlight"><pre><span></span><code>The authenticity of host &#39;ssh.github.com (192.30.255.122)&#39; can&#39;t be established.
+ECDSA key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM.
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+</code></pre></div></p>
+<p>Type <code>yes</code> and hit enter.
+Then, you should see:
+<div class="highlight"><pre><span></span><code>Hi username! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+</code></pre></div></p>
+<p>This may be all of the set up you need to do.
+However, if you continue to have issues, you may need to load your key into the SSH agent with: 
+<div class="highlight"><pre><span></span><code>ssh-add ~/.ssh/20220920-github-workshop
+</code></pre></div></p>
+<h2 id="getting-started-with-version-control">Getting started with version control</h2>
+<p>Now that we've established a secure connection between our computers and GitHub, it's time to learn how to start a version controlled repository and add files to it.
+We'll start by creating a repository on GitHub.</p>
+<h4 id="creating-your-first-repository-on-github">Creating your first repository on GitHub</h4>
+<p>Follow the steps below to create your first repository.</p>
+<ol>
+<li>Navigate to <a href="www.github.com">GitHub</a>.</li>
+<li>Click on the plus sign in the upper right of the screen.</li>
+<li>Select "New repository" from the drop-down menu.</li>
+<li>On the "Create a new repository" page, choose a name for your repository.
+   For this workshop, name the repository <code>2022-git-workshop</code>. 
+   A repository can have any valid directory name, but putting the year at the beginning is a good practice because it makes it clear when the repo was created.</li>
+<li>Check the box "Add a README file".</li>
+<li>Click the green "Create repository" button at the bottom of the page.</li>
+</ol>
+<p>This will create a new repository and take you to the repository's landing page on GitHub.</p>
+<h4 id="cloning-a-repository-from-remote-to-local">Cloning a repository from remote to local</h4>
+<p><strong>Cloning</strong> is the process of copying an existing Git repository from a <strong>remote</strong> location (here, on GitHub) to your <strong>local</strong> computer (here, on our binder instances).
+To clone the repository, click the green "Code" button in the top right hand corner of the repository screen. 
+This creates a drop down menu with clone options.
+We'll select the SSH tab because we configured an ssh key pair.
+Once you select the tab, copy the path that starts with <code>git@gitub.com:</code>.
+Then, navigate to your terminal and use the command below to clone the repository.
+Remember to substitute out the username/URL with your own URL that we copied.</p>
+<div class="highlight"><pre><span></span><code>cd ~
+git clone git@github.com:your_username/2022-git-workshop
+cd 2022-git-workshop
+</code></pre></div>
+<h4 id="the-basic-git-workflow">The basic Git workflow</h4>
+<p><center></p>
+<figure>
+<p><img alt="Image title" src="../allison_horst_git_overview_small.png" width="600" />
+  </p>
+<figcaption> Figure by Allison Horst. <a href='https://twitter.com/allison_horst/status/1523744022421860352' target='_blank'>www.twitter.com/allison_horst</a> </figcaption>
+</figure>
+<p></center></p>
+<p>We can now make changes to our files in our local repository.
+The basic Git workflow begins when you communicate to Git about changes you've made to your files.
+Once you like a set of changes you’ve made you can tell Git about them by using the command <strong><code>git add</code></strong>.
+This stages the changes you have made.
+Staging a file tells Git that you're ready to commit those files -- it's a way of telling Git which files you're ready to commit.
+Next, you bake them into the branch using <strong><code>git commit</code></strong>.
+When you’re ready, you can communicate those changes back to GitHub using <strong><code>git push</code></strong>.
+This will push your the changes that are in your local repository up to the remote repository.</p>
+<p>Let's try this workflow out.
+Throughout this process, we'll use the command <code>git status</code> to track our progress through the workflow.
+<code>git status</code> displays the state of a working direcotry and the staging area.</p>
+<div class="highlight"><pre><span></span><code>git status
+</code></pre></div>
+<p>We'll use the <code>echo</code> command to create a new file, <code>notes.txt</code>.</p>
+<div class="highlight"><pre><span></span><code>ls
+echo &quot;some interesting notes&quot; &gt; notes.txt
+ls
+</code></pre></div>
+<p>Take a look at the contents of your <code>notes.txt</code> file:
+<div class="highlight"><pre><span></span><code>less notes.txt
+</code></pre></div></p>
+<p>And run <code>git status</code> to see how creating a new file changes the output of that command:
+<div class="highlight"><pre><span></span><code>git status
+</code></pre></div></p>
+<p>Once you have made changes in your repository, you need to tell Git to start tracking the file. 
+The command <code>git add</code> adds the files to the "staging area", meaning Git is now tracking the changes.</p>
+<div class="highlight"><pre><span></span><code>git add notes.txt
+</code></pre></div>
+<p>After adding this file, we see our output of <code>git status</code> changes.</p>
+<div class="highlight"><pre><span></span><code>git status
+</code></pre></div>
+<p>The text associated with our file is now green because the file is staged.
+When you've made all of the changes to a file that represent a unit of changes, you can use <code>git commit</code> to create a snapshot of the file in your Git version history.</p>
+<div class="highlight"><pre><span></span><code>git commit -m &quot;start notes file&quot;
+
+git status
+</code></pre></div>
+<p>The <code>-m</code> flag is the message that is associated with that commit.
+The message should be short and descriptive so that you or someone looking at your code could quickly determine what changes took place from one commit to the next.
+What constitutes a unit of changes worthy of running <code>git commit</code>? 
+That depends on the project and the person, but think about returning to this code six months in the future.
+What set of changes would make it most easy to return to an earlier version of document?</p>
+<p>Committing a file bakes changes into your local repository. 
+To communicate that changes back up to your remote repository, use <code>git push</code>.</p>
+<div class="highlight"><pre><span></span><code>git push
+</code></pre></div>
+<p><strong>Challenge</strong>: Add today's date to the <code>README.md</code> text file, stage the changes in those files, commit them to version history, and push them up to your remote repository.</p>
+<details>
+  <summary>Challenge solution</summary>
+
+You can make changes to your <code>README.md</code> file however you choose -- using a text editor on your system (TextEdit, BBEdit, VSCode, Sublime), using a text editor in your terminal, or by using a shell redirect. 
+This solution demonstrates how to add text using <code>echo</code> and redirects <code>>></code>.
+
+<div class="highlight"><pre><span></span><code>echo &quot;20220920&quot; &gt;&gt; README.md
+git add README.md
+git commit -m &quot;add date to readme&quot;
+git push
+</code></pre></div>
+</details>
+
+<p><br /></p>
+<h2 id="working-on-branches">Working on branches</h2>
+<p><center>
+<img alt="" src="../git_branch_simple.png" width="400" />
+</center></p>
+<p>When you want to make changes to files in a repository, it’s best practice to do it in a <strong>branch</strong>.
+A <strong>branch</strong> is an independent line of development of files in a repository. 
+You can think of it like making a copy of a document and making changes to that copy only: the original stays the same, but the copy diverges with new content.
+In a branch, all files are copied and can be changed.</p>
+<p><center>
+<img alt="" src="../git_branch_collab.png" width="600" />
+</center></p>
+<p>Branches are particularly powerful for collaborating.
+They allow multiple people to work on the same code base and seamless integrate changes.</p>
+<p>By default, you start on the <code>main</code> branch.
+You can see which branch you're on locally using the <code>git branch</code> command.</p>
+<div class="highlight"><pre><span></span><code>git branch
+</code></pre></div>
+<p>Let's create a branch and make changes to it.
+We can create a new local branch using <code>git checkout -b</code>.
+<code>git checkout</code> tells git we want to switch which branch we're currently on, while the <code>-b</code> flag tells git that we're creating a new branch.</p>
+<div class="highlight"><pre><span></span><code>git checkout -b my-first-branch 
+</code></pre></div>
+<p>Now, if we run <code>git branch</code> we'll see we're on the branch <code>my-first-branch</code>.</p>
+<div class="highlight"><pre><span></span><code>git branch
+</code></pre></div>
+<p>To go back to the <code>main</code> branch, we can use the <code>git checkout</code> command without the flag <code>-b</code>.</p>
+<div class="highlight"><pre><span></span><code>git checkout main
+</code></pre></div>
+<p>Branch names can be used to convey information that can help you and others keep track of what you're doing.
+For example, you can prepend your branch names with your initials and a slash to make it clear that you were the one who created the branch, and you can specify a name that is associated with the file changes made on the branch: <code>&lt;your initials&gt;/&lt;brief description of the code change&gt;</code>. 
+Example: <code>ter/git-workshop</code>.</p>
+<p>Let's practice making a branch using these conventions. 
+In our branch, we'll update our <code>README.md</code> file.
+Use the code below to create a new branch, but remember to substitute out <code>your-initials</code> for your initials.</p>
+<div class="highlight"><pre><span></span><code>git checkout -b your-initials/update-readme.
+</code></pre></div>
+<p>Whenever you create a new branch, it branches off from the branch you're currently in when you make the new branch.
+In this case, we started in <code>main</code>, so our branch will branch off of from here.</p>
+<p>Next, let's add some changes to our <code>README.md</code> file and run <code>git status</code>.</p>
+<div class="highlight"><pre><span></span><code>echo &quot;adding more text to the README file&quot; &gt;&gt; README.md
+git status
+</code></pre></div>
+<p>Stage the changes with <code>git add</code>:</p>
+<div class="highlight"><pre><span></span><code>git add README.md
+</code></pre></div>
+<p>And then create a new commit with <code>git commit</code>:
+<div class="highlight"><pre><span></span><code>git commit -m &quot;update readme w more text&quot;
+</code></pre></div></p>
+<p>Run <code>git push</code>:</p>
+<div class="highlight"><pre><span></span><code>git push
+</code></pre></div>
+<p>This gives us an error message!</p>
+<div class="highlight"><pre><span></span><code>fatal: The current branch tmp has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin ter/update-readme
+</code></pre></div>
+<p>While we created our branch locally, we haven't created the same branch remotely. 
+We need to tell <code>git</code> where to put our changes in the remote repository.
+Luckily, the error message points us to the code we need to run to set the remote branch.</p>
+<div class="highlight"><pre><span></span><code>git push --set-upstream origin ter/update-readme
+</code></pre></div>
+<p>In the above command, <code>origin</code> is shorthand for the remote repository that a project was cloned from. 
+To view what this value is, you can run <code>git remote -v</code>.</p>
+<p>If we navigate to our repositories on GitHub, we now see a yellow banner wtih our branch name and a green button inviting us to "Compare &amp; pull request".</p>
+<h4 id="integrating-changes-into-main-using-pull-requests">Integrating changes into <code>main</code> using pull requests</h4>
+<p>We just created changes to our <code>README.md</code> file in a branch.
+To integrate this changes formally back into the <strong>main branch</strong>, you can open a <strong>pull request</strong>.
+<strong>Pull requests</strong> create a line-by-line comparison between the original code and the new code and generate an interface for inline and overall comments and feedback. 
+Pull requests are how changes are <strong>reviewed</strong> before they’re integrated back into the <code>main</code> branch.</p>
+<p>To open a pull request, click the green button "Compare &amp; pull request".
+This will take you to a page where you can draft your pull request.
+You should update the title of your pull request to reflect the changes you made in your branch in plain language.
+Then you should add a few sentence description of those changes. 
+Once you've done that, click the "Create pull request" button.</p>
+<p>The pull request interface has a lot of features that make collaboration and code review straight forward.
+The main pull request page supports many important features:</p>
+<ul>
+<li>Each commit and the descriptive message your provided for them are displayed.</li>
+<li>Conversations about the file changes can take place via comments.</li>
+<li>You can convert your pull request to a draft if you're not done adding to it yet, or request review from other GitHub users.</li>
+</ul>
+<p>The main pull request page also has a tab for "Files changed".
+This provides a succint view of every line changed in every file, showing you the new content in green and the deleted content in red. </p>
+<p>The "Files changed" interface is the most useful interface for code review.
+Code review is when someone who didn't write the code but who has domain expertise relevant to the code reads and reviews the code being added or removed by a pull request.
+Code review  a) encourages you to write better documentation and cleaner code as you go because you know someone will be reading it soon, b) gives a collaborator an opportunity to comment on and improve your work, and c) increases accountability and visibility of your work.
+There is no one-size-fits-all approach for code review, but these are some things to keep an eye out for when you're reviewing someone's code (modified from <a href="https://carpentries-incubator.github.io/managing-computational-projects/09-codereview/index.html">here</a>):</p>
+<ul>
+<li>Bugs/Potential bugs<ul>
+<li>Repetitive code</li>
+<li>Code saying one thing, documentation saying another</li>
+<li>Off-by-one errors</li>
+<li>Making sure each function does one thing only</li>
+<li>Lack of tests and sanity checks for what different parts are doing</li>
+<li>Magic numbers (a number hardcoded in the script)</li>
+</ul>
+</li>
+<li>Unclear, messy code<ul>
+<li>Bad variable/method names</li>
+<li>Inconsistent indentation</li>
+<li>The order of the different steps</li>
+<li>Too much on one line</li>
+<li>Lack of comments and signposting</li>
+</ul>
+</li>
+<li>Fragile and non-reusable code<ul>
+<li>Software or software versions not documented</li>
+<li>Tailor-made and manual steps</li>
+<li>Only works with the given data</li>
+</ul>
+</li>
+</ul>
+<p>For more on code review, see <a href="https://carpentries-incubator.github.io/managing-computational-projects/09-codereview/index.html">this lesson</a>.</p>
+<p>From the "Files changed" tab, you can see all of the changes suggested in a pull request.
+You can use in-line comments and suggestions or holistic comments on changes.
+When you're finished with your review, you can submit it as a set of comments, approved changes, or requesting further changes.</p>
+<p>Once a pull request is <strong>approved</strong>, the changes are merged into the main branch.</p>
+<p><strong>Challenge</strong> Open a pull request with the changes you made to your <code>README.md</code>. 
+Request a review from the person sitting next to you.
+After your PR has been reviewed, merge the changes into your <code>main</code> branch.</p>
+<h4 id="pulling-changes-from-the-remote-repository-back-to-the-local-repostory">Pulling changes from the remote repository back to the local repostory</h4>
+<p>After we merged our pull requests, our <code>main</code> branches in our remote repositories on GitHub now contain content that our
+To get the merged changes back to your local branch, you can run <strong><code>git pull</code></strong> in your local repository.</p>
+<div class="highlight"><pre><span></span><code>git pull
+</code></pre></div>
+<p>This will pull in all of the changes that are on GitHub but not in our local repo.</p>
+<p><strong>Challenge</strong> Checkout the <code>main</code> branch and run <code>git pull</code>. What happens?</p>
+<details>
+  <summary>Challenge solution</summary>
+
+<div class="highlight"><pre><span></span><code>git checkout main
+git pull
+</code></pre></div>
+
+You should see a message that ends with:
+<div class="highlight"><pre><span></span><code>Already up to date.
+</code></pre></div>
+
+This happens because we already pulled in all of the remote changes to our local repository, so there is nothing left to do.
+
+</details>
+
+<p></br></p>
+<p>Now that all of our changes to our <code>README.md</code> are in our local and remote branch, we can safely delete our branch.</p>
+<div class="highlight"><pre><span></span><code>git branch
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>git branch -d ter/update-readme
+</code></pre></div>
+<p>While you don't have to delete a branch when you're finished with it, deleting branches you're done with helps keep your project tidy and helps yourself and others not get confused when you revisit work in the future.</p>
+<h2 id="bringing-the-whole-process-together">Bringing the whole process together</h2>
+<p><center></p>
+<figure>
+<p><img alt="Image title" src="../allison_horst_git_overview.png" width="900" />
+  </p>
+<figcaption> Figure by Allison Horst. <a href='https://twitter.com/allison_horst/status/1563210538510737409?s=20&t=USB46onUf9i7zYnkqjUSPQ' target='_blank'>www.twitter.com/allison_horst</a> </figcaption>
+</figure>
+<p></center></p>
+<p>This figure gives an overview of the entire Git &amp; GitHub ecosystem.
+It provides a succinct review of the concepts we've covered today.</p>
+<p>GitHub has integrated enough features that many of these steps can be orchestrated completely on GitHub without needing to clone a repository to your local machine.
+However, this mental model is still helpful: you can create a branch, make edits to a text file and commit them, open a pull request, and merge the pull request all from the GitHub online interface.
+<strong>You do not need to learn the Git CLI to experience the joys and benefits of GitHub and to contribute to projects that live there.</strong></p>
+<h2 id="undoing-changes">Undoing Changes</h2>
+<p>Confusingly, git has four different subcommands for undoing things:</p>
+<ul>
+<li><code>restore</code></li>
+<li><code>revert</code></li>
+<li><code>reset</code></li>
+<li><code>checkout</code></li>
+</ul>
+<p>We'll cover these commands below.</p>
+<h4 id="restoring-a-file-to-its-state-at-the-previous-commit">Restoring a file to its state at the previous commit</h4>
+<p>The <code>git restore</code> command is useful if you want to undo changes you haven't committed yet.</p>
+<p>Open up the <code>README.md</code> file in a text editor and make some changes. 
+For instance, let's add the line <code>This is a mistake</code> to the end of the file. 
+Then save and close the file.</p>
+<p>Next, check the repository status:</p>
+<div class="highlight"><pre><span></span><code>git status
+</code></pre></div>
+<p>As expected, git tells us there are changes to the <code>README.md</code> file:</p>
+<div class="highlight"><pre><span></span><code>On branch main
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)
+        modified:   README.md
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre></div>
+<p>What if now you decide the changes were a mistake and you don't want to keep them? 
+The <code>git restore</code> command restores a file in the working directory to the version of the file in the most recent commit.</p>
+<p>Let's try out restoring the <code>README.md</code> file:</p>
+<div class="highlight"><pre><span></span><code>git restore README.md
+</code></pre></div>
+<p>Now check the status again:</p>
+<div class="highlight"><pre><span></span><code>git status
+</code></pre></div>
+<p>The status shows that there are no longer any new changes to the <code>README.md</code>
+file:</p>
+<div class="highlight"><pre><span></span><code>On branch main
+nothing to commit, working tree clean
+</code></pre></div>
+<p>There is no way to undo <code>git restore</code>, so be careful when you're using it.</p>
+<p>In older versions of git, the command to restore a file in the working directory was <code>git checkout -- FILENAME</code>. 
+You may occasionally see people mention this command online, and it still works in recent versions of git.
+However, the <code>git restore</code> command is preferable because it disambiguates what you're trying to do (<code>git checkout</code> is also used for other things unrelated to restoring files).</p>
+<h4 id="restoring-the-staging-area">Restoring the staging area</h4>
+<p>With a different set of arguments, you can also use the <code>git restore</code> command to remove changes from the staging area.</p>
+<p>Open up the <code>README.md</code> file in a text editor again and make some more changes. 
+This time let's add the line <code>Git is tough</code> to the end of the file. 
+As usual, save and close the file.</p>
+<p>Next, add the changes to the staging area:</p>
+<div class="highlight"><pre><span></span><code>git add README.md
+</code></pre></div>
+<p>Then check the repository status with <code>git status</code>:</p>
+<div class="highlight"><pre><span></span><code>Changes to be committed:
+  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+        modified:   README.md
+</code></pre></div>
+<p>git tells us our changes to <code>README.md</code> are staged.</p>
+<p>Now suppose you decide you want to unstage the changes to <code>README.md</code>. 
+This removes the changes from the staging area, but not from the working directory.
+Unstaging changes is especially useful when you're working with multiple files and accidentally add a file you don't want to commit yet.</p>
+<p>To unstage a file, use <code>git restore</code> with the <code>--staged</code> argument:</p>
+<div class="highlight"><pre><span></span><code>git restore --staged README.md
+</code></pre></div>
+<p>Then check the status again:</p>
+<div class="highlight"><pre><span></span><code>Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)
+        modified:   README.md
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre></div>
+<p>The changes to <code>README.md</code> are still in the working directory, but no longer in the staging area.</p>
+<p>In older versions of git, the command to restore a file in the staging area was <code>git reset FILENAME</code>. 
+You may occasionally see people mention this command online, and it still works in recent versions of git. 
+However, the <code>git restore</code> command is preferable because it disambiguates what you're trying to do (<code>git reset</code> is also used for other things unrelated to restoring the staging area).</p>
+<h4 id="reverting-a-commit">Reverting a commit</h4>
+<p>The <code>git revert</code> command is useful if you want to undo changes that you've already committed. 
+Once a commit is in your repository's history, it generally stays there forever. 
+There is a way to delete commits, but you should really only delete commits if you <a href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository">accidentally commit sensitive data</a>.
+Instead, the idiomatic way to undo a commit is to create a new commit that reverses the changes.</p>
+<p>Let's start by editing the <code>README.md</code> file again and making a commit. 
+Add the line <code>This is a big mistake.</code> to the end of the file. 
+Then run:</p>
+<div class="highlight"><pre><span></span><code>git add README.md
+git commit -m &quot;This commit is a mistake.&quot;
+</code></pre></div>
+<p>Now suppose you decide the commit is a mistake, and want to undo it. 
+First, you need to find the ID of the commit you want to undo. 
+The <code>git log</code> command opens a scrolling list of all commits in the repository's history and their IDs. 
+Run the command:</p>
+<div class="highlight"><pre><span></span><code>git log
+</code></pre></div>
+<p>You can exit the log by typing <code>q</code>.</p>
+<p>In the log, locate the the mistaken commit, and copy or remember the first 5 digits of its ID. 
+Git is smart enough that it can generally recognize a commit from the first few digits of its ID, and will tell you if it needs more digits for disambiguation.</p>
+<p>In my repo, the ID of the commit starts with <code>e01d1</code>. 
+In your repo, the commit will likely have a different ID. 
+Next, run this command, replacing the ID with the ID you copied:</p>
+<div class="highlight"><pre><span></span><code>git revert e01d1 --no-edit
+</code></pre></div>
+<p>The <code>--no-edit</code> flag tells <code>git revert</code> to generate the commit message for the new commit automatically. 
+Without the flag, <code>git revert</code> will prompt you to enter a commit message.</p>
+<p>Now inspect the file with <code>nano</code> or <code>cat</code>. 
+You should see that the changes from your bad commit are gone. 
+If you look in the log with <code>git log</code>, you'll also see a new commit to revert the changes of a previous commit.</p>
+<p><strong>Challenge</strong>: The goal of this challenge is to make a bad commit and then revert it. Work
+through these steps:</p>
+<ol>
+<li>Change a file in your repository.</li>
+<li><code>add</code> and <code>commit</code> the changes.</li>
+<li>Find the ID of the commit from step 2 in the repository history.</li>
+<li><code>revert</code> the commit from step 2.</li>
+</ol>
+<details>
+<summary>Challenge solution</summary>
+Change a file like `README.md`.
+Then run:
+<div class="highlight"><pre><span></span><code>git add README.md
+git commit -m &quot;update README&quot;
+</code></pre></div>
+
+To find the ID of the commit, run:
+<div class="highlight"><pre><span></span><code>git log
+</code></pre></div>
+
+Then revert the commit:
+<div class="highlight"><pre><span></span><code>git revert 07f61 --no-edit
+</code></pre></div>
+</details>
+<p><br /></p>
+<h4 id="creating-a-branch-from-a-previous-commit">Creating a branch from a previous commit</h4>
+<p>Another strategy to revert to a prior state is to create a new branch that starts at the state of a previous commit. 
+This has the advantage of keeping a branch with the work you did on it, but allows you to continue to work in a different direction from a previous commit.
+To do this, you can use <code>git log</code> like above to identify which commit you want your new branch to start out at.
+Once you have the commit ID, run the following:</p>
+<div class="highlight"><pre><span></span><code>git checkout -b name-of-new-branch e01d1
+</code></pre></div>
+<p>You'll now be on a new branch that starts from the commit you indicated.
+To check, run <code>git branch</code>.</p>
+<h2 id="github-goodies">GitHub Goodies</h2>
+<h4 id="issues">Issues</h4>
+<p>GitHub issues started as a way to record problems with software and have since evolved into generalized <a href="https://github.com/features/issues">project planning tools</a>. 
+Issues are a great way to keep track of to do items, have asynchronous conversations relevant to a repository, or otherwise deposit information relevant to a repository.</p>
+<h4 id="releases">Releases</h4>
+<p><a href="https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository">Releases</a> bundle and deliver iterations of your project.
+When your entire repository reaches a consensus point, you can use GitHub to compress that version of files together.
+Releases <a href="https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content">integrate with zenodo</a> to archive your repo and give it a DOI. </p>
+<h4 id="gitignore"><code>.gitignore</code></h4>
+<p>A <code>.gitignore</code> file is a hidden text file in you repository that you can use to "ignore" files that you don't want under version control.
+This is handy for really large data files that you don't want to add to your repo.
+To use a <code>.gitignore</code> file, create a <code>.gitignore</code> text file in the main directory of your repo and add paths to files that you would like to ignore.
+The <code>.gitignore</code> file accepts regular expressions (e.g. <code>*.fastq.gz</code> to ignore any file that ends in <code>.fastq.gz</code>).</p>
+<h4 id="links-to-other-goodies">Links to other goodies</h4>
+<ul>
+<li><a href="https://docs.github.com/en/repositories/archiving-a-github-repository/archiving-repositories">Archive a repository that is no long in use</a></li>
+<li><a href="https://github.com/features/actions">Continuous integration with GitHub Actions</a></li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p><center></p>
+<h4><i>Terms introduced:</i></h4>
+
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Git</td>
+<td>a version control system</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>an internet hosting service for version control using Git</td>
+</tr>
+<tr>
+<td>repository</td>
+<td>a collection of files and folders associated with a project that is under Git version control</td>
+</tr>
+<tr>
+<td>local</td>
+<td>accessed from your system; the computer you're working on</td>
+</tr>
+<tr>
+<td>remote</td>
+<td>stored on a remote computer; GitHub</td>
+</tr>
+<tr>
+<td>commit</td>
+<td>a snapshot of your files and folders at a given time</td>
+</tr>
+<tr>
+<td>branch</td>
+<td>an independent line of development in a repository</td>
+</tr>
+<tr>
+<td>pull request</td>
+<td>a mechanism to suggest changes from a branch be integrated back into the <code>main</code> branch</td>
+</tr>
+<tr>
+<td>review</td>
+<td>the process of reviewing changes in a branch through a pull request</td>
+</tr>
+<tr>
+<td>issue</td>
+<td>a tracking tool integrated into a GitHub repository</td>
+</tr>
+</tbody>
+</table>
+<h4><i>Commands introduced:</i></h4>
+
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git clone</code></td>
+<td>copies a Git repository from remote to local</td>
+</tr>
+<tr>
+<td><code>git add</code></td>
+<td>adds new or changed files in your working directory to the Git staging area</td>
+</tr>
+<tr>
+<td><code>git commit</code></td>
+<td>creates a commit of your repository</td>
+</tr>
+<tr>
+<td><code>git push</code></td>
+<td>uploads all local branch commits to the corresponding remote branch</td>
+</tr>
+<tr>
+<td><code>git checkout</code></td>
+<td>switches between local branches, or creates a new branch with the <code>-b</code> flag</td>
+</tr>
+<tr>
+<td><code>git branch</code></td>
+<td>reports what branch you're currently on and what other local branches exist</td>
+</tr>
+<tr>
+<td><code>git pull</code></td>
+<td>updates current local working branch and all of the remote tracking branches</td>
+</tr>
+<tr>
+<td><code>git restore</code></td>
+<td>restores a file to its state at the last commit or remove a file from the staging area</td>
+</tr>
+<tr>
+<td><code>git revert</code></td>
+<td>reverts changes that have already been committed</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>
