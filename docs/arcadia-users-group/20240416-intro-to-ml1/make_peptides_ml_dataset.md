@@ -1,7 +1,7 @@
 ## Documentation for how the dataset was made
 
 0. We used the environment defined in `make_peptides_ml_dataset.yml` to make the data set below.
-1. Download the peptipedia database:  https://drive.google.com/file/d/1x3yHNl8k5teHlBI2FMgl966o51s0T8i_/view?usp=sharing. The link for this database is provided by the [peptipedia GitHub repo](https://github.com/ProteinEngineering-PESB2/Peptipedia2.0).
+1. Originally, we downloaded the peptipedia database using the following Google Drive link:  https://drive.google.com/file/d/1x3yHNl8k5teHlBI2FMgl966o51s0T8i_/view?usp=sharing. The link for this database is provided by the [peptipedia GitHub repo](https://github.com/ProteinEngineering-PESB2/Peptipedia2.0). For persistence, we uploaded this file to [this OSF repository](https://osf.io/kb7z6/), as well as some of the processed data created by the code below.
 2. Unzip the database.
 3. The unzipped archive contains three files, `backup_sql.zip`, `peptipedia_csv.zip`, and `peptipedia_fasta.zip`.
    Unzipping `peptipedia_fasta.zip` results in a FASTA file `peptipedia.fasta` that contains all of the peptide sequences from the peptipedia database.
@@ -34,19 +34,35 @@
                output_file.write(csv_line)
    ```
 
+   This code extracts the following CSV files:
+   ```
+   table_public.activity.csv
+   table_public.activity_spectral.csv
+   table_public.db.csv
+   table_public.encoding.csv
+   table_public.gene_ontology.csv
+   table_public.index.csv
+   table_public.patent.csv
+   table_public.peptide.csv
+   table_public.peptide_has_activity.csv
+   table_public.peptide_has_db_has_index.csv
+   table_public.peptide_has_go.csv
+   table_public.pfam.csv
+   ```
+
 4. Filter to peptides that are at least k in length. MMSeqs2 clustering in step 4 will fail if any of the sequences are below the k-mer length used for clustering.
    ```bash
    seqkit seq --min-len 10 -o peptipedia_minlen10.fasta peptipedia.fasta
    ```
 
 5. Cluster the sequences.
-   Using a low identity threshold (10%), this step determines which peptides in the input database have similar sequences.
-   We will subsequently use this information to artificially generate a data set where the peptides or their characteristics are predictive of bioactivity labels.
+   The goal of this step is to reduce homology in peptide sequences so that the data set can be split in any way and not have pollution between the train and test sets.
+   It uses a threshold of 80% because this has been previously shown to be sufficient for homology reduction in protein sequences ([source](https://academic.oup.com/nar/article/47/8/e43/5314020)).
    ```bash
-   mmseqs easy-cluster peptipedia_minlen10.fasta mmseqs/peptipedia_minlen10-0.1 tmp --min-seq-id 0.1
+   mmseqs easy-cluster peptipedia_minlen10.fasta mmseqs/peptipedia_minlen10-0.8 tmp --min-seq-id 0.8
    ```
 
-6. Filter to large clusters composed of peptides that all have the same bioactivity prediction and write a TSV file.
+6. Filter to clusters composed of peptides that all have the same bioactivity prediction and write a TSV file.
    Many of the peptides that end up in clusters have multiple bioactivity predictions (e.g. antimicrobial and therapeutic).
    The script below filters to peptide clusters that all have at least one bioactivity label that is the same.
    It also adds additional metadata (GO, PFAM) from the SQL database to the data.frame of peptide information.
@@ -69,7 +85,7 @@
    peptide_bioactivity <- read_csv('~/Downloads/backup_peptipedia_29_03_2023/peptipedia.csv') %>%
      clean_names()
    
-   # make the data set a little bit smaller by filtering to clusters that have > 5 members
+   # make the data set a little bit smaller by filtering to clusters that have > 2 members
    # otherwise, the lines of code to find clusters with all of the same bioactivity takes too long
    cluster_sizes <- clusters %>%
      group_by(rep) %>%
@@ -86,8 +102,10 @@
    peptide_bioactivity_filtered <- peptide_bioactivity %>%
      filter(idpeptide %in% clusters_filtered$member)
    
-   # filter to clusters that all have the same bioactivity for at least one bioactivity label
-   # (e.g. all peptides have a predicted bioactivity of "antimicrobial" in a given cluster)
+   # filter to clusters that all have the same bioactivity
+   # (e.g. all peptides have a predicted bioactivity of "antimicrobial" in a given cluster;
+   #  note that most peptides have multiple bioactivity labels.
+   #  this code filters to clusters where at least one bioactivity label is the same for all peptides in the cluster.)
    peptide_bioactivity_with_clusters <- left_join(clusters_filtered, peptide_bioactivity_filtered,
                                                   by = c("member" = "idpeptide"))
    
@@ -243,6 +261,9 @@
    Detection Prevalence                 0.004539         0.001513                        0.006051               0.3041              0.00000        0.04387                       0.10590                     0.004539           0.12859                0.2859            0.11498
    Balanced Accuracy                    0.497671         0.499232                        0.496885               0.7779              0.50000        0.59431                       0.86608                     0.497653           0.81643                0.8163            0.85133
    ```
+   
+   Note that the accuracy is low-ish by design.
+   We wanted a teaching data set we can demonstrate how to improve performance through tuning or by using different models or analysis techniques.
 
 ## Documentation of data set contents
 
