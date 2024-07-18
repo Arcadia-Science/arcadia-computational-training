@@ -234,3 +234,6 @@ Try to stay away (initially) from using color to describe appearance (i.e. the b
 - Track something (object/concept/relationship) across a scene or multiple panels
 - Show the relationship of part to whole
 = Highlight an important element, an outlier, an unexpected result
+
+## Design critique
+[TBD]
