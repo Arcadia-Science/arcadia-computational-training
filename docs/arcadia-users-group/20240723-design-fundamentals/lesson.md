@@ -9,9 +9,9 @@ This AUG lesson is a brief introduction to the principles of design, with a focu
   - Grids, grouping, and alignment
 - Layout exercise
 - **Design details:** how to choose visual elements to communicate better
+  - Color
   - Typography and hierachy
   - Symbols
-  - Color
 - Design critique
 
 
@@ -20,15 +20,15 @@ This AUG lesson is a brief introduction to the principles of design, with a focu
 
 > “Beauty is a very important entry point for readers to get interested about the visualization and be willing to explore more.  Beauty cannot replace functionality, but beauty and functionality together achieve more.” – *Better Data Visualization*
 
-Beautiful scientific visualizations are able to grab your attention. But design is more than just aesthetics – it is a critical component of effective communication.  Efficient design is functional; it distills complex information into simple and clear contrasts, patterns, or sequences. (Tufte)
+Beautiful scientific visualizations are able to grab your attention. But design is more than just aesthetics – it is a critical component of effective communication.  Efficient design is functional; it distills complex information into simple and clear contrasts, patterns, or sequences.
 
-In this lesson, we’re going to discuss design principles as they emerged as a formalized system, most famously established by German/Swiss design movements in the early 20th century.  These are time-tested tools which draw from graphical history/culture and perception science.  
+In this lesson, we’re going to discuss design principles as they emerged as a formalized system, most famously established by German/Swiss design movements in the early 20th century.  These are time-tested tools which draw from graphical history/culture and perception science.
 
 > “Traditionally, graphic design theory has privileged intuition and creativity over empirical research…. [But] it can be argued that the art-based principles of graphic design - including (but not limited to ) contrast, hierarchy, repetition, alignment, and color - are in fact theories proven through a long history of successful experimentation in practice.  Indeed, graphic designers - through professional practice - have tested and restested to the point where it makes sense to refer to these theories as laws or principles.” – *Audrey G. Bennett, Design Studies: Theory and Research in Graphic Design*
 
 <details>
     <summary> A note about decolonizing design </summary>
-    There’s been a lot of discussion of and work towards decolonizing design, and I can speak to some of the projects I’m familiar with.  But I also feel strongly that the visual systems codified by Bauhaus and Swiss design are basically summaries of very ancient systems of visual cognition that don’t belong to Europe, they just had the power/structure to formalize and disseminate it. (Ex: the golden ratio concept (often associated with Swiss grid design) is at least as old as ancient greece and there’s evidence of stronger ties to ancient African civilizations.)  Not to mention the impact of millenia of trade and travel and centuries of colonization that had incalculable influence on European thought.
+    There’s been a lot of discussion of and work towards decolonizing design, and I can speak to some of the projects I’m familiar with.  But I also feel strongly that the visual systems codified by Bauhaus and Swiss design are basically summaries of very ancient systems of visual cognition that don’t belong to Europe, they just had the power/structure to formalize and disseminate it. (Ex: the golden ratio concept (often associated with Swiss grid design) is at least as old as ancient greece and there’s evidence of stronger ties to ancient African civilizations.) Not to mention the impact of millenia of trade and travel and centuries of colonization that had incalculable influence on European thought.
 </details>
 
 ## Destination & Audience
@@ -74,16 +74,16 @@ Before starting on a design, consider through what medium it will be seen. Diffe
 
 
 #### 4. What format will you use?
-- Data figures
-- Methods
-- GAs and Illustrations.
+- **Data figures:** Figures that show raw data, relationships, or trends. These are the most common type of scientific figure.
+- **Methods figures:** Figures that illustrate a process or technique.
+- **Graphical Abstracts and Illustrations:** These are used to summarize a paper or concept in a single image. They can take the form of:
   - Dense explanatory info
   - A more complex/complete story
   - A step-by-step guide
 
 
 ## Layout
-At a high level, how we arrange and compose figures impacts their comprehensibility.
+At a high level, how we arrange and compose figures impacts their comprehensibility. We'll discuss principles of layout that you can use to guide the viewer through your figure.
 
 ### Gestalt Principles
 The term “gestalt” refers to the idea that the whole is greater than the sum of its parts.  The gestalt principles of design are a set of rules that describe how we perceive visual elements as a whole. 
@@ -111,7 +111,6 @@ These principles show up in a variety of different forms of perceptual grouping,
     <li>"Biologists who study perception refer to the “ecology” of vision— ways our visual processes favor needs or tasks essential to our survival. Such ideas counter the old “representational” approach to vision as a “picture in our heads,” and replace it with constructivist notions. We don’t simply see what is in a mechanistic way. Instead, what is seen is what is made.”</li> 
     <li>Gestalt Psychology: “more or less rooted in the idea that the whole is greater than the sum of its parts…. Relationships between those parts inform how we perceive the whole.”  Most of these ideas have held up under subsequent research, especially with two-dimensional abstract graphics. (though Gestaltists thought these processes were innate to the brain, not the influence of learning and experience).</li>
 </details>
-
 
 ### Visual hierarchy
 Visual hierarchy refers to the arrangement of visual elements in a way that implies importance.  This is important because it helps guide the viewer’s eye through the figure, making it easier to understand the information being presented.
@@ -167,6 +166,29 @@ We can apply similar principles to scientific figures by paying attention to:
 ## Design details
 Once you've established the overall layout of your figure, you can start to think about the details that will make your figure visually appealing and easy to understand.
 
+### Color
+> “Colors - as we perceive them - aren’t absolute.  They vary from person to person, are subject to perceptual issues, aesthetic issues, and semantics….  But color vision [also] allows humans to more easily distinguish things from one another, remember those objects, and communicate with others about them.  It follows that color can be used in information design to selectively isolate and highlight information.” (Christiansen, p. 98)
+
+Color is a powerful tool for conveying information. However, it can also be a source of confusion if not used correctly. Understanding the basics of color theory can help you use color effectively in your figures.
+
+**Color terminology:**
+- **Hue:** the color itself (red, blue, green)
+- **Chroma / Saturation:** the intensity of the color (from gray to fully saturated)
+- **Value / Lightness:** the lightness or darkness of a color
+
+**What to consider when choosing colors:**
+- **Contrast:** Use colors that are easily distinguishable from one another.  This can be achieved by using colors that are far apart on the color wheel, or by using colors with different values.
+- **Perceived lightness:** Some colors, such as blues and purples, have more visual weight than others, such as yellows. Lightness is not uniform among hues, so be aware of this when choosing colors.
+- **Color vision deficiency:** Color vision deficiency (color blindness) affects a significant portion of the population. Be aware of this when choosing colors, and consider using color palettes that are accessible to colorblind viewers.
+- **Double encoding:** Use color to encode information, but also use another visual variable (like shape or size) to encode the same information. This way, if someone can’t see the color, they can still understand the information.
+
+**How to use color effectively:**
+Try to stay away (initially) from using color to strictly describe appearance (i.e. the banana is yellow).  Instead:
+- Use color to organize content while planning your graphic; color code thematically-related content or key takeaways (can also do this to blocks of text if you’re a verbal thinker, to connect visual planning to writing, or to tag reference material). This coloring doesn’t necessarily need to carry over to final design.
+- Use color to track elements or chunk information, such as by tracking something (object/concept/relationship) across a scene or multiple panels
+- Show the relationship of part to whole
+- Highlight an important element, an outlier, an unexpected result
+
 ### Typography and hierarchy
 Typography is "the art and technique of arranging type to make written language legible, readable and appealing when displayed".  It is a critical component of design, as it can be used to convey information and emotion.  When choosing typography for a figure, you should consider the following variables:
 - size
@@ -205,35 +227,15 @@ Symbols and conventions specific to each scientific discipline are like visual j
 - Jeremy M. Wolfe - Oxford Handbook of Attention
 - Luminance, pictorial depth cues, line termination, closure, curvature, shading, luster, number, and aspect ratio
 
-Arrows
-- Arrows are used to signify a lot of things:
-Change in state or position (things go from A to B) 
+**Arrows**<br>
+Arrows are used to signify a diverse set of meanings, and it’s important to make sure that these different meanings are clearly communicated with different iconography.  Some common meanings of arrows include:
+- Change in state or position (things go from A to B) 
 - Causality (C leads to, activates, or triggers D)
-- Label
-- Zoom
+- Labeling
+- Zooming
 - Discipline-specific conventions (genetics promoter).  Does your audience know the jargon?  
-- Make sure these different meanings use different types of arrows, or don’t use arrows at all (leader lines, callouts)
-- Bertin:
-- Straight (separate/discrete) vs. curved (continuity)
-- Convergence: align to a center point, same distance away from object
 
-
-### Color
-“Colors - as we perceive them - aren’t absolute.  They vary from person to person, are subject to perceptual issues, aesthetic issues, and semantics….  But color vision [also] allows humans to more easily distinguish things from one another, remember those objects, and communicate with others about them.  It follows that color can be used in information design to selectively isolate and highlight information.” (Christiansen, p. 98)
-
-Perceptual issues & Accessibility:
-- Color jargon overview
-- Grayscale, lightness, simultaneous contrast, color blindness.  We’ve tried to account for some of this in our color palette and gradients.
-- Double-encode information represented by color *
-- Consider cultural symbolism (red = negative, green = positive)
-
-Try to stay away (initially) from using color to describe appearance (i.e. the banana is yellow).  Instead:
-- Use color to organize content while planning your graphic *
-- Color code thematically-related content or key takeaways (can also do this to blocks of text if you’re a verbal thinker, to connect visual planning to writing, or to tag reference material).  Doesn’t necessarily need to carry over to final design
-- Use color to track elements or chunk information *
-- Track something (object/concept/relationship) across a scene or multiple panels
-- Show the relationship of part to whole
-= Highlight an important element, an outlier, an unexpected result
+Make sure these different meanings use different types of arrows, or don’t use arrows at all (leader lines, callouts).
 
 ## Design critique
 [TBD]
