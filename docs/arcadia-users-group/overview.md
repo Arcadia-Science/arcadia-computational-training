@@ -21,24 +21,9 @@ The schedule is subject to change.
 | Date         | Tutorial            | Description   |
 | ------------ | ------------------- | ------------- |
 | Mar 5, 2024  | [GitHub Templates: new repos with set structures](20240305-github-templates/lesson.md) | This lesson provides an overview of how to create a new repository from a GitHub template. Using a Python analysis repository as an example, it walks through the function of each file in the template and the benefits that come from using templates.|
-| Mar 19, 2024 | Office hours | |
-| Apr 16, 2024 | Intro to Machine Learning 1 | |
-| Apr 30, 2024 | Intro to Machine Learning 2 | |
-| May 14, 2024 | Office hours | |
-| May 28, 2024 | Code Organization (when do you make a class? when do you split something up?) | |
-| Jun 11, 2024 | Office hours | |
-| Jun 25, 2024 | Principles of Data Visualization | |
-| Jul 9, 2024  | Data Visualization for Pubs | |
-| Jul 23, 2024 | Interactive Data Visualization | |
-| Aug 6, 2024  | Office hours | |
-| Aug 20, 2024 | Numpy: matrices, arrays, and math | |
-| Sep 3, 2024  | Pandas: data frames in python | |
-| Sep 17, 2024 | Applied Machine Learning 1: scikit learn or similar | |
-| Oct 1,  2024 | Applied Machine Learning 2: pytorch or similar | |
-| Oct 15, 2024 | Office hours | |
-| Oct 29, 2024 | Chat GPT to empower biologists to code | |
-| Nov 12, 2024 | TBD | |
-| Dec 10, 2024 | TBD | |
+| Jul 23, 2024 | Introduction to Design Principles | This lesson is an overview to introductory design principles and different components to consider when creating figures and illustrations.|
+| Jul 30, 2024 | Making figures in [python with arcadia-pycolor](./20240730-arcadia-pycolor/lesson.md) and in [R with arcadiathemeR](./20240730-arcadiathemer/20240730-arcadiathemer.md) | This lesson covers how to make figures in python and R that adhere to Arcadia's style guidelines using the arcadia-pycolor and arcadiathemeR packages, respectively. |
+| Aug 13th, 2024  | Illustrator Basics & Templates | This lesson provides an overview of how to use the custom libraries and templates in Illustrator that adhere to Arcadia's style guidelines. |
 
 ## Previous trainings
 
