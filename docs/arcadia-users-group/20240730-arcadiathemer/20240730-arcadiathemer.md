@@ -382,8 +382,8 @@ in the Illustrator templates.
 If you want to save plots in different formats (such as PNG or JPG) or
 sizes that aren’t available through this convenience function, you can
 still use the regular `ggsave` function. Additionally for the background
-to be transparent in exported plots you need to set this argument to
-`FALSE` in the `theme_arcadia` function:
+to be transparent in exported plots you need to set the `background`
+argument to `FALSE` in the `theme_arcadia` function:
 
 ``` r
 plot <- ggplot(data=diamonds, aes(x=cut, fill=cut)) +
