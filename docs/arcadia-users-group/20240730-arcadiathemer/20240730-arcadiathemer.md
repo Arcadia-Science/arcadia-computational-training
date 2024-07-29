@@ -19,11 +19,14 @@ We’ll cover the following topics:
 
 1.  You need `R` installed, and `arcadiathemeR` requires at least R
     version \>= 4.0 (the package was built and tested with version
-    4.3.1). Install `R` for Mac OSx \[here\]
+    4.3.1). Install `R` for Mac OS X
+    [here](https://cran.r-project.org/bin/macosx/).
 
 2.  You can use `RStudio` or a Jupyter notebook for creating plots.
-    Install `RStudio` for Mac OSx \[here\] or Jupyter in a conda
-    environment [following these instructions]()
+    Install `RStudio` for Mac OSx
+    [here](https://posit.co/download/rstudio-desktop/) or Jupyter in a
+    conda environment [following these
+    instructions](https://training.arcadiascience.com/arcadia-users-group/20221024-jupyter-notebooks/lesson/#managing-jupyter-notebook-installations-with-conda).
 
 3.  To use the custom fonts you need to download the `TTF` formatted
     font files and place in the `Users/YOURUSERNAME/Library/Fonts/`
@@ -106,12 +109,13 @@ ggplot(data=diamonds, aes(x=cut, fill=cut)) +
   scale_fill_arcadia()
 ```
 
-![](figures/aug-fonts_correct-1.png)<!-- --> In addition to specifying
-which palette to use in the `scale` function, you can also reverse the
-colors of the scale used with `reverse=TRUE`. You can also use other
-`ggplot2` or `theme` specifications on top of these functions, such as
-moving the position of the legend or modifying the scales to remove
-whitespace between the axis lines and the bars:
+![](figures/aug-fonts_correct-1.png)<!-- -->
+
+In addition to specifying which palette to use in the `scale` function,
+you can also reverse the colors of the scale used with `reverse=TRUE`.
+You can also use other `ggplot2` or `theme` specifications on top of
+these functions, such as moving the position of the legend or modifying
+the scales to remove whitespace between the axis lines and the bars:
 
 ``` r
 ggplot(data=diamonds, aes(x=cut, fill=cut)) +
@@ -122,10 +126,11 @@ ggplot(data=diamonds, aes(x=cut, fill=cut)) +
   theme(legend.position = "bottom")
 ```
 
-![](figures/aug-additional_layers-1.png)<!-- --> In addition to
-reversing the order of the colors used in the palette, you can select
-different indices of colors from the palettes within the `scale`
-function with the `start` and `end` arguments:
+![](figures/aug-additional_layers-1.png)<!-- -->
+
+In addition to reversing the order of the colors used in the palette,
+you can select different indices of colors from the palettes within the
+`scale` function with the `start` and `end` arguments:
 
 ``` r
 ggplot(mtcars, aes(x = hp, fill = as.factor(cyl))) +
@@ -136,10 +141,11 @@ ggplot(mtcars, aes(x = hp, fill = as.factor(cyl))) +
   scale_x_continuous(expand=c(0,0)) # remove whitespace between both axes and the plot
 ```
 
-![](figures/aug-indices-1.png)<!-- --> The `scale` functions are used to
-specify which palettes to use. The `gradient` functions are used to
-access the gradient palettes, which work in the same way as the `scale`
-functions using `color` or `fill`:
+![](figures/aug-indices-1.png)<!-- -->
+
+The `scale` functions are used to specify which palettes to use. The
+`gradient` functions are used to access the gradient palettes, which
+work in the same way as the `scale` functions using `color` or `fill`:
 
 ``` r
 ggplot(data = mtcars, aes(x = hp, y = mpg, color = hp)) +
@@ -148,10 +154,11 @@ ggplot(data = mtcars, aes(x = hp, y = mpg, color = hp)) +
  gradient_color_arcadia(palette_name = "lisafrank")
 ```
 
-![](figures/aug-gradient-1.png)<!-- --> There are also bicolor gradients
-available that are useful for heatmap plots. You can also remove the
-background color with `background=FALSE`, which is recommended when
-exporting plots, which is described below.
+![](figures/aug-gradient-1.png)<!-- -->
+
+There are also bicolor gradients available that are useful for heatmap
+plots. You can also remove the background color with `background=FALSE`,
+which is recommended when exporting plots, which is described below.
 
 ``` r
 library(reshape2)
@@ -165,12 +172,20 @@ melted_cor_matrix <- (melt(cor_matrix))
 ggplot(melted_cor_matrix, aes(x=Var1, y=Var2, fill=value)) +
   geom_tile() +
   theme_arcadia(x_axis_type = "categorical", y_axis_type = "categorical", background = FALSE) +
-  gradient_fill_arcadia(palette_name = "reds") + 
+  gradient_fill_arcadia(palette_name = "purplegreen") + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = "top", axis.line = element_blank()) +
   labs(x = "", y = "") +
   scale_y_discrete(expand=c(0,0)) +
   scale_x_discrete(expand = c(0,0))
+#> Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm):
+#> collapsing to unique 'x' values
+
+#> Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm):
+#> collapsing to unique 'x' values
+
+#> Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm):
+#> collapsing to unique 'x' values
 ```
 
 ![](figures/aug-heatmap-1.png)<!-- -->
@@ -178,10 +193,7 @@ ggplot(melted_cor_matrix, aes(x=Var1, y=Var2, fill=value)) +
 ## Accessing palettes and specific colors
 
 To view all the color palette options and the individual hex codes that
-comprise each palette, you can view these with `show_arcadia_palettes()`
-or `show_arcadia_gradients()`. The gradients also show the positions for
-each individual color in the gradient. You can use these lists of hex
-codes to create custom or reordered sets of palettes.
+comprise each palette, you can view these with `show_arcadia_palettes`:
 
 ``` r
 show_arcadia_palettes()
@@ -228,6 +240,14 @@ show_arcadia_palettes()
 #> 
 #> $cool_gray_shades
 #> [1] "#E6EAED" "#CAD4DB" "#ABBAC4" "#8A99AD" "#687787"
+```
+
+To view gradient options and colors, use `show_arcadia_gradients`. The
+gradients also show the positions for each individual color in the
+gradient. You can use these lists of hex codes to create custom or
+reordered sets of palettes.
+
+``` r
 show_arcadia_gradients()
 #> $magma
 #> $magma$colors
