@@ -46,15 +46,15 @@ We’ll cover the following topics:
         remotes::install_github("Arcadia-Science/arcadiathemeR")
 
 5.  Load the package to use in your scripts with
-    `library(arcadiathemeR)`. When you first load the package it will
-    print a message about whether the custom fonts have been accessed
-    and loaded correctly.
+    `library(arcadiathemeR)`. When you first load the package in a new R
+    session it will print a message about whether the custom fonts have
+    been accessed and loaded correctly.
 
 ## Layering onto an existing `ggplot2` plot
 
 There are two main functions you will use to layer onto an existing
 `ggplot2` plot to create plots adhering to the Arcadia style guide and
-access palettes. These are the `theme_arcadia()` and `scale` functions.
+access palettes. These are the `theme_arcadia` and `scale` functions.
 The particular `scale` function differs on whether you use `color` or
 `fill` to access colors. Here is how you use these functions without
 changing the default arguments:
@@ -100,7 +100,7 @@ ggplot(data=diamonds, aes(x=cut, fill=cut)) +
 
 To use the correct font type, you can specify what type of data you have
 on each axis by using the `x_axis_type` or `y_axis_type` arguments in
-the `theme_arcadia()` function:
+the `theme_arcadia` function:
 
 ``` r
 ggplot(data=diamonds, aes(x=cut, fill=cut)) +
@@ -371,8 +371,8 @@ show_arcadia_gradients()
 
 ## Exporting plots
 
-To save plots, we have a custom `save_arcadia_plot()` function built on
-top of `ggsave()` that helps you export plots that adhere to our size
+To save plots, we have a custom `save_arcadia_plot` function built on
+top of `ggsave` that helps you export plots that adhere to our size
 guidelines and can be used with the Illustrator templates. The different
 plot size options are
 `"full_wide", "float_wide", "half_square", "full_square"`, or
@@ -381,9 +381,9 @@ in the Illustrator templates.
 
 If you want to save plots in different formats (such as PNG or JPG) or
 sizes that aren’t available through this convenience function, you can
-still use the regular `ggsave()` function. Additionally for the
-background to be transparent in exported plots you need to set this
-argument to `FALSE` in the `theme_arcadia()` function:
+still use the regular `ggsave` function. Additionally for the background
+to be transparent in exported plots you need to set this argument to
+`FALSE` in the `theme_arcadia` function:
 
 ``` r
 plot <- ggplot(data=diamonds, aes(x=cut, fill=cut)) +
