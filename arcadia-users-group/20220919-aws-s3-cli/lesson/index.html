@@ -1,0 +1,741 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20220919-aws-s3-cli/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>How to use the AWS S3 command line tool - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-to-use-the-aws-s3-command-line-tool" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              How to use the AWS S3 command line tool
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-the-shell-for-this-lesson" class="md-nav__link">
+    Accessing the shell for this lesson
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-aws-s3-cli-and-why-do-we-care-about-it" class="md-nav__link">
+    What is the AWS S3 CLI and why do we care about it?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#downloading-and-installing-the-aws-cli" class="md-nav__link">
+    Downloading and installing the AWS CLI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-the-aws-cli-to-work-with-your-credentials" class="md-nav__link">
+    Configuring the AWS CLI to work with your credentials
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring the AWS CLI to work with your credentials">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getting-your-aws-credentials-to-use-with-the-aws-cli" class="md-nav__link">
+    Getting your AWS credentials to use with the AWS CLI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-aws-configure" class="md-nav__link">
+    With aws configure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-when-working-with-an-ec2-instance" class="md-nav__link">
+    [Advanced] When working with an EC2 instance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-test-data" class="md-nav__link">
+    Creating test data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s3-cli-command-structure" class="md-nav__link">
+    S3 CLI command structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s3-commands-well-work-with" class="md-nav__link">
+    S3 commands we'll work with
+  </a>
+  
+    <nav class="md-nav" aria-label="S3 commands we'll work with">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ls" class="md-nav__link">
+    ls
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cp" class="md-nav__link">
+    cp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mv" class="md-nav__link">
+    mv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rm" class="md-nav__link">
+    rm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sync" class="md-nav__link">
+    sync
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-note-on-data-integrity" class="md-nav__link">
+    A note on data integrity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downloading-data-from-s3" class="md-nav__link">
+    Downloading data from S3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-dryrun" class="md-nav__link">
+    --dryrun
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-advanced-usage-with-s5cmd" class="md-nav__link">
+    [Optional] Advanced usage with s5cmd
+  </a>
+  
+    <nav class="md-nav" aria-label="[Optional] Advanced usage with s5cmd">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why" class="md-nav__link">
+    Why?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downloading-and-installing-the-s5cmd-cli" class="md-nav__link">
+    Downloading and installing the s5cmd CLI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#differences-to-the-official-cli" class="md-nav__link">
+    Differences to the official CLI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order-of-commands" class="md-nav__link">
+    Order of commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-dryrun-vs-dry-run" class="md-nav__link">
+    --dryrun vs --dry-run
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="how-to-use-the-aws-s3-command-line-tool">How to use the AWS S3 command line tool</h1>
+<h2 id="accessing-the-shell-for-this-lesson">Accessing the shell for this lesson</h2>
+<p>For this lesson, we need to have access to a Unix shell.
+If you're not sure how to open a terminal on your computer, see <a href="https://swcarpentry.github.io/shell-novice/setup.html">these instructions</a>.</p>
+<h2 id="what-is-the-aws-s3-cli-and-why-do-we-care-about-it">What is the AWS S3 CLI and why do we care about it?</h2>
+<p>Arcadia uses Amazon Web Services (AWS) S3 to store our files remotely, sometimes as backup, sometimes to host files temporarily before we deposit them to a FAIR data repository.</p>
+<p>Some of us may already know how to interact with AWS S3 through its own user interface or using a tool like <a href="https://www.notion.so/arcadiascience/Syncing-data-to-S3-via-a-GUI-for-the-microscopy-team-bd7c106e648343d4ac01c2d5198b633c">Cyberduck</a>. While these options work fine, they limit the speed at which you can interact with S3 (they put explicit caps on upload/download speeds) and may be burdensome for large scale changes (think: updating 100s of files).</p>
+<p>This is where the AWS S3 command line tool comes into play. During this workshop, we'll learn about two tools: the official <a href="https://docs.aws.amazon.com/cli/latest/reference/s3/">AWS CLI</a> and <a href="https://github.com/peak/s5cmd">s5cmd</a>.</p>
+<p>Command line tools may be intimidating but great news: if you attended the AUG workshops in the last 2 weeks focusing on shell commands, you already know the shell versions of all the commands (<code>ls</code>, <code>cp</code>, <code>mv</code>, <code>rm</code> etc.) that we'll go through in this workshop. So let's get started!</p>
+<h2 id="downloading-and-installing-the-aws-cli">Downloading and installing the AWS CLI</h2>
+<p>The download and installation instructions for the AWS CLI can be found <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">here</a>. If you're on a Unix machine, you can use these two commands to start the installation process:</p>
+<p>On Mac:
+<div class="highlight"><pre><span></span><code>curl &quot;https://awscli.amazonaws.com/AWSCLIV2.pkg&quot; -o &quot;AWSCLIV2.pkg&quot;
+sudo installer -pkg AWSCLIV2.pkg -target /
+rm AWSCLIV2.pkg
+</code></pre></div></p>
+<p>On Linux:
+<div class="highlight"><pre><span></span><code>curl &quot;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip&quot; -o &quot;awscliv2.zip&quot;
+unzip awscliv2.zip
+sudo ./aws/install
+rm awscliv2.zip
+</code></pre></div></p>
+<p>Once the installation process is complete run <code>which aws</code> to make sure installation worked as expected.</p>
+<h2 id="configuring-the-aws-cli-to-work-with-your-credentials">Configuring the AWS CLI to work with your credentials</h2>
+<h3 id="getting-your-aws-credentials-to-use-with-the-aws-cli">Getting your AWS credentials to use with the AWS CLI</h3>
+<p>This section assumes you are part of the Arcadia Science AWS account. If you're not, no worries. I'll securely share credentials with you. For AWS users, detailed instructions can be found <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">here</a>. The summary:</p>
+<ul>
+<li>Login to the <a href="https://console.aws.amazon.com/">AWS console</a>.</li>
+<li>Click on your username on the top right and select "Security credentials"</li>
+<li>Scroll down to the "Access keys for CLI, SDK, &amp; API access" section, select "Create access key" and go through the steps.</li>
+<li>Record your access key and access secret in a secure place (or download it as a CSV temporarily) and do not share with anyone!</li>
+</ul>
+<p>Now we need to tell the AWS CLI how to use your credentials.</p>
+<h3 id="with-aws-configure">With <code>aws configure</code></h3>
+<p>This section assumes you have not run <code>aws configure</code> before. If you have, you can create a new AWS credential profile by passing the <code>--profile arcadia</code> to the <code>aws configure</code> command.</p>
+<p>Run <code>aws configure</code>. It'll ask for your <code>AWS Access Key ID</code>, <code>AWS Secret Access Key</code>, <code>Default region name</code> and <code>Default output format</code> one command at a time.</p>
+<p>Enter the credentials you got in the previous section for the first two settings. Our <code>Default region name</code> is <code>us-west-1</code> and <code>Default output format</code> is <code>json</code>.</p>
+<p>It should look like this:</p>
+<div class="highlight"><pre><span></span><code>aws configure
+AWS Access Key ID [None]: &lt;YOUR_ACCESS_KEY&gt;
+AWS Secret Access Key [None]: &lt;YOUR_ACCESS_SECRET&gt;
+Default region name [None]: us-west-1
+Default output format [None]: json
+</code></pre></div>
+<p>Once the setup is complete you can inspect the contents of your AWS configuration file with <code>cat ~/.aws/credentials</code>. You'll most likely only see the <code>[default]</code> profile. These are the credentials the AWS CLI will use by default when you run a command. If you created an <code>arcadia</code> profile and want to use those, you have to explicitly pass them as part of the CLI commands below.</p>
+<p><img alt="" src="../aws-configuration.png" /></p>
+<p>Since these credentials only belong to the Arcadia Science organization, when you run a command (think: list all the S3 buckets), it'll only run them within the Arcadia organization context (think: the CLI will only show the S3 buckets of the Arcadia Science organization). You can also create credentials that only have access to parts of the organization (think: a single EC2 instance or a single S3 bucket), and in those cases the CLI context will again change.</p>
+<h3 id="advanced-when-working-with-an-ec2-instance">[Advanced] When working with an EC2 instance</h3>
+<p>This section is out of the scope of this workshop, but it is important to note: When working with an AWS EC2 instance you can enable S3 access by using IAM roles. Instructions for that can be found <a href="https://www.notion.so/arcadiascience/Enabling-EC2-and-S3-connection-3d8b3b75441b49eaac1095eb66fbde97">here</a>.</p>
+<h2 id="creating-test-data">Creating test data</h2>
+<p>Let's create some basic test data by copying the following commands:</p>
+<div class="highlight"><pre><span></span><code>cd ~/Desktop
+mkdir s3-test
+cd s3-test
+echo &quot;copy&quot; &gt;&gt; copy.txt
+echo &quot;move&quot; &gt;&gt; move.txt
+
+mkdir sync
+cd sync
+echo &quot;sync 1&quot; &gt;&gt; sync1.txt
+echo &quot;sync 2&quot; &gt;&gt; sync2.txt
+echo &quot;sync 3&quot; &gt;&gt; sync3.txt
+
+cd ..
+ls
+</code></pre></div>
+<h2 id="s3-cli-command-structure">S3 CLI command structure</h2>
+<p>The general structure of an AWS S3 CLI command follows the following structure:</p>
+<div class="highlight"><pre><span></span><code>aws s3 &lt;COMMAND&gt; &lt;FLAGS&gt; &lt;SOURCE_PATH&gt; &lt;TARGET_PATH&gt;
+</code></pre></div>
+<ul>
+<li><code>&lt;COMMAND&gt;</code> could be <code>cp</code>, <code>mv</code>, <code>sync</code> etc.</li>
+<li><code>&lt;FLAGS&gt;</code> could be something like <code>--dryrun</code> to display the operations that would be performed using the specified <code>&lt;COMMAND&gt;</code> without actually running them.</li>
+<li><code>&lt;SOURCE_PATH&gt;</code> and <code>&lt;TARGET_PATH&gt;</code> could be a path to a local file/directory, or an S3 file/directory path. For local files, the paths can be absolute or relative.</li>
+</ul>
+<p>As an example, something like <code>aws s3 cp lesson.md s3://aug-workshop-demo/lesson.md</code> would copy the local <code>lesson.md</code> file from my computer to the S3 bucket <code>aug-workshop-demo</code> and create a file called <code>lesson.md</code>.</p>
+<h2 id="s3-commands-well-work-with">S3 commands we'll work with</h2>
+<p>For all the following commands, we'll be working with an S3 bucket called <code>aug-workshop-demo</code> hosted through Arcadia's AWS account. For the workshop, we'll focus on a small but useful subset of commands, but you can find the full reference documentation <a href="https://docs.aws.amazon.com/cli/latest/reference/s3/">here</a>.</p>
+<h3 id="ls">ls</h3>
+<p>In the <a href="../../20220906-intro-to-shell1/lesson/">first shell workshop</a>, we learned that <code>ls</code> lists contents of a directory (<strong>l</strong>i<strong>s</strong>t). It serves the same function for the S3 CLI.</p>
+<p>Let's start with listing all the Arcadia Science S3 buckets:</p>
+<div class="highlight"><pre><span></span><code>aws s3 ls
+</code></pre></div>
+<p>Now let's explore what one of these buckets looks like, starting with the <code>aug-workshop-demo</code> bucket.</p>
+<div class="highlight"><pre><span></span><code>aws s3 ls s3://aug-workshop-demo
+</code></pre></div>
+<p>If everything went correctly, you should see the <code>demo</code> folder under the <code>aug-workshop-demo</code> bucket.</p>
+<h3 id="cp">cp</h3>
+<p>In the <a href="../../20220912-intro-to-shell2/lesson/">second shell workshop</a>, we learned that <code>cp</code> copies a file or directory. The S3 command also serves a similar purpose. Let's try it out by trying to copy the file we created earlier <code>copy.txt</code> to the S3 bucket under a folder with your initials. For me, this would be in <code>s3://aug-workshop-demo/fmc/</code>.</p>
+<div class="highlight"><pre><span></span><code>aws s3 cp copy.txt s3://aug-workshop-demo/fmc/copy.txt
+</code></pre></div>
+<p>If you ignore the last part of the S3 path, it'll create a file with the same name:</p>
+<div class="highlight"><pre><span></span><code>aws s3 cp copy.txt s3://aug-workshop-demo/fmc/
+</code></pre></div>
+<p>Alternatively, you can give a new name to the file on S3:</p>
+<div class="highlight"><pre><span></span><code>aws s3 cp copy.txt s3://aug-workshop-demo/fmc/new-copy.txt
+</code></pre></div>
+<p>Let's see the changes:
+<div class="highlight"><pre><span></span><code>ls
+</code></pre></div>
+The file is still in our directory, it hasn't moved.</p>
+<div class="highlight"><pre><span></span><code>aws s3 ls s3://aug-workshop-demo
+aws s3 ls s3://aug-workshop-demo/fmc/
+</code></pre></div>
+<p>Now let's try copying the <code>sync</code> directory by:
+<div class="highlight"><pre><span></span><code>aws s3 cp sync/ s3://aug-workshop-demo/fmc/
+</code></pre></div></p>
+<p>That failed! This is because the <code>cp</code> command directly works with individual files. For copying folders, we need to use the <code>--recursive</code> flag. So, let's try this:</p>
+<div class="highlight"><pre><span></span><code>aws s3 cp --recursive sync/ s3://aug-workshop-demo/fmc/
+aws s3 ls s3://aug-workshop-demo/fmc/
+</code></pre></div>
+<h3 id="mv">mv</h3>
+<p>In the <a href="../../20220912-intro-to-shell2/lesson/">second shell workshop</a>, we learned that <code>mv</code> moves or renames a file or directory. The S3 command also serves a similar purpose. Let's start with a moving example by trying to move the <code>move.txt</code> file we created earlier to the S3 bucket under a folder with your name (not your initials this time, since we'll do another move later). For me, this would be in <code>s3://aug-workshop-demo/mert/</code>.</p>
+<div class="highlight"><pre><span></span><code>aws s3 mv move.txt s3://aug-workshop-demo/mert/move.txt
+</code></pre></div>
+<p>Let's see the changes:
+<div class="highlight"><pre><span></span><code>ls
+</code></pre></div>
+This time, the file is no longer in our directory. Let's check AWS S3:</p>
+<div class="highlight"><pre><span></span><code>aws s3 ls s3://aug-workshop-demo
+aws s3 ls s3://aug-workshop-demo/mert/
+</code></pre></div>
+<p>Now, let's do a move within S3 by moving the file from <code>s3://aug-workshop-demo/mert/move.txt</code> to <code>s3://aug-workshop-demo/fmc/move.txt</code>:</p>
+<div class="highlight"><pre><span></span><code>aws s3 mv s3://aug-workshop-demo/mert/move.txt s3://aug-workshop-demo/fmc/move.txt
+</code></pre></div>
+<p>And now let's visulize it:
+<div class="highlight"><pre><span></span><code>aws s3 ls s3://aug-workshop-demo/mert/
+aws s3 ls s3://aug-workshop-demo/fmc/
+</code></pre></div></p>
+<p>The former folder is empty and the latter now has the <code>move.txt</code>.</p>
+<h3 id="rm">rm</h3>
+<p>In the <a href="../../20220912-intro-to-shell2/lesson/">second shell workshop</a>, we learned that <code>rm</code> deletes a file or directory. The S3 command also serves a similar purpose.</p>
+<p>Let's delete the <code>copy.txt</code> file:
+<div class="highlight"><pre><span></span><code>aws s3 rm s3://aug-workshop-demo/fmc/copy.txt
+aws s3 ls s3://aug-workshop-demo/fmc/
+</code></pre></div></p>
+<p>Let's try to delete the contents of <code>s3://aug-workshop-demo/fmc/</code>:
+<div class="highlight"><pre><span></span><code>aws s3 rm s3://aug-workshop-demo/fmc/
+aws s3 ls s3://aug-workshop-demo/fmc/
+</code></pre></div></p>
+<p>You'll see that didn't work. This is because similar to <code>cp</code>, <code>rm</code> works with individual files by default. For folder deletions, you need to use the <code>--recursive</code> flag:
+<div class="highlight"><pre><span></span><code>aws s3 rm --recursive s3://aug-workshop-demo/fmc/
+aws s3 ls s3://aug-workshop-demo/fmc/
+</code></pre></div></p>
+<h3 id="sync">sync</h3>
+<p><code>sync</code> is a convenient command for syncing directories (local to S3, S3 to local, or S3 to S3). It recursively copies new and updated files from the source directory to the destination. Here <em>new</em> and <em>updated</em> are important key words. If a file already exists, it'll not copy it to S3. Let's see it in action:</p>
+<div class="highlight"><pre><span></span><code>aws s3 sync . s3://aug-workshop-demo/fmc/
+aws s3 ls s3://aug-workshop-demo/fmc/
+</code></pre></div>
+<p>Now, everything is in S3. Let's try it again:
+<div class="highlight"><pre><span></span><code>aws s3 sync . s3://aug-workshop-demo/fmc/
+</code></pre></div></p>
+<p>Nothing happens! This is because all of the files are as they are on S3. Let's make a change to the <code>copy.txt</code> file:</p>
+<div class="highlight"><pre><span></span><code>echo &quot;new copy&quot; &gt;&gt; copy.txt
+aws s3 sync . s3://aug-workshop-demo/fmc/
+aws s3 ls s3://aug-workshop-demo/fmc/
+</code></pre></div>
+<h3 id="a-note-on-data-integrity">A note on data integrity</h3>
+<p>For upload related commands (<code>cp</code>, <code>mv</code>, <code>sync</code>), the AWS CLI will calculate and validate the MD5 checksums. If the checksum doesn't match the expected values, the upload command will fail. In the case of <code>mv</code>, the local files you're moving will not be deleted. By default, the AWS CLI will re-try the upload up to 5 times and only then exit the operation. More details can be found <a href="https://docs.aws.amazon.com/cli/latest/topic/s3-faq.html">here</a>.</p>
+<h3 id="downloading-data-from-s3">Downloading data from S3</h3>
+<p>Our examples so far have been about uploading data to S3, but we can easily switch the direction of operations to download data from S3. The main change is the argument order. To download data from S3, we need S3 to be our source and local file system to be the target.</p>
+<p>Let's copy and move some data from S3 as an example:
+<div class="highlight"><pre><span></span><code>aws s3 cp s3://aug-workshop-demo/fmc/copy.txt new-copy.txt
+aws s3 mv s3://aug-workshop-demo/fmc/move.txt new-move.txt
+aws s3 ls s3://aug-workshop-demo/fmc/
+</code></pre></div></p>
+<h3 id="-dryrun">--dryrun</h3>
+<p>In using all of these commands, if a command writes or modifies data, it's a good idea to visualize what changes will be made to your local system or the S3 storage system before making them. For this the <code>--dryrun</code> flag is your friend.</p>
+<p>When used, it displays the operations that would be performed using the specified command without actually executing them. So, if you're in the wrong directory or about to modify or delete a file irreversibly by mistake, it allows you to catch these issues ahead of time. Let's see it in action:</p>
+<div class="highlight"><pre><span></span><code>aws s3 rm --dryrun --recursive s3://aug-workshop-demo/fmc/
+</code></pre></div>
+<h2 id="optional-advanced-usage-with-s5cmd">[Optional] Advanced usage with s5cmd</h2>
+<p><a href="https://github.com/peak/s5cmd">s5cmd</a> is an unofficial tool to interact with AWS S3 through the command-line. In this section, we'll talk about the installation instructions and the differences to the official AWS S3 CLI. But first, why do we care about <code>s5cmd</code>?</p>
+<h3 id="why">Why?</h3>
+<p>Great news: if your machine is configured to work with the AWS CLI, it's by default configured to work with s5cmd! It has two benefits over the official S3 CLI:
+1. It's much faster. This is due to effective parallelization and bandwidth saturation. See <a href="https://joshua-robinson.medium.com/s5cmd-for-high-performance-object-storage-7071352cc09d">this blog post</a> for benchmarking data.
+<img alt="" src="../s5cmd-benchmark.png" />
+2. It also is compatible with Google Cloud Storage (GCS) in case you have to work with any databases that are hosted on GCS (think: Alphafold).</p>
+<h3 id="downloading-and-installing-the-s5cmd-cli">Downloading and installing the s5cmd CLI</h3>
+<p>On Mac, you can install <code>s5cmd</code> with Homebrew: <code>brew install peak/tap/s5cmd</code>.</p>
+<p>Alternatively, you can use the command-line on both Mac and Linux:
+<div class="highlight"><pre><span></span><code>cd ~/Desktop
+curl -L &quot;https://github.com/peak/s5cmd/releases/download/v2.0.0/s5cmd_2.0.0_macOS-64bit.tar.gz&quot; --output s5cmd.tar.gz
+tar -xvf s5cmd.tar.gz
+mv s5cmd /usr/local/bin
+</code></pre></div></p>
+<p>On Linux:
+<div class="highlight"><pre><span></span><code>curl -L &quot;https://github.com/peak/s5cmd/releases/download/v2.0.0/s5cmd_2.0.0_macOS-64bit.tar.gz&quot; --output s5cmd.tar.gz
+tar -xvf s5cmd.tar.gz
+mv s5cmd /usr/local/bin
+</code></pre></div></p>
+<p>After this you should be able to run <code>s5cmd version</code>. For viewing full functionality run <code>s5cmd -h</code>.</p>
+<h3 id="differences-to-the-official-cli">Differences to the official CLI</h3>
+<h3 id="order-of-commands">Order of commands</h3>
+<p>You may remember the order of commands for the AWS CLI looked like this:</p>
+<div class="highlight"><pre><span></span><code>aws s3 &lt;COMMAND&gt; &lt;FLAGS&gt; &lt;SOURCE_PATH&gt; &lt;TARGET_PATH&gt;
+</code></pre></div>
+<p>For <code>s5cmd</code> it is slightly different:</p>
+<div class="highlight"><pre><span></span><code>s5cmd &lt;FLAGS&gt; &lt;COMMAND&gt; &lt;SOURCE_PATH&gt; &lt;TARGET_PATH&gt;
+</code></pre></div>
+<h3 id="-dryrun-vs-dry-run"><code>--dryrun</code> vs <code>--dry-run</code></h3>
+<p>The S3 CLI uses the former, <code>s5cmd</code> uses the latter.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

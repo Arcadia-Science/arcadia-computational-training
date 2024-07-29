@@ -1,0 +1,734 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20220906-intro-to-shell1/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Introduction to shell part 1 - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-shell-part-1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction to shell part 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-shell-and-why-do-we-care-about-it" class="md-nav__link">
+    What is the shell and why do we care about it?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-shell-terminology" class="md-nav__link">
+    Common shell terminology
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-the-shell-for-this-lesson" class="md-nav__link">
+    Accessing the shell for this lesson
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-commands" class="md-nav__link">
+    Running commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#looking-at-files-with-ls-head-and-tail" class="md-nav__link">
+    Looking at files with ls, head, and tail
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-unix-file-system-structure" class="md-nav__link">
+    The Unix file system structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#absolute-vs-relative-paths" class="md-nav__link">
+    Absolute vs relative paths
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tab-completion" class="md-nav__link">
+    Tab-completion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigating-by-the-command-line" class="md-nav__link">
+    Navigating by the command line
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#credit" class="md-nav__link">
+    Credit
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="introduction-to-shell-part-1">Introduction to shell part 1</h1>
+<h2 id="what-is-the-shell-and-why-do-we-care-about-it">What is the shell and why do we care about it?</h2>
+<p>A shell is a computer program that presents a command line interface which allows you to control your computer using commands entered with a keyboard.
+This is as opposed to controlling your computer using a graphical user interface (GUI) with a mouse/keyboard/touchscreen combination.</p>
+<p>Why should we care about learning the shell?</p>
+<ul>
+<li>Many bioinformatics tools can only be used through a command-line interface, and/or have extra capabilities in the command-line version that are not available in the GUI (e.g. BLAST).  </li>
+<li>It makes our work less error-prone. When humans do the same thing a hundred different times (or even ten times), we're likely to make a mistake. Your computer can do the same thing a thousand times with no mistakes. This also frees us up to do other things we can't automate, like the science part.  </li>
+<li>The shell makes our work more reproducible. When we carry out our work in a command-line interface (rather than a GUI), we can keep an exact record of all steps, which we can use to re-do our work when we need to. It also gives us a way to unambiguously communicate what we've done to others.  </li>
+<li>Many bioinformatic tasks require large amounts of computing power and can't realistically be run on our own machines. These tasks are best performed using remote computers or cloud computing, which can only be accessed through a shell.</li>
+</ul>
+<h2 id="common-shell-terminology">Common shell terminology</h2>
+<p>Many different terms are used to refer to the shell or its computing environment. 
+Some commons ones are included below with their definitions.</p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Term</strong></th>
+<th align="center"><strong>What it is</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong><code>shell</code></strong></td>
+<td align="center">what we use to talk to the computer; anything where you are pointing and clicking with a mouse is a <strong>G</strong>raphical <strong>U</strong>ser <strong>I</strong>nterface (<strong>GUI</strong>) shell; something with text only is a <strong>C</strong>ommand <strong>L</strong>ine <strong>I</strong>nterface (<strong>CLI</strong>) shell</td>
+</tr>
+<tr>
+<td align="center"><strong><code>command line</code></strong></td>
+<td align="center">a text-based environment capable of taking input and providing output (a "terminal" is the same idea)</td>
+</tr>
+<tr>
+<td align="center"><strong><code>Unix</code></strong></td>
+<td align="center">a family of operating systems</td>
+</tr>
+<tr>
+<td align="center"><strong><code>bash</code></strong></td>
+<td align="center">the most common programming language used at a Unix command-line. This is also a shell.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accessing-the-shell-for-this-lesson">Accessing the shell for this lesson</h2>
+<p>For this lesson, we need to have access to a Unix shell. 
+Click the button below to launch a shell through <a href="https://mybinder.org/">binder</a>.</p>
+<p><a href="https://mybinder.org/v2/gh/arcadia-science/arcadia-computational-training/main"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>This will launch a computer in the cloud.
+You'll interact with this computer through your browser.
+Click the Terminal button to launch a Terminal that we will work with for the rest of the lesson.</p>
+<p><img alt="" src="../jupyterhub.png" /></p>
+<details>
+  <summary>More information on binder and what happens when you click the launch binder button.</summary>
+
+Binder is a service that turns a Git repo into a collection of interactive notebooks. 
+When a repository is configured to run as a binder, passing the GitHub repository URL to binder starts the binder-building process.
+Binder first builds a docker image that contains all of the software installations specified by a special set of files in the GitHub repository.
+A docker image is a set of instructions that are used to create a docker container.
+A docker container is a runnable instance of a docker image -- it's an encapsulated computing environment that can be used to reproducibly install sets of software on diverse computers.
+Armed with the docker container, binder launches an "instance" in the cloud (either on Google Cloud or AWS typically) on which it runs the docker container.
+Binder does some additional work in the background -- if no software configuration files are provided in the GitHub repo, or if those contain a minimal set of software, binder will by default include JupyterHub in the docker.
+When the cloud instance is launched, this is the screen you interact with.
+You interact with the cloud instance  in your browser.
+Binders are ephemeral instances -- after a period of inactivity, the instance is automatically shut down, and any work you have done will be lost.
+You're able to download files from your work before the instance is shut down if you do want to save anything.
+
+
+You may notice that this instance already has a bunch of files on it. 
+And that these files look suspiciously exactly like the files in the GitHub repository <a href="https://github.com/arcadia-science/arcadia-computational-training">Arcadia-Science/arcadia-computational-training</a>. 
+That's because that's the repository we used to build the binder from. 
+</details>
+
+<p><br /></p>
+<h2 id="running-commands">Running commands</h2>
+<p>A "command" is a set of typed instructions entered at the command line prompt. 
+The general syntax working at the command line goes like this: <code>command</code> <code>argument</code>.
+Arguments (which can also be referred to as "flags" or "options" or "parameters") can be optional or required based on the command being used.</p>
+<p>The dollar sign is a <strong>prompt</strong>, which shows us that the shell is waiting for input; your shell may use a different character as a prompt and may add information before the prompt. 
+When typing commands, do not type the prompt, only the commands that follow it.
+In this lesson, we've omitted the prompt so you won't have to worrry about remembering to not include it.</p>
+<p>Let's find out where we are by running a command called <code>pwd</code> (which stands for "print working directory").
+At any moment, our <strong>current working directory</strong> is our current default directory.
+This is the directory that the computer assumes we want to run commands in unless we explicitly specify something else.</p>
+<div class="highlight"><pre><span></span><code>pwd
+</code></pre></div>
+<p>We see:
+<div class="highlight"><pre><span></span><code>/home/jovyan
+</code></pre></div></p>
+<p>In this case, <code>jovyan</code> is our user name. 
+This was configured by the service that launched our instance. 
+You can see more context about the name <a href="https://docs.jupyter.org/en/latest/community/content-community.html#what-is-a-jovyan">here</a>.</p>
+<h2 id="looking-at-files-with-ls-head-and-tail">Looking at files with <code>ls</code>, <code>head</code>, and <code>tail</code></h2>
+<p>Let's look at how our file system is organized. We can see what files and subdirectories are in this directory by running <code>ls</code>, which stands for "listing":</p>
+<div class="highlight"><pre><span></span><code>ls
+</code></pre></div>
+<p>We see:
+<div class="highlight"><pre><span></span><code>docs  LICENSE  Makefile  mkdocs.yml  README.md
+</code></pre></div></p>
+<p><code>ls</code> prints the names of the files and directories in the current directory in alphabetical order, arranged neatly into columns. 
+In this case, we have all the files that were in the GitHub repo that was used to build this binder.
+<a href="https://github.com/arcadia-science/arcadia-computational-training">This repo</a> contains all of the computational training material at Arcadia, as well as some directions to turn the repo into a <a href="https://arcadia-science.github.io/arcadia-computational-training/">nicely rendered website</a>.
+(side note -- we'll have a training in a few weeks demonstrating how to turn a GitHub repo into a website).</p>
+<p>We can make the <code>ls</code> output more comprehensible by using the <strong>flag</strong> <code>-F</code>, which tells <code>ls</code> to add a trailing <code>/</code> to the names of directories:</p>
+<p><div class="highlight"><pre><span></span><code>ls -F
+</code></pre></div>
+Which produces:
+<div class="highlight"><pre><span></span><code>docs/  LICENSE  Makefile  mkdocs.yml  README.md
+</code></pre></div></p>
+<p>If we want to preview the contents of these files, we can start by using <code>head</code>.</p>
+<div class="highlight"><pre><span></span><code>head README.md
+</code></pre></div>
+<p>This outputs the first 10 lines of the file <code>README.md</code>:
+<div class="highlight"><pre><span></span><code># Arcadia Computational Training
+
+This repository houses computational training materials developed for or delivered at Arcadia.
+The repository is still a work in progress so things may shift around as we settle on an organizational structure.
+
+The content in this repository is meant to present a sensible set of defaults for common computational tasks in biology at the time that the content is added to the repo.
+
+
+## Building and deploying a site with MkDocs
+</code></pre></div></p>
+<p>What if we only wanted to see the first 5 lines?
+We could use the <code>-n</code> flag:</p>
+<div class="highlight"><pre><span></span><code>head -n 5 README.md
+</code></pre></div>
+<p>Which would then only print the first 5 lines of the <code>README.md</code> file to the terminal:
+<div class="highlight"><pre><span></span><code># Arcadia Computational Training
+
+This repository houses computational training materials developed for or delivered at Arcadia.
+The repository is still a work in progress so things may shift around as we settle on an organizational structure.
+</code></pre></div></p>
+<p>If we instead wanted to see the last line of a file, we could use <code>tail</code>:
+<div class="highlight"><pre><span></span><code>tail -n 1 README.md
+</code></pre></div></p>
+<p>Which shows:
+<div class="highlight"><pre><span></span><code>Then in your browser, navigate to the URL printed to standard out.
+</code></pre></div></p>
+<h2 id="the-unix-file-system-structure">The Unix file system structure</h2>
+<p>Your computer stores file locations in a hierarchical structure. 
+You are likely already used to navigating through this stucture by clicking on various folders (also known as directories) in a Windows Explorer window or a Mac Finder window. 
+Just like we need to select the appropriate files in the appropriate locations there (in a GUI), we need to do the same when working at a command-line interface. 
+What this means in practice is that each file and directory has its own "address", and that address is called its "path".</p>
+<p>Here is an image of an example file-system structure:</p>
+<p><img alt="" src="../unix_file_system_structure.png" /></p>
+<p>There are two special locations in all Unix-based systems: the "root" location and the current user’s "home" location. 
+"Root" is where the address system of the computer starts; "home" is where the current user’s location starts.</p>
+<p>We tell the command line where files and directories are located by providing their address, their "path". 
+If we use the <code>pwd</code> command like we did above, we can find out what the path is for the directory we are sitting in:</p>
+<div class="highlight"><pre><span></span><code>pwd
+</code></pre></div>
+<h2 id="absolute-vs-relative-paths">Absolute vs relative paths</h2>
+<p>There are two ways to specify the path (address) of the file we want to do something to:</p>
+<ul>
+<li>An <strong>absolute path</strong> is an address that starts from one of those special locations: either the "root" <strong><code>/</code></strong> or the "home" <strong><code>~/</code></strong> location. </li>
+<li>A <strong>relative path</strong> is an address that starts from wherever we are currently sitting.</li>
+</ul>
+<p>For example, let's look again at the <strong><code>head</code></strong> command we ran above:</p>
+<div class="highlight"><pre><span></span><code>head README.md
+</code></pre></div>
+<p>What we are actually doing here is using a <strong>relative path</strong> to specify where the "README.md" file is located.
+This is because the command line automatically looks in the current working directory if we don't specify anything else about its location (it's starting from where we are). </p>
+<p>We can also run the same command on the same file using an <strong>absolute path</strong>:</p>
+<div class="highlight"><pre><span></span><code>head ~/README.md
+head /home/joyvan/README.md
+</code></pre></div>
+<p>The previous three commands all point to the same file. 
+But the first way, <code>head README.md</code>, will only work if we are entering it while "sitting" in the directory that holds that file, while the second and third ways will work no matter where we happen to be in the computer. </p>
+<p>It is important to always think about <em>where</em> we are in the computer when working at the command line. 
+One of the most common errors/easiest mistakes to make is trying to do something to a file that isn't where we think it is. 
+Let's run <code>head</code> on the "README.md" file again, and then let's try it on another file: "index.md":</p>
+<div class="highlight"><pre><span></span><code>head<span class="w"> </span>README.md
+head<span class="w"> </span>index.md
+</code></pre></div>
+<p>Here the <code>head</code> command works fine on "README.md", but we get an error message when we call it on "index.md" telling us no such file or directory. 
+If we run the <code>ls</code> command, we can see the computer is absolutely right – spoiler alert: it usually is – and there is no file here named "index.md". </p>
+<p>Here is how we can run <code>head</code> on "index.md" by specifying an accurate <strong>relative path</strong> to that file:</p>
+<div class="highlight"><pre><span></span><code>head<span class="w"> </span>docs/index.md
+</code></pre></div>
+<h2 id="tab-completion">Tab-completion</h2>
+<p>Tab-completion is a huge time-saver, but even more importantly it helps prevent mistakes. </p>
+<p>If we are trying to specify a file that's in our current working directory, we can begin typing its name and then press the <kbd>tab</kbd> key to complete it. 
+If there is only one possible way to finish what we've started typing, it will complete it entirely for us.
+If there is more than one possible way to finish what we've started typing, it will complete as far as it can, and then hitting <kbd>tab</kbd> twice quickly will show all the possible options. 
+If tab-complete does not do either of those things, then the file we're looking for is not in the directory we're pointing to.</p>
+<h2 id="navigating-by-the-command-line">Navigating by the command line</h2>
+<p>We can also move into the directory containing the file we want to work with by using the <code>cd</code> command (<strong>c</strong>hange <strong>d</strong>irectory). 
+This command takes a positional argument that is the path (address) of the directory we want to change into. 
+This can be a relative path or an absolute path. 
+Here we'll use the relative path of the subdirectory, "docs", to change into it (use tab-completion!):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>docs
+<span class="nb">pwd</span>
+ls
+head<span class="w"> </span>index.md
+</code></pre></div>
+<p>Great. But now how do we get back "up" to the directory above us? 
+One way would be to provide an absolute path, like <code>cd /home/joyvan</code>, but there is also a shortcut.
+<code>..</code> are special characters that act as a relative path specifying "up" one level – one directory – from wherever we currently are. 
+So we can provide that as the positional argument to <code>cd</code> to get back to where we started:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>..
+<span class="nb">pwd</span>
+ls
+</code></pre></div>
+<p>The <code>..</code> can also be combined to specify going up multiple levels:
+<div class="highlight"><pre><span></span><code>ls ../..
+</code></pre></div></p>
+<h2 id="summary">Summary</h2>
+<p><center></p>
+<h4><i>Terms introduced:</i></h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Term</strong></th>
+<th align="center"><strong>What it is</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong><code>path</code></strong></td>
+<td align="center">the address system the computer uses to keep track of files and directories</td>
+</tr>
+<tr>
+<td align="center"><strong><code>root</code></strong></td>
+<td align="center">where the address system of the computer starts, <code>/</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>home</code></strong></td>
+<td align="center">where the current user's location starts, <code>~/</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>absolute path</code></strong></td>
+<td align="center">an address that starts from a specified location, i.e. root, or home</td>
+</tr>
+<tr>
+<td align="center"><strong><code>relative path</code></strong></td>
+<td align="center">an address that starts from wherever we are</td>
+</tr>
+<tr>
+<td align="center"><strong><code>tab completion</code></strong></td>
+<td align="center">auto complete file paths once you start typing</td>
+</tr>
+</tbody>
+</table>
+<h4><i>Commands introduced:</i></h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Command</strong></th>
+<th align="center"><strong>Function</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong><code>head</code></strong></td>
+<td align="center">prints out the first lines of a file</td>
+</tr>
+<tr>
+<td align="center"><strong><code>tail</code></strong></td>
+<td align="center">prints out the last lines of a file</td>
+</tr>
+<tr>
+<td align="center"><strong><code>pwd</code></strong></td>
+<td align="center">tells us where we are in the computer (<strong>p</strong>rint <strong>w</strong>orking <strong>d</strong>irectory)</td>
+</tr>
+<tr>
+<td align="center"><strong><code>ls</code></strong></td>
+<td align="center">lists contents of a directory (<strong>l</strong>i<strong>s</strong>t)</td>
+</tr>
+<tr>
+<td align="center"><strong><code>cd</code></strong></td>
+<td align="center"><strong>c</strong>hange <strong>d</strong>irectories</td>
+</tr>
+</tbody>
+</table>
+<h4><i>Special characters introduced:</i></h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Characters</strong></th>
+<th align="center"><strong>Meaning</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong><code>/</code></strong></td>
+<td align="center">the computer's root location</td>
+</tr>
+<tr>
+<td align="center"><strong><code>~/</code></strong></td>
+<td align="center">the user's home location</td>
+</tr>
+<tr>
+<td align="center"><strong><code>../</code></strong></td>
+<td align="center">specifies a directory one level "above" the current working directory</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<h2 id="credit">Credit</h2>
+<p>This lesson was modified from:</p>
+<ul>
+<li>ANGUS 2019: https://angus.readthedocs.io/en/2019/shell_intro/shell-getting-started-01.html</li>
+<li>Data Carpentry Genomics: https://datacarpentry.org/shell-genomics/</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

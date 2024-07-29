@@ -1,0 +1,532 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20230711-3d-printing/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>3D printing with stereolithography (SLA) - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3d-printing-with-stereolithography-sla" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3D printing with stereolithography (SLA)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    Description:
+  </a>
+  
+    <nav class="md-nav" aria-label="Description:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    Learning objectives:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    Preparation:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outline" class="md-nav__link">
+    Outline:
+  </a>
+  
+    <nav class="md-nav" aria-label="Outline:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#part-1-design-the-object-to-print-60-minutes" class="md-nav__link">
+    Part 1: Design the object to print (60 minutes)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-2-print-the-design-60-minutes" class="md-nav__link">
+    Part 2: Print the design (60 minutes)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-resources" class="md-nav__link">
+    Other resources:
+  </a>
+  
+    <nav class="md-nav" aria-label="Other resources:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#software" class="md-nav__link">
+    Software:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sla-resins" class="md-nav__link">
+    SLA Resins:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repositories" class="md-nav__link">
+    Repositories:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-types-of-printers" class="md-nav__link">
+    Other types of printers:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fdm-vs-sla-printing" class="md-nav__link">
+    FDM vs SLA printing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="3d-printing-with-stereolithography-sla">3D printing with stereolithography (SLA)</h1>
+<h2 id="description">Description:</h2>
+<p>This 2-hour training session will introduce learners to the basics of 3D printing, specifically focusing on designing stamps to create microchambers for cells using Autodesk Fusion 360 software and utilizing the Form2 SLA printer from Formlabs for actual 3D printing.</p>
+<h3 id="learning-objectives">Learning objectives:</h3>
+<p>By the end of this training session, learners will be able to:</p>
+<ol>
+<li>Use Autodesk Fusion 360 software to create designs for microchamber stamps.</li>
+<li>Understand how to translate their digital designs into physical 3D printed models.</li>
+<li>Operate the Form2 SLA printer and understand the basics of SLA resins.</li>
+<li>Access resources for further learning and exploration in the field of 3D printing.</li>
+</ol>
+<h3 id="preparation">Preparation:</h3>
+<ol>
+<li>Ensure all learners have Autodesk Fusion 360 software installed on their laptops. A trial version of Fusion 360 can be downloaded <a href="https://www.autodesk.com/products/fusion-360/free-trial?&amp;utm_medium=cpc&amp;utm_source=google&amp;utm_campaign=&amp;utm_term=&amp;utm_content=|pcrid||pkw||pmt||pdv|c|slid||pgrid||ptaid||&amp;addisttype=x&amp;gclid=CjwKCAjwhdWkBhBZEiwA1ibLmAYCuNVSq1WXJ9vhhYATYxUZV7bYcLirnyLZrhJ7XLlFE-pPVw3UtxoC2FcQAvD_BwE&amp;ef_id=ZJXBVwAAADzVG2Qk:20230623155919:s">here</a>. (8 minutes to download and setup)</li>
+<li>Ensure all students have PreForm software installed on their laptops. PreForm from Formlabs can be downloaded <a href="https://formlabs.com/software/#preform">here.</a> (Takes 1 minute to download. No login required)</li>
+<li>Students need a mouse with a middle-click button to use Autodesk Fusion 360 software.</li>
+<li>Set up the Form2 SLA printer and have it ready for demonstration. (Galo will do this)</li>
+<li>Arrange for various types of SLA resins for demonstration purposes. (Galo will do this)</li>
+<li>Prepare basic safety equipment (goggles, gloves) for handling SLA resins. (General lab PPE)</li>
+</ol>
+<h2 id="outline">Outline:</h2>
+<h3 id="part-1-design-the-object-to-print-60-minutes">Part 1: Design the object to print (60 minutes)</h3>
+<ul>
+<li>Introduction to Autodesk Fusion 360 and its relevance to 3D printing (15 minutes)</li>
+<li>Demonstrating the process of designing microchamber stamps for confining cells in Fusion 360 (30 minutes)</li>
+<li>Guided practice: Learners work on their own designs under instructor supervision (15 minutes)</li>
+</ul>
+<h3 id="part-2-print-the-design-60-minutes">Part 2: Print the design (60 minutes)</h3>
+<ul>
+<li>Introduction to Form2 SLA printer and SLA printing technology (15 minutes)</li>
+<li>Demonstrating the process of preparing a design for print and starting the print process (20 minutes)</li>
+<li>Guided practice: Students prepare their designs for print and start the print process under instructor supervision (20 minutes)</li>
+<li>Q&amp;A and wrap-up (5 minutes)</li>
+</ul>
+<h2 id="other-resources">Other resources:</h2>
+<h3 id="software">Software:</h3>
+<ul>
+<li><a href="https://www.autodesk.com/products/fusion-360/free-trial?&amp;utm_medium=cpc&amp;utm_source=google&amp;utm_campaign=&amp;utm_term=&amp;utm_content=|pcrid||pkw||pmt||pdv|c|slid||pgrid||ptaid||&amp;addisttype=x&amp;gclid=CjwKCAjwhdWkBhBZEiwA1ibLmAYCuNVSq1WXJ9vhhYATYxUZV7bYcLirnyLZrhJ7XLlFE-pPVw3UtxoC2FcQAvD_BwE&amp;ef_id=ZJXBVwAAADzVG2Qk:20230623155919:s">Autodesk Fusion 360</a>: Main software for 3D design.<ul>
+<li>Create and edit 3D models (.stl files)</li>
+</ul>
+</li>
+<li><a href="https://formlabs.com/software/#preform">PreForm</a>: Formlabs' software for preparing models for 3D printing.<ul>
+<li>.stl file to Formlabs formatted file</li>
+</ul>
+</li>
+<li><a href="https://www.prusa3d.com/page/prusaslicer_424/">PrusaSlicer</a>: Prusa’s software for preparing models from 3D printing<ul>
+<li>.stl file to G-code formatted file</li>
+</ul>
+</li>
+</ul>
+<h3 id="sla-resins">SLA Resins:</h3>
+<ul>
+<li><a href="https://formlabs.com/store/materials/grey-resin/">Standard Grey Resin</a>: Good for general prototyping.</li>
+<li><a href="https://formlabs.com/store/materials/clear-resin/">Clear resin:</a> Good for transparent objects.</li>
+<li><a href="https://formlabs.com/materials/">Many others…</a></li>
+</ul>
+<h3 id="repositories">Repositories:</h3>
+<p>There are several repositories that host 3D printing models and designs relevant to biology and research. Some of these include:</p>
+<ol>
+<li><a href="https://3d.nih.gov/">NIH 3D Print Exchange</a>: A public website that enables users to share, download and edit 3D print files related to health and science. The repository hosts a wide range of files, from laboratory equipment to anatomical models and molecular structures.</li>
+<li><a href="https://www.thingiverse.com/">Thingiverse</a>: While Thingiverse is a general 3D model repository, it contains many designs related to biology and research, including models of biological structures, lab equipment, and educational aids.</li>
+<li><a href="https://sketchfab.com/">Sketchfab</a>: Sketchfab's science section contains many biological and scientific 3D models. Models can be downloaded and printed.</li>
+<li><a href="https://grabcad.com/library">GrabCAD</a>: GrabCAD has a community section where users share their designs. Many users share designs related to science and biology.</li>
+<li><a href="https://www.embodi3d.com/">Embodi3D</a>: This repository focuses on medical and anatomical models. While the focus is more clinical, it may be of interest to researchers working with human biology.</li>
+<li><a href="https://www.yeggi.com/">Yeggi</a>: Yeggi is a search engine for 3D printable models. By using specific search terms, you can find models related to biology and research.</li>
+</ol>
+<h3 id="other-types-of-printers">Other types of printers:</h3>
+<ul>
+<li><a href="https://www.prusa3d.com">FDM Printers</a>: More common, uses a plastic filament.</li>
+<li><a href="https://www.dynamism.com/lux-creo-lux-3-plus.html">DLP Printers</a>: Similar to SLA, but uses a digital light projector screen.</li>
+<li><a href="https://formlabs.com/3d-printers/catalog/#fuse-1+-30w">SLS Printers</a>: Uses lasers to sinter powdered material.</li>
+</ul>
+<h3 id="fdm-vs-sla-printing">FDM vs SLA printing</h3>
+<p>FDM printers, like the Prusa printer at Arcadia, are based on 3-axis CNC machines common in the manufacturing industry. These printers extrude a plastic filament through a hot end, layer by layer building up material and printing your part. FDM printers are easy and inexpensive to use and have gained huge popularity. </p>
+<p>SLA printing, in contrast, uses light to polymerize a growing resin structure from a solution of monomers. This method is capable of printing intricate and complex designs, including high-resolution parts and shapes that cannot be achieved easily on an FDM print bed. </p>
+<p>For most users, resolution requirements will determine which printer is most appropriate. FDM printers are great for rapid prototyping, medium-sized parts, and basic 3D objects, but resolutions lower than 1 mm are difficult to achieve. SLA printers can print all the same parts as FDM printers, but with significantly increased resolution (down to 100 um) and freedom in the design process. FDM printers are somewhat limited in the resin properties, with most resins being a sort of hard, chemically weak plastic. Meanwhile, SLA printers can print a wide range of resins and elastomers with different physical and chemical properties. Finally, FDM printers are simpler to operate and do not involve reactive resins or solvents, while SLA printing is a more involved procedure with clear, albeit mild, chemical hazards. </p>
+<p>This lesson plan was constructed with assistance by GPT-4.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

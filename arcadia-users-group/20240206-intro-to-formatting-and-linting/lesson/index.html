@@ -1,0 +1,893 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20240206-intro-to-formatting-and-linting/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Introduction to code formatting, linting, and style guides - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-code-formatting-linting-and-style-guides" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction to code formatting, linting, and style guides
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#an-introductory-example" class="md-nav__link">
+    An introductory example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-setup" class="md-nav__link">
+    Lesson setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formatting-conventions" class="md-nav__link">
+    Formatting conventions
+  </a>
+  
+    <nav class="md-nav" aria-label="Formatting conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-breaking-up-long-lines" class="md-nav__link">
+    Example: breaking up long lines
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-formatters-enforce-formatting-conventions" class="md-nav__link">
+    Code formatters enforce formatting conventions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-black" class="md-nav__link">
+    Setting up black
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#style-guides" class="md-nav__link">
+    Style guides
+  </a>
+  
+    <nav class="md-nav" aria-label="Style guides">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pep8-and-python-style-guides" class="md-nav__link">
+    PEP8 and Python style guides
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#naming-conventions" class="md-nav__link">
+    Naming conventions
+  </a>
+  
+    <nav class="md-nav" aria-label="Naming conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aside-about-single-letter-variable-names" class="md-nav__link">
+    Aside about single-letter variable names
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-conventions" class="md-nav__link">
+    Documentation conventions
+  </a>
+  
+    <nav class="md-nav" aria-label="Documentation conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comments" class="md-nav__link">
+    Comments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#things-that-comments-should-not-be-used-for" class="md-nav__link">
+    Things that comments should not be used for
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docstrings" class="md-nav__link">
+    Docstrings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-in-code-generated-by-chatgpt" class="md-nav__link">
+    Documentation in code generated by ChatGPT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linting" class="md-nav__link">
+    Linting
+  </a>
+  
+    <nav class="md-nav" aria-label="Linting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#an-interactive-example" class="md-nav__link">
+    An interactive example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choosing-which-lint-rules-to-enforce" class="md-nav__link">
+    Choosing which lint rules to enforce
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aside-linters-can-fix-some-issues-automatically" class="md-nav__link">
+    Aside: linters can fix some issues automatically
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-format-and-when-to-lint" class="md-nav__link">
+    When to format and when to lint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-formatting-and-linting-in-a-new-project" class="md-nav__link">
+    Setting up formatting and linting in a new project
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#beyond-formatting-and-linting-software-architecture-and-design-patterns" class="md-nav__link">
+    Beyond formatting and linting: software architecture and design patterns
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="introduction-to-code-formatting-linting-and-style-guides">Introduction to code formatting, linting, and style guides</h1>
+<p>This lesson explains some of the basic conventions around code formatting and style, with an emphasis on Python. It also explains how to use tools to automatically format code and check (or "lint") it for compliance with these style conventions.</p>
+<p>The importance of defining a consistent format and style for the code we write arises from two unfortunate realities: code is easier to write than it is to read, and code is read more often than it is written (or rewritten). </p>
+<p>Code is easier to write than read because, when we are writing it, we usually know exactly what we are trying to do and we have the context needed to understand why and how we're doing it. By contrast, neither of these two things are typically true when we are reading code: we often either don't remember or never knew exactly what the author was trying to do when they wrote the code we're reading, and the context necessary to understand the code is invariably also unknown to us or at least not fresh in our minds. </p>
+<p>This means that, when writing code, we need to have a system of rules and guidelines in place to ensure that the code we write is as easy as possible for others (either our future selves or other developers) to read and understand. This is the purpose of code formatting and style conventions. (At a higher level, this is also, in part, the purpose of design patterns and application architectures, but that is a topic for a future AUG lesson.)</p>
+<p>These conventions are particularly important for us at Arcadia, as most of our code is developed collaboratively. This necessarily means that multiple people will read it. In addition, we often intend for the code we produce to be useful and understandable to others outside of Arcadia, and part of that is ensuring our code meets high standards for readability and comprehensibility. </p>
+<h2 id="an-introductory-example">An introductory example</h2>
+<p>As an example to help illustrate why code formatting and style are so important, consider the following code:
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">qr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">a</span><span class="p">,(</span><span class="o">-</span><span class="n">b</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">a</span>
+</code></pre></div>
+It is very hard to read this code, let alone understand what it does.</p>
+<p>Now consider the same code written in a more readable style:
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_quadratic_roots</span><span class="p">(</span><span class="n">quadratic_coeff</span><span class="p">,</span> <span class="n">linear_coeff</span><span class="p">,</span> <span class="n">constant_coeff</span><span class="p">):</span>
+
+    <span class="n">discriminant_square_root</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+        <span class="n">linear_coeff</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">quadratic_coeff</span> <span class="o">*</span> <span class="n">constant_coeff</span>
+    <span class="p">)</span>
+
+    <span class="n">root_1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">linear_coeff</span> <span class="o">+</span> <span class="n">discriminant_square_root</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">quadratic_coeff</span><span class="p">)</span>
+    <span class="n">root_2</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">linear_coeff</span> <span class="o">-</span> <span class="n">discriminant_square_root</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">quadratic_coeff</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">root_1</span><span class="p">,</span> <span class="n">root_2</span>
+</code></pre></div>
+Notice how this code is easier to read and understand (if still somewhat opaque). This is due to several formatting and style changes. For one, spaces are used around the operators and the single long line has been broken into four separate lines, each of which does one specific thing. These changes generally makes code easier to read; they are a kind of <em>formatting</em> convention. In addition, the variable names are much longer and are more descriptive, which make it easier for reader to infer the meaning and intent the code; this is a kind of <em>style</em> convention. </p>
+<p>In this lesson, we'll discuss both formatting and style conventions, as well as tools to automatically format code and check that is complies with our style conventions.</p>
+<h2 id="lesson-setup">Lesson setup</h2>
+<p>We'll create a Python project to demonstrate how to use the tools we'll be discussing.</p>
+<p>Create a new conda environment and activate it:
+<div class="highlight"><pre><span></span><code>mamba<span class="w"> </span>create<span class="w"> </span>-y<span class="w"> </span>-n<span class="w"> </span>aug-linting-lesson<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.11
+mamba<span class="w"> </span>activate<span class="w"> </span>aug-linting-lesson
+</code></pre></div></p>
+<p>Create a new directory for the project:
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span><span class="m">20240206</span>-aug-linting-lesson
+<span class="nb">cd</span><span class="w"> </span><span class="m">20240206</span>-aug-linting-lesson
+</code></pre></div></p>
+<p>Finally, create a new file called <code>main.py</code>. We'll add code to this file later.</p>
+<h2 id="formatting-conventions">Formatting conventions</h2>
+<p>In programming, "formatting" refers to how code is laid out or arranged on the page or screen; for example, how many spaces to use for indentation, where to put spaces around operators, where to use line breaks (and how many), whether to use single or double quotes for strings, and so on. In Python and most other languages, these questions are not settled by the syntax of the language itself, so it is up to each programmer (or project, or team, or organization) to decide for themselves (or itself) how to resolve them. Unfortunately, because most formatting decisions are a matter of personal preference, a wide range of (often strongly-held) opinions about <em>how</em> code should be formatted has emerged. </p>
+<p>However, there <em>is</em> wide agreement that code should be formatted <em>consistently</em>. That is, once a set of formatting rules have been chosen, they should be applied consistently throughout a given codebase. This is because inconsistent formatting makes code significantly harder to read and maintain. More subtly, inconsistent formatting also pollutes the version history of a codebase with unnecessary and superficial changes, making it harder to understand the "real" or substantive changes that were made to the code.</p>
+<h3 id="example-breaking-up-long-lines">Example: breaking up long lines</h3>
+<p>One important formatting convention is that lines of code should not be longer than some maximum length. This is to ensure that code is readable on a wide range of screen sizes. (In Python and many other languages, a maximum line length of 80 or 100 characters is typically chosen.) The tricky part lies in determining <em>how</em> to break up lines that are longer than this maximum length; there are many options and no technical reason to prefer one over another.</p>
+<p>For example, consider the following code:
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_total_income</span><span class="p">(</span><span class="n">gross_wages</span><span class="p">,</span> <span class="n">taxable_interest</span><span class="p">,</span> <span class="n">total_dividends</span><span class="p">,</span> <span class="n">qualified_dividends</span><span class="p">,</span> <span class="n">other_income</span><span class="p">):</span>
+    <span class="n">total_income</span> <span class="o">=</span> <span class="n">gross_wages</span> <span class="o">+</span> <span class="n">taxable_interest</span> <span class="o">+</span> <span class="p">(</span><span class="n">total_dividends</span> <span class="o">-</span> <span class="n">qualified_dividends</span><span class="p">)</span> <span class="o">+</span> <span class="n">other_income</span>
+    <span class="k">return</span> <span class="n">total_income</span>
+</code></pre></div></p>
+<p>It is clear that the function definition is too long to fit in one line, so it needs to be broken up. But where should the line breaks go?
+One option is to break up the long lines after each comma or operator:
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_total_income</span><span class="p">(</span><span class="n">gross_wages</span><span class="p">,</span> 
+                           <span class="n">taxable_interest</span><span class="p">,</span> 
+                           <span class="n">total_dividends</span><span class="p">,</span> 
+                           <span class="n">qualified_dividends</span><span class="p">,</span> 
+                           <span class="n">other_income</span><span class="p">):</span>
+    <span class="n">total_income</span> <span class="o">=</span> <span class="p">(</span><span class="n">gross_wages</span>
+                    <span class="o">+</span> <span class="n">taxable_interest</span>
+                    <span class="o">+</span> <span class="p">(</span><span class="n">total_dividends</span> <span class="o">-</span> <span class="n">qualified_dividends</span><span class="p">)</span>
+                    <span class="o">+</span> <span class="n">other_income</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">total_income</span>
+</code></pre></div></p>
+<p>Another option is to use a separate line for each argument and also for the closing parentheses:
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_total_income</span><span class="p">(</span>
+    <span class="n">gross_wages</span><span class="p">,</span>
+    <span class="n">taxable_interest</span><span class="p">,</span> 
+    <span class="n">total_dividends</span><span class="p">,</span> 
+    <span class="n">qualified_dividends</span><span class="p">,</span> 
+    <span class="n">other_income</span>
+<span class="p">):</span>
+    <span class="n">total_income</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">gross_wages</span> 
+        <span class="o">+</span> <span class="n">taxable_interest</span> 
+        <span class="o">+</span> <span class="p">(</span><span class="n">total_dividends</span> <span class="o">-</span> <span class="n">qualified_dividends</span><span class="p">)</span> 
+        <span class="o">+</span> <span class="n">other_income</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">total_income</span>
+</code></pre></div>
+Although these two versions are syntactically identical and formatted similarly, the formatting rules they obey are quite different. Even worse, a "diff" or line-by-line comparison of the two versions is very hard to read, since almost every line is different in some trivial way. This means that if a programmer both reformatted the code from one format to the other and, at the same time, made a substantive change to it (like renaming one of the arguments of the <code>calculate_total_income</code> function), it would be hard to quickly determine which lines were meaningfully changed and which were just reformatted.</p>
+<h3 id="code-formatters-enforce-formatting-conventions">Code formatters enforce formatting conventions</h3>
+<p>To both eliminate these kinds of formatting ambiguities and to automate the otherwise-tedious process of formatting code by hand, tools to automatically format code have been developed. These tools take files of source code as input and output the same code, but reformatted as necessary according to a pre-specified set of formatting rules.</p>
+<p>In Python, the most popular code formatting tool is called <code>black</code>. This tool both automatically formats code and imposes its own opinionated set of formatting rules (hence its tagline: "any color you want"). This eliminates the need for developers to make (or argue about) these decisions themselves. Although <code>black</code>'s formatting rules can take some getting used to, the benefit of eliminating almost all formatting-related decisions is usually worth the effort of adjusting to its opinions. </p>
+<h3 id="setting-up-black">Setting up <code>black</code></h3>
+<p>To install <code>black</code> in our conda environment, run:
+<div class="highlight"><pre><span></span><code>mamba<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>black
+</code></pre></div></p>
+<p>Next, let's add some poorly formatted code to our toy project. Add the following code (from our previous example) to <code>main.py</code>:
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_total_income</span><span class="p">(</span><span class="n">gross_wages</span><span class="p">,</span> <span class="n">taxable_interest</span><span class="p">,</span> <span class="n">total_dividends</span><span class="p">,</span> <span class="n">qualified_dividends</span><span class="p">,</span> <span class="n">other_income</span><span class="p">):</span>
+    <span class="n">total_income</span> <span class="o">=</span> <span class="n">gross_wages</span> <span class="o">+</span> <span class="n">taxable_interest</span> <span class="o">+</span> <span class="p">(</span><span class="n">total_dividends</span> <span class="o">-</span> <span class="n">qualified_dividends</span><span class="p">)</span> <span class="o">+</span> <span class="n">other_income</span>
+    <span class="k">return</span> <span class="n">total_income</span>
+</code></pre></div>
+Now, from the command line, run:
+<div class="highlight"><pre><span></span><code>black<span class="w"> </span>.
+</code></pre></div>
+This command tells <code>black</code> to reformat all the Python files in the current directory (the lone dot in the command is the relative path to the current directory). By default, black considers any file ending with <code>.py</code> to be a Python file, and it will look for and reformat all such files in the directory path it is given (or any of that directory's subdirectories). </p>
+<p>Take a look at <code>main.py</code> again. You should see that the code has been reformatted according to <code>black</code>'s rules.</p>
+<p>Now, try simplifying the calculation of <code>total_income</code> by removing the two dividend-related variables from the sum, then run <code>black</code> again. You should see that, because the <code>total_income</code> line is shorter, it can fit on one line, so <code>black</code> automatically converts it back to a single line.</p>
+<p>There is a succinct overview of <code>black</code>'s formatting rules in <a href="https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html">its documentation</a>. While it's good to be familiar with these rules, there is no need to memorize them. Indeed, the purpose of using a formatting tool like <code>black</code> is to eliminate the need to manually write your code according to any particular formatting conventions or even to think about formatting at all. </p>
+<details>
+<summary><b>Aside about <code>black</code> and <code>ruff</code></b></summary>
+Since its release in 2018, <code>black</code> has played an influential role in standardizing code formatting across the Python ecosystem. However, it has now been reimplemented by a tool called <code>ruff</code> that is designed to be a fast and comprehensive tool for formatting and linting code in Python. This lesson uses <code>black</code> as an homage to its historical importance, but in practice, <code>ruff</code> is the tool we should be using for both formatting and linting.
+</details>
+
+<h2 id="style-guides">Style guides</h2>
+<p>Although formatting conventions help constrain the very low-level aspects of how code is written, additional rules and conventions are required to ensure that code is both readable and understandable. These conventions are usually expressed in the form of style guides. Style guides define rules, conventions, and guidelines to which all code in a codebase should adhere. They concern both both low-level questions like how to name variables and functions, as well as higher-level considerations like documentation standards and some aspects of how code is organized or structured.</p>
+<h3 id="pep8-and-python-style-guides">PEP8 and Python style guides</h3>
+<p>Many language have an official style guide. For Python, the official style guide is called <a href="https://peps.python.org/pep-0008/#introduction">PEP8</a>. In addition, Google's <a href="https://google.github.io/styleguide/pyguide.html">Python style guide</a> is an important extension of PEP8 that defines additional standards, especially around nomenclature, documentation, and code organization. Most major Python projects follow PEP8, and we should strive to follow it at Arcadia as well, as it is a foundational part of ensuring our code is readable and useful to others. </p>
+<p>This is true no matter the scale of the project; it is a good practice to follow PEP8 even for small scripts and one-off analyses, as it is often hard to anticipate the lifetime of a project in advance. It is therefore prudent to assume that all of the code we write will always be read by others (inside, if not also outside, of Arcadia). As projects grow and it becomes more likely that we will need to maintain them for a long period of time, we can then readily impose additional style conventions on top of PEP8.</p>
+<p>Many of the conventions defined in PEP8 concern formatting and are automatically enforced by using <code>black</code> to format our code. However, PEP8 also includes style conventions that we must follow manually. Here, we'll discuss two important categories of style conventions: naming conventions and documentation conventions.</p>
+<h3 id="naming-conventions">Naming conventions</h3>
+<p>Naming conventions are an important element of code style. They determine how variables, functions, classes, modules, and other objects should be named. In Python, there are some strict rules about how to name each of these things:</p>
+<ul>
+<li>variables, functions, and modules* should be named in <code>lower_snake_case</code>.</li>
+<li>class names should be <code>UpperCamelCase</code>.</li>
+<li>global variables should be named in <code>ALL_CAPS_SNAKE_CASE</code>.</li>
+<li>names cannot begin with a number or contain spaces or any special characters (except for underscores).</li>
+</ul>
+<p>*"modules" are the individual python files that are contained with a python project or package; e.g., <code>main.py</code> is a module.</p>
+<p>In other words, all names should be <code>lower_snake_case</code> except for global variables (which should be used sparingly, if at all) and class names. </p>
+<p>Note that <em>instances</em> of a class are variables and should be named in <code>lower_snake_case</code>, not <code>UpperCamelCase</code>. Here is an example:
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ProteinSequence</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span>
+
+<span class="n">protein_sequence</span> <span class="o">=</span> <span class="n">ProteinSequence</span><span class="p">(</span><span class="s1">&#39;MSKGEELFTG&#39;</span><span class="p">)</span>
+</code></pre></div></p>
+<p>All names should be specific, descriptive, and unambiguous. When in doubt, err on the side of verbosity, and always avoid unnecessary abbreviations. Although the meaning of "descriptive" is obviously subjective, there are some general guidelines that all names, no matter how brief, should follow:</p>
+<ul>
+<li>
+<p>Function names should generally begin with a verb that corresponds to what they do. Functions that return a boolean value should have a name of the form <code>is_&lt;something&gt;</code> or <code>has_&lt;something&gt;</code>, functions that calculate something <code>calculate_&lt;something&gt;</code> or if they modify an object in-place, they should be named either <code>set_&lt;something&gt;</code> or <code>update_&lt;something&gt;</code>.</p>
+</li>
+<li>
+<p>Variable names should not include type information (e.g., <code>list_of_ints</code> or <code>title_str</code>), since Python is a dynamically typed language and the type of a variable can change at runtime. The same goes for functions (e.g. <code>calculate_tm_score</code> instead of <code>calculate_tm_score_fn</code>). To express type information, type hints should be used (this is a topic for a future lesson, but if you're curious, check out <a href="https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html">this overview of type hints in Python</a>).</p>
+</li>
+<li>
+<p>Where possible, use the plural form of a noun for variables that contain a collection of things (e.g., for a list of proteins, use <code>proteins</code> instead of <code>protein</code>, <code>protein_list</code>, <code>protein_set</code>, etc).</p>
+</li>
+</ul>
+<p>Here are some examples of good and bad variable names:
+<div class="highlight"><pre><span></span><code><span class="c1"># bad (too short, ambiguous)</span>
+<span class="n">pids</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;P12345&#39;</span><span class="p">,</span> <span class="s1">&#39;P23456&#39;</span><span class="p">,</span> <span class="s1">&#39;P34567&#39;</span><span class="p">]</span>
+
+<span class="c1"># bad (includes type information)</span>
+<span class="n">protein_id_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;P12345&#39;</span><span class="p">,</span> <span class="s1">&#39;P23456&#39;</span><span class="p">,</span> <span class="s1">&#39;P34567&#39;</span><span class="p">]</span>
+
+<span class="c1"># good</span>
+<span class="n">protein_ids</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;P12345&#39;</span><span class="p">,</span> <span class="s1">&#39;P23456&#39;</span><span class="p">,</span> <span class="s1">&#39;P34567&#39;</span><span class="p">]</span>
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># bad (ambiguous and not descriptive)</span>
+<span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="n">protein1</span><span class="p">,</span> <span class="n">protein2</span><span class="p">):</span>
+    <span class="o">...</span>
+
+<span class="c1"># bad (not lower_snake_case)</span>
+<span class="k">def</span> <span class="nf">calculateTMscore</span><span class="p">(</span><span class="n">protein1</span><span class="p">,</span> <span class="n">protein2</span><span class="p">):</span>
+    <span class="o">...</span>
+
+<span class="c1"># good</span>
+<span class="k">def</span> <span class="nf">calculate_tm_score</span><span class="p">(</span><span class="n">protein1</span><span class="p">,</span> <span class="n">protein2</span><span class="p">):</span>
+    <span class="o">...</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># bad (unnecessary abbreviations)</span>
+<span class="n">usr_inpt</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter your name: &#39;</span><span class="p">)</span>
+
+<span class="c1"># bad (ambiguous abbreviation)</span>
+<span class="n">user_in</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter your name: &#39;</span><span class="p">)</span>
+
+<span class="c1"># good</span>
+<span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter your name: &#39;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="aside-about-single-letter-variable-names">Aside about single-letter variable names</h4>
+<p>Although PEP8 and other style guides do not explicitly forbid the use of single-letter variable names, they are strongly discouraged in most contexts. This is because single-letter variable names are, by definition, not descriptive. They can also be quite literally ambiguous; it is often hard to visually detect the difference between <code>i</code>, <code>j</code>, <code>l</code>, and <code>1</code>, for example. Finally, a subtler reason to avoid single-character variable names is that they can make refactoring harder, as it may be more cumbersome to search for and rename single-character variable names than more descriptive ones.</p>
+<p>One exception to this general prohibition should be for variables defined in a very local or narrow scope such as a short <code>for</code> loop or in a lambda function. Here are two examples where single-letter variable names is used within a single line (which is as narrow a scope as possible):
+<div class="highlight"><pre><span></span><code><span class="c1"># A single-letter variable name `f` used in a list comprehension.</span>
+<span class="n">filepaths</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;data_1.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;data_2.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;data_3.csv&#39;</span><span class="p">]</span>
+<span class="n">txt_filepaths</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filepaths</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">)]</span>
+
+<span class="c1"># A single-letter variable name `x` used in a lambda function.</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">squared_numbers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">numbers</span><span class="p">))</span>
+</code></pre></div>
+In cases such as these, you may decide that the brevity of this code outweighs the loss of readability. However, even in these cases, it is often possible to use more descriptive variable names without sacrificing much brevity:
+<div class="highlight"><pre><span></span><code><span class="n">txt_filepaths</span> <span class="o">=</span> <span class="p">[</span><span class="n">filepath</span> <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">filepaths</span> <span class="k">if</span> <span class="n">filepath</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">)]</span>
+
+<span class="n">squared_numbers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="n">value</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">numbers</span><span class="p">))</span>
+</code></pre></div></p>
+<p>Another scenario in which single-letter variable names may be acceptable is when implementing mathematical formulas as they appear in a publication or as they are typically written in the literature. In these cases, it may be clearer to retain the original single-letter names rather than replacing them with more descriptive names. For example, consider the formula for the force of gravity between two objects:
+<div class="highlight"><pre><span></span><code><span class="n">F</span> <span class="o">=</span> <span class="n">G</span> <span class="o">*</span> <span class="n">m_1</span> <span class="o">*</span> <span class="n">m_2</span> <span class="o">/</span> <span class="n">d</span><span class="o">**</span><span class="mi">2</span>
+</code></pre></div>
+Here, the formula is well-known and the meaning of <code>G</code>, <code>m_1</code>, <code>m_2</code>, and <code>d</code> would be clear to anyone who is familiar with the formula. Using longer, more descriptive variable names in this case could make the code harder to read:
+<div class="highlight"><pre><span></span><code><span class="n">force_of_gravity</span> <span class="o">=</span> <span class="n">gravitational_constant</span> <span class="o">*</span> <span class="n">mass_1</span> <span class="o">*</span> <span class="n">mass_2</span> <span class="o">/</span> <span class="n">distance_mass_1_mass_2</span><span class="o">**</span><span class="mi">2</span>
+</code></pre></div>
+However, if the single-letter names used in an equation are also used in other places in the code, then it is probably better to use more descriptive names throughout, as the clarity of the single-letter names heavily depends on their use in the context of a well-known or well-documented equation. </p>
+<details>
+<summary><b>More about single-letter variable names in scientific programming</b></summary>
+Unfortunately, single-letter variable names seem to be common in scientific programming. As we discussed above, this may be acceptable when they are are used in the context a well-known mathematical formula. But in many cases, their use is simply a shortcut that comes at the price of readability. Consider the following example of iterating over the pixels in a timelapse image:
+
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a random timelapse image with 3 timepoints.</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Iterate over the pixels in the image.</span>
+<span class="n">N_T</span><span class="p">,</span> <span class="n">N_X</span><span class="p">,</span> <span class="n">N_Y</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_T</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_X</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_Y</span><span class="p">):</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The pixel intensity at time </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1"> and position (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s1">) is </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+Although this code is compact, it is hard to keep track of the many single-character variables, and it will only become harder as the body of the nested for loops grows more complex. In addition, although they are not literally single characters, the names `N_X` and `N_Y` are ambiguous (and also wrongly capitalized). 
+
+This version of the code, with more descriptive variable names, is much clearer:
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a random timelapse image with 3 timepoints.</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Iterate over the pixels in the image.</span>
+<span class="n">num_timepoints</span><span class="p">,</span> <span class="n">num_rows</span><span class="p">,</span> <span class="n">num_cols</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">shape</span>
+<span class="k">for</span> <span class="n">time_ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_timepoints</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">row_ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_rows</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">col_ind</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_cols</span><span class="p">):</span>
+            <span class="n">intensity</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">time_ind</span><span class="p">,</span> <span class="n">row_ind</span><span class="p">,</span> <span class="n">col_ind</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;The pixel intensity at timepoint </span><span class="si">{</span><span class="n">time_ind</span><span class="si">}</span><span class="s1"> &#39;</span>
+                <span class="sa">f</span><span class="s1">&#39;and position (</span><span class="si">{</span><span class="n">row_ind</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">col_ind</span><span class="si">}</span><span class="s1">) is </span><span class="si">{</span><span class="n">intensity</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="p">)</span>
+</code></pre></div>
+</details>
+
+<h3 id="documentation-conventions">Documentation conventions</h3>
+<p>In the context of code style guides, "documentation" refers to human-readable text that is embedded in the source code to explain what the code does and how it works. It is very important to define standards and conventions for documentation because it is a major way--and sometimes the only way--to ensure that code is readily understandable by others. In Python, documentation takes two forms: comments that can appear anywhere in the code and docstrings that accompany modules, classes, and functions.</p>
+<h4 id="comments">Comments</h4>
+<p>Comments are human-readable lines of text that can appear anywhere in the source code. In Python, they are denoted by the <code>#</code> character. Although they are ignored by the Python interpreter and might seem like an area where "anything goes", it is important to adhere to strict standards of grammar and style when writing comments, since they are often the only way to explain the purpose of a particular line or block of code.</p>
+<p>In particular, comments should be complete sentences with proper punctuation. They should be written in full English sentences and should be grammatically correct. Importantly, they should end with periods; this is not only grammatically correct but is also the only way to indicate to the reader that the comment is complete and was not accidentally truncated (or never completely written in the first place). </p>
+<p>Most importantly, comments should generally be used to explain <em>why</em> a particular line or block of code is doing what it is doing, not <em>what</em> it is doing or <em>how</em> it is doing it (usually, this should be apparent from the code itself). Of course, comments are also appropriate when <em>what</em> the code is doing is not obvious or may appear to be counter-intuitive. Ideally, these cases should be rare, particularly as a codebase matures. Finally, when a line or short block of code is known to be a temporary fix or otherwise sub-optimal, a comment is a good way to indicate this to future readers. (Needless to say, these cases should also be rare.)</p>
+<p>Here is an example of a good comment that explains <em>why</em> a CSV file is loaded with a particular set of parameters:
+<div class="highlight"><pre><span></span><code><span class="c1"># We can assume missing values are always represented by the string &#39;NaN&#39; in the CSV file,</span>
+<span class="c1"># so the parameter &#39;na_values&#39; is set to &#39;NaN&#39;.</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data.csv&#39;</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="s1">&#39;NaN&#39;</span><span class="p">,</span> <span class="n">keep_default_na</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div></p>
+<p>Here is another example of a good comment that explains a non-obvious implementation detail when computing the nth Fibonacci number:
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the nth Fibonacci number using naive recursion.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># By definition, the Fibonacci sequence starts with zero and one.</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div></p>
+<h4 id="things-that-comments-should-not-be-used-for">Things that comments should <em>not</em> be used for</h4>
+<p>There are two major ways in which comments are commonly misused. Note that avoiding these misuses is not specific to Python but is a general best practice that applies to all programming languages. The first is that, as we alluded to above, comments should not be redundant with the code. They should not simply restate what the code is doing and they should not include information that is apparent or readily inferred from the code itself. In addition to cluttering the codebase with redundant information, redundant comments also introduce a maintenance liability, as they must be manually kept in sync with the code when it changes. Even worse, when comments are not updated along with the code, the contradiction between the comment and the code will create confusion and ambiguity for future readers. Here are some examples of such redundant comments:
+<div class="highlight"><pre><span></span><code><span class="c1"># find the minimum value and clamp it to 0.</span>
+<span class="n">min_value</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">values</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># get all the .txt files in the input directory.</span>
+<span class="n">filepaths</span> <span class="o">=</span> <span class="n">input_dirpath</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*.txt&#39;</span><span class="p">)</span>
+
+<span class="c1"># create the directory if it doesn&#39;t already exist.</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dirpath</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">dirpath</span><span class="p">)</span>
+</code></pre></div>
+Note, however, that the definition of "redundant" is somewhat subjective and context-dependent. In particular, it depends on the reader's familiarity with the domain and context of the project and with programming in general. When we can reasonably anticipate that readers of our code will be less familiar with one of these areas, it is perfectly acceptable to apply a more relaxed definition of redundancy. </p>
+<p>The second way that comments are sometimes misused is as a way to temporarily "disable" code by "commenting it out." While this is a common and convenient practice, it leads to various problems over time. Commented-out code is difficult to document, easy to forget about, exempt from formatting and linting checks, and over time will pollute the version history. Instead, there are several clearer and more maintainable approaches to "disabling" code: it can be moved into a conditional block with an appropriate condition, moved to its own file, or moved to its own branch on GitHub.</p>
+<p>The best approach depends on the nature of the code and the reason it is being disabled; but in general, short blocks of code can often be moved into a conditional block, while longer blocks of code should be moved to their own file or branch. In all cases, always first think carefully about whether or not the code in question can in fact simply be deleted; often it can be. (And in the event that it is needed later on, it can usually be recovered from the commit history of the repo on GitHub.)</p>
+<h4 id="docstrings">Docstrings</h4>
+<p>Docstrings (short for "documentation strings") are triple-quoted strings that appear directly after the declaration of a module, class, or function and are used to describe what the module, class, or function does, what its inputs are, and what its outputs are. They are treated in a special way by the Python interpreter; they are accessible at runtime and can be used to automatically generate documentation for a Python codebase. (As an aside, many languages have a similar feature, but the term "docstring" is Python-specific.)</p>
+<p>Python itself does not impose any constraints on the structure or contents of docstrings, but there is both <a href="https://peps.python.org/pep-0257/">an official Python style guide for docstrings</a> and several widely adopted conventional styles, including the <a href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">Google style</a> and the <a href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">Numpy style</a>.</p>
+<p>In general, all of these conventions are similar. For functions, they require a docstring to begin with an explanation of what the function does. This explanation should be brief and should not discuss implementation details, but should provide enough information for someone to use the function without reading its implementation. After the summary, there should follow a description of each of the inputs and outputs of the function, followed finally by any exceptions it might raise.</p>
+<p>As an example, let's revisit the example from the introduction:
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_roots</span><span class="p">(</span><span class="n">quadratic_coeff</span><span class="p">,</span> <span class="n">linear_coeff</span><span class="p">,</span> <span class="n">constant_coeff</span><span class="p">):</span>
+    <span class="n">discriminant_square_root</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+        <span class="n">linear_coeff</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">quadratic_coeff</span> <span class="o">*</span> <span class="n">constant_coeff</span>
+    <span class="p">)</span>
+    <span class="n">root_1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">linear_coeff</span> <span class="o">+</span> <span class="n">discriminant_square_root</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">quadratic_coeff</span><span class="p">)</span>
+    <span class="n">root_2</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">linear_coeff</span> <span class="o">-</span> <span class="n">discriminant_square_root</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">quadratic_coeff</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">root_1</span><span class="p">,</span> <span class="n">root_2</span>
+</code></pre></div>
+Although it is possible to infer the purpose of this function from the descriptive variable names, there is still some ambiguity, especially if we lack the mathematical knowledge to interpret the equations in the code. </p>
+<p>Here is the same function with a docstring (in the Google style):
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_roots</span><span class="p">(</span><span class="n">quadratic_coeff</span><span class="p">,</span> <span class="n">linear_coeff</span><span class="p">,</span> <span class="n">constant_coeff</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the real roots of a second order polynomial of the form</span>
+<span class="sd">    a * x^2 + b * x + c = 0.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        quadratic_coeff: The coefficient of the quadratic term, or `a` in the above equation.</span>
+<span class="sd">        linear_coeff: The coefficient of the linear term, or `b` in the above equation.</span>
+<span class="sd">        constant_coeff: The constant term, or `c` in the above equation.</span>
+
+<span class="sd">    Returns: </span>
+<span class="sd">        A tuple containing the two real roots of the polynomial.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">discriminant_square_root</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+        <span class="n">linear_coeff</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">quadratic_coeff</span> <span class="o">*</span> <span class="n">constant_coeff</span>
+    <span class="p">)</span>
+    <span class="n">root_1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">linear_coeff</span> <span class="o">+</span> <span class="n">discriminant_square_root</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">quadratic_coeff</span><span class="p">)</span>
+    <span class="n">root_2</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">linear_coeff</span> <span class="o">-</span> <span class="n">discriminant_square_root</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">quadratic_coeff</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">root_1</span><span class="p">,</span> <span class="n">root_2</span>
+</code></pre></div>
+This version of the function is both easy to read and easy to understand; the docstring explains exactly what the function does, what its inputs are, and what its outputs are, while the implementation is transparent and easy to follow thanks to the descriptive variable names.</p>
+<h4 id="documentation-in-code-generated-by-chatgpt">Documentation in code generated by ChatGPT</h4>
+<p>Unfortunately, code generated by ChatGPT tends to include abundant redundant comments. While this may be beneficial from a pedagogical perspective, it is not conducive to generating code that can be readily incorporated into an existing codebase. When using code generated by ChatGPT, it is important to check for and remove any redundant comments before including the code in your project. This is in addition to, of course, verifying that the code itself is correct, idiomatic, and adheres to the project's other style guidelines. </p>
+<h2 id="linting">Linting</h2>
+<p>"Linting" refers to the analysis of source code to detect syntax errors, potential bugs, and violations of style conventions. Linters are similar to formatters in the sense that they analyze source code and are used to ensure that code adheres to certain standards, but unlike formatters, they typically do not modify the code itself. Instead, linters typically flag issues (or "lint errors") for the developer to fix.</p>
+<p>Linters are particularly important for interpreted languages like Python that are dynamically typed and interpreted at runtime, because many errors that would be caught by the compiler in a statically typed language (like C or Java) are not caught until the code is actually run, by which time it may be difficult or time-consuming to fix the error. Linters can catch these kinds of errors at an early stage when they are easy for the developer to fix.</p>
+<h3 id="an-interactive-example">An interactive example</h3>
+<p>To help understand the utility of linting, let's work with a simple example. Consider the following code:
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">show_full_name</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">):</span>
+    <span class="n">full_name</span> <span class="o">=</span> <span class="n">first_name</span> <span class="o">+</span> <span class="n">last_nam</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Your full name is </span><span class="si">{</span><span class="n">full_name</span><span class="si">}</span><span class="s1">!&#39;</span><span class="p">)</span>
+</code></pre></div>
+Note that there is a typo in this function: the variable <code>last_name</code> is misspelled as <code>last_nam</code>. Unfortunately, because Python is interpreted, this mistake will go unnoticed until the code is run and the <code>show_full_name</code> function is called. At this point, an error will occur (and the Python process will crash) because the variable <code>last_nam</code> is not defined. A linter, by analyzing the source code, can detect this kind of error before the code is ever run (much less shared with others or released) and flag it for the developer to fix.</p>
+<p>In Python, one popular linting tool is called <code>ruff</code>. Let's try it out. First, install <code>ruff</code> in our conda environment:
+<div class="highlight"><pre><span></span><code>mamba<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>ruff
+</code></pre></div>
+Now, copy the function above into <code>main.py</code> and run <code>ruff</code> from the command line:
+<div class="highlight"><pre><span></span><code>ruff<span class="w"> </span>check<span class="w"> </span>.
+</code></pre></div>
+You should see an output that looks like this:
+<div class="highlight"><pre><span></span><code>main.py:2:5:<span class="w"> </span>F841<span class="w"> </span>Local<span class="w"> </span>variable<span class="w"> </span><span class="sb">`</span>full_name<span class="sb">`</span><span class="w"> </span>is<span class="w"> </span>assigned<span class="w"> </span>to<span class="w"> </span>but<span class="w"> </span>never<span class="w"> </span>used
+main.py:2:30:<span class="w"> </span>F821<span class="w"> </span>Undefined<span class="w"> </span>name<span class="w"> </span><span class="sb">`</span>last_nam<span class="sb">`</span>
+Found<span class="w"> </span><span class="m">2</span><span class="w"> </span>errors.
+</code></pre></div>
+Each line corresponds to one error that <code>ruff</code> identified. In this case, the second error corresponds to the typo in the variable <code>last_name</code>. The cryptic <code>F821</code> is a code that identifies the kind of error that was detected; by googling this code, we find that <code>F821</code> corresponds to the "undefined name" error. Finally, the <code>2:30</code> indicates that the error was found on line 2 and at column 30. </p>
+<p>It's important to understand that <code>ruff</code> did not actually <em>run</em> our script <code>main.py</code> to detect this error. Indeed, even if it had, no error would have occured, since our script does not actually call the <code>show_full_name</code> function; it only defines it. Instead, <code>ruff</code> detected the error by analyzing the source code itself.</p>
+<p>What about the other error that <code>ruff</code> found? This error is actually a consequence of our typo; because we misspelled <code>last_name</code>, the real variable <code>full_name</code>--which is an argument of the <code>show_full_name</code> function--is never actually used. This is an example of a style convention that <code>ruff</code> checks for; although unused variables won't cause errors when the code is run, it is a common convention that function definitions should only include arguments that are used (or referenced) in the body of the function. This enhances readability by preventing the reader from having to determine and keep track of which arguments are and are not actually used in a given function. Here, <code>ruff</code> has detected that the variable <code>full_name</code> is never used and flagged it as a style violation.</p>
+<p>Now, fix the typo and run <code>ruff check</code> again. This time, you should see no output, which means that <code>ruff</code> found no errors in the code. </p>
+<p>This does not, unfortunately, mean that our code is perfect. There are <em>a lot</em> of style conventions that have been defined, and <code>ruff</code> can check for many of them. For example, notice that our function does not have a docstring, which most style guides require and which we might well want <code>ruff</code> to flag for us. </p>
+<p>Let's run <code>ruff</code> again, but this time we'll enable <em>all</em> of <code>ruff</code>'s rules by passing the <code>--select ALL</code> flag:
+<div class="highlight"><pre><span></span><code>ruff<span class="w"> </span>check<span class="w"> </span>--select<span class="w"> </span>ALL<span class="w"> </span>.
+</code></pre></div>
+You should see a minor avalanche of new errors that looks like this:
+<div class="highlight"><pre><span></span><code>warning:<span class="w"> </span><span class="sb">`</span>one-blank-line-before-class<span class="sb">`</span><span class="w"> </span><span class="o">(</span>D203<span class="o">)</span><span class="w"> </span>and<span class="w"> </span><span class="sb">`</span>no-blank-line-before-class<span class="sb">`</span><span class="w"> </span><span class="o">(</span>D211<span class="o">)</span><span class="w"> </span>are<span class="w"> </span>incompatible.<span class="w"> </span>Ignoring<span class="w"> </span><span class="sb">`</span>one-blank-line-before-class<span class="sb">`</span>.
+warning:<span class="w"> </span><span class="sb">`</span>multi-line-summary-first-line<span class="sb">`</span><span class="w"> </span><span class="o">(</span>D212<span class="o">)</span><span class="w"> </span>and<span class="w"> </span><span class="sb">`</span>multi-line-summary-second-line<span class="sb">`</span><span class="w"> </span><span class="o">(</span>D213<span class="o">)</span><span class="w"> </span>are<span class="w"> </span>incompatible.<span class="w"> </span>Ignoring<span class="w"> </span><span class="sb">`</span>multi-line-summary-second-line<span class="sb">`</span>.
+main.py:1:1:<span class="w"> </span>D100<span class="w"> </span>Missing<span class="w"> </span>docstring<span class="w"> </span><span class="k">in</span><span class="w"> </span>public<span class="w"> </span>module
+main.py:1:5:<span class="w"> </span>ANN201<span class="w"> </span>Missing<span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">type</span><span class="w"> </span>annotation<span class="w"> </span><span class="k">for</span><span class="w"> </span>public<span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="sb">`</span>show_full_name<span class="sb">`</span>
+main.py:1:5:<span class="w"> </span>D103<span class="w"> </span>Missing<span class="w"> </span>docstring<span class="w"> </span><span class="k">in</span><span class="w"> </span>public<span class="w"> </span><span class="k">function</span>
+main.py:1:20:<span class="w"> </span>ANN001<span class="w"> </span>Missing<span class="w"> </span><span class="nb">type</span><span class="w"> </span>annotation<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">function</span><span class="w"> </span>argument<span class="w"> </span><span class="sb">`</span>first_name<span class="sb">`</span>
+main.py:1:44:<span class="w"> </span>ANN001<span class="w"> </span>Missing<span class="w"> </span><span class="nb">type</span><span class="w"> </span>annotation<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">function</span><span class="w"> </span>argument<span class="w"> </span><span class="sb">`</span>last_name<span class="sb">`</span>
+main.py:3:5:<span class="w"> </span>T201<span class="w"> </span><span class="sb">`</span>print<span class="sb">`</span><span class="w"> </span>found
+Found<span class="w"> </span><span class="m">8</span><span class="w"> </span>errors.
+</code></pre></div>
+Notice that, among other issues, <code>ruff</code> has now noticed that our function (and indeed the <code>main.py</code> module itself) does not have a docstring. As an aside, the <code>warning</code> lines at the beginning of the output indicate a problem with our use of <code>ruff</code>: we have enabled so many lint rules that some of the rules are actually in conflict with one another, so <code>ruff</code> has to choose which ones to enforce. </p>
+<h3 id="choosing-which-lint-rules-to-enforce">Choosing which lint rules to enforce</h3>
+<p>In general, choosing the appropriate set of lint rules to enforce is a context- and project-dependent decision. As codebases grow and become more complex, or when codebases are developed by multiple people, it often makes sense to enforce increasingly strict and extensive linting rules. For our purposes at Arcadia, the default rules that <code>ruff</code> enforces (i.e., using <code>ruff check</code> alone) is a great place to start; this will catch many common typos and bugs that will cause errors at runtime (like undefined and unused variables). As we discuss below, we also have a template repository for Python projects at Arcadia that comes with reasonable default settings for <code>ruff</code>.</p>
+<h3 id="aside-linters-can-fix-some-issues-automatically">Aside: linters can fix some issues automatically</h3>
+<p>Many linters can automatically fix some of the issues that they detect. You can try this out with <code>ruff</code> by running:
+<div class="highlight"><pre><span></span><code>ruff<span class="w"> </span>check<span class="w"> </span>--fix<span class="w"> </span>.
+</code></pre></div>
+The <code>--fix</code> flag tells <code>ruff</code> to fix as many of the errors it finds as it can. Of course, this only goes so far, as many errors (like missing docstrings) cannot be fixed automatically. (This will probably change in the future, as LLMs become more reliable and are incorporated into linters or even used to replace them entirely.)</p>
+<h3 id="when-to-format-and-when-to-lint">When to format and when to lint</h3>
+<p>The short answer is early and often: because formatters and linters are fast and easy to run, it is best to run them frequently and as early as possible in the development process, when errors are easy to fix. Most IDEs can be configured to run formatters automatically each time a file is saved, and linters are often integrated with IDEs as well (this is how VS Code, for example, displays squiggly red lines under undefined variables).</p>
+<p>In addition, formatting and linting are usually run automatically as part of a <a href="https://training.arcadiascience.com/arcadia-users-group/20231104-testing-concepts/lesson/#continuous-integration">continuous integration (CI) pipeline</a>. Briefly, this means that, for example, whenever a PR is opened on GitHub, the same formatting and linting tools that a developer would run locally are run remotely on the code in the PR. This ensures that the code on the <code>main</code> branch in the GitHub repo--which is the "final" version of the code that will ultimately be shared with or deployed to users--is properly formatted and passes the project's linting rules, whether or not individual developers took the time to run these tools locally. </p>
+<h3 id="setting-up-formatting-and-linting-in-a-new-project">Setting up formatting and linting in a new project</h3>
+<p>Because formatting and linting are such common tasks, it is convenient to develop "templates" that define the formatting and linting tools that should be used for all projects within an organization. These templates often also include GitHub Actions workflows to run formatting and linting automatically as part of a CI pipeline. At Arcadia, we've developed GitHub repo templates for <a href="https://github.com/Arcadia-Science/python-analysis-template">Python projects</a>, for <a href="https://github.com/Arcadia-Science/snakemake-template">Snakemake pipelines</a>, and for <a href="https://github.com/Arcadia-Science/r-template">R projects</a>. These templates should allow you to start new projects with the correct formatting and linting tools already set up. Later this year, we'll have an AUG lesson about how to use these templates.</p>
+<h2 id="beyond-formatting-and-linting-software-architecture-and-design-patterns">Beyond formatting and linting: software architecture and design patterns</h2>
+<p>While formatting, style guides, and linters can constrain many of the details of how code is written and catch many common kinds of bugs, they do not address larger questions about how code should be structured. For example, when should a class be used instead of a function? When should a large function (or class, or module) be split up into separate components? What kinds of abstractions should be used to represent a particular concept? These questions are, of course, subjective and context-dependent; they require care and experience to answer. However, there are general guidelines and patterns that can help. This is the domain of software architecture and design patterns, which will be the subject of a future AUG lesson.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

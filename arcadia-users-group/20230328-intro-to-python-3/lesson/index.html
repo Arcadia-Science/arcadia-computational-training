@@ -1,0 +1,1411 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20230328-intro-to-python-3/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Introduction to Python, Part 3 - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-python-part-3" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction to Python, Part 3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-packages" class="md-nav__link">
+    0. Packages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-built-in-packages" class="md-nav__link">
+    1. Built-in Packages
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Built-in Packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-file-handling-with-os" class="md-nav__link">
+    1.1 File handling with os
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-interfacing-with-the-command-line-using-subprocess" class="md-nav__link">
+    1.2 Interfacing with the command line using subprocess
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-math-ematics" class="md-nav__link">
+    1.3 math ematics
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p1-practice" class="md-nav__link">
+    P1. Practice
+  </a>
+  
+    <nav class="md-nav" aria-label="P1. Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practice-1" class="md-nav__link">
+    Practice 1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-opening-files-with-open" class="md-nav__link">
+    2. Opening files with open()
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Opening files with open()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-opening-files-more-easily-using-with" class="md-nav__link">
+    2.1 Opening files more easily using with
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-writing-to-files" class="md-nav__link">
+    2.2 Writing to files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p2-practice" class="md-nav__link">
+    P2. Practice
+  </a>
+  
+    <nav class="md-nav" aria-label="P2. Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practice-2" class="md-nav__link">
+    Practice 2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-installed-packages" class="md-nav__link">
+    3. Installed Packages
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Installed Packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-plotting-with-matplotlib" class="md-nav__link">
+    3.1 Plotting with matplotlib
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-modifying-a-matplotlib-plot" class="md-nav__link">
+    3.2 Modifying a matplotlib plot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-working-with-dataframes-using-pandas" class="md-nav__link">
+    3.3 Working with DataFrames using pandas
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-next-steps" class="md-nav__link">
+    4. Next Steps
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="introduction-to-python-part-3">Introduction to Python, Part 3</h1>
+<p>Follow along in <strong>Binder</strong> by clicking the badge below:  </p>
+<p><a href="https://mybinder.org/v2/gh/Arcadia-Science/arcadia-computational-training/HEAD?labpath=docs%2Farcadia-users-group%2F20230328-intro-to-python-3%2Fplayground.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<hr />
+<h2 id="0-packages">0. Packages</h2>
+<p>This lesson is the third in a series of workshops that provide an introduction to programming using Python.</p>
+<p><strong>This lesson</strong> builds on the foundation of lessons 1 and 2 and covers:
+- packages (also known as libraries)
+- interfacing with files using <strong><code>os</code></strong>
+- running from the command line with <strong><code>subprocess</code></strong>
+- mathematical operations with <strong><code>math</code></strong>
+- file I/O (input/output) using <code>open()</code>
+- plotting using <strong><code>matplotlib</code></strong>
+- <code>DataFrame</code> operations using <strong><code>pandas</code></strong></p>
+<hr />
+<h2 id="1-built-in-packages">1. Built-in Packages</h2>
+<p>Using the basics of Python we've learned so far, it's possible to perform <em>many</em> operations you might want to deal with in Python. In theory, you could probably write a script or function to do just about anything you wanted using just base Python language.  </p>
+<p>However, that would probably not be an efficient use of your time!<br />
+It turns out that there are many built-in packages that Python provides to do more complex things, built upon the Python language.</p>
+<hr />
+<h3 id="11-file-handling-with-os">1.1 File handling with <strong><code>os</code></strong></h3>
+<p>Importing a package in Python uses the following syntax. Below, we import the <strong><code>os</code></strong> package.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+</code></pre></div>
+<p>Let's explore some of the functions of the <strong><code>os</code></strong> package.<br />
+The function <code>os.getcwd()</code> returns the current working directory your script or Jupyter notebook is located in.<br />
+You might notice that we access this function using a dot <code>.</code> operator, much like we use when accessing the method of a data type, such as <code>list.append()</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+</code></pre></div>
+<pre><code>'/home/ec2-user/arcadia-computational-training/docs/arcadia-users-group/20230328-intro-to-python-3'
+</code></pre>
+<p>Another helpful function is <code>os.listdir()</code>, which returns a list of all files in the current directory.</p>
+<div class="highlight"><pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+</code></pre></div>
+<pre><code>['.ipynb_checkpoints',
+ 'newfile.txt',
+ 'newfile2.txt',
+ 'practice2.txt',
+ 'test.csv',
+ 'lesson_files',
+ 'testfiles',
+ 'cities.csv',
+ 'hello.txt',
+ 'lesson.ipynb',
+ 'lesson.md',
+ 'playground.ipynb']
+</code></pre>
+<p>You can find more information about the functions in <strong><code>os</code></strong> using <a href="https://docs.python.org/3/library/os.html">Python's web documentation</a>.<br />
+Most of the functions in <code>os</code> are not things we'd need to use for biological data analysis.<br />
+The most useful part of <code>os</code> for us is actually one of its <strong>modules</strong>. </p>
+<p>A <strong>module</strong> is a sub-collection of functions within a package.<br />
+You can access modules in the same way you access the methods of a data type, using a dot <code>.</code> operator.</p>
+<p>A particularly useful module of <strong><code>os</code></strong> is <strong><code>os.path</code></strong>. You can find its web documentation <a href="https://docs.python.org/3/library/os.path.html#module-os.path">here</a>.<br />
+For example, you can use the <code>os.path.exists()</code> function to see if a file exists at a specific location.</p>
+<div class="highlight"><pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;hello.txt&#39;</span><span class="p">)</span>
+</code></pre></div>
+<pre><code>True
+</code></pre>
+<p>You can also use <code>os.path</code> to get the path to a specific file in both absolute and relative formats.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Prints the relative path to the file</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="s1">&#39;hello.txt&#39;</span><span class="p">))</span>
+
+<span class="c1"># Prints the absolute path to the file</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;hello.txt&#39;</span><span class="p">))</span>
+</code></pre></div>
+<pre><code>hello.txt
+/home/ec2-user/arcadia-computational-training/docs/arcadia-users-group/20230328-intro-to-python-3/hello.txt
+</code></pre>
+<p>These functions can be particularly helpful when using Python to create or modify files used for bioinformatic analysis.</p>
+<hr />
+<h3 id="12-interfacing-with-the-command-line-using-subprocess">1.2 Interfacing with the command line using <strong><code>subprocess</code></strong></h3>
+<p>Many bioinformatic software packages are executed through the command line.<br />
+For example, <code>tblastn</code> can be run using your terminal if you have it installed.</p>
+<p>Jupyter notebooks have certain "magic" functions of cells that can allow you to run specific command line functions directly through your notebook.</p>
+<p>For example, basic commands such as <code>ls</code> or <code>pwd</code> can be run when typed directly into a cell.</p>
+<div class="highlight"><pre><span></span><code><span class="n">ls</span>
+</code></pre></div>
+<pre><code>cities.csv     lesson.ipynb  newfile.txt       test.csv
+hello.txt      lesson.md     playground.ipynb  [0m[01;34mtestfiles[0m/
+[01;34mlesson_files[0m/  newfile2.txt  practice2.txt
+</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">pwd</span>
+</code></pre></div>
+<pre><code>'/home/ec2-user/arcadia-computational-training/docs/arcadia-users-group/20230328-intro-to-python-3'
+</code></pre>
+<p>However, not all command line functions can be accessed in this way.<br />
+For example, you can't use the <code>which</code> utility using Jupyter magic - you'll get an error instead.</p>
+<div class="highlight"><pre><span></span><code><span class="n">which</span> <span class="n">python</span>
+</code></pre></div>
+<pre><code>  Cell In[8], line 1
+    which python
+          ^
+SyntaxError: invalid syntax
+</code></pre>
+<p>For commands that aren't compatible with this approach, you can use a different type of Jupyter magic syntax using the exclamation point operand <code>!</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">which</span> <span class="n">python</span>
+</code></pre></div>
+<pre><code>/home/ec2-user/miniconda3/envs/umap/bin/python
+</code></pre>
+<p>This can be really nice when you plan on programming interactively.<br />
+However, using the exclamation point Jupyter magic doesn't translate well if you were to convert your Jupyter notebook into a Python script.<br />
+If you were to try to use the exclamation point operator in a script, you'd have to rewrite some of your code, which is never fun! </p>
+<p>Instead of relying Jupyter magic, we suggest using the package <strong><code>subprocess</code></strong>, which passes commands from Python into the shell.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;which&#39;</span><span class="p">,</span> <span class="s1">&#39;python&#39;</span><span class="p">])</span>
+</code></pre></div>
+<pre><code>/home/ec2-user/miniconda3/envs/umap/bin/python
+
+
+
+
+
+CompletedProcess(args=['which', 'python'], returncode=0)
+</code></pre>
+<p>The code above runs the same as <code>!which python</code>.<br />
+<code>subprocess.run</code> passes each element of a list as an argument to the shell. </p>
+<p>It's unfortunately not as tidy looking, but it does allow for more robust code that can be converted to Python scripts without rewriting!</p>
+<hr />
+<h3 id="13-math-ematics">1.3 <strong><code>math</code></strong> ematics</h3>
+<p>The built-in <strong><code>math</code></strong> package can perform some useful mathematical operations.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="c1"># Take the natural logarithm of a number</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># Take the square root of a number</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Get the factorial of a number</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</code></pre></div>
+<pre><code>0.6931471805599453
+2.0
+6
+</code></pre>
+<p>In addition to its many functions, <strong><code>math</code></strong> also includes hard-coded values such as:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
+</code></pre></div>
+<pre><code>3.141592653589793
+2.718281828459045
+</code></pre>
+<p>Packages can thus be used to distribute specific values in addition to helpful functions!</p>
+<hr />
+<h2 id="p1-practice">P1. Practice</h2>
+<p>Let's try using some Python packages to do useful things.</p>
+<blockquote>
+<h3 id="practice-1">Practice 1</h3>
+<p>Using a <code>for</code> loop, create a directory called <code>testfiles/</code> in the current directory and populate it with empty files numbered <code>file1.txt</code> to <code>file5.txt</code></p>
+<p><strong>Hint:</strong> The command-line tool <code>touch</code> creates an empty file. Its syntax is <code>touch filename</code>.<br />
+<strong>Hint:</strong> You also might want to check out this list of <a href="https://docs.python.org/3/library/os.html#os.mkdir"><code>os</code> functions</a>.</p>
+</blockquote>
+<details>
+<summary> Practice 1 Sample Answer </summary>
+    <br>
+    <pre><code><b>import</b> subprocess
+<b>import</b> os
+
+numbers = [1, 2, 3, 4, 5]
+
+destination = 'testfiles/'
+os.mkdir(destination)
+
+<b>for</b> number <b>in</b> numbers:
+    filename = 'file' + str(number) + '.txt'
+    subprocess.run(['touch', destination + filename])
+</code></pre>
+    <br>
+    *Example using os.path.join()*
+    <br>
+    <pre><code><b>import</b> subprocess
+<b>import</b> os
+
+numbers = [1, 2, 3, 4, 5]
+
+destination = 'testfiles/'
+os.mkdir(destination)
+
+<b>for</b> number <b>in</b> numbers:
+    filename = 'file' + str(number) + '.txt'
+    subprocess.run(['touch', os.path.join(destination, filename)])
+</code></pre>
+</details>
+
+<div class="highlight"><pre><span></span><code><span class="c1">###############################################</span>
+<span class="c1">##### Write your code in the space below. #####</span>
+<span class="c1">#### Then run the cell to check your work. ####</span>
+
+
+<span class="c1">###############################################</span>
+
+<span class="c1"># Prints &#39;True&#39; if all files exist, else False.</span>
+<span class="c1"># This checker uses a special syntax called a List Comprehension.</span>
+<span class="c1"># You don&#39;t need to understand this yet, but if you&#39;re curious, feel free to ask!</span>
+<span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;testfiles/file&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.txt&#39;</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">all</span><span class="p">([</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]))</span>
+</code></pre></div>
+<pre><code>True
+</code></pre>
+<hr />
+<h2 id="2-opening-files-with-open">2. Opening files with <code>open()</code></h2>
+<p>You've created some empty files in the exercise above, but what if you actually wanted to open files?</p>
+<p>Python has a built-in function, <code>open()</code>, which allows for direct file handling.</p>
+<div class="highlight"><pre><span></span><code><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;hello.txt&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>The <code>open()</code> function doesn't print anything - it actually is a data type called <code>_io.TextIOWrapper</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">type</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</code></pre></div>
+<pre><code>_io.TextIOWrapper
+</code></pre>
+<p>This particular data type has certain methods, such as <code>.read()</code>, which reads each element of the file character by character.</p>
+<div class="highlight"><pre><span></span><code><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</code></pre></div>
+<pre><code>'Hello\nworld\nmy\nname\nis\nGuido'
+</code></pre>
+<p>You can see that calling <code>.read()</code> returns a <code>str</code> which is every character in the file in order.<br />
+This would probably not be a practical way of dealing with a very large file, and is certainly quite a clunky interface.  </p>
+<p>You can improve this slightly by using the <code>.readlines()</code> method. This splits the file into a list, using a linebreak.</p>
+<div class="highlight"><pre><span></span><code><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;hello.txt&#39;</span><span class="p">)</span>
+<span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</code></pre></div>
+<pre><code>['Hello\n', 'world\n', 'my\n', 'name\n', 'is\n', 'Guido']
+</code></pre>
+<p>Another somewhat annoying aspect of this approach is that you also always have to <code>.close()</code> a file when you're done with it, or you can run into all sorts of weird errors.</p>
+<p>For example, if we try to read the file again without closing it, we get an empty list.<br />
+This is because we already read through all of the lines in the file, and Python has kept track of that and picked back up reading at the end of the file.</p>
+<div class="highlight"><pre><span></span><code><span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</code></pre></div>
+<pre><code>[]
+</code></pre>
+<p>To read the file in a different way, we have to <code>.close()</code> it and then <code>open()</code> it again.</p>
+<div class="highlight"><pre><span></span><code><span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;hello.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+
+<span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<pre><code>['Hello\n', 'world\n', 'my\n', 'name\n', 'is\n', 'Guido']
+</code></pre>
+<hr />
+<h3 id="21-opening-files-more-easily-using-with">2.1 Opening files more easily using <strong><code>with</code></strong></h3>
+<p>Because of these quirks of Python's file handling using <code>open()</code>, the preferred way of loading files is using a <strong><code>with</code></strong> statement.</p>
+<p>This statement works similarly to <strong><code>try</code> - <code>except</code> - <code>finally</code></strong> but is mostly used for file streaming.</p>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;hello.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</code></pre></div>
+<pre><code>['Hello\n', 'world\n', 'my\n', 'name\n', 'is\n', 'Guido']
+</code></pre>
+<p>The <strong><code>with</code></strong> statement is a special kind of statement that does some stuff in the background to automatically <code>.close()</code> your file when the code block completes.<br />
+If you're curious, <a href="https://www.freecodecamp.org/news/with-open-in-python-with-statement-syntax-example/">this tutorial</a> gives some more explanation, but we won't go into the details here.  </p>
+<hr />
+<h3 id="22-writing-to-files">2.2 Writing to files</h3>
+<p>We've seen how you can pull information out of an existing file and pass it as a string or list.<br />
+But what if you have data that you've generated or loaded in Python and want to actually <strong>save</strong> that information to a file?</p>
+<p>You can also use <code>with open()</code> for this as well.</p>
+<div class="highlight"><pre><span></span><code><span class="n">my_text</span> <span class="o">=</span> <span class="s2">&quot;Let&#39;s see if this works...&quot;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;newfile.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">my_text</span><span class="p">)</span>
+</code></pre></div>
+<p>The difference between <code>read()</code>ing a file and <code>write()</code>ing a file comes from the <code>'w'</code> argument we passed to the <code>open()</code> function. </p>
+<p>The <code>open()</code> function actually accepts two arguments:
+- <code>file</code>: the path to the file you're opening
+- <code>mode</code>: how you're opening the file.<br />
+    This is <code>'r'</code> or <strong>read</strong> by default - if you want to be able to <strong>write</strong> to file, you use <code>'w'</code>.<br />
+    To be able to both <strong>read <em>and</em> write</strong>, you use <code>'w+'</code>.</p>
+<p>Let's check whether our file contains the expected text.</p>
+<div class="highlight"><pre><span></span><code><span class="n">less</span> <span class="n">newfile</span><span class="o">.</span><span class="n">txt</span>
+</code></pre></div>
+<pre><code>Let's see if this works...
+</code></pre>
+<p>Using the Jupyter magic command <code>less</code>, we can preview the file we just created. This seems to have worked!</p>
+<p>What about if we wanted to write not just a single string, but a list of strings, separated each by a line break?</p>
+<div class="highlight"><pre><span></span><code><span class="n">my_text_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Lorem&#39;</span><span class="p">,</span> <span class="s1">&#39;ipsum&#39;</span><span class="p">,</span> <span class="s1">&#39;dolor&#39;</span><span class="p">,</span> <span class="s1">&#39;sit&#39;</span><span class="p">,</span> <span class="s1">&#39;amet&#39;</span><span class="p">]</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;newfile2.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">my_text_list</span><span class="p">)</span>
+</code></pre></div>
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+Cell In[25], line 4
+      1 my_text_list = ['Lorem', 'ipsum', 'dolor', 'sit', 'amet']
+      3 with open('newfile2.txt', 'w') as file:
+----&gt; 4     file.write(my_text_list)
+
+
+TypeError: write() argument must be str, not list
+</code></pre>
+<p>You'll see that the code above returns a <code>TypeError: write() argument must be str, not list</code>.<br />
+We can't pass the variable <code>my_text_list</code> to <code>write()</code> because it's not a list!</p>
+<p>Rather than explaining exactly how to solve this problem, why don't we <strong>practice</strong> figuring out how to solve the problem?</p>
+<hr />
+<h2 id="p2-practice">P2. Practice</h2>
+<p>Let's practice figuring out how to do something in Python!  </p>
+<blockquote>
+<h3 id="practice-2">Practice 2</h3>
+<p>You want to be able to write a list to a file, with each element of the list on a different line in the file.<br />
+Figure out how to write the list <code>practice_list</code> to a file called <code>practice2.txt</code>.  </p>
+<p>You can already solve this problem with what we've learned, but there are many possible ways to deal with this issue.<br />
+Try to figure out on your own how you might overcome this problem.</p>
+<p><strong>Tip:</strong> Search engines such as <strong>Google</strong> are your friend in this situation! Try looking for help on websites like <a href="https://stackoverflow.com/questions/tagged/python">StackOverflow</a>, <a href="https://www.w3schools.com/python/default.asp">W3Schools</a>, or <a href="https://realpython.com/tutorials/basics/">Real Python</a>.<br />
+A huge part of learning how to program is also learning how to search for the solutions to your own programming problems.  </p>
+<p><strong>Hint:</strong> Try simply searching for the error above (<code>TypeError: write() argument must be str, not list</code>) and see where that gets you. <br />
+How might you modify this query to get closer to solving your problem?</p>
+</blockquote>
+<details>
+<summary> Practice 2 Sample Answer A </summary>
+    <br>
+    <b>Using <code>file.writelines()</code>:</b>
+    <br><br>
+    <pre><code>new_list = []
+<b>for</b> word <b>in</b> practice_list:
+    new_list.append(word + '\n')
+<b>with</b> open('practice2.txt', 'w+') <b>as</b> file:
+    file.writelines(new_list)
+    </code></pre>
+</details>
+
+<details>
+    <summary> Practice 2 Sample Answer B </summary>
+    <br>
+    <b>Using a <code>for</code> loop with <code>file.write()</code>:</b>
+    <br><br>
+    <pre><code><b>with</b> open('practice2.txt', 'w+') as file:
+    <b>for</b> word <b>in</b> practice_list:
+        file.write(word)
+        file.write('\n')
+    </code></pre>
+</details>
+
+<div class="highlight"><pre><span></span><code><span class="n">practice_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;We&#39;</span><span class="p">,</span> <span class="s1">&#39;can&#39;</span><span class="p">,</span> <span class="s1">&#39;solve&#39;</span><span class="p">,</span> <span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;problems&#39;</span><span class="p">,</span> <span class="s1">&#39;ourselves&#39;</span><span class="p">]</span>
+
+<span class="c1">###############################################</span>
+<span class="c1">##### Write your code in the space below. #####</span>
+<span class="c1">#### Then run the cell to check your work. ####</span>
+
+
+
+<span class="c1">###############################################</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;practice2.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</code></pre></div>
+<pre><code>We
+can
+solve
+Python
+problems
+ourselves
+</code></pre>
+<hr />
+<h2 id="3-installed-packages">3. Installed Packages</h2>
+<p>One of the awesome things about Python is the large community of other programmers – software engineers, scientists, hobbyists - who are also building functions using Python. Many of these folks share their work through Python <strong>packages</strong> (also sometimes referred to as <strong>libraries</strong>).  </p>
+<p>Today we'll have a whirlwind tour about how to import and use some of the more commonly-used packages. We won't cover how to install these packages - many can be installed using <strong><code>mamba</code></strong>, which is our preferred way of managing software installation. Check out this <a href="https://training.arcadiascience.com/arcadia-users-group/20221017-conda/lesson/">AUG training session</a> on <strong><code>conda</code></strong> and <strong><code>mamba</code></strong> for more. </p>
+<p>We'll be blazing through these examples, so don't worry if you don't understand all of the code in each cell - this is mostly to show you how many different kinds of things you can do with Python packages.</p>
+<hr />
+<h3 id="31-plotting-with-matplotlib">3.1 Plotting with <strong><code>matplotlib</code></strong></h3>
+<p>Presenting data in a visual format often helps us make decisions or communicate our results.<br />
+A popular Python package for making plots is <strong><code>matplotlib</code></strong>.</p>
+<p>Below, we use the module <strong><code>matplotlib.pyplot</code></strong> to plot some data using <code>x</code> and <code>y</code> coordinates.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="../lesson_files/lesson_52_0.png" /></p>
+<p>You'll notice that rather than simply using <code>import matplotlib.pyplot</code>, we added an <code>as plt</code> expression to the end of our import statement.<br />
+Python allows you to import packages using aliases.<br />
+This saves you from having to type out <code>matplotlib.pyplot.plot()</code> and shortens the expression to <code>plt.plot()</code>.  </p>
+<p>Package documentation examples often give you a suggestion for how you might abbreviate packages for others to be able to understand.<br />
+The base <code>matplotlib</code> package, for example, is often abbreviated as <code>mpl</code>.<br />
+You'll see additional examples of this in the other examples we'll look at.</p>
+<hr />
+<h3 id="32-modifying-a-matplotlib-plot">3.2 Modifying a <strong><code>matplotlib</code></strong> plot</h3>
+<p>So, we've plotted a basic line plot. But what do the axes mean? And why is it so large - can we make it smaller?<br />
+<strong><code>matplotlib</code></strong> is a popular package for plotting because you can customize essentially every single aspect of any plot you make.  </p>
+<p>See the comments below for an example of a more customized plot.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">4.1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">]</span>
+
+<span class="c1"># You can establish a figure and set the figure size prior to plotting.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> 
+
+<span class="c1"># You can change the background color of your plot</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s2">&quot;xkcd:midnight&quot;</span><span class="p">)</span> <span class="c1"># matplotlib recognizes a variety of color names</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="c1"># You can change the color (c) to cyan using &#39;c&#39;. You can also set a dashed (&#39;-&#39;) linestyle.</span>
+
+<span class="c1"># If you call another plotting function without creating a new figure, you can plot again on the same plot.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span> <span class="c1"># For a scatter plot, you can choose color (c), marker style, and marker size (s).</span>
+
+<span class="c1"># You can set the specific x and y limits of your plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">)</span>
+
+<span class="c1"># You can have matplotlib show a grid, and choose its color</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+
+<span class="c1"># You can label the x and y axes of the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;latitude&#39;</span><span class="p">)</span>
+
+<span class="c1"># You can add a title to the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Casseiopeia&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="png" src="../lesson_files/lesson_54_0.png" /></p>
+<p>This example only scratches the barest surface of what you can do with <strong><code>plt</code></strong>.<br />
+If people want to learn more, we can have future workshops that dive into deeper detail about how <strong><code>matplotlib</code></strong> works and what you can do with it.</p>
+<hr />
+<h3 id="33-working-with-dataframes-using-pandas">3.3 Working with <code>DataFrame</code>s using <strong><code>pandas</code></strong></h3>
+<p>A popular package for dealing with tabular data like <code>.tsv</code> and <code>.csv</code> files is <strong><code>pandas</code></strong>.<br />
+You can use <strong><code>pandas</code></strong> to load files and perform all manner of database manipulations using <code>DataFrame</code> data structures.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;cities.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># The display() function allows us to nicely view tables and other data in Jupyter</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LatD</th>
+      <th>LatM</th>
+      <th>LatS</th>
+      <th>NS</th>
+      <th>LonD</th>
+      <th>LonM</th>
+      <th>LonS</th>
+      <th>EW</th>
+      <th>City</th>
+      <th>State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>41</td>
+      <td>5</td>
+      <td>59</td>
+      <td>N</td>
+      <td>80</td>
+      <td>39</td>
+      <td>0</td>
+      <td>W</td>
+      <td>Youngstown</td>
+      <td>OH</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>42</td>
+      <td>52</td>
+      <td>48</td>
+      <td>N</td>
+      <td>97</td>
+      <td>23</td>
+      <td>23</td>
+      <td>W</td>
+      <td>Yankton</td>
+      <td>SD</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>46</td>
+      <td>35</td>
+      <td>59</td>
+      <td>N</td>
+      <td>120</td>
+      <td>30</td>
+      <td>36</td>
+      <td>W</td>
+      <td>Yakima</td>
+      <td>WA</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>42</td>
+      <td>16</td>
+      <td>12</td>
+      <td>N</td>
+      <td>71</td>
+      <td>48</td>
+      <td>0</td>
+      <td>W</td>
+      <td>Worcester</td>
+      <td>MA</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>43</td>
+      <td>37</td>
+      <td>48</td>
+      <td>N</td>
+      <td>89</td>
+      <td>46</td>
+      <td>11</td>
+      <td>W</td>
+      <td>WisconsinDells</td>
+      <td>WI</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>123</th>
+      <td>39</td>
+      <td>31</td>
+      <td>12</td>
+      <td>N</td>
+      <td>119</td>
+      <td>48</td>
+      <td>35</td>
+      <td>W</td>
+      <td>Reno</td>
+      <td>NV</td>
+    </tr>
+    <tr>
+      <th>124</th>
+      <td>50</td>
+      <td>25</td>
+      <td>11</td>
+      <td>N</td>
+      <td>104</td>
+      <td>39</td>
+      <td>0</td>
+      <td>W</td>
+      <td>Regina</td>
+      <td>SA</td>
+    </tr>
+    <tr>
+      <th>125</th>
+      <td>40</td>
+      <td>10</td>
+      <td>48</td>
+      <td>N</td>
+      <td>122</td>
+      <td>14</td>
+      <td>23</td>
+      <td>W</td>
+      <td>RedBluff</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th>126</th>
+      <td>40</td>
+      <td>19</td>
+      <td>48</td>
+      <td>N</td>
+      <td>75</td>
+      <td>55</td>
+      <td>48</td>
+      <td>W</td>
+      <td>Reading</td>
+      <td>PA</td>
+    </tr>
+    <tr>
+      <th>127</th>
+      <td>41</td>
+      <td>9</td>
+      <td>35</td>
+      <td>N</td>
+      <td>81</td>
+      <td>14</td>
+      <td>23</td>
+      <td>W</td>
+      <td>Ravenna</td>
+      <td>OH</td>
+    </tr>
+  </tbody>
+</table>
+<p>128 rows × 10 columns</p>
+</div>
+
+<p>You can use <strong><code>pandas</code></strong> to do things like:
+- filter your data to get specific subsets
+- calculate summaries across specific axes
+- perform complex manipulations using aggregation</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Select only rows where the column &#39;State&#39; is equal to &#39;CA&#39;</span>
+<span class="n">ca_cities</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;State&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;CA&#39;</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ca_cities</span><span class="p">)</span>
+
+<span class="c1"># Summarize the number of cities per state</span>
+<span class="n">cities_per_state</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="s1">&#39;State&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">cities_per_state</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span> <span class="c1"># Display counts for the top 10 states</span>
+
+<span class="c1"># Get a table that lists the name of each city in each state</span>
+<span class="n">cities_listed</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;State&#39;</span><span class="p">,</span> <span class="s1">&#39;City&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;State&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">cities_listed</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> <span class="c1"># Display the first 10 states</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LatD</th>
+      <th>LatM</th>
+      <th>LatS</th>
+      <th>NS</th>
+      <th>LonD</th>
+      <th>LonM</th>
+      <th>LonS</th>
+      <th>EW</th>
+      <th>City</th>
+      <th>State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>18</th>
+      <td>41</td>
+      <td>25</td>
+      <td>11</td>
+      <td>N</td>
+      <td>122</td>
+      <td>23</td>
+      <td>23</td>
+      <td>W</td>
+      <td>Weed</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>37</td>
+      <td>57</td>
+      <td>35</td>
+      <td>N</td>
+      <td>121</td>
+      <td>17</td>
+      <td>24</td>
+      <td>W</td>
+      <td>Stockton</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th>85</th>
+      <td>38</td>
+      <td>26</td>
+      <td>23</td>
+      <td>N</td>
+      <td>122</td>
+      <td>43</td>
+      <td>12</td>
+      <td>W</td>
+      <td>SantaRosa</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th>87</th>
+      <td>34</td>
+      <td>25</td>
+      <td>11</td>
+      <td>N</td>
+      <td>119</td>
+      <td>41</td>
+      <td>59</td>
+      <td>W</td>
+      <td>SantaBarbara</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th>88</th>
+      <td>33</td>
+      <td>45</td>
+      <td>35</td>
+      <td>N</td>
+      <td>117</td>
+      <td>52</td>
+      <td>12</td>
+      <td>W</td>
+      <td>SantaAna</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th>89</th>
+      <td>37</td>
+      <td>20</td>
+      <td>24</td>
+      <td>N</td>
+      <td>121</td>
+      <td>52</td>
+      <td>47</td>
+      <td>W</td>
+      <td>SanJose</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th>90</th>
+      <td>37</td>
+      <td>46</td>
+      <td>47</td>
+      <td>N</td>
+      <td>122</td>
+      <td>25</td>
+      <td>11</td>
+      <td>W</td>
+      <td>SanFrancisco</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>32</td>
+      <td>42</td>
+      <td>35</td>
+      <td>N</td>
+      <td>117</td>
+      <td>9</td>
+      <td>0</td>
+      <td>W</td>
+      <td>SanDiego</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>34</td>
+      <td>6</td>
+      <td>36</td>
+      <td>N</td>
+      <td>117</td>
+      <td>18</td>
+      <td>35</td>
+      <td>W</td>
+      <td>SanBernardino</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>36</td>
+      <td>40</td>
+      <td>11</td>
+      <td>N</td>
+      <td>121</td>
+      <td>39</td>
+      <td>0</td>
+      <td>W</td>
+      <td>Salinas</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>38</td>
+      <td>35</td>
+      <td>24</td>
+      <td>N</td>
+      <td>121</td>
+      <td>29</td>
+      <td>23</td>
+      <td>W</td>
+      <td>Sacramento</td>
+      <td>CA</td>
+    </tr>
+    <tr>
+      <th>125</th>
+      <td>40</td>
+      <td>10</td>
+      <td>48</td>
+      <td>N</td>
+      <td>122</td>
+      <td>14</td>
+      <td>23</td>
+      <td>W</td>
+      <td>RedBluff</td>
+      <td>CA</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<pre><code>State
+CA    12
+TX     8
+OH     6
+WA     6
+PA     6
+NY     5
+FL     5
+WI     4
+MO     4
+GA     4
+dtype: int64
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>City</th>
+    </tr>
+    <tr>
+      <th>State</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AL</th>
+      <td>[Tuscaloosa, Selma]</td>
+    </tr>
+    <tr>
+      <th>AZ</th>
+      <td>[Tucson]</td>
+    </tr>
+    <tr>
+      <th>BC</th>
+      <td>[Vancouver]</td>
+    </tr>
+    <tr>
+      <th>CA</th>
+      <td>[Weed, Stockton, SantaRosa, SantaBarbara, Sant...</td>
+    </tr>
+    <tr>
+      <th>CO</th>
+      <td>[Trinidad, Sterling, Salida]</td>
+    </tr>
+    <tr>
+      <th>CT</th>
+      <td>[Waterbury]</td>
+    </tr>
+    <tr>
+      <th>DC</th>
+      <td>[Washington]</td>
+    </tr>
+    <tr>
+      <th>DE</th>
+      <td>[Wilmington]</td>
+    </tr>
+    <tr>
+      <th>FL</th>
+      <td>[WestPalmBeach, Tampa, Tallahassee, Sarasota, ...</td>
+    </tr>
+    <tr>
+      <th>GA</th>
+      <td>[Waycross, Valdosta, Swainsboro, Savannah]</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>As you might notice, <strong><code>pandas</code></strong> can do rather complex operations using relatively few commands.<br />
+If you tried to manually build some of these functions, it could be quite challenging!  </p>
+<p>Hopefully these examples give you a sense of what you can do using Python if you build your skills and become fluent in the language.</p>
+<h2 id="4-next-steps">4. Next Steps</h2>
+<p>We've gone through a whirlwind tour of Python over the last few weeks, but there are many more things to learn!<br />
+If there's interest, we can cover additional topics in future Python workshops.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>
