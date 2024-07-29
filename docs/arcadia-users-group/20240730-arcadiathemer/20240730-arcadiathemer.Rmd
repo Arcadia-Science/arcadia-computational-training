@@ -1,0 +1,143 @@
+---
+output: github_document
+---
+
+```{r, echo = FALSE, warning= FALSE}
+knitr::opts_chunk$set(
+  collapse=TRUE,
+  comment = "#>",
+  fig.path = "figures/aug-"
+)
+```
+
+# Using `arcadiathemeR` to make figures in R
+
+`arcadiathemeR` is an R package that provides functions to create `ggplot2`-style figures that (mostly) adhere to the Arcadia Science style guide. This lesson provides a quick introduction to `arcadiathemeR` and how to use it to style `ggplot2`-style plots, which largely follows the [package README documentation](https://github.com/Arcadia-Science/arcadiathemeR?tab=readme-ov-file#arcadiathemer). 
+
+We'll cover the following topics:
+
+1. Installing `arcadiathemeR`
+2. Using `arcadiathemeR` to layer onto a `ggplot2` plot
+3. Accessing and using colors, palettes, and gradients
+4. Saving plots
+
+## Prerequisites and Installation
+1. You need `R` installed, and `arcadiathemeR` requires at least R version >= 4.0 (the package was built and tested with version 4.3.1). Install `R` for Mac OSx [here]
+2. You can use `RStudio` or a Jupyter notebook for creating plots. Install `RStudio` for Mac OSx [here] or Jupyter in a conda environment [following these instructions]()
+3. To use the custom fonts you need to download the `TTF` formatted font files and place in the `Users/YOURUSERNAME/Library/Fonts/` directory. You can also double click on the fonts to install them using FontBook. Check out the Arcadia Science Brand Assets page in Notion to find these. This should only need to be performed once even if the package is updated over time. **You must download the TTF formatted files to be compatible with `arcadiathemeR`.** If you want to download both the `TTF` and `OTF` formatted files to use both `arcadiathemeR` and the `arcadia-pycolor` python package that's fine - there will just be duplicate selections for each font in Illustrator. 
+4. Install `arcadiathemeR` with the `remotes` package:
+
+    ```
+    # install.packages("remotes")
+    remotes::install_github("Arcadia-Science/arcadiathemeR")
+    ```
+5. Load the package to use in your scripts with `library(arcadiathemeR)`. When you first load the package it will print a message about whether the custom fonts have been accessed and loaded correctly.
+
+## Layering onto an existing `ggplot2` plot
+
+There are two main functions you will use to layer onto an existing `ggplot2` plot to create plots adhering to the Arcadia style guide and access palettes. These are the `theme_arcadia()` and `scale` functions. The particular `scale` function differs on whether you use `color` or `fill` to access colors. Here is how you use these functions without changing the default arguments:
+
+```{r, example_plot}
+library(ggplot2)
+library(arcadiathemeR)
+
+ggplot(data=mtcars, aes(x=hp, y=mpg, color=as.factor(cyl))) +
+  geom_point() +
+  theme_arcadia() +
+  scale_color_arcadia()
+```
+
+If you want to change the color palette used, you can access this with the `palette_name` argument in the `scale` function: 
+
+```{r, palette_change}
+ggplot(data=mtcars, aes(x=hp, y=mpg, color=as.factor(cyl))) +
+  geom_point() +
+  theme_arcadia() +
+  scale_color_arcadia(palette_name = "primary")
+```
+
+We have specific font specifications for whether the represented data is categorical or numerical. In the next plot where the x-axis is different categories, you can see where the font isn't specified correctly:
+```{r, fonts}
+ggplot(data=diamonds, aes(x=cut, fill=cut)) +
+  geom_bar() +
+  theme_arcadia() +
+  scale_fill_arcadia()
+```
+
+To use the correct font type, you can specify what type of data you have on each axis by using the `x_axis_type` or `y_axis_type` arguments in the `theme_arcadia()` function: 
+```{r, fonts_correct}
+ggplot(data=diamonds, aes(x=cut, fill=cut)) +
+  geom_bar() +
+  theme_arcadia(x_axis_type = "categorical") +
+  scale_fill_arcadia()
+```
+In addition to specifying which palette to use in the `scale` function, you can also reverse the colors of the scale used with `reverse=TRUE`. You can also use other `ggplot2` or `theme` specifications on top of these functions, such as moving the position of the legend or modifying the scales to remove whitespace between the axis lines and the bars:
+```{r, additional_layers}
+ggplot(data=diamonds, aes(x=cut, fill=cut)) +
+  geom_bar() +
+  theme_arcadia(x_axis_type = "categorical") +
+  scale_fill_arcadia(palette_name = "secondary", reverse = TRUE) +
+  scale_y_continuous(expand=c(0,0)) + # removes whitespace between axis and bars
+  theme(legend.position = "bottom")
+```
+In addition to reversing the order of the colors used in the palette, you can select different indices of colors from the palettes within the `scale` function with the `start` and `end` arguments:
+```{r, indices}
+ggplot(mtcars, aes(x = hp, fill = as.factor(cyl))) +
+  geom_density(alpha = 0.8, linewidth = 0) + # remove border line from filled-in density plots
+  theme_arcadia() +
+  scale_fill_arcadia(palette_name = "blue_shades", start=2, end=5) +
+  scale_y_continuous(expand=c(0,0)) +
+  scale_x_continuous(expand=c(0,0)) # remove whitespace between both axes and the plot
+```
+The `scale` functions are used to specify which palettes to use. The `gradient` functions are used to access the gradient palettes, which work in the same way as the `scale` functions using `color` or `fill`:
+```{r, gradient}
+ggplot(data = mtcars, aes(x = hp, y = mpg, color = hp)) +
+ geom_point(size=2.5) + 
+ theme_arcadia() + 
+ gradient_color_arcadia(palette_name = "lisafrank")
+```
+There are also bicolor gradients available that are useful for heatmap plots. You can also remove the background color with `background=FALSE`, which is recommended when exporting plots, which is described below. 
+```{r, heatmap}
+library(reshape2)
+
+# heatmap of correlation matrix
+data(iris)
+iris_data <- iris[, 1:4]
+cor_matrix <- cor(iris_data)
+melted_cor_matrix <- (melt(cor_matrix))
+
+ggplot(melted_cor_matrix, aes(x=Var1, y=Var2, fill=value)) +
+  geom_tile() +
+  theme_arcadia(x_axis_type = "categorical", y_axis_type = "categorical", background = FALSE) +
+  gradient_fill_arcadia(palette_name = "reds") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "top", axis.line = element_blank()) +
+  labs(x = "", y = "") +
+  scale_y_discrete(expand=c(0,0)) +
+  scale_x_discrete(expand = c(0,0))
+```
+
+## Accessing palettes and specific colors
+To view all the color palette options and the individual hex codes that comprise each palette, you can view these with `show_arcadia_palettes()` or `show_arcadia_gradients()`. The gradients also show the positions for each individual color in the gradient. You can use these lists of hex codes to create custom or reordered sets of palettes.
+```{r, show_colors}
+show_arcadia_palettes()
+show_arcadia_gradients()
+```
+
+## Exporting plots
+To save plots, we have a custom `save_arcadia_plot()` function built on top of `ggsave()` that helps you export plots that adhere to our size guidelines and can be used with the Illustrator templates. The different plot size options are `"full_wide", "float_wide", "half_square", "full_square"`, or `"float_square"`. These panel sizes adhere to the panel sizes available in the Illustrator templates. 
+
+If you want to save plots in different formats (such as PNG or JPG) or sizes that aren't available through this convenience function, you can still use the regular `ggsave()` function. Additionally for the background to be transparent in exported plots you need to set this argument to `FALSE` in the `theme_arcadia()` function:
+```{r, export_plot}
+plot <- ggplot(data=diamonds, aes(x=cut, fill=cut)) +
+  geom_bar() +
+  theme_arcadia(x_axis_type = "categorical", background = FALSE) +
+  scale_fill_arcadia(palette_name = "secondary", reverse = TRUE) +
+  scale_y_continuous(expand=c(0,0)) + # removes whitespace between axis and bars
+  theme(legend.position = "bottom")
+
+save_arcadia_plot("figures/arcadia-plot.pdf", plot, panel_size = "full_square")
+```
+
+## Resources
+This lesson follows the examples given in the [`arcadiathemeR` documentation](https://github.com/Arcadia-Science/arcadiathemeR/tree/main). [Open an issue](https://github.com/Arcadia-Science/arcadiathemeR/issues) in the repo to request new features or report bugs as you come across them!
