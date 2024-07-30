@@ -28,7 +28,7 @@ In this lesson, we’re going to discuss design principles as they emerged as a 
 
 <details>
     <summary> A note about decolonizing design </summary>
-    There’s been a lot of discussion of and work towards decolonizing design, and I can speak to some of the projects I’m familiar with.  But I also feel strongly that the visual systems codified by Bauhaus and Swiss design are basically summaries of very ancient systems of visual cognition that don’t belong to Europe, they just had the power/structure to formalize and disseminate it. (Ex: the golden ratio concept (often associated with Swiss grid design) is at least as old as ancient greece and there’s evidence of stronger ties to ancient African civilizations.) Not to mention the impact of millenia of trade and travel and centuries of colonization that had incalculable influence on European thought.
+    There’s been a lot of discussion of and work towards decolonizing design, and I can speak to some of the projects I’m familiar with.  But I also feel strongly that the visual systems codified by Bauhaus and Swiss design are basically summaries of very ancient systems of visual cognition that don’t belong to Europe, they just had the power/structure to formalize and disseminate it. (Ex: the golden ratio concept (often associated with Swiss grid design) is at least as old as ancient Greece and there’s evidence of stronger ties to ancient African civilizations.) Not to mention the impact of millenia of trade and travel and centuries of colonization that had incalculable influence on European thought.
 </details>
 
 ## Destination & Audience
@@ -76,14 +76,14 @@ Before starting on a design, consider through what medium it will be seen. Diffe
 #### 4. What format will you use?
 - **Data figures:** Figures that show raw data, relationships, or trends. These are the most common type of scientific figure.
 - **Methods figures:** Figures that illustrate a process or technique.
-- **Graphical Abstracts and Illustrations:** These are used to summarize a paper or concept in a single image. They can take the form of:
+- **Graphical Abstracts and Illustrations:** These are used to summarize a paper or concept in a single image. They can be useful for showing:
   - Dense explanatory info
   - A more complex/complete story
   - A step-by-step guide
 
 
 ## Layout
-At a high level, how we arrange and compose figures impacts their comprehensibility. We'll discuss principles of layout that you can use to guide the viewer through your figure.
+Once we have our key takeaways, we know who we're designing for, where it's going, and what it is, we can start the actual design process.  At a high level, how we arrange and compose figures impacts their comprehensibility. We'll discuss principles of layout that you can use to guide the viewer through your figure.  Let's discuss the tools we have for arranging and composing figures.
 
 ### Gestalt Principles
 The term “gestalt” refers to the idea that the whole is greater than the sum of its parts.  The gestalt principles of design are a set of rules that describe how we perceive visual elements as a whole. 
@@ -107,13 +107,15 @@ These principles show up in a variety of different forms of perceptual grouping,
 
 <details>
     <summary> History of gestalt principles </summary>
-    <li>“The study of visual perception that resulted in Gestalt principles emerged in studies of psychology in the 1930s. This interest in formal methods was part of a broader cultural sensibility in which attempts at formalizing the representation of thought in logic, linguistics, structuralist analyses across cultural domains, and social sciences became prevalent (Wittgenstein, etc.)....  The term “gestalt” refers to groupings and our tendency to see patterns wherever possible. Human perception isn’t literal. We will close gaps, see motion, make partial shapes into whole ones in ways that are surprisingly predictable.</li> 
-    <li>"Biologists who study perception refer to the “ecology” of vision— ways our visual processes favor needs or tasks essential to our survival. Such ideas counter the old “representational” approach to vision as a “picture in our heads,” and replace it with constructivist notions. We don’t simply see what is in a mechanistic way. Instead, what is seen is what is made.”</li> 
+    <li>Gestalt principles emerged out of the field of psychology in the 1930s, and were part of a broader cultural project of "formalizing the representation of thought" in logic, linguistics, psychology, and art/design.  "The term “gestalt” refers to groupings and our tendency to see patterns wherever possible. Human perception isn’t literal. We will close gaps, see motion, make partial shapes into whole ones in ways that are surprisingly predictable." (Drucker)</li> 
+    <li>Instead of thinking about vision as a direct reflection of the world around us, we can think of vision generating pictures and patterns from noise, just as we did with the dog.  These seem like simple ideas, but they are powerful tools to clarify relationships between elements.</li> 
     <li>Gestalt Psychology: “more or less rooted in the idea that the whole is greater than the sum of its parts…. Relationships between those parts inform how we perceive the whole.”  Most of these ideas have held up under subsequent research, especially with two-dimensional abstract graphics. (though Gestaltists thought these processes were innate to the brain, not the influence of learning and experience).</li>
 </details>
 
 ### Visual hierarchy
-Visual hierarchy refers to the arrangement of visual elements in a way that implies importance.  This is important because it helps guide the viewer’s eye through the figure, making it easier to understand the information being presented.
+Visual hierarchy refers to the arrangement of visual elements in a way that implies importance.  Looking at the components you want to include in your figure, you can define how someone will walk through that information.
+
+To do that, we need to assign a hierarchy of importance to the information we’re including.  For data figures, this is probably just the actual data.  For something more complex (including a combination of data figures), we want to define their order. Some basic ways we can do that are through manipulating position, size, and contrast.
 
 > “Hierarchy can be conveyed visually, through variations in scale, value, color, spacing, placement, and other signals.  Expressing order is a central task of the graphic designer.  Visual hierarchy controls the delivery and impact of a message.  Without hierarchy, graphic communication is dull and difficult to navigate. …Hierarchy can be simple or complex, rigorous or loose, flat or highly articulated.  Regardless of approach, hierarchy employs clear marks of separation to signal a change from one level to another.” - *Graphic Design: The New Basics*
 
@@ -121,20 +123,21 @@ When deciding how to use hierarchy, you should return to the key message of your
 
 1. **Position**
    - Western readers will start at the top left and move left-to-right, top-to-bottom. Use this ordering to your advantage.
-   - For example, place title or set-up imagery that applies to the rest of the composition (acts as a locator map/starting point that lets us get our bearings) in the top left corner.  All subsequent content fits below this umbrella that visually reinforces its role as the first thing viewers should absorb.
+   - For example, if you put your title or set-up imagery in the top-left, it acts as a locator map/starting point that lets us get our bearings.  It will be seen as applying to the rest of the composition.  All subsequent content fits below this umbrella that visually establishes its prominence.
+
 2. **Size**
-   - The eye is drawn to the largest element first.  Size can be used to indicate importance.
-   - The largest element can also provide an anchor/starting point.  Will be seen early and seen as important.  Supporting information can be smaller.
+   - The eye is drawn to larger elements before smaller elements.  Size can be used to indicate importance.
+   - The largest element can also provide an anchor/starting point.  We intuitively sense that it applies to the rest of the information in the figure.  Supporting information can be smaller.
    - Also applies to line thickness, arrowheads
 3. **Contrast**
    - Elements that are different from the rest of the composition will stand out.
-   - Create areas of contrast by breaking from the design pattern (scale, weight, color, saturation). Use annotation to clarify.
+   - Contrast can be applied to both color/saturation and breaking from a design pattern (like scale, weight, position).
    - Use dark/saturated lines and fills to show emphasis, lighter elements to provide context.
    - See Highlights/contrasting colors in Style Guide.  Sometimes creating contrast is as much about removing ink as adding ink.
 4. Combine these principles for the greatest impact.
 
 ### Composition
-Composition refers to the arrangement of visual elements in a figure.  This includes the layout of the figure, the use of negative space, and the use of visual elements to guide the viewer’s eye through the figure.
+What we’re doing in layout is creating a composition.  Basically we’re showing our audience where to look and helping them navigate the sequence of information.
 
 Questions to consider when composing a figure:
 - How should the information be partitioned?
@@ -180,12 +183,15 @@ Color is a powerful tool for conveying information. However, it can also be a so
 - **Contrast:** Use colors that are easily distinguishable from one another.  This can be achieved by using colors that are far apart on the color wheel, or by using colors with different values.
 - **Perceived lightness:** Some colors, such as blues and purples, have more visual weight than others, such as yellows. Lightness is not uniform among hues, so be aware of this when choosing colors.
 - **Color vision deficiency:** Color vision deficiency (color blindness) affects a significant portion of the population. Be aware of this when choosing colors, and consider using color palettes that are accessible to colorblind viewers.
-- **Double encoding:** Use color to encode information, but also use another visual variable (like shape or size) to encode the same information. This way, if someone can’t see the color, they can still understand the information.
+- **Double encoding:** Use color to encode information, but also use another visual variable (like shape or size) to encode the same information. This way, if someone can’t see the color, they can still understand the information.  I'd encourage further exploration of Jacques Bertin's Visual Variables.  Originally developed for cartographers, they show that, in terms of perceptual accuracy, things like position and length are much easier for us to compare than color.  So using these attributes in combination can help us communicate more effectively.
 
 **How to use color effectively:**
-Try to stay away (initially) from using color to strictly describe appearance (i.e. the banana is yellow).  Instead:
-- Use color to organize content while planning your graphic; color code thematically-related content or key takeaways (can also do this to blocks of text if you’re a verbal thinker, to connect visual planning to writing, or to tag reference material). This coloring doesn’t necessarily need to carry over to final design.
-- Use color to track elements or chunk information, such as by tracking something (object/concept/relationship) across a scene or multiple panels
+Instead of using color to strictly describe appearance (i.e. the apple is red), you can use it organize elements, themes, and relationships when designing your graphic:
+- In the same way you would use a highlighter with text, use color to organize content while planning your graphic. 
+Color code thematically-related content or key takeaways (can also do this to blocks of text if you’re a verbal thinker, to connect visual planning to writing, or to tag reference material, and to make sketches). This coloring doesn’t necessarily need to carry over to final design.
+- In a design, you can use color to track elements, to divide/chunk information, or highlight an important element.
+- Here, you can see that the illustrator uses blue, orange, and yellow to consistently indicate the same elements even as she moves through variations of scale, style, and information density.  The rest of the graphic uses minimal contrast so we know what to pay attention to.
+- Remember contrast being a key tool in establishing visual hierarchy.  Use color to create contrast and emphasize something important.  This is an excellent way to highlight data, and there are highlight palettes in the Style Guide.
 - Show the relationship of part to whole
 - Highlight an important element, an outlier, an unexpected result
 
