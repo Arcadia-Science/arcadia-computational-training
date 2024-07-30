@@ -156,9 +156,10 @@ ggplot(data = mtcars, aes(x = hp, y = mpg, color = hp)) +
 
 ![](figures/aug-gradient-1.png)<!-- -->
 
-There are also bicolor gradients available that are useful for heatmap
-plots. You can also remove the background color with `background=FALSE`,
-which is recommended when exporting plots, which is described below.
+There are also single color gradients available in additions to the
+gradient palettes that are useful for heatmap plots. You can also remove
+the background color with `background=FALSE`, which is recommended when
+exporting plots, which is described below.
 
 ``` r
 library(reshape2)
@@ -172,20 +173,12 @@ melted_cor_matrix <- (melt(cor_matrix))
 ggplot(melted_cor_matrix, aes(x=Var1, y=Var2, fill=value)) +
   geom_tile() +
   theme_arcadia(x_axis_type = "categorical", y_axis_type = "categorical", background = FALSE) +
-  gradient_fill_arcadia(palette_name = "purplegreen") + 
+  gradient_fill_arcadia(palette_name = "reds") + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = "top", axis.line = element_blank()) +
   labs(x = "", y = "") +
   scale_y_discrete(expand=c(0,0)) +
   scale_x_discrete(expand = c(0,0))
-#> Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm):
-#> collapsing to unique 'x' values
-
-#> Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm):
-#> collapsing to unique 'x' values
-
-#> Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm):
-#> collapsing to unique 'x' values
 ```
 
 ![](figures/aug-heatmap-1.png)<!-- -->
