@@ -93,6 +93,14 @@ For example, consider the image below. What do you see?
 
 You might say that the image is a of a dalmatian. But if you look closer, you’ll see that the image is actually made up of a series of black and white shapes.  This is an example of the gestalt principle of *emergence*, which describes how we perceive a whole image before we see its individual parts.
 
+![Gestalt principles](gestalt_principles.png)
+
+<details>
+    <summary> History of gestalt principles </summary>
+    <li>Gestalt principles emerged out of the field of psychology in the 1930s, and were part of a broader cultural project of "formalizing the representation of thought" in logic, linguistics, psychology, and art/design.  "The term “gestalt” refers to groupings and our tendency to see patterns wherever possible. Human perception isn’t literal. We will close gaps, see motion, make partial shapes into whole ones in ways that are surprisingly predictable." (Drucker)</li> 
+    <li>Instead of thinking about vision as a direct reflection of the world around us, we can think of vision generating pictures and patterns from noise, just as we did with the dog.  These seem like simple ideas, but they are powerful tools to clarify relationships between elements.</li> 
+</details>
+
 These principles show up in a variety of different forms of perceptual grouping, including:
 - **Proximity:** objects that are close together go together
 - **Similarity:** objects that are similar in size, shape, color go together 
@@ -103,23 +111,27 @@ These principles show up in a variety of different forms of perceptual grouping,
 - **Continuity:** smooth and continuous lines are easier to track
 - **Closure:** incomplete shapes get closed
 
-![Gestalt principles](gestalt_principles.png)
+These principles might feel a bit abstract, but they inform a lot of the more concrete principles we'll discuss. The first of those is Composition.
 
-<details>
-    <summary> History of gestalt principles </summary>
-    <li>Gestalt principles emerged out of the field of psychology in the 1930s, and were part of a broader cultural project of "formalizing the representation of thought" in logic, linguistics, psychology, and art/design.  "The term “gestalt” refers to groupings and our tendency to see patterns wherever possible. Human perception isn’t literal. We will close gaps, see motion, make partial shapes into whole ones in ways that are surprisingly predictable." (Drucker)</li> 
-    <li>Instead of thinking about vision as a direct reflection of the world around us, we can think of vision generating pictures and patterns from noise, just as we did with the dog.  These seem like simple ideas, but they are powerful tools to clarify relationships between elements.</li> 
-    <li>Gestalt Psychology: “more or less rooted in the idea that the whole is greater than the sum of its parts…. Relationships between those parts inform how we perceive the whole.”  Most of these ideas have held up under subsequent research, especially with two-dimensional abstract graphics. (though Gestaltists thought these processes were innate to the brain, not the influence of learning and experience).</li>
-</details>
+### Composition
+What we’re doing in layout is creating a composition.  Basically we’re showing our audience where to look and helping them navigate the sequence of information.
+
+Questions to consider when composing a figure:
+- Where will the reader’s gaze enter the space?
+- What piece of information do they need first, second, and third?
+- How can I direct their attention through that series in an intuitive manner?
+- How can the position of the elements reinforce the story I’m trying to tell?
+*Jen Christiansen, Building Science Graphics*
+
+Examples of different types of composition:
+I hope that in these examples you’re starting to see certain elements as grouped together, seeing patterns between elements that inform how we perceive the whole, as we just talked about in Gestalt principles.
+
+Composition allows us to see if information is sequential, cyclical, if the designer wants us to compare and contrast elements. It is the structure that draws our gaze through the graphic in a particular way. We build that structure by ordering the elements in our figure by their importance (in relation to the key message). And we create that order through something called visual hierarchy.
 
 ### Visual hierarchy
 Visual hierarchy refers to the arrangement of visual elements in a way that implies importance.  Looking at the components you want to include in your figure, you can define how someone will walk through that information.
 
 To do that, we need to assign a hierarchy of importance to the information we’re including.  For data figures, this is probably just the actual data.  For something more complex (including a combination of data figures), we want to define their order. Some basic ways we can do that are through manipulating position, size, and contrast.
-
-> “Hierarchy can be conveyed visually, through variations in scale, value, color, spacing, placement, and other signals.  Expressing order is a central task of the graphic designer.  Visual hierarchy controls the delivery and impact of a message.  Without hierarchy, graphic communication is dull and difficult to navigate. …Hierarchy can be simple or complex, rigorous or loose, flat or highly articulated.  Regardless of approach, hierarchy employs clear marks of separation to signal a change from one level to another.” - *Graphic Design: The New Basics*
-
-When deciding how to use hierarchy, you should return to the key message of your visualization and consider what sequence of information conveys that message most effectively.  Sometimes it can be helpful to think of what type of question you’re answering, as you start to organize the elements and sequence of your graphic. After defining the sequence of information, you can use the following “marks of separation” to pull viewers through the content in that order:
 
 1. **Position**
    - Western readers will start at the top left and move left-to-right, top-to-bottom. Use this ordering to your advantage.
@@ -136,32 +148,16 @@ When deciding how to use hierarchy, you should return to the key message of your
    - See Highlights/contrasting colors in Style Guide.  Sometimes creating contrast is as much about removing ink as adding ink.
 4. Combine these principles for the greatest impact.
 
-### Composition
-What we’re doing in layout is creating a composition.  Basically we’re showing our audience where to look and helping them navigate the sequence of information.
-
-Questions to consider when composing a figure:
-- How should the information be partitioned?
-- Where will the reader’s gaze enter the space?
-- What piece of information do they need first, second, and third?
-- How can I direct their attention through that series in an intuitive manner?
-- How can the position of the elements reinforce the story I’m trying to tell?
-
-Examples of different types of composition:
-- **Sequential:** Start at top left, move left-to-right, top-to-bottom. Helpful to create a path through the information using negative space, grouping, or arrows.
-- **Cyclical:** Start at noon, move clockwise.  Can be helpful for showing a process or cycle.
-- **Compare/contrast (or zoom/callout):** Keep orientation exactly the same and add differentiation (color/contrast/weight - we’ll talk about this later) to directly compare variables.  Show what to pay attention to!
-- **Small multiples:**
-
-In general, you should use composition to call out or highlight something of interest. Instead of trying to fit as much as possible into the frame, think about how to direct the reader’s gaze through your graphic’s narrative.
-
 ### Grids, grouping, and alignment
-> “Confusion and clutter are failures of design, not attributes of information.  And so the point is to find design strategies that reveal detail and complexity - rather than to fault the data for an excess of complication.  Or, worse, to fault viewers for a lack of understanding.” Tufte
+If we’ve defined to ourselves what elements are important, and how to show that they’re important, how do we arrange them all together in a way that is simple, organized, and allows for some of those perceptual groupings to emerge? A pretty basic way to do that is just to use a grid.
 
-Grid design is ubiquitous – it's found in newspapers, magazines, and websites. In these mediums, information is chunked up into internal boxes with gutters (empty space) running between them. Subsections are clearly defined, larger elements are multiples of the smaller elements. Captions, labels, and callouts are regularly spaced and aligned, making them easy to find and associate with their relevant info. The overall effect is logical and modular.
+Grid design should feel very familiar from newspapers, magazines, websites. Information clustered in internal boxes with gutters (empty space) running between them. Subsections (like these text columns and photos) are defined by the space around them, and larger elements are multiples of the smaller elements.
 
-We can apply similar principles to scientific figures by paying attention to:
-- **Alignment/consistency:** Align elements to a grid, and align elements consistently (left/center/right).  Alignment can also be used as a grouping strategy (more about this in Hierarchy section).
-- **Negative space and grouping:** Using gestalt principles, we can implicitly group elements. Each element (or group of elements) is defined by the empty space around it. This strategy extra visual noise of lines and frames, gives breathing room (so information doesn’t feel overwhelming), and allows for easier comparisons.
+So, remember Gestalt principles. This is what grid systems are doing. Keeping things orderly, grouping the information into relevant chunks, and allowing for effective ordering, grouping, and making comparisons. I just want to reiterate that common regions can be achieved through negative space, which avoids extra visual noise of lines and frames. And that this background common region is what we’re doing when we use panel backgrounds.
+
+Grids also allow us to align things in an organized manner. Align elements to grid, and align elements consistently (left/center/right). This is particularly important for captions, labels, and callouts, as it connects them logically to their relevant information and allows the overall figure to feel organized and modular.
+
+Repetition is inherent in grid systems, which are useful for creating small multiples: Keep orientation exactly the same and add differentiation (color/contrast/weight) to the variable you want people to pay attention to (your key takeaway).
 
 ## Layout Exercise
 [TBD]
@@ -179,10 +175,12 @@ Color is a powerful tool for conveying information. However, it can also be a so
 - **Chroma / Saturation:** the intensity of the color (from gray to fully saturated)
 - **Value / Lightness:** the lightness or darkness of a color
 
+How we combine these things can greatly impact what we read as being important, and how we group information. So we might keep lightness consistent across multiple hue, we might read that as categories of equal importance. Or if we vary chroma within a hue, we might read that as varying levels of importance within a category.
+
 **What to consider when choosing colors:**
 - **Contrast:** Use colors that are easily distinguishable from one another.  This can be achieved by using colors that are far apart on the color wheel, or by using colors with different values.
 - **Perceived lightness:** Some colors, such as blues and purples, have more visual weight than others, such as yellows. Lightness is not uniform among hues, so be aware of this when choosing colors.
-- **Color vision deficiency:** Color vision deficiency (color blindness) affects a significant portion of the population. Be aware of this when choosing colors, and consider using color palettes that are accessible to colorblind viewers.
+- **Color vision deficiency:** Color vision deficiency (color blindness) affects a significant portion of the population. Be aware of this when choosing colors, and consider using color palettes that are accessible to colorblind viewers. These issues have been considered in creating our Style Guide, color palette, and gradients.  We’ve also included recommended color combinations that will help you show categories, sequences, and outliers.  So I’d recommend sticking with those as you design.
 - **Double encoding:** Use color to encode information, but also use another visual variable (like shape or size) to encode the same information. This way, if someone can’t see the color, they can still understand the information.  I'd encourage further exploration of Jacques Bertin's Visual Variables.  Originally developed for cartographers, they show that, in terms of perceptual accuracy, things like position and length are much easier for us to compare than color.  So using these attributes in combination can help us communicate more effectively.
 
 **How to use color effectively:**
@@ -227,11 +225,6 @@ Symbols and conventions specific to each scientific discipline are like visual j
 - Who is my audience?
 - Am I speaking only to people who are fluent in this language, or do I want this to be accessible to others outside of this discipline?  Consider another solution or label things carefully.
 
-
-- Bertin’s Visual Variables (from Semiology of Graphics)
-- Originally for cartographers, but frequently cited in relation to data viz
-- Jeremy M. Wolfe - Oxford Handbook of Attention
-- Luminance, pictorial depth cues, line termination, closure, curvature, shading, luster, number, and aspect ratio
 
 **Arrows**<br>
 Arrows are used to signify a diverse set of meanings, and it’s important to make sure that these different meanings are clearly communicated with different iconography.  Some common meanings of arrows include:
