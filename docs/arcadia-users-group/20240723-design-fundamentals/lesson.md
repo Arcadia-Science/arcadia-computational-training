@@ -114,7 +114,7 @@ These principles show up in a variety of different forms of perceptual grouping,
 These principles might feel a bit abstract, but they inform a lot of the more concrete principles we'll discuss. The first of those is Composition.
 
 ### Composition
-What we’re doing in layout is creating a composition.  Basically we’re showing our audience where to look and helping them navigate the sequence of information.
+What we’re doing in layout is creating a composition; we’re showing our audience where to look and helping them navigate the sequence of information.
 
 Questions to consider when composing a figure:
 - Where will the reader’s gaze enter the space?
