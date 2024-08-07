@@ -126,7 +126,7 @@ Questions to consider when composing a figure:
 Examples of different types of composition:
 I hope that in these examples you’re starting to see certain elements as grouped together, seeing patterns between elements that inform how we perceive the whole, as we just talked about in Gestalt principles.
 
-Composition allows us to see if information is sequential, cyclical, if the designer wants us to compare and contrast elements. It is the structure that draws our gaze through the graphic in a particular way. We build that structure by ordering the elements in our figure by their importance (in relation to the key message). And we create that order through something called visual hierarchy.
+Composition allows us to see if information is sequential, cyclical, if the designer wants us to compare and contrast elements. It is the structure that draws our gaze through the graphic in a particular way. We build that structure by ordering the elements in our figure by their importance (in relation to the key message). We create that order through something called visual hierarchy.
 
 ### Visual hierarchy
 Visual hierarchy refers to the arrangement of visual elements in a way that implies importance.  Looking at the components you want to include in your figure, you can define how someone will walk through that information.
@@ -136,7 +136,6 @@ To do that, we need to assign a hierarchy of importance to the information we’
 1. **Position**
    - Western readers will start at the top left and move left-to-right, top-to-bottom. Use this ordering to your advantage.
    - For example, if you put your title or set-up imagery in the top-left, it acts as a locator map/starting point that lets us get our bearings.  It will be seen as applying to the rest of the composition.  All subsequent content fits below this umbrella that visually establishes its prominence.
-
 2. **Size**
    - The eye is drawn to larger elements before smaller elements.  Size can be used to indicate importance.
    - The largest element can also provide an anchor/starting point.  We intuitively sense that it applies to the rest of the information in the figure.  Supporting information can be smaller.
@@ -149,7 +148,7 @@ To do that, we need to assign a hierarchy of importance to the information we’
 4. Combine these principles for the greatest impact.
 
 ### Grids, grouping, and alignment
-If we’ve defined to ourselves what elements are important, and how to show that they’re important, how do we arrange them all together in a way that is simple, organized, and allows for some of those perceptual groupings to emerge? A pretty basic way to do that is just to use a grid.
+If we’ve defined to ourselves what elements are important, and how to show that they’re important, how do we arrange them all together in a way that is simple, organized, and allows for some of those perceptual groupings to emerge? A basic way to do that is just to use a grid.
 
 Grid design should feel very familiar from newspapers, magazines, websites. Information clustered in internal boxes with gutters (empty space) running between them. Subsections (like these text columns and photos) are defined by the space around them, and larger elements are multiples of the smaller elements.
 
