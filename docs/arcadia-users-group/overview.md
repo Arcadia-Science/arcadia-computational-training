@@ -20,7 +20,7 @@ The schedule is subject to change.
 
 | Date         | Tutorial            | Description   |
 | ------------ | ------------------- | ------------- |
-| Aug 13th, 2024  | Illustrator Basics & Templates | This lesson provides an overview of how to use the custom libraries and templates in Illustrator that adhere to Arcadia's style guidelines. |
+
 
 ## Previous trainings
 
@@ -28,6 +28,7 @@ Note recordings are only available to people with `@arcadiascience.com` email ad
 
 | Date          | Tutorial                                                                                                                                                                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                          | Link to recording                                                                                 |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Aug 13th, 2024  | Illustrator Basics & Templates | This lesson provides an overview of how to use the custom libraries and templates in Illustrator that adhere to Arcadia's style guidelines. | [recording](https://youtu.be/kqi-ujuwp4o) |
 | Jul 30, 2024 | Making figures in [python with arcadia-pycolor](./20240730-arcadia-pycolor/lesson.md) and in [R with arcadiathemeR](./20240730-arcadiathemer/20240730-arcadiathemer.md) | This lesson covers how to make figures in python and R that adhere to Arcadia's style guidelines using the arcadia-pycolor and arcadiathemeR packages, respectively. | [recording](https://youtu.be/cDkuVdi6ApU) |
 | Jul 23, 2024 | Introduction to Design Principles | This lesson gives an introduction to design principles and different components to consider when creating figures and illustrations.| [recording](https://youtu.be/np4i5_Yc6Bc) |
 | Mar 5, 2024  | [GitHub Templates: new repos with set structures](20240305-github-templates/lesson.md) | This lesson provides an overview of how to create a new repository from a GitHub template. Using a Python analysis repository as an example, it walks through the function of each file in the template and the benefits that come from using templates.|
