@@ -1,0 +1,789 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/workshops/20231006-github-hacktoberfest/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Using Git and GitHub to Contribute to Repositories You Don't Have Write Access To - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#using-git-and-github-to-contribute-to-repositories-you-dont-have-write-access-to" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Using Git and GitHub to Contribute to Repositories You Don't Have Write Access To
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../arcadia-users-group/overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tl;dr
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up" class="md-nav__link">
+    Setting up
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-repositories-that-accept-contributions-work-that-needs-to-be-done" class="md-nav__link">
+    Finding repositories that accept contributions &amp; work that needs to be done
+  </a>
+  
+    <nav class="md-nav" aria-label="Finding repositories that accept contributions &amp; work that needs to be done">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#searching-for-repositories-that-are-open-to-external-contributions" class="md-nav__link">
+    Searching for repositories that are open to external contributions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contributor-guidelines" class="md-nav__link">
+    Contributor guidelines
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-work-that-needs-to-be-completed-issues-pull-requests-and-repo-searches" class="md-nav__link">
+    Finding work that needs to be completed: issues, pull requests, and repo searches
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#narrating-the-work-that-you-will-complete" class="md-nav__link">
+    Narrating the work that you will complete
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-for-making-changes-on-a-repository-you-dont-own" class="md-nav__link">
+    Workflow for making changes on a repository you don't own
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow for making changes on a repository you don't own">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forking-the-repository" class="md-nav__link">
+    Forking the repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloning-the-fork-from-remote-to-local" class="md-nav__link">
+    Cloning the fork from remote to local
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#making-changes-to-the-code-working-on-a-branch" class="md-nav__link">
+    Making changes to the code: working on a branch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#making-changes-to-the-code-adding-committing-and-pushing" class="md-nav__link">
+    Making changes to the code: adding, committing, and pushing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing-changes" class="md-nav__link">
+    Contributing changes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="using-git-and-github-to-contribute-to-repositories-you-dont-have-write-access-to">Using Git and GitHub to Contribute to Repositories You Don't Have Write Access To</h1>
+<p>Arcadia is participating in <a href="https://hacktoberfest.com/">Hacktoberfest 2023</a>.
+Our goal is to give back to the open source software community that we use every day in our own scientific work.
+As part of this, we are hosting a mini-hackathon to create a space for and support others in making contribution to open source software libraries.
+We've <a href="https://docs.google.com/document/d/1EjyQOwPO-Zc4aKM_mTPEFo3K97Ox3lEk-DyZxlivyVU/edit?usp=sharing">curated a list of bioinformatics (or adjacent) software repos</a> that are accepting contributions.
+The purpose of the lesson below is to outline how to contribute to a GitHub repository that you don't own (e.g., you don't have write access to).</p>
+<p>While we will cover this in more depth below, we want to highlight how important it is to only contribute to projects that are open to contributions and to abide by community- or project-specific guidelines when doing so.
+Every contribution creates additional work for maintainers, many of whom are volunteers or who have responsibilities outside of software maintenance.
+Approaching your contribution with this in mind ensures that suggestions you make are more likely to be a net benefit for the project to which you're contributing.
+Respect, gratitude, and openness to feedback also go a long way toward fostering a fruitful collaboration.</p>
+<h2 id="tldr">tl;dr</h2>
+<ol>
+<li>Select a repository to contribute to and read the contribution guide.</li>
+<li>Fork your repository of interest to your own GitHub account (click the Fork button in the top right of the repo page).</li>
+<li>Navigate to your fork. Clone your fork down to your local machine: <code>git clone https://github.com/your-username/repository-name.git</code></li>
+<li>Create a branch: <code>git checkout -b branch-name</code></li>
+<li>Make your changes.</li>
+<li>Add your changes to be tracked by git: <code>git add file-changed.txt</code></li>
+<li>Commit your changes: <code>git commit -m 'short explanation of changes i made'</code></li>
+<li>Push your changes: <code>git push origin branch-name</code></li>
+<li>Create a new pull request from your forked repository (click the Pull request banner and then the New Pull Request button located at the top of your repo).</li>
+<li>Describe your changes following the guidelines in the contribution guide or the PR template.</li>
+<li>Wait for your PR to be reviewed and make any requested changes.</li>
+</ol>
+<h2 id="setting-up">Setting up</h2>
+<p>If you need to:</p>
+<ul>
+<li>sign up for a GitHub account</li>
+<li>install git locally</li>
+<li>configure global git settings</li>
+<li>create an ssh key to authenticate without a password</li>
+</ul>
+<p>Navigate to the <a href="https://training.arcadiascience.com/workshops/20220920-intro-to-git-and-github/lesson/#setting-up">Setting Up Instructions</a> in the Intro to Git and GitHub lesson and follow along with the tutorial.</p>
+<h2 id="finding-repositories-that-accept-contributions-work-that-needs-to-be-done">Finding repositories that accept contributions &amp; work that needs to be done</h2>
+<h3 id="searching-for-repositories-that-are-open-to-external-contributions">Searching for repositories that are open to external contributions</h3>
+<p>Not every open source repository is in a position to accept work from new contributors.
+Contributing to a repository that isn't accepting these types of contributions at best leads to unintegrated pull requests and at worse creates additional work and headache for maintainers.
+To avoid these situations, look out for signals that a repository is accepting contributions from new contributors.
+Good signals include:</p>
+<ol>
+<li>The repository has contributor guidelines.</li>
+<li>The repository uses issues to keep track of work that needs to be completed and labels issues to make it clear where contributions are welcome.</li>
+<li>The maintainers of the repository have recently engaged with issues, pull requests, or have recently updated the repository.</li>
+<li>The repository is marked with a <code>hacktoberfest</code> topic. Since Hacktoberfest is in its 10th year and repository topics have been around for three years, the tag may be from previous years so look for other signals that the repo is still accepting contributions. You can also search for the <code>hacktoberfest2023</code> tag instead to get recent labels.</li>
+</ol>
+<p>We've <a href="https://docs.google.com/document/d/1EjyQOwPO-Zc4aKM_mTPEFo3K97Ox3lEk-DyZxlivyVU/edit?usp=sharing">curated a list of bioinformatics (or adjacent) software repos</a> that are accepting contributions either for hacktoberfest or otherwise.
+You can start from this list or search GitHub topics to find a repository you want to contribute to.</p>
+<p>For the hands on portions in the rest of this lesson, we will practice making a contribution using the <a href="https://github.com/Arcadia-Science/2023-hackathon-practice">Arcadia-Science/2023-hackathon-practice</a> repository.</p>
+<h3 id="contributor-guidelines">Contributor guidelines</h3>
+<p>The Contributor Guidelines for a repository outline how the project would like to receive contributions.
+This is a very important document to read and to continually reference as you're making your contribution to make sure you're following the preferences of the community or project you're contributing to.
+Each project is a little different, so make sure you read this document closely for each project you plan to contribute to.</p>
+<p>In the <a href="https://github.com/Arcadia-Science/2023-hackathon-practice">Arcadia-Science/2023-hackathon-practice</a> repository, the contributor guide is located in the file <code>CONTRIBUTING.md</code> and it is linked to from the <code>README.md</code>.</p>
+<h3 id="finding-work-that-needs-to-be-completed-issues-pull-requests-and-repo-searches">Finding work that needs to be completed: issues, pull requests, and repo searches</h3>
+<p>The contributor guidelines document often details how new contributors can find work that needs to be done.
+Often times, projects use <a href="https://github.com/features/issues">GitHub <strong>Issues</strong></a> to document work that needs to be completed.
+When a project is accepting external contributions, they often use issue labels to highlight work that can be done by anyone.
+Common labels include "good first issue," "good second issue," and "help wanted," but these labels can vary a lot by project.</p>
+<p>Issues can also be used to document work that is being worked on by someone else.
+These can be issues all on their own or responses to issues that already exist.
+Similarly, a pull request may declare work that is in progress or has already been contributed.
+It's a good idea to search open issues and pull requests, as well as the repository in general, to make sure the work you want to do hasn't already been undertaken by another contributor.  </p>
+<h3 id="narrating-the-work-that-you-will-complete">Narrating the work that you will complete</h3>
+<p>To make sure that others know what work you plan to do, it's usually a good idea to narrate this work somewhere in the repository.
+Check the contributor guidelines first to see what the recommended strategy to use is.
+A common strategy is to respond with a comment to an open issue asking if the work still needs to be done or to state that you plan to work on it. </p>
+<p>According to the contributor guide in the <a href="https://github.com/Arcadia-Science/2023-hackathon-practice">Arcadia-Science/2023-hackathon-practice</a> repository, the maintainers ask that you post an issue declaring the change that you will make the repo.
+The guide also states that if you plan to add a file that the file should be added in the <code>practice</code> folder.
+Practice opening an issue.
+First, navigate to the issues tab.</p>
+<p><center>
+<img alt="" src="../issue-tab.png" width="600" />
+</center></p>
+<p>Then, open a new issue by selecting the green "New issue" button.</p>
+<p><center>
+<img alt="" src="../new-issue.png" width="600" />
+</center></p>
+<p>Describe that you will add a file to the <code>practice</code> folder called <code>my-first-file-</code>, your initials, and then <code>.txt</code> (<code>my-first-file-ter.txt</code>).</p>
+<p><center>
+<img alt="" src="../issue-text.png" width="600" />
+</center></p>
+<h2 id="workflow-for-making-changes-on-a-repository-you-dont-own">Workflow for making changes on a repository you don't own</h2>
+<p>Once you have identified a repository you want to contribute to and the work that you plan on doing, it's time to start making actual changes.
+Below, we cover how to make changes in a way that will allow you to contribute those changes back to the main code base when you are finished with your work.</p>
+<h3 id="forking-the-repository">Forking the repository</h3>
+<p>When you don't have write access to a repository, you need to make a copy of the repo into a user name or organization that you do have write access to.
+This process is called <strong>forking</strong> or creating a <strong>fork</strong> for a repo.
+You do this by clicking the fork button in the upper right hand corner of a repository.</p>
+<p><center>
+<img alt="" src="../fork.png" width="600" />
+</center></p>
+<p>Select the new owner (for this lesson, yourself), and then select the green "Create fork" button.</p>
+<p><center>
+<img alt="" src="../create-fork.png" width="600" />
+</center></p>
+<p>You should now have a copy of the repository in your own GitHub account.</p>
+<h3 id="cloning-the-fork-from-remote-to-local">Cloning the fork from remote to local</h3>
+<p><strong>Cloning</strong> is the process of copying an existing Git repository from a <strong>remote</strong> location (here, on GitHub) to your <strong>local</strong> computer.
+Navigate to your fork of the repository you're working with (GitHub did this for you after forking if you kept the same tab open).
+The URL should start with your GitHub user name.
+To clone the repository, click the green "Code" button in the top right hand corner of the repository screen. 
+This creates a drop down menu with clone options.
+We'll select the SSH tab because we configured an ssh key pair.
+Once you select the tab, copy the path that starts with <code>git@gitub.com:</code>.</p>
+<p><center>
+<img alt="" src="../clone.png" width="600" />
+</center></p>
+<p>Then, navigate to your terminal and use the command below to clone the repository.
+Remember to substitute out the username/URL with your own URL that we copied.</p>
+<div class="highlight"><pre><span></span><code>cd ~ # this will clone the repo to your home directory. Feel free to put it somewhere else if you prefer.
+git clone git@github.com:your_username/2023-hacktathon-practice
+cd 2023-hackathon-practice
+</code></pre></div>
+<h3 id="making-changes-to-the-code-working-on-a-branch">Making changes to the code: working on a branch</h3>
+<p><center>
+<img alt="" src="../../20220920-intro-to-git-and-github/git_branch_simple.png" width="400" />
+</center></p>
+<p>When you want to make changes to files in a repository, it’s best practice to do it in a <strong>branch</strong>.
+A <strong>branch</strong> is an independent line of development of files in a repository. 
+You can think of it like making a copy of a document and making changes to that copy only: the original stays the same, but the copy diverges with new content.
+In a branch, all files are copied and can be changed.</p>
+<p><center>
+<img alt="" src="../../20220920-intro-to-git-and-github/git_branch_collab.png" width="600" />
+</center></p>
+<p>Branches are particularly powerful for collaborating.
+They allow multiple people to work on the same code base and seamless integrate changes.
+Because we'll be contributing to someone else's code base, it's best to do so on a branch.</p>
+<p>By default, you start on the <code>main</code> branch (some older repositories will start from <code>master</code>).
+You can see which branch you're on locally using the <code>git branch</code> command.</p>
+<div class="highlight"><pre><span></span><code>git branch
+</code></pre></div>
+<p>Let's create a branch and make changes to it.
+We can create a new local branch using <code>git checkout -b</code>.
+<code>git checkout</code> tells git we want to switch which branch we're currently on, while the <code>-b</code> flag tells git that we're creating a new branch.</p>
+<div class="highlight"><pre><span></span><code>git checkout -b ter/my-feature-branch 
+</code></pre></div>
+<p>Branch names can be used to convey information that can help you and others keep track of what you're doing.
+For example, you can prepend your branch names with your initials and a slash to make it clear that you were the one who created the branch, and you can specify a name that is associated with the file changes made on the branch: <code>&lt;your initials&gt;/&lt;brief description of the code change&gt;</code>.
+Now, if we run <code>git branch</code> we'll see we're on the branch <code>ter/my-feature-branch</code>.</p>
+<div class="highlight"><pre><span></span><code>git branch
+</code></pre></div>
+<p>To go back to the <code>main</code> branch, we can use the <code>git checkout</code> command without the flag <code>-b</code>.</p>
+<div class="highlight"><pre><span></span><code>git checkout main
+</code></pre></div>
+<p>and to go back to our feature branch, we can use <code>git checkout</code> again.
+<div class="highlight"><pre><span></span><code>git checkout ter/my-feature-branch
+</code></pre></div></p>
+<p>Whenever you create a new branch, it branches off from the branch you're currently in when you make the new branch.
+In this case, we started in <code>main</code>, so our branch will branch off of from here.</p>
+<h3 id="making-changes-to-the-code-adding-committing-and-pushing">Making changes to the code: adding, committing, and pushing</h3>
+<p>We can now make changes to our files in our local repository.
+The basic Git workflow begins when you communicate to Git about changes you've made to your files.
+Once you like a set of changes you’ve made you can tell Git about them by using the command <strong><code>git add</code></strong>.
+This stages the changes you have made.
+Staging a file tells Git that you're ready to commit those files -- it's a way of telling Git which files you're ready to commit.
+Next, you bake them into the branch using <strong><code>git commit</code></strong>.
+When you’re ready, you can communicate those changes back to GitHub using <strong><code>git push</code></strong>.
+This will push your the changes that are in your local repository up to the remote repository.</p>
+<p>Let's try this workflow out.
+Throughout this process, we'll use the command <code>git status</code> to track our progress through the workflow.
+<code>git status</code> displays the state of a working direcotry and the staging area.</p>
+<div class="highlight"><pre><span></span><code>git status
+</code></pre></div>
+<p>We'll use the <code>echo</code> command to create a new file matching the name of the file we said we'd make in our issue.</p>
+<div class="highlight"><pre><span></span><code>ls
+echo &quot;creating my first file&quot; &gt; practice/my-first-file-ter.txt
+ls
+</code></pre></div>
+<p>Take a look at the contents of your <code>practice/my-first-file-ter.txt</code> file:
+<div class="highlight"><pre><span></span><code>less practice/my-first-file-ter.txt
+</code></pre></div></p>
+<p>And run <code>git status</code> to see how creating a new file changes the output of that command:
+<div class="highlight"><pre><span></span><code>git status
+</code></pre></div></p>
+<p>Once you have made changes in your repository, you need to tell Git to start tracking the file. 
+The command <code>git add</code> adds the files to the "staging area", meaning Git is now tracking the changes.</p>
+<div class="highlight"><pre><span></span><code>git add practice/my-first-file-ter.txt
+</code></pre></div>
+<p>After adding this file, we see our output of <code>git status</code> changes.</p>
+<div class="highlight"><pre><span></span><code>git status
+</code></pre></div>
+<p>The text associated with our file is now green because the file is staged.
+When you've made all of the changes to a file that represent a unit of changes, you can use <code>git commit</code> to create a snapshot of the file in your Git version history.</p>
+<div class="highlight"><pre><span></span><code>git commit -m &quot;start my first file&quot;
+
+git status
+</code></pre></div>
+<p>The <code>-m</code> flag is the message that is associated with that commit.
+The message should be short and descriptive so that you or someone looking at your code could quickly determine what changes took place from one commit to the next.
+What constitutes a unit of changes worthy of running <code>git commit</code>? 
+That depends on the project and the person, but think about returning to this code six months in the future.
+What set of changes would make it most easy to return to an earlier version of document?</p>
+<p>Committing a file bakes changes into your local repository. 
+To communicate that changes back up to your remote repository, use <code>git push</code>.</p>
+<div class="highlight"><pre><span></span><code>git push origin ter/my-feature-branch
+</code></pre></div>
+<p>In the above command, <code>origin</code> is shorthand for the remote repository that a project was cloned from. 
+To view what this value is, you can run <code>git remote -v</code>.</p>
+<h2 id="contributing-changes">Contributing changes</h2>
+<p>Pull requests are used to contribute changes from your fork back to the main repository.
+Before opening a pull request, re-read the contributing guidelines and make sure to fulfill all of the requirements requested therein.
+This will often include that all test should be passing locally.
+For more on testing, see this <a href="https://carpentries-incubator.github.io/python-testing/">Carpentries Incubator lesson</a> on testing in python.</p>
+<p>To create a new pull request, you can click the yellow banner with the green button, "Compare &amp; pull request."</p>
+<p><center>
+<img alt="" src="compare-and-pr.png.png" width="600" />
+</center></p>
+<p>This will launch a page that suggests where the changes are coming from and where they're being integrated into.
+Pay special attention on this page to make sure you select the appropriate branches and forks here.
+Use the title and dialogue box to annotate what your PR accomplishes.
+Be sure to link to the issue you're addressing using a <code>#</code>.
+Re-read the contributor guidelines or follow the PR template to make sure you're including all required information.</p>
+<p><center>
+<img alt="" src="../open-pr.png" width="600" />
+</center></p>
+<p>The opened PR looks something like this</p>
+<p><center>
+<img alt="" src="../opened-pr.png" width="600" />
+</center></p>
+<p>In some repositories, opening a PR may launch <a href="https://github.com/features/actions">continuous integration with GitHub Actions</a>.
+These will appear as banners of tasks.
+When they pass successfully you'll see a green check mark.
+Generally, all tests need to pass before a PR is merged.</p>
+<p><center>
+<img alt="" src="../ci.png" width="600" />
+</center></p>
+<p>After opening your PR, a maintainer will typically review the PR and request or make changes.</p>
+<h2 id="summary">Summary</h2>
+<p><center></p>
+<h4><i>Terms introduced:</i></h4>
+
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Git</td>
+<td>a version control system</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>an internet hosting service for version control using Git</td>
+</tr>
+<tr>
+<td>repository</td>
+<td>a collection of files and folders associated with a project that is under Git version control</td>
+</tr>
+<tr>
+<td>local</td>
+<td>accessed from your system; the computer you're working on</td>
+</tr>
+<tr>
+<td>remote</td>
+<td>stored on a remote computer; GitHub</td>
+</tr>
+<tr>
+<td>commit</td>
+<td>a snapshot of your files and folders at a given time</td>
+</tr>
+<tr>
+<td>branch</td>
+<td>an independent line of development in a repository</td>
+</tr>
+<tr>
+<td>pull request</td>
+<td>a mechanism to suggest changes from a branch be integrated back into the <code>main</code> branch</td>
+</tr>
+<tr>
+<td>review</td>
+<td>the process of reviewing changes in a branch through a pull request</td>
+</tr>
+<tr>
+<td>issue</td>
+<td>a tracking tool integrated into a GitHub repository</td>
+</tr>
+</tbody>
+</table>
+<h4><i>Commands introduced:</i></h4>
+
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git clone</code></td>
+<td>copies a Git repository from remote to local</td>
+</tr>
+<tr>
+<td><code>git status</code></td>
+<td>summarizes the current status of the Git repository, including the branch you are on and any changes on that branch</td>
+</tr>
+<tr>
+<td><code>git add</code></td>
+<td>adds new or changed files in your working directory to the Git staging area</td>
+</tr>
+<tr>
+<td><code>git commit</code></td>
+<td>creates a commit of your repository</td>
+</tr>
+<tr>
+<td><code>git push</code></td>
+<td>uploads all local branch commits to the corresponding remote branch</td>
+</tr>
+<tr>
+<td><code>git checkout</code></td>
+<td>switches between local branches, or creates a new branch with the <code>-b</code> flag</td>
+</tr>
+<tr>
+<td><code>git branch</code></td>
+<td>reports what branch you're currently on and what other local branches exist</td>
+</tr>
+<tr>
+<td><code>git pull</code></td>
+<td>updates current local working branch and all of the remote tracking branches</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

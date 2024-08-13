@@ -1,0 +1,1938 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20231031-intro-to-r/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Exploring & working with data in R and tidyverse - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exploring-working-with-data-in-r-and-tidyverse" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Exploring & working with data in R and tidyverse
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exploring-data-in-r" class="md-nav__link">
+    Exploring data in R
+  </a>
+  
+    <nav class="md-nav" aria-label="Exploring data in R">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-dataframe" class="md-nav__link">
+    The data.frame
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vectors-the-building-block-of-data" class="md-nav__link">
+    Vectors: the building block of data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#missing-data" class="md-nav__link">
+    Missing data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vectors-as-arguments" class="md-nav__link">
+    Vectors as arguments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-data-tyes-in-r" class="md-nav__link">
+    Other data tyes in R
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-data-in-r" class="md-nav__link">
+    Working with data in R
+  </a>
+  
+    <nav class="md-nav" aria-label="Working with data in R">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#importing-data" class="md-nav__link">
+    Importing data
+  </a>
+  
+    <nav class="md-nav" aria-label="Importing data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-paths" class="md-nav__link">
+    File paths
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manipulating-data" class="md-nav__link">
+    Manipulating data
+  </a>
+  
+    <nav class="md-nav" aria-label="Manipulating data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#select" class="md-nav__link">
+    select()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter" class="md-nav__link">
+    filter()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-pipe" class="md-nav__link">
+    The pipe: %&gt;%
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#making-new-columns-with-mutate" class="md-nav__link">
+    Making new columns with mutate()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-split-apply-combine-approach" class="md-nav__link">
+    The split-apply-combine approach
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#joining-data-together-with-the-join-functions" class="md-nav__link">
+    Joining data together with the *join() functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exporting-data" class="md-nav__link">
+    Exporting data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extras" class="md-nav__link">
+    Extras
+  </a>
+  
+    <nav class="md-nav" aria-label="Extras">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-vectors-from-scratch" class="md-nav__link">
+    Building vectors from scratch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#an-explanation-and-exploration-of-factors" class="md-nav__link">
+    An explanation and exploration of factors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reshaping-data-with-tidyr" class="md-nav__link">
+    Reshaping data with tidyr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-rid-of-any-row-where-any-value-is-na-with-drop_na" class="md-nav__link">
+    Getting rid of any row where any value is NA with drop_na()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tidy-selection" class="md-nav__link">
+    Tidy selection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#more-on-joining-data-together-with-dplyr" class="md-nav__link">
+    More on joining data together with dplyr
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="exploring-working-with-data-in-r-and-tidyverse">Exploring &amp; working with data in R and tidyverse</h1>
+<h2 id="exploring-data-in-r">Exploring data in R</h2>
+<p>In this lesson, we'll spend time unpacking the basic data structures in R that we breezed past in our <a href="https://training.arcadiascience.com/arcadia-users-group/20231017-intro-to-ggplot2/lesson/">previous lesson</a>.
+Then, we'll go over how to read in data and manipulate it in tidyverse.</p>
+<p>Note that this lesson has been modified from <a href="https://carpentries.org/index.html">The Carpentries</a> <a href="https://carpentries.org/blog/2023/07/r-ecology-alt-beta/">alternative version</a> of the <a href="https://carpentries-incubator.github.io/R-ecology-lesson-alternative/visualizing-ggplot.html">R Ecology lesson</a>.
+Parts are reproduced in full, but the major changes were included to shorten the lesson to 60 minutes.</p>
+<h3 id="the-dataframe">The data.frame</h3>
+<p>In the <a href="https://training.arcadiascience.com/arcadia-users-group/20231017-intro-to-ggplot2/lesson/">previous lesson</a>, we created visualizations from the <code>complete_old</code> data, but we did not talk much about <strong>what</strong> this <code>complete_old</code> thing is.
+During this lesson, we'll cover how R represents, uses, and stores data.</p>
+<p>To start out, launch a fresh RStudio application window and load the two packages we'll work with during this lesson.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ratdat</span><span class="p">)</span>
+</code></pre></div>
+<p>The <code>complete_old</code> data is stored in R as a <strong>data.frame</strong>, which is the most common way that R represents tabular data (data that can be stored in a table format, like a spreadsheet).
+We can check what <code>complete_old</code> is by using the <code>class()</code> function:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">class</span><span class="p">(</span><span class="n">complete_old</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## [1] &quot;data.frame&quot;
+</code></pre></div>
+<p>We can view the first few rows with the <code>head()</code> function, and the last few rows with the <code>tail()</code> function:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">head</span><span class="p">(</span><span class="n">complete_old</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>##   record_id month day year plot_id species_id sex hindfoot_length weight
+## 1         1     7  16 1977       2         NL   M              32     NA
+## 2         2     7  16 1977       3         NL   M              33     NA
+## 3         3     7  16 1977       2         DM   F              37     NA
+## 4         4     7  16 1977       7         DM   M              36     NA
+## 5         5     7  16 1977       3         DM   M              35     NA
+## 6         6     7  16 1977       1         PF   M              14     NA
+##         genus  species   taxa                plot_type
+## 1     Neotoma albigula Rodent                  Control
+## 2     Neotoma albigula Rodent Long-term Krat Exclosure
+## 3   Dipodomys merriami Rodent                  Control
+## 4   Dipodomys merriami Rodent         Rodent Exclosure
+## 5   Dipodomys merriami Rodent Long-term Krat Exclosure
+## 6 Perognathus   flavus Rodent        Spectab exclosure
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nf">tail</span><span class="p">(</span><span class="n">complete_old</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>##       record_id month day year plot_id species_id sex hindfoot_length weight
+## 16873     16873    12   5 1989       8         DO   M              37     51
+## 16874     16874    12   5 1989      16         RM   F              18     15
+## 16875     16875    12   5 1989       5         RM   M              17      9
+## 16876     16876    12   5 1989       4         DM   M              37     31
+## 16877     16877    12   5 1989      11         DM   M              37     50
+## 16878     16878    12   5 1989       8         DM   F              37     42
+##                 genus   species   taxa        plot_type
+## 16873       Dipodomys     ordii Rodent          Control
+## 16874 Reithrodontomys megalotis Rodent Rodent Exclosure
+## 16875 Reithrodontomys megalotis Rodent Rodent Exclosure
+## 16876       Dipodomys  merriami Rodent          Control
+## 16877       Dipodomys  merriami Rodent          Control
+## 16878       Dipodomys  merriami Rodent          Control
+</code></pre></div>
+<details>
+ <summary>Refresher on named arguments & argument order</summary>
+
+<p>We used these functions with just one argument, the object <code>complete_old</code>, and we didn&#39;t give the argument a name, like we often did with <code>ggplot2</code>.
+In R, a function&#39;s arguments come in a particular order, and if you put them in the correct order, you don&#39;t need to name them.
+In this case, the name of the argument is <code>x</code>, so we can name it if we want, but since we know it&#39;s the first argument, we don&#39;t need to.</p>
+<p>To learn more about a function, you can type a <code>?</code> in front of the name of the function, which will bring up the official documentation for that function:</p>
+
+
+
+<div class="highlight"><pre><span></span><code><span class="o">?</span><span class="n">head</span>
+</code></pre></div>
+
+<p>Some arguments are optional.
+For example, the <code>n</code> argument in <code>head()</code> specifies the number of rows to print.
+It defaults to 6, but we can override that by specifying a different number:</p>
+
+
+<div class="highlight"><pre><span></span><code><span class="nf">head</span><span class="p">(</span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
+</code></pre></div>
+
+If we order them correctly, we don't have to name either:
+
+
+<div class="highlight"><pre><span></span><code><span class="nf">head</span><span class="p">(</span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
+</code></pre></div>
+
+Additionally, if we name them, we can put them in any order we want:
+
+
+<div class="highlight"><pre><span></span><code><span class="nf">head</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">)</span>
+</code></pre></div>
+
+Generally, it's good practice to start with the required arguments, like the data.frame whose rows you want to see, and then to name the optional arguments.
+If you are ever unsure, it never hurts to explicitly name an argument.
+</details>
+
+<p>As we have already done, we can use <code>str()</code> to look at the structure of an object:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">str</span><span class="p">(</span><span class="n">complete_old</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## &#39;data.frame&#39;:    16878 obs. of  13 variables:
+##  $ record_id      : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ month          : int  7 7 7 7 7 7 7 7 7 7 ...
+##  $ day            : int  16 16 16 16 16 16 16 16 16 16 ...
+##  $ year           : int  1977 1977 1977 1977 1977 1977 1977 1977 1977 1977 ...
+##  $ plot_id        : int  2 3 2 7 3 1 2 1 1 6 ...
+##  $ species_id     : chr  &quot;NL&quot; &quot;NL&quot; &quot;DM&quot; &quot;DM&quot; ...
+##  $ sex            : chr  &quot;M&quot; &quot;M&quot; &quot;F&quot; &quot;M&quot; ...
+##  $ hindfoot_length: int  32 33 37 36 35 14 NA 37 34 20 ...
+##  $ weight         : int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ genus          : chr  &quot;Neotoma&quot; &quot;Neotoma&quot; &quot;Dipodomys&quot; &quot;Dipodomys&quot; ...
+##  $ species        : chr  &quot;albigula&quot; &quot;albigula&quot; &quot;merriami&quot; &quot;merriami&quot; ...
+##  $ taxa           : chr  &quot;Rodent&quot; &quot;Rodent&quot; &quot;Rodent&quot; &quot;Rodent&quot; ...
+##  $ plot_type      : chr  &quot;Control&quot; &quot;Long-term Krat Exclosure&quot; &quot;Control&quot; &quot;Rodent Exclosure&quot; ...
+</code></pre></div>
+<p>One thing we didn't cover previously when looking at the output of the <code>str()</code> function was the preponderance of <code>$</code> -- each variable is preceded by a <code>$</code>.
+The <code>$</code> is an operator that allows us to select individual columns from a data.frame.
+Like functions and their arguments, we can use tab-completion after <code>$</code> to select which variable you want from a given data.frame.
+For example, to get the <code>year</code> variable, we can type <code>complete_old$</code> and then hit <kbd>Tab</kbd>.
+We get a list of the variables that we can move through with up and down arrow keys. Hit <kbd>Enter</kbd> when you reach <code>year</code>, which should finish this code:</p>
+<div class="highlight"><pre><span></span><code><span class="n">complete_old</span><span class="o">$</span><span class="n">year</span>
+</code></pre></div>
+<p>This prints the values of the <code>year</code> column to the console.</p>
+<h3 id="vectors-the-building-block-of-data">Vectors: the building block of data</h3>
+<p>You might have noticed that our last result looked different from when we printed out the <code>complete_old</code> data.frame itself.
+That's because it is not a data.frame, it is a <strong>vector</strong>.
+A vector is a 1-dimensional series of values, in this case a vector of numbers representing years.</p>
+<p>Data.frames are made up of vectors; each column in a data.frame is a vector.
+Vectors are the basic building blocks of all data in R.
+Basically, everything in R is a vector, a bunch of vectors stitched together in some way, or a function.</p>
+<p>There are 4 main types of vectors (also known as <em>atomic vectors</em>):</p>
+<ol>
+<li>
+<p><code>"character"</code> for strings of characters, like our <code>genus</code> or <code>sex</code> columns. Each entry in a character vector is wrapped in quotes. In other programming languages, this type of data may be referred to as "strings".</p>
+</li>
+<li>
+<p><code>"integer"</code> for integers. All the numeric values in <code>complete_old</code> are integers. You may sometimes see integers represented like <code>2L</code> or <code>20L</code>. The <code>L</code> indicates to R that it is an integer, instead of the next data type, <code>"numeric"</code>.</p>
+</li>
+<li>
+<p><code>"numeric"</code>, aka <code>"double"</code>, vectors can contain numbers including decimals. Other languages may refer to these as "float" or "floating point" numbers.</p>
+</li>
+<li>
+<p><code>"logical"</code> for <code>TRUE</code> and <code>FALSE</code>, which can also be represented as <code>T</code> and <code>F</code>. In other contexts, these may be referred to as "Boolean" data.</p>
+</li>
+</ol>
+<p>Vectors can only be of a <strong>single type</strong>. Since each column in a data.frame is a vector, this means an accidental character following a number, like <code>29,</code> can change the type of the whole vector.</p>
+<p>To create a vector from scratch, we can use the <code>c()</code> function, putting values inside, separated by commas.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## [1]  1  2  5 12  4
+</code></pre></div>
+<p>As you can see, those values get printed out in the console, just like with <code>complete_old$year</code>.
+To store this vector so we can continue to work with it, we need to assign it to an object.</p>
+<div class="highlight"><pre><span></span><code><span class="n">num</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+</code></pre></div>
+<p>You can check what kind of object <code>num</code> is with the <code>class()</code> function.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">class</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## [1] &quot;numeric&quot;
+</code></pre></div>
+<p>We see that <code>num</code> is a <code>numeric</code> vector.</p>
+<p>Let's try making a character vector:</p>
+<div class="highlight"><pre><span></span><code><span class="n">char</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;apple&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pear&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;grape&quot;</span><span class="p">)</span>
+<span class="nf">class</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## [1] &quot;character&quot;
+</code></pre></div>
+<p>Remember that each entry, like <code>"apple"</code>, needs to be surrounded by quotes, and entries are separated with commas.
+If you do something like <code>"apple, pear, grape"</code>, you will have only a single entry containing that whole string.</p>
+<p>Finally, let's make a logical vector:</p>
+<div class="highlight"><pre><span></span><code><span class="n">logi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">class</span><span class="p">(</span><span class="n">logi</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## [1] &quot;logical&quot;
+</code></pre></div>
+<p><strong>Challenge 1: Coercion</strong></p>
+<p>Since vectors can only hold one type of data, something has to be done when we try to combine different types of data into one vector.</p>
+<ul>
+<li>What type will each of these vectors be? Try to guess without running any code at first, then run the code and use <code>class()</code> to verify your answers.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">num_logi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">num_char</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;10&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">)</span>
+<span class="n">char_logi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+
+<span class="n">tricky</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+</code></pre></div>
+<details>
+  <summary>Challenge solution</summary>
+
+
+<div class="highlight"><pre><span></span><code><span class="nf">class</span><span class="p">(</span><span class="n">num_logi</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>## [1] &quot;numeric&quot;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="nf">class</span><span class="p">(</span><span class="n">num_char</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>## [1] &quot;character&quot;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="nf">class</span><span class="p">(</span><span class="n">char_logi</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>## [1] &quot;character&quot;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="nf">class</span><span class="p">(</span><span class="n">tricky</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>## [1] &quot;character&quot;
+</code></pre></div>
+
+<p>R will automatically convert values in a vector so that they are all the same type, a process called <strong>coercion</strong>.</p>
+
+</details>
+
+<ul>
+<li>How many values in <code>combined_logical</code> are <code>"TRUE"</code> (as a character)? </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">combined_logical</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">num_logi</span><span class="p">,</span><span class="w"> </span><span class="n">char_logi</span><span class="p">)</span>
+</code></pre></div>
+<details>
+  <summary>Challenge solution</summary>
+
+
+<div class="highlight"><pre><span></span><code><span class="n">combined_logical</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>## [1] &quot;1&quot;    &quot;4&quot;    &quot;6&quot;    &quot;1&quot;    &quot;a&quot;    &quot;b&quot;    &quot;TRUE&quot;
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="nf">class</span><span class="p">(</span><span class="n">combined_logical</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>## [1] &quot;character&quot;
+</code></pre></div>
+
+<p>Only one value is <code>&quot;TRUE&quot;</code>.
+Coercion happens when each vector is created, so the <code>TRUE</code> in <code>num_logi</code> becomes a <code>1</code>, while the <code>TRUE</code> in <code>char_logi</code> becomes <code>&quot;TRUE&quot;</code>.
+When these two vectors are combined, R doesn&#39;t remember that the <code>1</code> in <code>num_logi</code> used to be a <code>TRUE</code>, it will just coerce the <code>1</code> to <code>&quot;1&quot;</code>.</p>
+
+</details>
+
+<ul>
+<li>Now that you've seen a few examples of coercion, you might have started to see that there are some rules about how types get converted. There is a hierarchy to coercion. Can you draw a diagram that represents the hierarchy of what types get converted to other types?</li>
+</ul>
+<details>
+  <summary>Challenge solution</summary>
+
+logical → integer → numeric → character
+
+<p>Logical vectors can only take on two values: <code>TRUE</code> or <code>FALSE</code>. Integer vectors can only contain integers, so <code>TRUE</code> and <code>FALSE</code> can be coerced to <code>1</code> and <code>0</code>.
+Numeric vectors can contain numbers with decimals, so integers can be coerced from, say, <code>6</code> to <code>6.0</code> (though R will still display a numeric <code>6</code> as <code>6</code>.).
+Finally, any string of characters can be represented as a character vector, so any of the other types can be coerced to a character vector.</p>
+
+</details>
+
+<p>Coercion most often happens when combining vectors when they contain different data types or reading data into R where a stray character may change an entire numeric vector into a character vector.
+Using the <code>class()</code> function can help confirm an object's class meets your expectations, particularly if you are running into confusing error messages.</p>
+<h3 id="missing-data">Missing data</h3>
+<p>R represents missing data as <code>NA</code>, without quotes, in vectors of any type.
+The <code>NA</code> signals to R to treat that data differently than the rest of the entries in the vector.</p>
+<p>Let's make a numeric vector with an <code>NA</code> value:</p>
+<div class="highlight"><pre><span></span><code><span class="n">weights</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">34</span><span class="p">,</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="m">42</span><span class="p">)</span>
+</code></pre></div>
+<p>By default, may R functions won't work when <code>NA</code> values are present; instead, if you use them they'll return <code>NA</code> themselves.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">min</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## [1] NA
+</code></pre></div>
+<p>This behavior protects the user from not considering missing data.
+If we decide to exclude our missing values, many basic math functions have an argument to <strong>r</strong>e<strong>m</strong>ove them:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">min</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## [1] 12
+</code></pre></div>
+<h3 id="vectors-as-arguments">Vectors as arguments</h3>
+<p>A common reason to create a vector from scratch is to use in a function argument.
+For example, the <code>quantile()</code> function will calculate a quantile for a given vector of numeric values.
+We set the quantile using the <code>probs</code> argument.
+We also need to set <code>na.rm = TRUE</code>, since there are <code>NA</code> values in the <code>weight</code> column.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">quantile</span><span class="p">(</span><span class="n">complete_old</span><span class="o">$</span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">probs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## 25% 
+##  24
+</code></pre></div>
+<p>Now we get back the 25% quantile value for weights.
+However, we often want to know more than one quantile.
+Luckily, the <code>probs</code> argument is <strong>vectorized</strong>, meaning it can take a whole vector of values.
+Let's try getting the 25%, 50% (median), and 75% quantiles all at once.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">quantile</span><span class="p">(</span><span class="n">complete_old</span><span class="o">$</span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">probs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.75</span><span class="p">),</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## 25% 50% 75% 
+##  24  42  53
+</code></pre></div>
+<h3 id="other-data-tyes-in-r">Other data tyes in R</h3>
+<p>We have now seen vectors in a few different forms: as columns in a data.frame and as single vectors.
+However, they can be manipulated into lots of other shapes and forms.
+Some other common forms are:</p>
+<ul>
+<li>matrices<ul>
+<li>2-dimensional numeric representations</li>
+</ul>
+</li>
+<li>arrays<ul>
+<li>many-dimensional numeric</li>
+</ul>
+</li>
+<li>lists<ul>
+<li>lists are very flexible ways to store vectors</li>
+<li>a list can contain vectors of many different types and lengths</li>
+<li>an entry in a list can be another list, so lists can get deeply nested</li>
+<li>a data.frame is a type of list where each column is an individual vector and each vector has to be the same length, since a data.frame has an entry in every column for each row </li>
+</ul>
+</li>
+<li>factors<ul>
+<li>a way to represent categorical data</li>
+<li>factors can be ordered or unordered</li>
+<li>they often <em>look</em> like character vectors, but behave differently</li>
+<li>under the hood, they are integers with character labels, called <strong>levels</strong>, for each integer</li>
+</ul>
+</li>
+</ul>
+<p>We won't spend time on these data types in this lesson.
+If you want more information on these classes, you can read through <a href="https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures.html">this Software Carpentry lesson</a>.</p>
+<h2 id="working-with-data-in-r">Working with data in R</h2>
+<h3 id="importing-data">Importing data</h3>
+<p>Up until this point, we have been working with the <code>complete_old</code> data.frame contained in the <code>ratdat</code> package.
+However, you typically won't access data from an R package; it is much more common to access data files stored somewhere on your computer.
+We are going to download a CSV file containing the surveys data to our computer, which we will then read into R.</p>
+<p>Click this link to download the file: <a href="https://github.com/Arcadia-Science/arcadia-computational-training/blob/main/docs/arcadia-users-group/20231031-intro-to-r/surveys_complete_77_89.csv">https://github.com/Arcadia-Science/arcadia-computational-training/blob/main/docs/arcadia-users-group/20231031-intro-to-r/surveys_complete_77_89.csv</a>.</p>
+<p>You will be prompted to save the file on your computer somewhere.
+Save it in your <code>~/Downloads</code> folder so that we'll all be working with the same file path.</p>
+<details>
+  <summary>More information on project organization and management.</summary>
+
+For this lesson, we aren't worrying about our file and folder organization.
+In general, it's best practice to keep your project organized in a specific folder.
+The exact organization strategy will depend on the project you're doing and the tools you choose to use.
+For more information on how to keep your project organized, a discussion of some best practices, and strategies you can use, see the lesson
+<a href="https://training.arcadiascience.com/arcadia-users-group/20220829-project-organization/lesson/">Project organization and file & resource management</a>.
+</details>
+
+<h4 id="file-paths">File paths</h4>
+<p>When we reference other files from an R script, we need to give R precise instructions on where those files are.
+We do that using something called a <strong>file path</strong>. 
+It looks something like this: <code>"~/Documents/Manuscripts/Chapter_2.txt"</code>.
+This path would tell your computer how to get from whatever folder contains the <code>Documents</code> folder all the way to the <code>.txt</code> file.</p>
+<p>There are two kinds of paths: <strong>absolute</strong> and <strong>relative</strong>.
+Absolute paths are specific to a particular computer, whereas relative paths are relative to a certain folder.
+For more information on fie paths and directory structures, see <a href="https://training.arcadiascience.com/arcadia-users-group/20220906-intro-to-shell1/lesson/#the-unix-file-system-structure">this lesson</a>.</p>
+<p>Let's read our CSV file into R and store it in an object named <code>surveys</code>.
+We will use the <code>read_csv</code> function from the <code>tidyverse</code>'s <code>readr</code> package.</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&quot;~/Downloads/surveys_complete_77_89.csv&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## Rows: 16878 Columns: 13
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (6): species_id, sex, genus, species, taxa, plot_type
+## dbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+</code></pre></div>
+<details>
+  <summary>Using tab completion to solve the file path.</summary>
+
+Typing out paths can be error prone, so we can utilize a keyboard shortcut.
+Just like functions and other objects in RStudio, you can use tab completion on file paths.
+Inside the parentheses of <code>read_csv()</code>, type out a pair of quotes and put your cursor between them. 
+Then hit <kbd>Tab</kbd>.
+A small menu showing your folders and files should show up.
+You can use the <kbd>↑</kbd> and <kbd>↓</kbd> keys to move through the options, or start typing to narrow them down.
+You can hit <kbd>Enter</kbd> to select a file or folder, and hit <kbd>Tab</kbd> again to continue building the file path.
+This might take a bit of getting used to, but once you get the hang of it, it will speed up writing file paths and reduce the number of mistakes you make.
+
+</details>
+
+<p>By default, the <code>read_csv()</code> function prints information about the files it reads to the Console.
+We got some useful information about the CSV file we read in.
+We can see:</p>
+<ul>
+<li>the number of rows and columns</li>
+<li>the <strong>delimiter</strong> of the file, which is how values are separated, a comma <code>","</code></li>
+<li>a set of columns that were <strong>parsed</strong> as various vector types</li>
+<li>the file has 6 character columns and 7 numeric columns</li>
+<li>we can see the names of the columns for each type</li>
+</ul>
+<p>When working with the output of a new function, it's often a good idea to check the <code>class()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">class</span><span class="p">(</span><span class="n">surveys</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## [1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;         &quot;data.frame&quot;
+</code></pre></div>
+<p>Whoa! What is this thing? It has multiple classes? Well, it's called a <code>tibble</code>, and it is the <code>tidyverse</code> version of a data.frame. It <em>is</em> a data.frame, but with some added perks. It prints out a little more nicely, it highlights <code>NA</code> values and negative values in red, and it will generally communicate with you more (in terms of warnings and errors, which is a good thing).</p>
+<details>
+  <summary>The difference between tidyverse and base R</summary>
+  <p> As we begin to delve more deeply into the <code>tidyverse</code>, we should briefly pause to mention some of the reasons for focusing on the <code>tidyverse</code> set of tools.
+  In R, there are often many ways to get a job done, and there are other approaches that can accomplish tasks similar to the <code>tidyverse</code>.</p>
+  <p> The phrase <strong>base R</strong> is used to refer to approaches that utilize functions contained in R&#39;s default packages.
+  We have already used some base R functions, such as <code>str()</code>, <code>head()</code>, and <code>mean()</code>, and we will be using more scattered throughout this lesson.
+  However, this lesson won&#39;t cover some functionalities in base R such as sub-setting with square bracket notation and base plotting.
+  You may come across code written by other people that looks like <code>surveys[1:10, 2]</code> or <code>plot(surveys$weight, surveys$hindfoot_length)</code>, which are base R commands.
+  If you&#39;re interested in learning more about these approaches, you can check out other Carpentries lessons like the <a href="https://swcarpentry.github.io/r-novice-inflammation/">Software Carpentry Programming with R</a> lesson.</p>
+  <p>We choose to teach the <code>tidyverse</code> set of packages because they share a similar syntax and philosophy, making them consistent and producing highly readable code.
+  They are also very flexible and powerful, with a growing number of packages designed according to similar principles and to work well with the rest of the packages.
+  The <code>tidyverse</code> packages tend to have very clear documentation and wide array of learning materials that tend to be written with novice users in mind.
+  Finally, the <code>tidyverse</code> has only continued to grow, and has strong support from Posti (the RStudio parent company), which implies that these approaches will be relevant into the future.</p>
+</details>
+
+<h3 id="manipulating-data">Manipulating data</h3>
+<p>One of the most important skills for working with data in R is the ability to manipulate, modify, and reshape data.
+The <code>dplyr</code> and <code>tidyr</code> packages in the <code>tidyverse</code> provide a series of powerful functions for many common data manipulation tasks.</p>
+<p>We'll start off with two of the most commonly used <code>dplyr</code> functions: <code>select()</code>, which selects certain columns of a data.frame, and <code>filter()</code>, which filters out rows according to certain criteria.</p>
+<p>Between <code>select()</code> and <code>filter()</code>, it can be hard to remember which operates on columns and which operates on rows. 
+<code>sele</code><strong><code>c</code></strong><code>t()</code> has a <strong>c</strong> for <strong>c</strong>olumns and <code>filte</code><strong><code>r</code></strong><code>()</code> has an <strong>r</strong> for <strong>r</strong>ows.</p>
+<h4 id="select"><code>select()</code></h4>
+<p>To use the <code>select()</code> function, the first argument is the name of the data.frame, and the rest of the arguments are <em>unquoted</em> names of the columns you want:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">select</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span><span class="w"> </span><span class="n">plot_id</span><span class="p">,</span><span class="w"> </span><span class="n">species_id</span><span class="p">,</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 16,878 × 3
+##    plot_id species_id hindfoot_length
+##      &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;
+##  1       2 NL                      32
+##  2       3 NL                      33
+##  3       2 DM                      37
+##  4       7 DM                      36
+##  5       3 DM                      35
+##  6       1 PF                      14
+##  7       2 PE                      NA
+##  8       1 DM                      37
+##  9       1 DM                      34
+## 10       6 PF                      20
+## # ℹ 16,868 more rows
+</code></pre></div>
+<p>The columns are arranged in the order we specified inside <code>select()</code>.</p>
+<p>To select all columns except specific columns, put a <code>-</code> in front of the column you want to exclude:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">select</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">record_id</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">year</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 16,878 × 11
+##    month   day plot_id species_id sex   hindfoot_length weight genus     species
+##    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  
+##  1     7    16       2 NL         M                  32     NA Neotoma   albigu…
+##  2     7    16       3 NL         M                  33     NA Neotoma   albigu…
+##  3     7    16       2 DM         F                  37     NA Dipodomys merria…
+##  4     7    16       7 DM         M                  36     NA Dipodomys merria…
+##  5     7    16       3 DM         M                  35     NA Dipodomys merria…
+##  6     7    16       1 PF         M                  14     NA Perognat… flavus 
+##  7     7    16       2 PE         F                  NA     NA Peromysc… eremic…
+##  8     7    16       1 DM         M                  37     NA Dipodomys merria…
+##  9     7    16       1 DM         F                  34     NA Dipodomys merria…
+## 10     7    16       6 PF         F                  20     NA Perognat… flavus 
+## # ℹ 16,868 more rows
+## # ℹ 2 more variables: taxa &lt;chr&gt;, plot_type &lt;chr&gt;
+</code></pre></div>
+<h4 id="filter"><code>filter()</code></h4>
+<p>The <code>filter()</code> function is used to select rows that meet certain criteria.
+To get all the rows where the value of <code>year</code> is equal to 1985, we would run the following:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">filter</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1985</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 1,438 × 13
+##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+##  1      9790     1    19  1985      16 RM         F                  16      4
+##  2      9791     1    19  1985      17 OT         F                  20     16
+##  3      9792     1    19  1985       6 DO         M                  35     48
+##  4      9793     1    19  1985      12 DO         F                  35     40
+##  5      9794     1    19  1985      24 RM         M                  16      4
+##  6      9795     1    19  1985      12 DO         M                  34     48
+##  7      9796     1    19  1985       6 DM         F                  37     35
+##  8      9797     1    19  1985      14 DM         M                  36     45
+##  9      9798     1    19  1985       6 DM         F                  36     38
+## 10      9799     1    19  1985      19 RM         M                  16      4
+## # ℹ 1,428 more rows
+## # ℹ 4 more variables: genus &lt;chr&gt;, species &lt;chr&gt;, taxa &lt;chr&gt;, plot_type &lt;chr&gt;
+</code></pre></div>
+<p>The <code>==</code> sign means "is equal to."
+There are several other operators we can use: &gt;, &gt;=, &lt;, &lt;=, and != (not equal to).
+Another useful operator is <code>%in%</code>, which asks if the value on the left hand side is found anywhere in the vector on the right hand side.
+For example, to get rows with specific <code>species_id</code> values, we could run:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">filter</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span><span class="w"> </span><span class="n">species_id</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;RM&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;DO&quot;</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 2,835 × 13
+##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+##  1        68     8    19  1977       8 DO         F                  32     52
+##  2       292    10    17  1977       3 DO         F                  36     33
+##  3       294    10    17  1977       3 DO         F                  37     50
+##  4       311    10    17  1977      19 RM         M                  18     13
+##  5       317    10    17  1977      17 DO         F                  32     48
+##  6       323    10    17  1977      17 DO         F                  33     31
+##  7       337    10    18  1977       8 DO         F                  35     41
+##  8       356    11    12  1977       1 DO         F                  32     44
+##  9       378    11    12  1977       1 DO         M                  33     48
+## 10       397    11    13  1977      17 RM         F                  16      7
+## # ℹ 2,825 more rows
+## # ℹ 4 more variables: genus &lt;chr&gt;, species &lt;chr&gt;, taxa &lt;chr&gt;, plot_type &lt;chr&gt;
+</code></pre></div>
+<p>We can also use multiple conditions in one <code>filter()</code> statement.
+Here we will get rows with a year less than or equal to 1988 and whose hindfoot length values are not <code>NA</code>.
+The <code>!</code> before the <code>is.na()</code> function means "not".</p>
+<div class="highlight"><pre><span></span><code><span class="nf">filter</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">1988</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">hindfoot_length</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 12,779 × 13
+##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+##  1         1     7    16  1977       2 NL         M                  32     NA
+##  2         2     7    16  1977       3 NL         M                  33     NA
+##  3         3     7    16  1977       2 DM         F                  37     NA
+##  4         4     7    16  1977       7 DM         M                  36     NA
+##  5         5     7    16  1977       3 DM         M                  35     NA
+##  6         6     7    16  1977       1 PF         M                  14     NA
+##  7         8     7    16  1977       1 DM         M                  37     NA
+##  8         9     7    16  1977       1 DM         F                  34     NA
+##  9        10     7    16  1977       6 PF         F                  20     NA
+## 10        11     7    16  1977       5 DS         F                  53     NA
+## # ℹ 12,769 more rows
+## # ℹ 4 more variables: genus &lt;chr&gt;, species &lt;chr&gt;, taxa &lt;chr&gt;, plot_type &lt;chr&gt;
+</code></pre></div>
+<p><strong>Challenge 2: Filtering and selecting</strong></p>
+<ul>
+<li>Use the surveys data to make a data.frame that has only data with years from 1980 to 1985.</li>
+</ul>
+<details>
+  <summary>Challenge solution</summary>
+
+
+<div class="highlight"><pre><span></span><code><span class="n">surveys_filtered</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">1980</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">year</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">1985</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+
+<ul>
+<li>Use the surveys data to make a data.frame that has only the following columns, in order: <code>year</code>, <code>month</code>, <code>species_id</code>, <code>plot_id</code>.</li>
+</ul>
+<details>
+  <summary>Challenge solution</summary>
+
+
+<div class="highlight"><pre><span></span><code><span class="n">surveys_selected</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">select</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">species_id</span><span class="p">,</span><span class="w"> </span><span class="n">plot_id</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+
+<h3 id="the-pipe">The pipe: <code>%&gt;%</code></h3>
+<p>What happens if we want to both <code>select()</code> and <code>filter()</code> our data?
+We have a couple options. 
+For example, we can create <strong>intermediate</strong> objects:</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys_noday</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">select</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">day</span><span class="p">)</span>
+<span class="nf">filter</span><span class="p">(</span><span class="n">surveys_noday</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">7</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 8,244 × 12
+##    record_id month  year plot_id species_id sex   hindfoot_length weight genus  
+##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  
+##  1         1     7  1977       2 NL         M                  32     NA Neotoma
+##  2         2     7  1977       3 NL         M                  33     NA Neotoma
+##  3         3     7  1977       2 DM         F                  37     NA Dipodo…
+##  4         4     7  1977       7 DM         M                  36     NA Dipodo…
+##  5         5     7  1977       3 DM         M                  35     NA Dipodo…
+##  6         6     7  1977       1 PF         M                  14     NA Perogn…
+##  7         7     7  1977       2 PE         F                  NA     NA Peromy…
+##  8         8     7  1977       1 DM         M                  37     NA Dipodo…
+##  9         9     7  1977       1 DM         F                  34     NA Dipodo…
+## 10        10     7  1977       6 PF         F                  20     NA Perogn…
+## # ℹ 8,234 more rows
+## # ℹ 3 more variables: species &lt;chr&gt;, taxa &lt;chr&gt;, plot_type &lt;chr&gt;
+</code></pre></div>
+<p>This approach accumulates a lot of intermediate objects, often with confusing names and without clear relationships between those objects.</p>
+<p>An elegant solution to this problem is an operator called the <strong>pipe</strong>, which looks like <code>%&gt;%</code>.
+You can insert it by using the keyboard shortcut <kbd>Shift+Cmd+M</kbd> (Mac) or <kbd>Shift+Ctrl+M</kbd> (Windows).
+Here's how you could use a pipe to select and filter in one step:</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">month</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">7</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 8,244 × 12
+##    record_id month  year plot_id species_id sex   hindfoot_length weight genus  
+##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  
+##  1         1     7  1977       2 NL         M                  32     NA Neotoma
+##  2         2     7  1977       3 NL         M                  33     NA Neotoma
+##  3         3     7  1977       2 DM         F                  37     NA Dipodo…
+##  4         4     7  1977       7 DM         M                  36     NA Dipodo…
+##  5         5     7  1977       3 DM         M                  35     NA Dipodo…
+##  6         6     7  1977       1 PF         M                  14     NA Perogn…
+##  7         7     7  1977       2 PE         F                  NA     NA Peromy…
+##  8         8     7  1977       1 DM         M                  37     NA Dipodo…
+##  9         9     7  1977       1 DM         F                  34     NA Dipodo…
+## 10        10     7  1977       6 PF         F                  20     NA Perogn…
+## # ℹ 8,234 more rows
+## # ℹ 3 more variables: species &lt;chr&gt;, taxa &lt;chr&gt;, plot_type &lt;chr&gt;
+</code></pre></div>
+<p>What it does is take the thing on the left hand side and insert it as the first argument of the function on the right hand side.
+By putting each of our functions onto a new line, we can build a nice, readable chunk of code.
+It can be useful to think of this as a little assembly line for our data.
+It starts at the top and gets piped into a <code>select()</code> function, and it comes out modified somewhat.
+It then gets sent into the <code>filter()</code> function, where it is further modified, and then the final product gets printed out to our console.
+It can also be helpful to think of <code>%&gt;%</code> as meaning "and then".
+Since many <code>tidyverse</code> functions have verbs for names, these chunks of code can be read like a sentence.</p>
+<p>If we want to store this final product as an object, we use an assignment arrow at the start:</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys_sub</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">month</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">7</span><span class="p">)</span>
+</code></pre></div>
+<p>One approach is to build a piped together code chunk step by step prior to assignment.
+You add functions to the chunk as you go, with the results printing in the console for you to view.
+Once you're satisfied with your final result, go back and add the assignment arrow statement at the start. This approach is very interactive, allowing you to see the results of each step as you build the chunk, and produces nicely readable code.</p>
+<p><strong>Challenge 3: Using pipes</strong></p>
+<p>Use the surveys data to make a data.frame that has the columns <code>record_id</code>, <code>month</code>, and <code>species_id</code>, with data from the year 1988.
+Use a pipe between the function calls.</p>
+<details>
+  <summary>Challenge solution</summary>
+
+
+<div class="highlight"><pre><span></span><code><span class="n">surveys_1988</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">year</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1988</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="n">record_id</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">species_id</span><span class="p">)</span>
+</code></pre></div>
+
+Make sure to `filter()` before you `select()`; you need to use the `year` column for filtering rows, but it is discarded in the `select()` step.
+You also need to make sure to use `==` instead of `=` when you are filtering rows where `year` is equal to 1988.
+
+</details>
+
+<h3 id="making-new-columns-with-mutate">Making new columns with <code>mutate()</code></h3>
+<p>Another common task is creating a new column based on values in existing columns.
+For example, we could add a new column that has the weight in kilograms instead of grams:</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">weight_kg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">1000</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 16,878 × 14
+##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+##  1         1     7    16  1977       2 NL         M                  32     NA
+##  2         2     7    16  1977       3 NL         M                  33     NA
+##  3         3     7    16  1977       2 DM         F                  37     NA
+##  4         4     7    16  1977       7 DM         M                  36     NA
+##  5         5     7    16  1977       3 DM         M                  35     NA
+##  6         6     7    16  1977       1 PF         M                  14     NA
+##  7         7     7    16  1977       2 PE         F                  NA     NA
+##  8         8     7    16  1977       1 DM         M                  37     NA
+##  9         9     7    16  1977       1 DM         F                  34     NA
+## 10        10     7    16  1977       6 PF         F                  20     NA
+## # ℹ 16,868 more rows
+## # ℹ 5 more variables: genus &lt;chr&gt;, species &lt;chr&gt;, taxa &lt;chr&gt;, plot_type &lt;chr&gt;,
+## #   weight_kg &lt;dbl&gt;
+</code></pre></div>
+<p>You can create multiple columns in one <code>mutate()</code> call, and they will get created in the order you write them.
+This means you can even reference the first new column in the second new column:</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">weight_kg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span>
+<span class="w">         </span><span class="n">weight_lbs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight_kg</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2.2</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 16,878 × 15
+##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+##  1         1     7    16  1977       2 NL         M                  32     NA
+##  2         2     7    16  1977       3 NL         M                  33     NA
+##  3         3     7    16  1977       2 DM         F                  37     NA
+##  4         4     7    16  1977       7 DM         M                  36     NA
+##  5         5     7    16  1977       3 DM         M                  35     NA
+##  6         6     7    16  1977       1 PF         M                  14     NA
+##  7         7     7    16  1977       2 PE         F                  NA     NA
+##  8         8     7    16  1977       1 DM         M                  37     NA
+##  9         9     7    16  1977       1 DM         F                  34     NA
+## 10        10     7    16  1977       6 PF         F                  20     NA
+## # ℹ 16,868 more rows
+## # ℹ 6 more variables: genus &lt;chr&gt;, species &lt;chr&gt;, taxa &lt;chr&gt;, plot_type &lt;chr&gt;,
+## #   weight_kg &lt;dbl&gt;, weight_lbs &lt;dbl&gt;
+</code></pre></div>
+<h3 id="the-split-apply-combine-approach">The split-apply-combine approach</h3>
+<p>Many data analysis tasks can be achieved using the split-apply-combine approach: you split the data into groups, apply some analysis to each group, and combine the results in some way.
+<code>dplyr</code> has a few convenient functions to enable this approach, the main two being <code>group_by()</code> and <code>summarize()</code>.</p>
+<p><code>group_by()</code> takes a data.frame and the name of one or more columns with categorical values that define the groups.
+<code>summarize()</code> then collapses each group into a one-row summary of the group, giving you back a data.frame with one row per group.
+The syntax for <code>summarize()</code> is similar to <code>mutate()</code>, where you define new columns based on values of other columns.
+Let's try calculating the mean weight of all our animals by sex.</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">sex</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">summarize</span><span class="p">(</span><span class="n">mean_weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 3 × 2
+##   sex   mean_weight
+##   &lt;chr&gt;       &lt;dbl&gt;
+## 1 F            53.1
+## 2 M            53.2
+## 3 &lt;NA&gt;         74.0
+</code></pre></div>
+<p>You can see that the mean weight for males is slightly higher than for females, but that animals whose sex is unknown have much higher weights.
+This is probably due to small sample size, but we should check to be sure.
+Like <code>mutate()</code>, we can define multiple columns in one <code>summarize()</code> call.
+The function <code>n()</code> will count the number of rows in each group.</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">sex</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">summarize</span><span class="p">(</span><span class="n">mean_weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">),</span>
+<span class="w">            </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">n</span><span class="p">())</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 3 × 3
+##   sex   mean_weight     n
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;
+## 1 F            53.1  7318
+## 2 M            53.2  8260
+## 3 &lt;NA&gt;         74.0  1300
+</code></pre></div>
+<p>You will often want to create groups based on multiple columns.
+For example, we might be interested in the mean weight of every species + sex combination.
+All we have to do is add another column to our <code>group_by()</code> call.</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">species_id</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">summarize</span><span class="p">(</span><span class="n">mean_weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">),</span>
+<span class="w">            </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">n</span><span class="p">())</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## `summarise()` has grouped output by &#39;species_id&#39;. You can override using the
+## `.groups` argument.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 67 × 4
+## # Groups:   species_id [36]
+##    species_id sex   mean_weight     n
+##    &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;
+##  1 AB         &lt;NA&gt;        NaN     223
+##  2 AH         &lt;NA&gt;        NaN     136
+##  3 BA         M             7       3
+##  4 CB         &lt;NA&gt;        NaN      23
+##  5 CM         &lt;NA&gt;        NaN      13
+##  6 CQ         &lt;NA&gt;        NaN      16
+##  7 CS         &lt;NA&gt;        NaN       1
+##  8 CV         &lt;NA&gt;        NaN       1
+##  9 DM         F            40.7  2522
+## 10 DM         M            44.0  3108
+## # ℹ 57 more rows
+</code></pre></div>
+<p>Our resulting data.frame is much larger, since we have a greater number of groups.
+We also see a strange value showing up in our <code>mean_weight</code> column: <code>NaN</code>.
+This stands for "Not a Number", and it often results from trying to do an operation a vector with zero entries.
+How can a vector have zero entries?
+Well, if a particular group (like the AB species ID + <code>NA</code> sex group) has <strong>only</strong> <code>NA</code> values for weight, then the <code>na.rm = T</code> argument in <code>mean()</code> will remove <strong>all</strong> the values prior to calculating the mean.
+The result will be a value of <code>NaN</code>.
+Since we are not particularly interested in these values, let's add a step to our pipeline to remove rows where weight is <code>NA</code> <strong>before</strong> doing any other steps.
+This means that any groups with only <code>NA</code> values will disappear from our data.frame before we formally create the groups with <code>group_by()</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">weight</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">species_id</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">summarize</span><span class="p">(</span><span class="n">mean_weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">weight</span><span class="p">),</span>
+<span class="w">            </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">n</span><span class="p">())</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## `summarise()` has grouped output by &#39;species_id&#39;. You can override using the
+## `.groups` argument.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 46 × 4
+## # Groups:   species_id [18]
+##    species_id sex   mean_weight     n
+##    &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;
+##  1 BA         M             7       3
+##  2 DM         F            40.7  2460
+##  3 DM         M            44.0  3013
+##  4 DM         &lt;NA&gt;         37       8
+##  5 DO         F            48.4   679
+##  6 DO         M            49.3   748
+##  7 DO         &lt;NA&gt;         44       1
+##  8 DS         F           118.   1055
+##  9 DS         M           123.   1184
+## 10 DS         &lt;NA&gt;        121.     16
+## # ℹ 36 more rows
+</code></pre></div>
+<p>That looks better!
+It's often useful to take a look at the results in some order, like the lowest mean weight to highest.
+We can use the <code>arrange()</code> function for that:</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">weight</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">species_id</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">summarize</span><span class="p">(</span><span class="n">mean_weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">weight</span><span class="p">),</span>
+<span class="w">            </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">arrange</span><span class="p">(</span><span class="n">mean_weight</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## `summarise()` has grouped output by &#39;species_id&#39;. You can override using the
+## `.groups` argument.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 46 × 4
+## # Groups:   species_id [18]
+##    species_id sex   mean_weight     n
+##    &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;
+##  1 PF         &lt;NA&gt;         6        2
+##  2 BA         M            7        3
+##  3 PF         F            7.09   215
+##  4 PF         M            7.10   296
+##  5 RM         M            9.92   678
+##  6 RM         &lt;NA&gt;        10.4      7
+##  7 RM         F           10.7    629
+##  8 RF         M           12.4     16
+##  9 RF         F           13.7     46
+## 10 PP         &lt;NA&gt;        15        2
+## # ℹ 36 more rows
+</code></pre></div>
+<p>If we want to reverse the order, we can wrap the column name in <code>desc()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">weight</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">species_id</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">summarize</span><span class="p">(</span><span class="n">mean_weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">weight</span><span class="p">),</span>
+<span class="w">            </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">arrange</span><span class="p">(</span><span class="nf">desc</span><span class="p">(</span><span class="n">mean_weight</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## `summarise()` has grouped output by &#39;species_id&#39;. You can override using the
+## `.groups` argument.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 46 × 4
+## # Groups:   species_id [18]
+##    species_id sex   mean_weight     n
+##    &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;
+##  1 NL         M           168.    355
+##  2 NL         &lt;NA&gt;        164.      9
+##  3 NL         F           151.    460
+##  4 SS         M           130       1
+##  5 DS         M           123.   1184
+##  6 DS         &lt;NA&gt;        121.     16
+##  7 DS         F           118.   1055
+##  8 SH         F            79.2    61
+##  9 SH         M            67.6    34
+## 10 SF         F            58.3     3
+## # ℹ 36 more rows
+</code></pre></div>
+<p>You may have seen several messages saying `summarise() has grouped output by 'species_id'. 
+These are warning you that your resulting data.frame has retained some group structure, which means any subsequent operations on that data.frame will happen at the group level.
+If you look at the resulting data.frame printed out in your console, you will see these lines:</p>
+<div class="highlight"><pre><span></span><code># A tibble: 46 × 4
+# Groups:   species_id [18]
+</code></pre></div>
+<p>They tell us we have a data.frame with 46 rows, 4 columns, and a group variable <code>species_id</code>, for which there are 18 groups.
+We will see something similar if we use <code>group_by()</code> alone:</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">species_id</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 16,878 × 13
+## # Groups:   species_id, sex [67]
+##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+##  1         1     7    16  1977       2 NL         M                  32     NA
+##  2         2     7    16  1977       3 NL         M                  33     NA
+##  3         3     7    16  1977       2 DM         F                  37     NA
+##  4         4     7    16  1977       7 DM         M                  36     NA
+##  5         5     7    16  1977       3 DM         M                  35     NA
+##  6         6     7    16  1977       1 PF         M                  14     NA
+##  7         7     7    16  1977       2 PE         F                  NA     NA
+##  8         8     7    16  1977       1 DM         M                  37     NA
+##  9         9     7    16  1977       1 DM         F                  34     NA
+## 10        10     7    16  1977       6 PF         F                  20     NA
+## # ℹ 16,868 more rows
+## # ℹ 4 more variables: genus &lt;chr&gt;, species &lt;chr&gt;, taxa &lt;chr&gt;, plot_type &lt;chr&gt;
+</code></pre></div>
+<p>What we get back is the entire <code>surveys</code> data.frame, but with the grouping variables added: 67 groups of <code>species_id</code> + <code>sex</code> combinations.
+Groups are often maintained throughout a pipeline, and if you assign the resulting data.frame to a new object, it will also have those groups.
+This can lead to confusing results if you forget about the grouping and want to carry out operations on the whole data.frame, not by group.
+Therefore, it is a good habit to remove the groups at the end of a chunk of piped code containing <code>group_by()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">weight</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">species_id</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">summarize</span><span class="p">(</span><span class="n">mean_weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">weight</span><span class="p">),</span>
+<span class="w">            </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">arrange</span><span class="p">(</span><span class="nf">desc</span><span class="p">(</span><span class="n">mean_weight</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">ungroup</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## `summarise()` has grouped output by &#39;species_id&#39;. You can override using the
+## `.groups` argument.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 46 × 4
+##    species_id sex   mean_weight     n
+##    &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;
+##  1 NL         M           168.    355
+##  2 NL         &lt;NA&gt;        164.      9
+##  3 NL         F           151.    460
+##  4 SS         M           130       1
+##  5 DS         M           123.   1184
+##  6 DS         &lt;NA&gt;        121.     16
+##  7 DS         F           118.   1055
+##  8 SH         F            79.2    61
+##  9 SH         M            67.6    34
+## 10 SF         F            58.3     3
+## # ℹ 36 more rows
+</code></pre></div>
+<p>Now our data.frame just says <code># A tibble: 46 × 4</code> at the top, with no groups.</p>
+<p><strong>Challenge 4: Making a time series</strong></p>
+<ul>
+<li>Use the split-apply-combine approach to make a <code>data.frame</code> that counts the total number of animals of each sex caught on each day in the <code>surveys</code> data.</li>
+</ul>
+<details>
+  <summary>Challenge solution</summary>
+
+
+<div class="highlight"><pre><span></span><code><span class="n">surveys_daily_counts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ymd</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">summarize</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">n</span><span class="p">())</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>## `summarise()` has grouped output by &#39;date&#39;. You can override using the
+## `.groups` argument.
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># shorter approach using count()</span>
+<span class="n">surveys_daily_counts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ymd</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">count</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+
+<ul>
+<li>Now use the data.frame you just made to plot the daily number of animals of each sex caught over time.
+It's up to you what <code>geom</code> to use, but a <code>line</code> plot might be a good choice.
+You should also think about how to differentiate which data corresponds to which sex.</li>
+</ul>
+<details>
+  <summary>Challenge solution</summary>
+
+
+<div class="highlight"><pre><span></span><code><span class="n">surveys_daily_counts</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">()</span>
+</code></pre></div>
+
+![](lesson_files/figure-html/time-series-challenge-answer-1.png)<!-- -->
+
+</details>
+
+<h3 id="joining-data-together-with-the-join-functions">Joining data together with the <code>*join()</code> functions</h3>
+<p>Often times, all the data you need to do a project might be contained in multiple CSV files.
+When you read those files into R, they will be in separate data.frames.
+To combine two different data.frames that both contain at least one shared column of information, you can use the dplyr <code>*join()</code> commands.</p>
+<p>We'll practice a <code>*join()</code> command by downloading and reading in a CSV file that annotates the <code>plot_type</code> for each plot in our <code>surveys</code> data.frame.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">download.file</span><span class="p">(</span><span class="s">&quot;https://ndownloader.figshare.com/files/3299474&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;plots.csv&quot;</span><span class="p">)</span>
+<span class="n">plots</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&quot;plots.csv&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## Rows: 24 Columns: 2
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (1): plot_type
+## dbl (1): plot_id
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nf">head</span><span class="p">(</span><span class="n">plots</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 6 × 2
+##   plot_id plot_type                
+##     &lt;dbl&gt; &lt;chr&gt;                    
+## 1       1 Spectab exclosure        
+## 2       2 Control                  
+## 3       3 Long-term Krat Exclosure 
+## 4       4 Control                  
+## 5       5 Rodent Exclosure         
+## 6       6 Short-term Krat Exclosure
+</code></pre></div>
+<p>There are multiple join commands: <code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, and <code>full_join()</code>.
+We'll practice doing a <code>left_join()</code>: for two data.frames, keep all rows in the left data.frame even if this introduces <code>NA</code> values because there is no corresponding information in the right data.frame.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">left_join</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span><span class="w"> </span><span class="n">plots</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;plot_id&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 16,878 × 14
+##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+##  1         1     7    16  1977       2 NL         M                  32     NA
+##  2         2     7    16  1977       3 NL         M                  33     NA
+##  3         3     7    16  1977       2 DM         F                  37     NA
+##  4         4     7    16  1977       7 DM         M                  36     NA
+##  5         5     7    16  1977       3 DM         M                  35     NA
+##  6         6     7    16  1977       1 PF         M                  14     NA
+##  7         7     7    16  1977       2 PE         F                  NA     NA
+##  8         8     7    16  1977       1 DM         M                  37     NA
+##  9         9     7    16  1977       1 DM         F                  34     NA
+## 10        10     7    16  1977       6 PF         F                  20     NA
+## # ℹ 16,868 more rows
+## # ℹ 5 more variables: genus &lt;chr&gt;, species &lt;chr&gt;, taxa &lt;chr&gt;,
+## #   plot_type.x &lt;chr&gt;, plot_type.y &lt;chr&gt;
+</code></pre></div>
+<p>In this command, we tell R to join the two data.frames by the <code>plot_id</code> column.
+In order for the two data.frames to be combined, they must share the same value in the <code>plot_id</code> column.
+However, when we look at the output, we see that we've introduced new columns, <code>plot_type.x</code> and <code>plot_typs.y</code>.
+It turns out we already had this information in our data.frame and didn't need to do a join.
+When we did, we only specified that we wanted to join on <code>plot_id</code>, but both data.frames shared the <code>plot_type</code> variable name, so the <code>left_join()</code> functions appended the suffixes <code>.x</code> and <code>.y</code>.</p>
+<p>Instead, let's join on two column names:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">left_join</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span><span class="w"> </span><span class="n">plots</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;plot_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;plot_type&quot;</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 16,878 × 13
+##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+##  1         1     7    16  1977       2 NL         M                  32     NA
+##  2         2     7    16  1977       3 NL         M                  33     NA
+##  3         3     7    16  1977       2 DM         F                  37     NA
+##  4         4     7    16  1977       7 DM         M                  36     NA
+##  5         5     7    16  1977       3 DM         M                  35     NA
+##  6         6     7    16  1977       1 PF         M                  14     NA
+##  7         7     7    16  1977       2 PE         F                  NA     NA
+##  8         8     7    16  1977       1 DM         M                  37     NA
+##  9         9     7    16  1977       1 DM         F                  34     NA
+## 10        10     7    16  1977       6 PF         F                  20     NA
+## # ℹ 16,868 more rows
+## # ℹ 4 more variables: genus &lt;chr&gt;, species &lt;chr&gt;, taxa &lt;chr&gt;, plot_type &lt;chr&gt;
+</code></pre></div>
+<p>Now no suffixes are added to our column names.</p>
+<h3 id="exporting-data">Exporting data</h3>
+<p>Let's say we want to send the wide version of our <code>surveys_1988</code> data.frame to a colleague who doesn't use R.
+In this case, we might want to save it as a CSV file.</p>
+<p>We can save this data.frame to a CSV using the <code>write_csv()</code> function from the <code>readr</code> package.
+The first argument is the name of the data.frame, and the second is the path to the new file we want to create, including the file extension <code>.csv</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">write_csv</span><span class="p">(</span><span class="n">surveys_1988</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~/Downloads/surveys_1988.csv&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>If we go look into our <code>Downloads</code> folder, we will see this new CSV file.</p>
+<h2 id="extras">Extras</h2>
+<h3 id="building-vectors-from-scratch">Building vectors from scratch</h3>
+<p>While the <code>c()</code> function is very flexible, it doesn't necessarily scale well.
+If you want to generate a long vector from scratch, you probably don't want to type everything out manually.
+There are a few functions that can help generate vectors.</p>
+<p>First, putting <code>:</code> between two numbers will generate a vector of integers starting with the first number and ending with the last. The <code>seq()</code> function allows you to generate similar sequences, but changing by any amount.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># generates a sequence of integers</span>
+<span class="m">1</span><span class="o">:</span><span class="m">10</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>##  [1]  1  2  3  4  5  6  7  8  9 10
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># with seq() you can generate sequences with a combination of:</span>
+<span class="c1"># from: starting value</span>
+<span class="c1"># to: ending value</span>
+<span class="c1"># by: how much should each entry increase</span>
+<span class="c1"># length.out: how long should the resulting vector be</span>
+<span class="nf">seq</span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>##  [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nf">seq</span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>##  [1] 0.00000000 0.02040816 0.04081633 0.06122449 0.08163265 0.10204082
+##  [7] 0.12244898 0.14285714 0.16326531 0.18367347 0.20408163 0.22448980
+## [13] 0.24489796 0.26530612 0.28571429 0.30612245 0.32653061 0.34693878
+## [19] 0.36734694 0.38775510 0.40816327 0.42857143 0.44897959 0.46938776
+## [25] 0.48979592 0.51020408 0.53061224 0.55102041 0.57142857 0.59183673
+## [31] 0.61224490 0.63265306 0.65306122 0.67346939 0.69387755 0.71428571
+## [37] 0.73469388 0.75510204 0.77551020 0.79591837 0.81632653 0.83673469
+## [43] 0.85714286 0.87755102 0.89795918 0.91836735 0.93877551 0.95918367
+## [49] 0.97959184 1.00000000
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nf">seq</span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>##  [1] 0.00 0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.10 0.11 0.12 0.13 0.14
+## [16] 0.15 0.16 0.17 0.18 0.19
+</code></pre></div>
+<p>Finally, the <code>rep()</code> function allows you to repeat a value, or even a whole vector, as many times as you want, and works with any type of vector.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># repeats &quot;a&quot; 12 times</span>
+<span class="nf">rep</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>##  [1] &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># repeats this whole sequence 4 times</span>
+<span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;c&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># repeats each value 4 times</span>
+<span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>##  [1]  1  1  1  1  2  2  2  2  3  3  3  3  4  4  4  4  5  5  5  5  6  6  6  6  7
+## [26]  7  7  7  8  8  8  8  9  9  9  9 10 10 10 10
+</code></pre></div>
+<p><strong>Extra Challenge : Creating sequences</strong></p>
+<ol>
+<li>Write some code to generate the following vector:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>##  [1] -3 -2 -1  0  1  2  3 -3 -2 -1  0  1  2  3 -3 -2 -1  0  1  2  3
+</code></pre></div>
+<details>
+  <summary>Challenge solution</summary>
+
+
+<div class="highlight"><pre><span></span><code><span class="nf">rep</span><span class="p">(</span><span class="m">-3</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>##  [1] -3 -2 -1  0  1  2  3 -3 -2 -1  0  1  2  3 -3 -2 -1  0  1  2  3
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># this also works</span>
+<span class="nf">rep</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-3</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>##  [1] -3 -2 -1  0  1  2  3 -3 -2 -1  0  1  2  3 -3 -2 -1  0  1  2  3
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># you might also store the sequence as an intermediate vector</span>
+
+<span class="n">my_seq</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-3</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="nf">rep</span><span class="p">(</span><span class="n">my_seq</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>##  [1] -3 -2 -1  0  1  2  3 -3 -2 -1  0  1  2  3 -3 -2 -1  0  1  2  3
+</code></pre></div>
+
+</details>
+
+<ol>
+<li>Calculate the quantiles for the <code>complete_old</code> hindfoot lengths at every 5% level (0%, 5%, 10%, 15%, etc.)</li>
+</ol>
+<details>
+  <summary>Challenge solution</summary>
+
+
+<div class="highlight"><pre><span></span><code><span class="nf">quantile</span><span class="p">(</span><span class="n">complete_old</span><span class="o">$</span><span class="n">hindfoot_length</span><span class="p">,</span><span class="w"> </span>
+<span class="w">         </span><span class="n">probs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">),</span>
+<span class="w">         </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>##   0%   5%  10%  15%  20%  25%  30%  35%  40%  45%  50%  55%  60%  65%  70%  75% 
+##    6   16   17   19   20   21   22   31   33   34   35   35   36   36   36   37 
+##  80%  85%  90%  95% 100% 
+##   37   39   49   51   70
+</code></pre></div>
+
+</details>
+
+<h3 id="an-explanation-and-exploration-of-factors">An explanation and exploration of factors</h3>
+<p>We will spend a bit more time talking about factors, since they are often a challenging type of data to work with.
+We can create a factor from scratch by putting a character vector made using <code>c()</code> into the <code>factor()</code> function:</p>
+<div class="highlight"><pre><span></span><code><span class="n">sex</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;male&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;male&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;female&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">))</span>
+
+<span class="n">sex</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## [1] male   female female male   female &lt;NA&gt;  
+## Levels: female male
+</code></pre></div>
+<p>We can inspect the levels of the factor using the <code>levels()</code> function:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">levels</span><span class="p">(</span><span class="n">sex</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## [1] &quot;female&quot; &quot;male&quot;
+</code></pre></div>
+<p>In general, it is a good practice to leave your categorical data as a <strong>character</strong> vector until you need to use a factor.
+Here are some reasons you might need a factor:</p>
+<ol>
+<li>Another function requires you to use a factor</li>
+<li>You are plotting categorical data and want to control the ordering of categories in the plot</li>
+</ol>
+<p>Since factors can behave differently from character vectors, it is always a good idea to check what type of data you're working with.
+You might use a new function for the first time and be confused by the results, only to realize later that it produced a factor as an output, when you thought it was a character vector.</p>
+<p>You can convert a factor to a character vector using the <code>as.character()</code> function:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">as.character</span><span class="p">(</span><span class="n">sex</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## [1] &quot;male&quot;   &quot;female&quot; &quot;female&quot; &quot;male&quot;   &quot;female&quot; NA
+</code></pre></div>
+<p>However, you need to be careful if you're somehow working with a factor that has numbers as its levels:</p>
+<div class="highlight"><pre><span></span><code><span class="n">f_num</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1990</span><span class="p">,</span><span class="w"> </span><span class="m">1983</span><span class="p">,</span><span class="w"> </span><span class="m">1977</span><span class="p">,</span><span class="w"> </span><span class="m">1998</span><span class="p">,</span><span class="w"> </span><span class="m">1990</span><span class="p">))</span>
+
+<span class="c1"># this will pull out the underlying integers, not the levels</span>
+<span class="nf">as.numeric</span><span class="p">(</span><span class="n">f_num</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## [1] 3 2 1 4 3
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># if we first convert to characters, we can then convert to numbers</span>
+<span class="nf">as.numeric</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">f_num</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## [1] 1990 1983 1977 1998 1990
+</code></pre></div>
+<h3 id="reshaping-data-with-tidyr">Reshaping data with <code>tidyr</code></h3>
+<p>Let's say we are interested in comparing the mean weights of each species across our different plots.
+We can begin this process using the <code>group_by()</code> + <code>summarize()</code> approach:</p>
+<div class="highlight"><pre><span></span><code><span class="n">sp_by_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">weight</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">species_id</span><span class="p">,</span><span class="w"> </span><span class="n">plot_id</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">summarise</span><span class="p">(</span><span class="n">mean_weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">weight</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">arrange</span><span class="p">(</span><span class="n">species_id</span><span class="p">,</span><span class="w"> </span><span class="n">plot_id</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## `summarise()` has grouped output by &#39;species_id&#39;. You can override using the
+## `.groups` argument.
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">sp_by_plot</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 300 × 3
+## # Groups:   species_id [18]
+##    species_id plot_id mean_weight
+##    &lt;chr&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+##  1 BA               3         8  
+##  2 BA              21         6.5
+##  3 DM               1        42.7
+##  4 DM               2        42.6
+##  5 DM               3        41.2
+##  6 DM               4        41.9
+##  7 DM               5        42.6
+##  8 DM               6        42.1
+##  9 DM               7        43.2
+## 10 DM               8        43.4
+## # ℹ 290 more rows
+</code></pre></div>
+<p>That looks great, but it is a bit difficult to compare values across plots.
+It would be nice if we could reshape this data.frame to make those comparisons easier
+Well, the <code>tidyr</code> package from the <code>tidyverse</code> has a pair of functions that allow you to reshape data by pivoting it: <code>pivot_wider()</code> and <code>pivot_longer()</code>. <code>pivot_wider()</code> will make the data wider, which means increasing the number of columns and reducing the number of rows.
+<code>pivot_longer()</code> will do the opposite, reducing the number of columns and increasing the number of rows.</p>
+<p>In this case, it might be nice to create a data.frame where each species has its own row, and each plot has its own column containing the mean weight for a given species. We will use <code>pivot_wider()</code> to reshape our data in this way. It takes 3 arguments:</p>
+<ol>
+<li>the name of the data.frame</li>
+<li><code>names_from</code>: which column should be used to generate the names of the new columns?</li>
+<li><code>values_from</code>: which column should be used to fill in the values of the new columns?</li>
+</ol>
+<p>Any columns not used for <code>names_from</code> or <code>values_from</code> will not be pivoted.</p>
+<p><img alt="" src="../fig/pivot_wider.png" />{alt='Diagram depicting the behavior of <code>pivot_wider()</code> on a small tabular dataset.'}</p>
+<p>In our case, we want the new columns to be named from our <code>plot_id</code> column, with the values coming from the <code>mean_weight</code> column. We can pipe our data.frame right into <code>pivot_wider()</code> and add those two arguments:</p>
+<div class="highlight"><pre><span></span><code><span class="n">sp_by_plot_wide</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sp_by_plot</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">pivot_wider</span><span class="p">(</span><span class="n">names_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_id</span><span class="p">,</span><span class="w"> </span>
+<span class="w">              </span><span class="n">values_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean_weight</span><span class="p">)</span>
+
+<span class="n">sp_by_plot_wide</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 18 × 25
+## # Groups:   species_id [18]
+##    species_id    `3`   `21`    `1`    `2`    `4`   `5`    `6`   `7`    `8`
+##    &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1 BA           8      6.5   NA     NA     NA     NA    NA     NA    NA   
+##  2 DM          41.2   41.5   42.7   42.6   41.9   42.6  42.1   43.2  43.4 
+##  3 DO          42.7   NA     50.1   50.3   46.8   50.4  49.0   52    49.2 
+##  4 DS         128.    NA    129.   125.   118.   111.  114.   126.  128.  
+##  5 NL         171.   136.   154.   171.   164.   192.  176.   170.  134.  
+##  6 OL          32.1   28.6   35.5   34     33.0   32.6  31.8   NA    30.3 
+##  7 OT          24.1   24.1   23.7   24.9   26.5   23.6  23.5   22    24.1 
+##  8 OX          22     NA     NA     22     NA     20    NA     NA    NA   
+##  9 PE          22.7   19.6   21.6   22.0   NA     21    21.6   22.8  19.4 
+## 10 PF           7.12   7.23   6.57   6.89   6.75   7.5   7.54   7     6.78
+## 11 PH          28     31     NA     NA     NA     29    NA     NA    NA   
+## 12 PM          20.1   23.6   23.7   23.9   NA     23.7  22.3   23.4  23   
+## 13 PP          17.1   13.6   14.3   16.4   14.8   19.8  16.8   NA    13.9 
+## 14 RF          14.8   17     NA     16     NA     14    12.1   13    NA   
+## 15 RM          10.3    9.89  10.9   10.6   10.4   10.8  10.6   10.7   9   
+## 16 SF          NA     49     NA     NA     NA     NA    NA     NA    NA   
+## 17 SH          76.0   79.9   NA     88     NA     82.7  NA     NA    NA   
+## 18 SS          NA     NA     NA     NA     NA     NA    NA     NA    NA   
+## # ℹ 15 more variables: `9` &lt;dbl&gt;, `10` &lt;dbl&gt;, `11` &lt;dbl&gt;, `12` &lt;dbl&gt;,
+## #   `13` &lt;dbl&gt;, `14` &lt;dbl&gt;, `15` &lt;dbl&gt;, `16` &lt;dbl&gt;, `17` &lt;dbl&gt;, `18` &lt;dbl&gt;,
+## #   `19` &lt;dbl&gt;, `20` &lt;dbl&gt;, `22` &lt;dbl&gt;, `23` &lt;dbl&gt;, `24` &lt;dbl&gt;
+</code></pre></div>
+<p>Now we've got our reshaped data.frame. There are a few things to notice. First, we have a new column for each <code>plot_id</code> value. There is one old column left in the data.frame: <code>species_id</code>. It wasn't used in <code>pivot_wider()</code>, so it stays, and now contains a single entry for each unique <code>species_id</code> value. </p>
+<p>Finally, a lot of <code>NA</code>s have appeared. Some species aren't found in every plot, but because a data.frame has to have a value in every row and every column, an <code>NA</code> is inserted. We can double-check this to verify what is going on. </p>
+<p>Looking in our new pivoted data.frame, we can see that there is an <code>NA</code> value for the species <code>BA</code> in plot <code>1</code>. Let's take our <code>sp_by_plot</code> data.frame and look for the <code>mean_weight</code> of that species + plot combination.</p>
+<div class="highlight"><pre><span></span><code><span class="n">sp_by_plot</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">species_id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;BA&quot;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">plot_id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 0 × 3
+## # Groups:   species_id [0]
+## # ℹ 3 variables: species_id &lt;chr&gt;, plot_id &lt;dbl&gt;, mean_weight &lt;dbl&gt;
+</code></pre></div>
+<p>We get back 0 rows. There is no <code>mean_weight</code> for the species <code>BA</code> in plot <code>1</code>. This either happened because no <code>BA</code> were ever caught in plot <code>1</code>, or because every <code>BA</code> caught in plot <code>1</code> had an <code>NA</code> weight value and all the rows got removed when we used <code>filter(!is.na(weight))</code> in the process of making <code>sp_by_plot</code>. Because there are no rows with that species + plot combination, in our pivoted data.frame, the value gets filled with <code>NA</code>.</p>
+<p>There is another <code>pivot_</code> function that does the opposite, moving data from a wide to long format, called <code>pivot_longer()</code>. It takes 3 arguments: <code>cols</code> for the columns you want to pivot, <code>names_to</code> for the name of the new column which will contain the old column names, and <code>values_to</code> for the name of the new column which will contain the old values.</p>
+<p><img alt="" src="../fig/pivot_longer.png" />{alt='Diagram depicting the behavior of <code>pivot_longer()</code> on a small tabular dataset.'}</p>
+<p>We can pivot our new wide data.frame to a long format using <code>pivot_longer()</code>. We want to pivot all the columns except <code>species_id</code>, and we will use <code>PLOT</code> for the new column of plot IDs, and <code>MEAN_WT</code> for the new column of mean weight values.</p>
+<div class="highlight"><pre><span></span><code><span class="n">sp_by_plot_wide</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">pivot_longer</span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">species_id</span><span class="p">,</span><span class="w"> </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PLOT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MEAN_WT&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 432 × 3
+## # Groups:   species_id [18]
+##    species_id PLOT  MEAN_WT
+##    &lt;chr&gt;      &lt;chr&gt;   &lt;dbl&gt;
+##  1 BA         3         8  
+##  2 BA         21        6.5
+##  3 BA         1        NA  
+##  4 BA         2        NA  
+##  5 BA         4        NA  
+##  6 BA         5        NA  
+##  7 BA         6        NA  
+##  8 BA         7        NA  
+##  9 BA         8        NA  
+## 10 BA         9        NA  
+## # ℹ 422 more rows
+</code></pre></div>
+<p>One thing you will notice is that all those <code>NA</code> values that got generated when we pivoted wider. However, we can filter those out, which gets us back to the same data as <code>sp_by_plot</code>, before we pivoted it wider.</p>
+<div class="highlight"><pre><span></span><code><span class="n">sp_by_plot_wide</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">pivot_longer</span><span class="p">(</span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">species_id</span><span class="p">,</span><span class="w"> </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PLOT&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MEAN_WT&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">MEAN_WT</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 300 × 3
+## # Groups:   species_id [18]
+##    species_id PLOT  MEAN_WT
+##    &lt;chr&gt;      &lt;chr&gt;   &lt;dbl&gt;
+##  1 BA         3         8  
+##  2 BA         21        6.5
+##  3 DM         3        41.2
+##  4 DM         21       41.5
+##  5 DM         1        42.7
+##  6 DM         2        42.6
+##  7 DM         4        41.9
+##  8 DM         5        42.6
+##  9 DM         6        42.1
+## 10 DM         7        43.2
+## # ℹ 290 more rows
+</code></pre></div>
+<p>Data are often recorded in spreadsheets in a wider format, but lots of <code>tidyverse</code> tools, especially <code>ggplot2</code>, like data in a longer format, so <code>pivot_longer()</code> is often very useful.</p>
+<h3 id="getting-rid-of-any-row-where-any-value-is-na-with-drop_na">Getting rid of any row where any value is <code>NA</code> with <code>drop_na()</code></h3>
+<p>In the split-apply-combine approach section above, we covered how to remove <code>NA</code> values for a specific column.
+If instead of removing <code>NA</code>s from a single column you would like to drop any row where any column is an <code>NA</code>, you can use the <code>drop_na()</code> function.</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">drop_na</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 13,773 × 13
+##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+##  1        63     8    19  1977       3 DM         M                  35     40
+##  2        64     8    19  1977       7 DM         M                  37     48
+##  3        65     8    19  1977       4 DM         F                  34     29
+##  4        66     8    19  1977       4 DM         F                  35     46
+##  5        67     8    19  1977       7 DM         M                  35     36
+##  6        68     8    19  1977       8 DO         F                  32     52
+##  7        69     8    19  1977       2 PF         M                  15      8
+##  8        70     8    19  1977       3 OX         F                  21     22
+##  9        71     8    19  1977       7 DM         F                  36     35
+## 10        74     8    19  1977       8 PF         M                  12      7
+## # ℹ 13,763 more rows
+## # ℹ 4 more variables: genus &lt;chr&gt;, species &lt;chr&gt;, taxa &lt;chr&gt;, plot_type &lt;chr&gt;
+</code></pre></div>
+<p>Alternatively, you can provide column names to the <code>drop_na()</code> function to specify which columns to remove <code>NA</code> values from.</p>
+<div class="highlight"><pre><span></span><code><span class="n">surveys</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">drop_na</span><span class="p">(</span><span class="n">hindfoot_length</span><span class="p">,</span><span class="w"> </span><span class="n">weight</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 13,797 × 13
+##    record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+##  1        63     8    19  1977       3 DM         M                  35     40
+##  2        64     8    19  1977       7 DM         M                  37     48
+##  3        65     8    19  1977       4 DM         F                  34     29
+##  4        66     8    19  1977       4 DM         F                  35     46
+##  5        67     8    19  1977       7 DM         M                  35     36
+##  6        68     8    19  1977       8 DO         F                  32     52
+##  7        69     8    19  1977       2 PF         M                  15      8
+##  8        70     8    19  1977       3 OX         F                  21     22
+##  9        71     8    19  1977       7 DM         F                  36     35
+## 10        74     8    19  1977       8 PF         M                  12      7
+## # ℹ 13,787 more rows
+## # ℹ 4 more variables: genus &lt;chr&gt;, species &lt;chr&gt;, taxa &lt;chr&gt;, plot_type &lt;chr&gt;
+</code></pre></div>
+<h3 id="tidy-selection">Tidy selection</h3>
+<p>In the <code>select</code> section above, we demonstrated how to select columns based on column name.
+You can select columns based on whether they match a certain criteria by using <a href="https://tidyselect.r-lib.org/articles/tidyselect.html">tidyselect</a> functions.
+Below, we'll demonstrate how to use the <code>where()</code> function and the <code>ends_with() function, but there are many additional tidyselect functions such as</code>starts_with()<code>or</code>contains()`. </p>
+<p>With the <code>where()</code> function, we can select columns that match a specific conditions.
+If we want all numeric columns, we can ask to <code>select</code> all the columns <code>where</code> the class <code>is numeric</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">select</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span><span class="w"> </span><span class="nf">where</span><span class="p">(</span><span class="n">is.numeric</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 16,878 × 7
+##    record_id month   day  year plot_id hindfoot_length weight
+##        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+##  1         1     7    16  1977       2              32     NA
+##  2         2     7    16  1977       3              33     NA
+##  3         3     7    16  1977       2              37     NA
+##  4         4     7    16  1977       7              36     NA
+##  5         5     7    16  1977       3              35     NA
+##  6         6     7    16  1977       1              14     NA
+##  7         7     7    16  1977       2              NA     NA
+##  8         8     7    16  1977       1              37     NA
+##  9         9     7    16  1977       1              34     NA
+## 10        10     7    16  1977       6              20     NA
+## # ℹ 16,868 more rows
+</code></pre></div>
+<p>Instead of giving names or positions of columns, we instead pass the <code>where()</code> function with the name of another function inside it, in this case <code>is.numeric()</code>, and we get all the columns for which that function returns <code>TRUE</code>.</p>
+<p>We can use this to select any columns that have any <code>NA</code> values in them:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">select</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span><span class="w"> </span><span class="nf">where</span><span class="p">(</span><span class="n">anyNA</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 16,878 × 7
+##    species_id sex   hindfoot_length weight genus       species  taxa  
+##    &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt; 
+##  1 NL         M                  32     NA Neotoma     albigula Rodent
+##  2 NL         M                  33     NA Neotoma     albigula Rodent
+##  3 DM         F                  37     NA Dipodomys   merriami Rodent
+##  4 DM         M                  36     NA Dipodomys   merriami Rodent
+##  5 DM         M                  35     NA Dipodomys   merriami Rodent
+##  6 PF         M                  14     NA Perognathus flavus   Rodent
+##  7 PE         F                  NA     NA Peromyscus  eremicus Rodent
+##  8 DM         M                  37     NA Dipodomys   merriami Rodent
+##  9 DM         F                  34     NA Dipodomys   merriami Rodent
+## 10 PF         F                  20     NA Perognathus flavus   Rodent
+## # ℹ 16,868 more rows
+</code></pre></div>
+<p>Instead of matching on a condition, the <code>ends_with()</code> function match variables (in this case column names) according to a given pattern.
+We'll use the string <code>"_id"</code> to select columns that end with the string <code>_id</code>: <code>record_id</code>, <code>plot_id</code>, and <code>species_id</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">select</span><span class="p">(</span><span class="n">surveys</span><span class="p">,</span><span class="w"> </span><span class="nf">ends_with</span><span class="p">(</span><span class="s">&quot;_id&quot;</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## # A tibble: 16,878 × 3
+##    record_id plot_id species_id
+##        &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     
+##  1         1       2 NL        
+##  2         2       3 NL        
+##  3         3       2 DM        
+##  4         4       7 DM        
+##  5         5       3 DM        
+##  6         6       1 PF        
+##  7         7       2 PE        
+##  8         8       1 DM        
+##  9         9       1 DM        
+## 10        10       6 PF        
+## # ℹ 16,868 more rows
+</code></pre></div>
+<h3 id="more-on-joining-data-together-with-dplyr">More on joining data together with <code>dplyr</code></h3>
+<p>We briefly covered how to join two data.frames together above.
+If you would like more information and practice doing joins, <a href="https://datacarpentry.org/semester-biology/materials/dplyr-joins/">this lesson</a> provides more information and practice.
+It relies on a similar data set to the one we've been using in this lesson.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

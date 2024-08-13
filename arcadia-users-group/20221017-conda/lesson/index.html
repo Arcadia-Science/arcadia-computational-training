@@ -1,0 +1,911 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20221017-conda/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Introduction to conda for software installation and environment management - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-conda-for-software-installation-and-environment-management" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction to conda for software installation and environment management
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-should-i-use-a-package-and-environment-management-system" class="md-nav__link">
+    Why should I use a package and environment management system?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-conda" class="md-nav__link">
+    What is Conda?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-does-conda-work" class="md-nav__link">
+    How does Conda work?
+  </a>
+  
+    <nav class="md-nav" aria-label="How does Conda work?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-conda" class="md-nav__link">
+    Installing Conda
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing Conda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-conda-on-an-apple-machine" class="md-nav__link">
+    Installing conda on an Apple machine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-conda-on-a-linux-machine" class="md-nav__link">
+    Installing conda on a Linux machine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-notes-about-conda-installations" class="md-nav__link">
+    Additional notes about conda installations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activating-conda-and-the-base-environment" class="md-nav__link">
+    Activating conda and the (base) environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-mamba" class="md-nav__link">
+    Installing mamba
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conda-channels" class="md-nav__link">
+    Conda channels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-new-environment" class="md-nav__link">
+    Creating a new environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigating-environments-through-activate-and-deactivate" class="md-nav__link">
+    Navigating environments through activate and deactivate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searching-installing-and-removing-packages" class="md-nav__link">
+    Searching, installing, and removing packages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#freezing-an-environment" class="md-nav__link">
+    Freezing an environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encoding-environments-in-and-installing-environments-from-text-files" class="md-nav__link">
+    Encoding environments in and installing environments from text files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-small-environments" class="md-nav__link">
+    Using small environments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keeping-an-eye-on-the-size-of-conda-environments" class="md-nav__link">
+    Keeping an eye on the size of conda environments
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-conda-commands" class="md-nav__link">
+    Summary of Conda Commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-note-about-the-conda-ecosystem" class="md-nav__link">
+    A note about the conda ecosystem
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extra-content" class="md-nav__link">
+    Extra content
+  </a>
+  
+    <nav class="md-nav" aria-label="Extra content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conda-and-workflow-managers" class="md-nav__link">
+    Conda and workflow managers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-a-conda-package-from-an-r-library-on-cran" class="md-nav__link">
+    Building a conda package from an R library on CRAN
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-packages-with-pip-when-theyre-in-pypi-but-not-in-a-conda-channel" class="md-nav__link">
+    Installing packages with pip when they're in PyPi but not in a conda channel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-pypi-compliant-packages-from-github-into-a-conda-channel-using-pip" class="md-nav__link">
+    Installing PyPi-compliant packages from GitHub into a conda channel using pip
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conda-lock" class="md-nav__link">
+    Conda-lock
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="introduction-to-conda-for-software-installation-and-environment-management">Introduction to conda for software installation and environment management</h1>
+<h2 id="why-should-i-use-a-package-and-environment-management-system">Why should I use a package and environment management system?</h2>
+<p><strong>Package managers and why we use them.</strong> 
+A <a href="https://en.wikipedia.org/wiki/Package_manager">package manager</a> is a software tool that automates the process of installing, upgrading, configuring, or removing software from your computer.
+<a href="https://pypi.org/project/pip/">Pip</a> (python), <a href="https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html">BiocManager</a> (Bioconductor R packages), and <a href="https://en.wikipedia.org/wiki/APT_(software)">APT</a> (ubuntu) are three commonly encountered package managers. 
+Package managers make installation software easier. </p>
+<p><strong>Environments and why we use them.</strong> 
+Environment managers address the problems created when software is installed system-wide.
+System-wide installs create complex dependencies between disparate projects that are difficult to entangle to version compute environments and that can create dependcency conflicts. 
+An environment is a directory that contains a specific collection of packages/tools that you have installed. 
+An environment manager is a software tool that organizes where and how software is installed on a computer.
+For example, you may have one environment with Python 2.7 and its dependencies, and another environment with Python 3.4 for legacy testing. 
+If you change one environment, your other environments are not affected. 
+You can easily activate or deactivate environments, which is how you switch between them. </p>
+<h2 id="what-is-conda">What is Conda?</h2>
+<p>Conda is open source package and runs on Windows, Mac OS and Linux.</p>
+<ul>
+<li>Conda can quickly install, run, and update packages and their dependencies.</li>
+<li>Conda can create, save, load, and switch between project specific software environments on your local computer.</li>
+</ul>
+<p>Conda as a package manager helps you find and install packages. 
+If you need a package that requires a different version of Python, you do not need to switch to a different environment manager, because Conda is also an environment manager. 
+With a few commands, you can set up a totally separate environment to run that different version of Python, while continuing to run a different version of Python in another environment.</p>
+<h2 id="how-does-conda-work">How does Conda work?</h2>
+<p><center></p>
+<figure>
+<p><img alt="conda" src="../conda.png" width="700" />
+  </p>
+<figcaption> Cartoon of conda environments by Gergely Szerovay <a href='https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/' target='_blank'>www.freecodecamp.org</a> </figcaption>
+</figure>
+<p></center></p>
+<h3 id="installing-conda">Installing Conda</h3>
+<p><center></p>
+<figure>
+<p><img alt="installingconda" src="../installing_conda.png" width="700" />
+  </p>
+<figcaption> Cartoon of decision points for conda installation by Gergely Szerovay <a href='https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/' target='_blank'>www.freecodecamp.org</a> </figcaption>
+</figure>
+<p></center></p>
+<p>For this lesson, we'll install miniconda. 
+We've included the latest installation instructions below.
+You can access the latest and legacy installation links <a href="https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links">here</a>.</p>
+<h4 id="installing-conda-on-an-apple-machine">Installing conda on an Apple machine</h4>
+<p>Apple now has two processor types, the Intel x64 and the Apple M1 (or M2) ARM64.
+As of October 2022, many of the packages available via conda-forge and other conda installation channels are only available on the Intel x64 processor. 
+Therefore, even if you have an M1 (or M2) Mac, we currently recommend that you use the Intel x64 installation and take advantage of Apple's translation program Rosetta. 
+This requires a little bit of pre-configuration to make sure your Terminal application also runs with Rosetta.
+To set this up, open <strong>Finder</strong> -&gt; navigate to your <strong>Applications</strong> folder -&gt; right click on your Terminal application (either Terminal or iTerm2) -&gt; select <strong>Get Info</strong> -&gt; check the box for <strong>Open using Rosetta</strong>.</p>
+<p><center></p>
+<figure>
+<p><img alt="installingconda" src="../rosetta.png" width="200" />
+  </p>
+<figcaption> Running Terminal/iTerm using Rosetta </figcaption>
+</figure>
+<p></center></p>
+<p>After that is configured, open your Terminal application and copy and paste the following commands to download and install miniconda.</p>
+<div class="highlight"><pre><span></span><code>curl -JLO https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+bash Miniconda3-latest-MacOSX-x86_64.sh 
+</code></pre></div>
+<p>This will prompt you to accept the miniconda license, ask you whether you accept the default installation location, and whether you want the installation script to intialize conda. 
+Accept all of the defaults and then open and close your terminal for the installation to take effect.</p>
+<h4 id="installing-conda-on-a-linux-machine">Installing conda on a Linux machine</h4>
+<p>Each time you start a new AWS (or many other cloud) machine, you'll have to install miniconda. 
+The installation process is the same as it is on Mac except you'll need to use a different download URL.</p>
+<div class="highlight"><pre><span></span><code>curl -JLO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+</code></pre></div>
+<p>This will prompt you to accept the miniconda license, ask you whether you accept the default installation location, and whether you want the installation script to intialize conda. 
+Accept all of the defaults and then open and close your terminal for the installation to take effect.
+To activate conda, you can either log out and log back in or run:</p>
+<div class="highlight"><pre><span></span><code>source ~/.bashrc
+</code></pre></div>
+<h4 id="additional-notes-about-conda-installations">Additional notes about conda installations</h4>
+<p><strong>Versioning conda installations.</strong>
+The conda API has changed over the years.
+You can access legacy installers associated with specific versions of python <a href="https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links">here</a>.
+If you need a specific version of conda, you can access the conda package through the conda-forge channel and install it using the instructions for installing specific versions of a package detailed later in the lesson.</p>
+<p><strong>Conda intialization.</strong>
+By default, the Conda installer "initializes" conda.
+This allows you to access Conda commands by putting conda in your path any time you log into a terminal.
+Conda acheives this by appending code to you <code>~/.zshrc</code> or <code>~/.bashrc</code> file.
+These lines of code look like this:
+<div class="highlight"><pre><span></span><code># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;
+# !! Contents within this block are managed by &#39;conda init&#39; !!
+__conda_setup=&quot;$(&#39;/Users/taylorreiter/miniconda3/bin/conda&#39; &#39;shell.zsh&#39; &#39;hook&#39; 2&gt; /dev/null)&quot;
+if [ $? -eq 0 ]; then
+    eval &quot;$__conda_setup&quot;
+else
+    if [ -f &quot;/Users/taylorreiter/miniconda3/etc/profile.d/conda.sh&quot; ]; then
+        . &quot;/Users/taylorreiter/miniconda3/etc/profile.d/conda.sh&quot;
+    else
+        export PATH=&quot;/Users/taylorreiter/miniconda3/bin:$PATH&quot;
+    fi
+fi
+unset __conda_setup
+# &lt;&lt;&lt; conda initialize &lt;&lt;&lt;
+</code></pre></div>
+There is a command, <code>conda init</code>, that you can use to initialize conda if you choose to skip this step during installation.
+You can always remove these lines if you change your mind about wanting conda in your PATH.</p>
+<h3 id="activating-conda-and-the-base-environment">Activating conda and the <code>(base)</code> environment</h3>
+<p>Conda needs to be activated for it to be usable. 
+During the installation process, we configured conda to automatically activate when the shell is started.
+If conda is activated, you should see <code>(base)</code> prepend your path. </p>
+<p>If at any point you don't want the <code>base</code> environment to be active when you log in to a shell, you can disable this behavior using the command:
+<div class="highlight"><pre><span></span><code>conda config --set auto_activate_base false
+</code></pre></div></p>
+<p>The <code>base</code> environment contains all of the software needed for conda to run.
+This includes a python installation and some core system libraries and dependencies of Conda. </p>
+<h3 id="installing-mamba">Installing mamba</h3>
+<p>While you can install new packages with conda, sometimes it's...slow.
+<a href="https://mamba.readthedocs.io/en/latest/index.html">Mamba</a> helps solve this problem. 
+Mamba is a drop in replacement for conda and it improves installation speeds by decreasing the time it takes to solve dependency conflicts.
+You can install mamba with:</p>
+<div class="highlight"><pre><span></span><code>conda install -c conda-forge mamba
+</code></pre></div>
+<h3 id="conda-channels">Conda channels</h3>
+<p>Channels are the locations of the repositories (directories) online containing Conda packages. 
+Upon Conda’s installation, Continuum’s (Conda’s developer) channels are set by default, so without any further modification, these are the locations where your Conda will start searching for packages.</p>
+<p>Channels in Conda are ordered. 
+The channel with the highest priority is the first one that Conda checks, looking for the package you asked for. 
+You can change this order, and also add channels to it (and set their priority as well).</p>
+<p>You should follow the channel order below -- otherwise, sometimes you'll encounter weird bugs because packages will be installed from the wrong location. 
+<div class="highlight"><pre><span></span><code>conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+</code></pre></div></p>
+<p>Once we have our channel order configured, you will no longer need to use the explicit channel parameter <code>-c</code> when you install new packages.</p>
+<p><center></p>
+<figure>
+<p><img alt="condachannel" src="../conda_channels.png" width="700" />
+  </p>
+<figcaption> Cartoon of conda channels by Gergely Szerovay <a href='https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/' target='_blank'>www.freecodecamp.org</a> </figcaption>
+</figure>
+<p></center></p>
+<p>If multiple channels contain a package, and one channel contains a newer version than the other one, the order of the channels determines which of these two versions is going to be installed, even if the higher priority channel contains the older version.</p>
+<p><center></p>
+<figure>
+<p><img alt="condachannels2" src="../conda_channels2.png" width="700" />
+  </p>
+<figcaption> Cartoon of conda channel priorities by Gergely Szerovay <a href='https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/' target='_blank'>www.freecodecamp.org</a> </figcaption>
+</figure>
+<p></center></p>
+<h3 id="creating-a-new-environment">Creating a new environment</h3>
+<p>Other than mamba, we recommend you keep you <code>base</code> environment free from all other installations. 
+If you install everything in <code>base</code>, you'll end up with lots of dependencies that need to be solved which will decrease installation speeds.
+It also becomes more difficult to document software installations and versions required for specific project. </p>
+<p>To create a new environment named, for instance <code>mynewenv</code> (you can name it what ever you like), run:</p>
+<div class="highlight"><pre><span></span><code>conda create --name mynewenv
+</code></pre></div>
+<h3 id="navigating-environments-through-activate-and-deactivate">Navigating environments through <code>activate</code> and <code>deactivate</code></h3>
+<p>If you want to use an environment (for instance manage packages, or run Python scripts inside it) you need to first activate it.</p>
+<div class="highlight"><pre><span></span><code>conda activate mynewenv
+</code></pre></div>
+<p>If this command gives you an error, you might not selected for conda to initialize during installation. 
+You can initialize conda with:
+<div class="highlight"><pre><span></span><code>conda init
+</code></pre></div></p>
+<p>Once you've successfully run <code>conda activate</code>, the command prompt should be prepended by <code>(mynewenv)</code> instead of <code>(base)</code>.
+The command prompt is a useful tool to orient yourself as to which environment you're currently using.</p>
+<p>If you install a new tool while in an environment, it only gets installed in that environment.
+<div class="highlight"><pre><span></span><code>mamba install samtools
+</code></pre></div></p>
+<p>Even better, you can specify which version of samtools you would like to install:
+<div class="highlight"><pre><span></span><code>mamba install samtools=1.9
+</code></pre></div></p>
+<p>We just installed a very old version. 
+We can ask mamba to automatically update our package installation to the latest version:
+<div class="highlight"><pre><span></span><code>mamba update samtools
+</code></pre></div></p>
+<p>The directories of the active environment’s executable files are added to the system path (this means that you can now access them more easily). </p>
+<div class="highlight"><pre><span></span><code>which samtools
+</code></pre></div>
+<p>You can leave an environment with this command:</p>
+<div class="highlight"><pre><span></span><code>conda deactivate
+</code></pre></div>
+<p>Now, if we run the same command, we'll get a different result:</p>
+<div class="highlight"><pre><span></span><code>which samtools
+</code></pre></div>
+<h3 id="searching-installing-and-removing-packages">Searching, installing, and removing packages</h3>
+<p>To list out all the installed packages in the currently active environment, run:</p>
+<div class="highlight"><pre><span></span><code>conda list
+</code></pre></div>
+<p>To search for all the available versions of a certain package, you can use the search command. 
+For instance, to list out all the versions of samtools, run:</p>
+<div class="highlight"><pre><span></span><code>conda search samtools
+</code></pre></div>
+<p>Similarly to the conda list command, this one results in a list of the matching package names, versions, and channels:</p>
+<div class="highlight"><pre><span></span><code>Loading channels: done
+# Name                       Version           Build  Channel
+samtools                      0.1.12               0  bioconda
+samtools                      0.1.12               1  bioconda
+samtools                      0.1.12               2  bioconda
+samtools                      0.1.12      hdd8ed8b_3  bioconda
+</code></pre></div>
+<h3 id="freezing-an-environment">Freezing an environment</h3>
+<p>Keeping track of the software versions you used to run your analyses is a cornerstone of reproducible science.
+Conda facilitates this in many ways.
+One handy way is to record the packages you've installed into a text file.</p>
+<p>This will save the list of <strong>conda-installed</strong> software you have in a particular environment to the file <code>packages.txt</code>:
+<div class="highlight"><pre><span></span><code>conda activate mynewenv
+conda env export &gt; mynewenv.yml
+conda deactivate
+</code></pre></div>
+(it will not record the software versions for software not installed by conda.)</p>
+<p><div class="highlight"><pre><span></span><code>conda env create -n mynewenv2 --file mynewenv.yml
+</code></pre></div>
+will install those packages in your local environment.</p>
+<h3 id="encoding-environments-in-and-installing-environments-from-text-files">Encoding environments in and installing environments from text files</h3>
+<p>Freezing an environment with <code>conda env export</code> is a perfectly viable option to record your compute state for a given environment.
+This approach can be brittle to operating system because so there are other more flexible ways to achieve similar things.</p>
+<p>Instead, you can keep track of software and versions you install in a YAML file.
+Open a text file using nano, vim, VS Code, or your favorite text editor and paste the following text.</p>
+<div class="highlight"><pre><span></span><code>channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - samtools=1.9
+</code></pre></div>
+<p>Save the file as <code>samtools.yml</code>.
+Then, you can install:</p>
+<div class="highlight"><pre><span></span><code>mamba env create -n samtools -f samtools.yml
+</code></pre></div>
+<h3 id="using-small-environments">Using small environments</h3>
+<p>The performance of conda environments decreases with increasing size.
+We hinted at this above when we recommended to keep the <code>base</code> environment free of software installations other than <code>mamba</code>.
+The larger a conda environment becomes, the longer it takes to activate the environment and to install new software. 
+You'll have to experiment with a strategy that works for you as far as environment size goes, but we recommend a strategy that keeps environments small.
+One starting place might be to have one environment per project.
+If you want to test new installations of software before you're committed to using it, you could create a <code>sandbox</code> environment and install software for experimenting there.
+Then, when that environment gets too big, you can delete it and start over.
+To delete an environment, run:</p>
+<div class="highlight"><pre><span></span><code>conda env remove -n sandbox
+</code></pre></div>
+<h3 id="keeping-an-eye-on-the-size-of-conda-environments">Keeping an eye on the size of conda environments</h3>
+<p>Conda environments can become quite large depending on how many packages are installed. 
+We can check how large any of our Conda enviroments are by finding the path to the environment directory and then estimating the file space usage of that directory.</p>
+<p>First, let's find where we put out <code>mynewenv</code> directory
+<div class="highlight"><pre><span></span><code>conda env list
+</code></pre></div></p>
+<p>This will print out a list of the locations of our Conda environments.
+We installed conda in our home directory, so we can use the <code>~</code> shortcut to access our environment paths.</p>
+<p>Next, let's use the command <code>du</code> to estimate the space our <code>mynewenv</code> directory is taking up!</p>
+<div class="highlight"><pre><span></span><code>du -sh ~/miniconda3/envs/mynewenv/
+</code></pre></div>
+<p>We can see our <code>mynewenv</code> environment is taking up about 12K of space. </p>
+<h2 id="summary-of-conda-commands">Summary of Conda Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Conda commands</th>
+<th>action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>conda install</code></td>
+<td>install a package</td>
+</tr>
+<tr>
+<td><code>conda search</code></td>
+<td>search for a package</td>
+</tr>
+<tr>
+<td><code>conda info</code></td>
+<td>list of information about the environment</td>
+</tr>
+<tr>
+<td><code>conda list</code></td>
+<td>list out all the installed packages in the currently active environment</td>
+</tr>
+<tr>
+<td><code>conda remove</code></td>
+<td>remove a conda package</td>
+</tr>
+<tr>
+<td><code>conda config --get channels</code></td>
+<td>list out the active channels and their priorities</td>
+</tr>
+<tr>
+<td><code>conda update</code></td>
+<td>update all the installed packages</td>
+</tr>
+<tr>
+<td><code>conda env list</code></td>
+<td>list the different environments you have set up and their locations</td>
+</tr>
+<tr>
+<td><code>conda activate mynewenv</code></td>
+<td>activate the mynewenv Conda environment (this also works for activating our <code>base</code> environment</td>
+</tr>
+</tbody>
+</table>
+<h2 id="a-note-about-the-conda-ecosystem">A note about the conda ecosystem</h2>
+<p>Conda has truly been a gift to the scientific community, taking software installs that used to take days and bringing it down to minutes.
+It also simplified versioning and environment management by integrating software encoded in many different languages into its ecosystem (python, R, perl, rust...).
+It has therefore attracted contributions from many parties over the years that have lead to a diversity of modular pieces that participate in the conda ecosystem. 
+This can be especially confusing for conda newcomers.
+This section outlines many of the key pieces in the conda ecosytem to reduce confusion as people onboard to conda.</p>
+<p>Conda itself is a piece of software that is a package and environment manager.
+To get access to the conda software, you need to install it.
+The most popular way to install conda is via miniconda or miniforge.
+<strong><a href="https://github.com/conda-forge/miniforge">miniforge</a></strong> is the community (conda-forge) driven minimalistic conda installer. 
+By default, subsequent package installations come from conda-forge channel.
+<strong><a href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a></strong> is the Anaconda (company) driven minimalistic conda installer. 
+By default, subsequent package installations come from anaconda channels (default or otherwise).
+The default channel order can be changed for either conda installation type.
+miniforge started when miniconda didn't support the linux aarch64 system architectures and was quickly adopted by many conda user.
+It's stuck around even though both miniconda and miniforge support most system architectures.</p>
+<p>There's another distinction between miniconda and <a href="https://anaconda.org/">anaconda</a>.
+Anaconda comes with all of the contents of miniconda, plus a bunch of other packages that are used frequently with scientific computing. 
+Anaconda also comes with a graphical user interface. 
+We use miniconda because its the minimum set of tools that we need to install packages and manage environments and we can use it locally and on remote computers.</p>
+<p>One of the problems conda addresses is resolving dependency conflicts betweens many pieces of software installed in the same environment.
+This is an <a href="https://www.anaconda.com/blog/understanding-and-improving-condas-performance">NP-complete problem</a> meaning it gets slower as more software is added to an environment and it's a hard problem to solve.
+<a href="https://mamba.readthedocs.io/en/latest/index.html">mamba</a> is a drop-in replacement for conda that offers higher speed and more reliable environment solutions.
+However, the best way to install mamba at the moment is via conda.
+Mamba is worth the confusion it has caused -- it decreases install times by orders of magnitude thus saving time.</p>
+<h2 id="extra-content">Extra content</h2>
+<h3 id="conda-and-workflow-managers">Conda and workflow managers</h3>
+<p>Conda is integrated into workflow managers like snakemake and nextflow.
+Using environment files or other directives that point toward the conda packages that are needed for a specific rule or process, the workflow manager will use conda to build the necessary environments and will automatically activate and deactivate them for each rule or process as it runs the workflow.
+In this case, it's best practice to have only the tools needed for a specific rule or process in a given environment -- often, this will mean only including one tool per an environment.</p>
+<p>For snakemake, conda environments are encoded in YAML files and fed to a given rule using the <code>conda:</code> directive and the path to the YAML file.
+For nextflow, conda environments are actually the least-recommended way to execute a pipeline.
+While you can give a process a conda package name and its build hash, it's better to use the biocontainer build for that conda package on docker.
+This overcomes <a href="https://www.nature.com/articles/nbt.3820">issues with reproducibility that stem from differences in operating systems</a>.</p>
+<h3 id="building-a-conda-package-from-an-r-library-on-cran">Building a conda package from an R library on CRAN</h3>
+<p>Once you become reliant on conda to manage all of your packages, it can be disappointing when your favorite new pacakge isn't available on the conda-forge channel.
+If the R package is available on CRAN, it's relatively straightforward to build the conda package yourself and get it onto conda-forge.
+You can follow instructions in <a href="https://taylorreiter.github.io/2020-01-16-Building-a-conda-forge-package-from-an-R-CRAN-package/">this blog post</a> if you ever want to do this.
+This only works for CRAN packages that do not depend on Bioconductor packages -- Bioconductor packages and the packages that depend on them are released on bioconda, while CRAN packages are released on conda-forge.</p>
+<h3 id="installing-packages-with-pip-when-theyre-in-pypi-but-not-in-a-conda-channel">Installing packages with pip when they're in PyPi but not in a conda channel</h3>
+<p>Sometimes the package you're interested in installation is available in <a href="https://pypi.org/">PyPi</a> but not in a conda channel.
+You can use <code>pip</code> to install things into a conda environment to overcome this.
+To do this, you need to install pip via conda, and then you can use <code>pip install</code>.
+Whatever packages you pip install will only be available in the conda environment you have active at time of installation.
+To document pip installations in a YAML file, use the following syntax:</p>
+<div class="highlight"><pre><span></span><code>channels:
+    - conda-forge
+    - bioconda
+    - defaults
+dependencies:
+    - pip
+    - pip:
+      - genome-grist==0.7
+</code></pre></div>
+<h3 id="installing-pypi-compliant-packages-from-github-into-a-conda-channel-using-pip">Installing PyPi-compliant packages from GitHub into a conda channel using pip</h3>
+<p>Similar to installing packages in PyPi via pip, you can install PyPi-compliant packages that are on GitHub directly from GitHub.
+We include a YAML file demonstrating this below.
+While this is handy, especially for development, it's can be difficult to version software installations so you should use this approach with caution and be sure to document versions (or commit hashes) elsewhere.</p>
+<div class="highlight"><pre><span></span><code>channels:
+   - conda-forge
+   - bioconda
+   - defaults
+dependencies:
+   - sourmash
+   - pip
+   - pip:
+       - git+https://github.com/czbiohub/orpheum@master
+</code></pre></div>
+<h3 id="conda-lock">Conda-lock</h3>
+<p><a href="https://github.com/conda-incubator/conda-lock">Conda-lock</a> is a lightweight library generates lock files for conda environments.
+These lock files document the results of conda solve for each platform that you designate.
+This can help to exactly reproduce an environment across operating systems and to reduce environment creation times.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

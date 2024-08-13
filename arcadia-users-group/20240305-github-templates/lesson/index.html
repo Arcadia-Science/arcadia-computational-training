@@ -1,0 +1,529 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20240305-github-templates/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Introduction to GitHub Templates - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-github-templates" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction to GitHub Templates
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-new-repository-using-a-template" class="md-nav__link">
+    Creating a new repository using a template
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating a new repository using a template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choosing-the-right-template" class="md-nav__link">
+    Choosing the Right Template
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository-initialization" class="md-nav__link">
+    Repository Initialization
+  </a>
+  
+    <nav class="md-nav" aria-label="Repository Initialization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1" class="md-nav__link">
+    Option 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2" class="md-nav__link">
+    Option 2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anatomy-of-a-template-python-analysis-template" class="md-nav__link">
+    Anatomy of a template: Python analysis template
+  </a>
+  
+    <nav class="md-nav" aria-label="Anatomy of a template: Python analysis template">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#documentation-and-re-use" class="md-nav__link">
+    Documentation and re-use
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-for-accuracy-enforcing-conventions-and-making-your-life-easier" class="md-nav__link">
+    Checking for accuracy, enforcing conventions, and making your life easier
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benefits-of-templates" class="md-nav__link">
+    Benefits of templates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-templates" class="md-nav__link">
+    Other templates
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="introduction-to-github-templates">Introduction to GitHub Templates</h1>
+<p>GitHub templates provide a structured way to create new repositories, ensuring consistency, efficiency, and adherence to best practices across projects.
+GitHub templates are predefined repository setups that can be used to start new projects with a consistent set of files, folders, and configurations.
+This not only saves time but helps make sure that all projects follow Arcadia's coding and documentation standards.
+Templates typically include everything from README files, installation guides, contribution guidelines, and more.</p>
+<p>In this lesson, we will focus on Arcadia's <a href="https://github.com/Arcadia-Science/python-analysis-template"><code>python-analysis-template</code></a>.
+Arcadia also has an <a href="https://github.com/Arcadia-Science/r-analysis-template"><code>r-analysis-template</code></a>, a <a href="https://github.com/Arcadia-Science/snakemake-template"><code>snakemake-template</code></a>, and a <a href="https://github.com/Arcadia-Science/nextflow-template"><code>nextflow-template</code></a>.</p>
+<h2 id="creating-a-new-repository-using-a-template">Creating a new repository using a template</h2>
+<h3 id="choosing-the-right-template">Choosing the Right Template</h3>
+<p>Depending on the analysis type or the technology stack used in your project, select the appropriate template. 
+For instance, use <code>r-analysis-template</code> for R-based analyses, <code>python-analysis-template</code> for Python projects, <code>snakemake-template</code> for workflows managed with Snakemake, and <code>nextflow-template</code> for Nextflow pipelines.</p>
+<details>
+<summary>Why isn't there a Python package template?</summary>
+
+We could create one. 
+We haven't generated one yet because there are a ton templates out there that could be used and we haven't created many Python packages yet as an organization.
+If you find yourself in need of a Python template, try out <a href=https://github.com/TezRomacH/python-package-template>an existing template</a> and make note of what works well and what doesn't.
+We can then use that to generate a future organization standard template.
+
+</details>
+
+<h3 id="repository-initialization">Repository Initialization</h3>
+<p>There are two ways to create a new repo with a template.</p>
+<h4 id="option-1">Option 1</h4>
+<ol>
+<li>Navigate to the template you want to start from (e.x. https://github.com/Arcadia-Science/python-analysis-template).</li>
+<li>Click the green "Use this template" button in the upper right hand corner.</li>
+<li>This will take you to the New Repository launch screen with the "Repository template" section already filled out.</li>
+<li>Fill out the rest of the new repository information and click the "Create repository" button. This will generate a new repository that already has all of the files and folders that were in the template.</li>
+</ol>
+<h4 id="option-2">Option 2</h4>
+<ol>
+<li>Click the "+" button in the upper right hand corner of any GitHub page and select "New repository" from the drop down menu.</li>
+<li>On the New Repository launch screen, select the template you wish to start from in the "Repository template" drop down menu.</li>
+<li>Fill out the rest of the new repository information and click the "Create repository" button. This will generate a new repository that already has all of the files and folders that were in the template.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Working in branches</p>
+<p>After your new repository is created, <strong>create a new branch</strong> before you start making any changes.
+Do your work in branches and when you are ready to merge your changes into the <code>main</code> branch, open a Pull Request and request a review.
+For more on how to use branches, <a href="https://training.arcadiascience.com/workshops/20220920-intro-to-git-and-github/lesson/#working-on-branches">see this lesson</a>.
+For more on why we think code review is important, <a href="https://www.codegram.com/blog/an-ode-to-code-reviews/">see this blog post</a> (note we didn't write this blog post, we just agree with a lot of the content). 
+<strong>We recommend setting up branch protection rules</strong> that can prevent code from making it into <code>main</code> without a Pull Request and review.
+<details>
+<summary>How to set up branch protection rules in your repository</summary>
+Branch protection rules are configured by clicking on the "branches" menu item on the lefthand side of the repo "settings" page.
+The following Branch protection rules should be enabled:
+<li><strong>Require a pull request before merging</strong>: this blocks <em>anyone</em> from pushing directly to the main branch.</li>
+<li><strong>Require approvals:</strong> this requires that there be at least one approving review before a PR can be merged.</li>
+<li><strong>Require status checks to pass before merging</strong>: this blocks PRs from being merged until all of the CI checks are passing.</li>
+</details></p>
+</div>
+<h2 id="anatomy-of-a-template-python-analysis-template">Anatomy of a template: Python analysis template</h2>
+<p>We can create a new repo from a template!
+But what is actually in the template and what do those files do?
+Below we go through each file in the <a href="https://github.com/Arcadia-Science/python-analysis-template"><code>python-analysis-template</code></a> and discuss their functions and how template users can interact with them.</p>
+<h3 id="documentation-and-re-use">Documentation and re-use</h3>
+<ul>
+<li><a href="https://github.com/Arcadia-Science/python-analysis-template/blob/main/README.md">README.md</a>: This README has two sections. The first is an outline for the documentation for the new repository. It includes boilerplate sections and language that we expect will be standard across most projects, as well as TODO statements where specific details need to be changed or filled in. The second section covers developer notes detailing what the files in the repository do and tips for how to use them. The second section should be deleted in repos created from the template but is included to make the template easier to understand and use.</li>
+<li><a href="https://github.com/Arcadia-Science/python-analysis-template/tree/main/envs/dev.yml">envs/dev.yml</a>: By default, we recommend analysis repositories use conda to manage software installations and record software versions. The <code>envs</code> directory is where these yaml files are stored. The <code>dev.yml</code> file included in the template is not empty but lists the packages required by the template: python, jupyter, pip, and linting software.</li>
+<li><a href="https://github.com/Arcadia-Science/python-analysis-template/tree/main/LICENSE">LICENSE</a>: The LICENSE file specifies the terms under which the software can be freely used, modified, and shared. Technically, software must have a license for it to be re-usable by others. The default license for all of our GitHub repositories is MIT, however the license may need to change depending on the software the project uses and the code it includes. Be sure to check with legal about your license before making a GitHub repository public.</li>
+<li><a href="https://github.com/Arcadia-Science/python-analysis-template/tree/main/.github/PULL_REQUEST_TEMPLATE.md">.github/PULL_REQUEST_TEMPLATE.md</a>: The .github folder controls some behavior of the GitHub repository itself. The PULL_REQUEST_TEMPLATE.md is a text document where users can provide the text that they want to appear by default each time a new PR is opened. Often, these files remind users of the list of things that need to be done before a PR is read to be reviewed. Below we show this in action. On the left is the typical screen a user is prompted with when they open a pull request in a repository without a PR template. On the right is the PR template as well as that template rendered in the pull request.
+<img alt="" src="../pr-template.png" /></li>
+</ul>
+<h3 id="checking-for-accuracy-enforcing-conventions-and-making-your-life-easier">Checking for accuracy, enforcing conventions, and making your life easier</h3>
+<ul>
+<li><a href="https://github.com/Arcadia-Science/python-analysis-template/tree/main/.gitignore">.gitignore</a>: The <code>.gitignore</code> file lists files and directories that should be ignored by git, meaning they won't be tracked or included in the repository. This typically includes temporary files, local configuration files, and sensitive information. Using a .gitignore file helps keep the repository clean and prevents the accidental inclusion of irrelevant or sensitive files.</li>
+<li><a href="https://github.com/Arcadia-Science/python-analysis-template/tree/main/.github/lint.yml">.github/lint.yml</a>: The <code>.github/lint.yml</code> file defines a GitHub Actions workflow that sets up linting for the repository. Linting automatically checks the code for stylistic errors, programming errors, and other potential issues according to predefined rules. This helps maintain code quality and consistency across the project, making it easier to read, maintain, and contribute to (see <a href="https://training.arcadiascience.com/arcadia-users-group/20240206-intro-to-formatting-and-linting/lesson/">this AUG lesson</a> for more details).</li>
+<li><a href="https://github.com/Arcadia-Science/python-analysis-template/tree/main/.pre-commit-config.yaml">.pre-commit-config.yaml</a>: The <code>.pre-commit-config.yaml</code> file configures pre-commit hooks for the repository. Pre-commit hooks are scripts that run automatically on each commit to check for common issues, such as syntax errors, formatting issues, or failing tests. This setup helps catch and fix problems early in the development process, improving code quality and reducing the time spent on code reviews.</li>
+<li><a href="https://github.com/Arcadia-Science/python-analysis-template/tree/main/.vscode/extensions.json">.vscode/extensions.json</a>: The <code>.vscode/extensions.json</code> file is a configuration file for Visual Studio Code that specifies recommended extensions for the project. This file will prompt VS Code to use <code>ruff</code> for linting and formatting. </li>
+<li><a href="https://github.com/Arcadia-Science/python-analysis-template/tree/main/Makefile">Makefile</a>: The <code>Makefile</code> helps automate code quality and style checks, making it easier for developers to run all of these checks at once.</li>
+</ul>
+<h2 id="benefits-of-templates">Benefits of templates</h2>
+<ul>
+<li><strong>Low effort for best practices:</strong> The Python analysis template repository has 10 files. While none of these files are complicated on their own, creating each of them takes time and domain knowledge of tools and syntax. Further, if each user had to create each file on their own, there is a lot of room for error. Using a template saves this time and cuts down on the number of mistakes that users create in their repos while reinforcing best practices.</li>
+<li><strong>Reviewed once:</strong> When a repository is started from a template, all of the code and files from that template are instantiated on the <code>main</code> branch. As you make your changes, reviewers only need to review the things you change, not all of the files from the template. This saves reviewers time because they don't have to review similar or idential text between many different repositories -- the content of a README.md or GitHub action workflow are reviewed when they are added to or changed in the template only. Overall, this saves reviewers time.
+<img alt="" src="../why-templates.png" /></li>
+<li><strong>Feedback in one place:</strong> Templates themselves are repositories, meaning they have Issues and Pull Requests. Users can report problems with a template or enhancements they'd like to see. When bugs are fixed or enhancements integrated, these changes are visible to every future project at Arcadia. This saves others from debugging the same problem you already fixed and helps keep all of our projects up to date. Some examples of this in action include:<ul>
+<li>When Snakemake upgraded to version 8, the command line interface changed and a syntax update was needed to launch a workflow with conda. Keith and Mert caught this change and documented it in the Snakemake template README.md file. When I started a new snakemake workflow, I used their template documentation to launch my workflow and didn't need to spend time looking up the new command.</li>
+<li>The version of Snakemake installed in the Snakemake template <a href="https://github.com/Arcadia-Science/snakemake-template/issues/2">causes a <code>TypeError</code></a>. I reported this issue on the template and how I fixed it so that future Snakemake workflow repositories know how to fix it. Eventually, we will incorporate this change into the template itself.</li>
+</ul>
+</li>
+<li><strong>Documentation and training:</strong> The templates themselves are centralized sources of best-practice documentation. Interfacing with this documentation and with the tools and conventions used in the templates trains users on those best practices.</li>
+<li><strong>Consistency across the organization:</strong> With templates, we can achieve standardization across the organization in our package managers, directory structures, linting tools, etc. This makes it easier for someone to familiarize themselves with your work and to understand what different files or tools do.</li>
+</ul>
+<h2 id="other-templates">Other templates</h2>
+<p>While we spent the majority of this lesson covering the <a href="https://github.com/Arcadia-Science/python-analysis-template"><code>python-analysis-template</code></a>, there is also an <a href="https://github.com/Arcadia-Science/r-analysis-template"><code>r-analysis-template</code></a>, a <a href="https://github.com/Arcadia-Science/snakemake-template"><code>snakemake-template</code></a>, and a <a href="https://github.com/Arcadia-Science/nextflow-template"><code>nextflow-template</code></a>.
+These templates are similar in spirit to the python analysis template but are tailored to different tools.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

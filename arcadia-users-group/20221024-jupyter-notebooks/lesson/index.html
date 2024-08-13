@@ -1,0 +1,657 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20221024-jupyter-notebooks/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Introduction to Jupyter notebooks - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-jupyter-notebooks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction to Jupyter notebooks
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jumping-in-with-jupyter-notebooks" class="md-nav__link">
+    Jumping in with Jupyter notebooks
+  </a>
+  
+    <nav class="md-nav" aria-label="Jumping in with Jupyter notebooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jupyter-notebook-vs-jupyterlab" class="md-nav__link">
+    Jupyter notebook vs. JupyterLab
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-the-jupyter-notebook-works" class="md-nav__link">
+    How the Jupyter notebook works
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-the-notebook-is-stored" class="md-nav__link">
+    How the notebook is stored
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewing-and-interacting-with-jupyter-notebooks" class="md-nav__link">
+    Viewing and interacting with jupyter notebooks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notebook-modes-control-and-edit" class="md-nav__link">
+    Notebook modes: Control and Edit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executing-shell-commands-in-a-jupyter-notebook" class="md-nav__link">
+    Executing shell commands in a jupyter notebook
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-jupyter-notebooks-locally-installation-and-startup" class="md-nav__link">
+    Running jupyter notebooks locally: installation and startup
+  </a>
+  
+    <nav class="md-nav" aria-label="Running jupyter notebooks locally: installation and startup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#managing-jupyter-notebook-installations-with-conda" class="md-nav__link">
+    Managing jupyter notebook installations with conda
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starting-a-jupyter-notebook-and-an-explanation-of-what-jupyter-is-doing" class="md-nav__link">
+    Starting a jupyter notebook and an explanation of what jupyter is doing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-other-software-used-in-jupyter-notebooks" class="md-nav__link">
+    Managing other software used in jupyter notebooks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shutting-down-a-jupyter-notebook" class="md-nav__link">
+    Shutting down a jupyter notebook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-an-r-kernel-to-run-r-code-in-a-jupyter-notebook" class="md-nav__link">
+    Setting up an R kernel to run R code in a jupyter notebook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reviewing-pull-requests-on-github-that-contain-jupyter-notebooks" class="md-nav__link">
+    Reviewing pull requests on GitHub that contain jupyter notebooks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attribution" class="md-nav__link">
+    Attribution
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="introduction-to-jupyter-notebooks">Introduction to Jupyter notebooks</h1>
+<h2 id="jumping-in-with-jupyter-notebooks">Jumping in with Jupyter notebooks</h2>
+<p>We'll start today's tutorial using a Binder installation of jupyter notebook in the cloud.
+After we take a tour of jupyter notebooks, we'll learn how to install and interact with them on our local computers.</p>
+<p>Click the button below to launch a jupyter notebook through <a href="https://mybinder.org/">binder</a>.</p>
+<p><a href="https://mybinder.org/v2/gh/arcadia-science/arcadia-computational-training/main"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>This will launch a computer in the cloud.
+You'll interact with this computer through your browser.
+Click the Python 3 button under the Notebook section to launch a jupyter notebook.</p>
+<p><img alt="" src="../jupyterlab.png" /></p>
+<details>
+  <summary>More information on binder and what happens when you click the launch binder button.</summary>
+
+Binder is a service that turns a Git repo into a collection of interactive notebooks. 
+When a repository is configured to run as a binder, passing the GitHub repository URL to binder starts the binder-building process.
+Binder first builds a docker image that contains all of the software installations specified by a special set of files in the GitHub repository.
+A docker image is a set of instructions that are used to create a docker container.
+A docker container is a runnable instance of a docker image -- it's an encapsulated computing environment that can be used to reproducibly install sets of software on diverse computers.
+Armed with the docker container, binder launches an "instance" in the cloud (either on Google Cloud or AWS typically) on which it runs the docker container.
+Binder does some additional work in the background -- if no software configuration files are provided in the GitHub repo, or if those contain a minimal set of software, binder will by default include JupyterHub in the docker.
+When the cloud instance is launched, this is the screen you interact with.
+You interact with the cloud instance  in your browser.
+Binders are ephemeral instances -- after a period of inactivity, the instance is automatically shut down, and any work you have done will be lost.
+You're able to download files from your work before the instance is shut down if you do want to save anything.
+<br />
+<br />
+You may notice that this instance already has a bunch of files on it. 
+And that these files look suspiciously exactly like the files in the GitHub repository <a href="https://github.com/arcadia-science/arcadia-computational-training">Arcadia-Science/arcadia-computational-training</a>. 
+That's because that's the repository we used to build the binder from. 
+</details>
+
+<h3 id="jupyter-notebook-vs-jupyterlab">Jupyter notebook vs. JupyterLab</h3>
+<p>Technically, our entry point for this tutorial is JupyterLab.
+JupyterLab is the next-generation user interface that includes notebooks.
+For an in depth comparison between Jupyter notebooks and JupyterLab, see <a href="https://medium.com/analytics-vidhya/why-switch-to-jupyterlab-from-jupyter-notebook-c6d98362945b">this article</a>.</p>
+<p>The image below depicts the JupyterLab (left) and Jupyter notebook (right) start up screens.
+JupyterLab provides a richer set of entry points for computation.
+Once you start a notebook, the notebook interface is identical.</p>
+<p><img alt="" src="../nbvslab.png" /> </p>
+<h3 id="how-the-jupyter-notebook-works">How the Jupyter notebook works</h3>
+<ul>
+<li>Click in the first cell and type some Python code.</li>
+</ul>
+<p><img alt="Code cell" src="../00_5_jupyter_code_before.png" /></p>
+<ul>
+<li>This is a <strong>Code</strong> cell (see the cell type dropdown with the word <strong>Code</strong>). To run the cell, type <kbd>Shift</kbd>+<kbd>Return</kbd>.</li>
+</ul>
+<p><img alt="Code cell and its output" src="../00_6_jupyter_code_after.png" /></p>
+<ul>
+<li>Let's look at a <strong>Markdown</strong> cell.
+  Markdown is a text manipulation language that is readable yet offers additional formatting. 
+  Don't forget to select <strong>Markdown</strong> from the cell type dropdown. 
+  Click in the cell and enter the markdown text.</li>
+</ul>
+<p><img alt="markdown input cell" src="../00_7_jupyter_markdown_before.png" /></p>
+<ul>
+<li>To run the cell, type <kbd>Shift</kbd>+<kbd>Return</kbd>.</li>
+</ul>
+<p><img alt="rendered markdown cell" src="../00_8_jupyter_markdown_after.png" /></p>
+<p>This workflow has several advantages:</p>
+<ul>
+<li>You can easily type, edit, and copy and paste blocks of code.</li>
+<li>Tab completion allows you to easily access the names of things you are using and learn more about them.</li>
+<li>It allows you to annotate your code with links, different sized text, bullets, etc. to make information more accessible to you and your collaborators.</li>
+<li>It allows you to display figures next to the code that produces them to tell a complete story of the analysis.</li>
+</ul>
+<h3 id="how-the-notebook-is-stored">How the notebook is stored</h3>
+<p>The notebook file is stored in a format called JSON and has the suffix <code>.ipynb</code>.
+Just like HTML for a webpage, what's saved in a notebook file looks different from what you see in your browser.
+This format allows Jupyter to mix software (in several languages) with documentation and graphics, all in one file.</p>
+<h3 id="viewing-and-interacting-with-jupyter-notebooks">Viewing and interacting with jupyter notebooks</h3>
+<p>While jupyter notebooks are saved in a plain text file in JSON format, the files themselves are quite large (often exceeding a megabyte).
+This text-rich format isn't very rewarding to look at it in its raw format.
+Historically, one needed to use <code>jupyter notebook</code> to open, view (render), and execute a jupyter notebook.
+This could be a heavy lift when you wanted to share a notebook with collaborators.
+This is probably still the most popular way to interact with notebooks but there are now lighter weight alternatives.</p>
+<p><strong>Viewing and interacting with jupyter notebooks.</strong>
+To view a jupyter notebook, you can use any of the following strategies.</p>
+<ol>
+<li>Use a local installation of jupyter notebook or jupyter hub to open the notebook in your browser. You'll have full functionality of the notebook with this strategy.</li>
+<li>Use VS Code to open and render the notebook. You'll still need jupyter installed locally for this to work, and you'll have full functionality of the notebook but it will be rendered directly in VS Code.</li>
+</ol>
+<p><strong>Only viewing jupyter notebooks.</strong>
+If your goal is view the notebook, or allow others to view the notebook, you can use the following strategies.</p>
+<ol>
+<li>Export the notebook to html, markdown, or PDF. You can then share the file with others who would like to view it.</li>
+<li>Upload the notebook to a GitHub repository. GitHub will automatically render the notebook, allowing others to view it without having to download it and use a local installation of jupyter notebook to open it.</li>
+<li>You can use <a href="https://nbviewer.org/">nbviewer</a> or other third party applications that render and distribute jupyter notebooks. </li>
+</ol>
+<h3 id="notebook-modes-control-and-edit">Notebook modes: Control and Edit</h3>
+<p>The notebook has two modes of operation: Control and Edit. 
+Control mode lets you edit notebook level features; while, Edit mode lets you change the contents of a notebook cell. 
+Remember a notebook is made up of a number of cells which can contain code, markdown, html, visualizations, and more.</p>
+<h3 id="executing-shell-commands-in-a-jupyter-notebook">Executing shell commands in a jupyter notebook</h3>
+<p>To execute a line of bash code in a python jupyter notebook, prepend the line of code with an <code>!</code>:</p>
+<div class="highlight"><pre><span></span><code>!ls
+</code></pre></div>
+<h2 id="running-jupyter-notebooks-locally-installation-and-startup">Running jupyter notebooks locally: installation and startup</h2>
+<p>Until this point, we've been using a JupyterLab installation on a cloud computer. 
+This allowed us to learn how to use Jupyter notebooks without having to install the program ourselves.
+In this section, we'll learn to install jupyter locally using conda.
+If you don't have conda install, head over to the <a href="../../20221017-conda/lesson/">miniconda lesson</a> to get it set up on your machine. </p>
+<h3 id="managing-jupyter-notebook-installations-with-conda">Managing jupyter notebook installations with conda</h3>
+<p>Jupyter brings along a lot of dependencies, so we'll create a new environment just for jupyter.
+In the long run, you'll also need to install any dependencies you need into this environment. 
+For practice, we'll install pandas and seaborn to demonstrate how to do this.</p>
+<div class="highlight"><pre><span></span><code>mamba create -n jupyter jupyter pandas
+</code></pre></div>
+<p>After we've created our environment, we  need to activate it to be able to access the software we just installed.
+<div class="highlight"><pre><span></span><code>conda activate jupyter
+</code></pre></div></p>
+<p>The command to start a jupyter notebook is <code>jupyter notebook</code>.
+<div class="highlight"><pre><span></span><code>jupyter notebook
+</code></pre></div></p>
+<h3 id="starting-a-jupyter-notebook-and-an-explanation-of-what-jupyter-is-doing">Starting a jupyter notebook and an explanation of what jupyter is doing</h3>
+<p>After typing the command <code>jupyter notebook</code>, the following happens:</p>
+<ul>
+<li>A Jupyter Notebook server is automatically created on your local machine.</li>
+<li>The Jupyter Notebook server runs locally on your machine only and does not use an internet connection.</li>
+<li>The Jupyter Notebook server opens the Jupyter notebook client, also known as the notebook user interface, in your default web browser.
+<img alt="Jupyter notebook file browser" src="../00_1_jupyter_file_browser.png" /></li>
+<li>To create a new Python notebook select the "New" dropdown on the upper right of the screen.
+<img alt="Jupyter notebook file browser" src="../00_2_jupyter_new_notebook.png" /></li>
+<li>When you can create a new notebook and type code into the browser, the web browser and the Jupyter notebook server communicate with each other.
+<img alt="" src="../00_3_jupyter_blank_notebook.png" /></li>
+<li>The Jupyter Notebook server does the work and calculations, and the web browser renders the notebook.</li>
+<li>The web browser then displays the updated notebook to you.</li>
+</ul>
+<h3 id="managing-other-software-used-in-jupyter-notebooks">Managing other software used in jupyter notebooks</h3>
+<p>When we installed jupyter notebook, we also installed pandas.
+We can check that our installation worked by importing pandas.</p>
+<div class="highlight"><pre><span></span><code>import pandas as pd
+</code></pre></div>
+<p>It works!</p>
+<p>This used the pandas library we installed when we created the environment. 
+If we later realize we need another piece of software, say seaborn, we can check if it's installed:</p>
+<div class="highlight"><pre><span></span><code>import seaborn
+</code></pre></div>
+<p>Since we haven't installed it yet, it's not available and we get the error:
+<div class="highlight"><pre><span></span><code>---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+Cell In [2], line 1
+----&gt; 1 import seaborn
+
+ModuleNotFoundError: No module named &#39;seaborn&#39;
+</code></pre></div></p>
+<p>We need to install it into our <code>jupyter</code> environment and then it will be accessible.
+We can do this from our jupyter notebook using the <code>!</code> to access bash from the notebook.
+We'll add the <code>-y</code> flag to our installation command to autamatically accept the install -- we do this because jupyter notebooks aren't interactive in the same way that the terminal would be during conda/mamba installations.</p>
+<div class="highlight"><pre><span></span><code>!mamba install seaborn -y
+</code></pre></div>
+<p>Then seaborn will be installed for us to use.
+<div class="highlight"><pre><span></span><code>import seaborn
+</code></pre></div></p>
+<p>You can also install things from the terminal into the environment when your <code>jupyter</code> environment is activated.
+Check your prompt to make sure it's prepended with <code>(jupyter)</code>, and then install the software you're interested in obtaining:
+<div class="highlight"><pre><span></span><code>mamba install scikit-learn
+</code></pre></div></p>
+<p>Then, in our notebook, we could run:
+<div class="highlight"><pre><span></span><code>import sklearn
+</code></pre></div></p>
+<h3 id="shutting-down-a-jupyter-notebook">Shutting down a jupyter notebook</h3>
+<p>You can use the jupyter notebook interface to shut down specific notebooks.
+To stop jupyter from running, you need to run <kbd>Ctrl</kbd>+<kbd>c</kbd> in the same terminal that you originall ran <code>jupyter notebook</code> in.
+Jupyter will prompt you to confirm the shut down. 
+Press <kbd>y</kbd> and then <kbd>Enter</kbd>.</p>
+<h3 id="setting-up-an-r-kernel-to-run-r-code-in-a-jupyter-notebook">Setting up an R kernel to run R code in a jupyter notebook</h3>
+<p>Jupyter notebooks can run languages other than python but require additional configuration.
+To run R, we need to install a package called irkernel.
+We'll create a new environment, and also install popular R packages like tidyverse.</p>
+<div class="highlight"><pre><span></span><code>conda deactivate
+mamba create -n tidyjupyter jupyter r-irkernel r-tidyverse
+</code></pre></div>
+<p>Activate the new environment
+<div class="highlight"><pre><span></span><code>conda activate tidyjupyter
+</code></pre></div></p>
+<p>And start jupyter notebook
+<div class="highlight"><pre><span></span><code>jupyter notebook
+</code></pre></div></p>
+<p>Now when we start a new notebook from jupyter, we have the option to start it with an R kernel.</p>
+<h3 id="reviewing-pull-requests-on-github-that-contain-jupyter-notebooks">Reviewing pull requests on GitHub that contain jupyter notebooks</h3>
+<p>The Arcadia Science organization has integration <a href="https://www.reviewnb.com/">ReviewNB</a> into our pull requests.
+Because jupyter notebooks are voluminous json text files, than can be really hard to review -- small changes in code (the thing we care about) can lead to huge changes in the metadata in the notebook (less interesting stuff we have to wade through).
+The ReviewNB tool automatically comments on PRs with jupyter notebooks and takes to you an external page where you can review rendered notebooks with side-by-side diffs.</p>
+<p><img alt="" src="../reviewnb.png" /></p>
+<h2 id="attribution">Attribution</h2>
+<p>This lesson was modified from the <a href="https://datacarpentry.org/python-ecology-lesson/jupyter_notebooks/">Data Carpentry python ecology lesson on jupyter notebooks</a>.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

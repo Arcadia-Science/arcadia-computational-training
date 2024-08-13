@@ -1,0 +1,743 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20240730-arcadiathemer/20240730-arcadiathemer/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Using `arcadiathemeR` to make figures in R - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#using-arcadiathemer-to-make-figures-in-r" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Using `arcadiathemeR` to make figures in R
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites-and-installation" class="md-nav__link">
+    Prerequisites and Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layering-onto-an-existing-ggplot2-plot" class="md-nav__link">
+    Layering onto an existing ggplot2 plot
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-palettes-and-specific-colors" class="md-nav__link">
+    Accessing palettes and specific colors
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exporting-plots" class="md-nav__link">
+    Exporting plots
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="using-arcadiathemer-to-make-figures-in-r">Using <code>arcadiathemeR</code> to make figures in R</h1>
+<p><code>arcadiathemeR</code> is an R package that provides functions to create
+<code>ggplot2</code>-style figures that (mostly) adhere to the Arcadia Science
+style guide. This lesson provides a quick introduction to
+<code>arcadiathemeR</code> and how to use it to style <code>ggplot2</code>-style plots, which
+largely follows the <a href="https://github.com/Arcadia-Science/arcadiathemeR?tab=readme-ov-file#arcadiathemer">package README
+documentation</a>.</p>
+<p>We’ll cover the following topics:</p>
+<ol>
+<li>Installing <code>arcadiathemeR</code></li>
+<li>Using <code>arcadiathemeR</code> to layer onto a <code>ggplot2</code> plot</li>
+<li>Accessing and using colors, palettes, and gradients</li>
+<li>Saving plots</li>
+</ol>
+<h2 id="prerequisites-and-installation">Prerequisites and Installation</h2>
+<ol>
+<li>
+<p>You need <code>R</code> installed, and <code>arcadiathemeR</code> requires at least R
+    version >= 4.0 (the package was built and tested with version
+    4.3.1). Install <code>R</code> for Mac OS X
+    <a href="https://cran.r-project.org/bin/macosx/">here</a>.</p>
+</li>
+<li>
+<p>You can use <code>RStudio</code> or a Jupyter notebook for creating plots.
+    Install <code>RStudio</code> for Mac OSx
+    <a href="https://posit.co/download/rstudio-desktop/">here</a> or Jupyter in a
+    conda environment <a href="https://training.arcadiascience.com/arcadia-users-group/20221024-jupyter-notebooks/lesson/#managing-jupyter-notebook-installations-with-conda">following these
+    instructions</a>.</p>
+</li>
+<li>
+<p>To use the custom fonts you need to download the <code>TTF</code> formatted
+    font files and place in the <code>Users/YOURUSERNAME/Library/Fonts/</code>
+    directory. You can also double click on the fonts to install them
+    using FontBook. Check out the Arcadia Science Brand Assets page in
+    Notion to find these. This should only need to be performed once
+    even if the package is updated over time. <strong>You must download the
+    TTF formatted files to be compatible with <code>arcadiathemeR</code>.</strong> If you
+    want to download both the <code>TTF</code> and <code>OTF</code> formatted files to use
+    both <code>arcadiathemeR</code> and the <code>arcadia-pycolor</code> python package that’s
+    fine - there will just be duplicate selections for each font in
+    Illustrator.</p>
+</li>
+<li>
+<p>Install <code>arcadiathemeR</code> with the <code>remotes</code> package:</p>
+<pre><code># install.packages("remotes")
+remotes::install_github("Arcadia-Science/arcadiathemeR")
+</code></pre>
+</li>
+<li>
+<p>Load the package to use in your scripts with
+    <code>library(arcadiathemeR)</code>. When you first load the package in a new R
+    session it will print a message about whether the custom fonts have
+    been accessed and loaded correctly.</p>
+</li>
+</ol>
+<h2 id="layering-onto-an-existing-ggplot2-plot">Layering onto an existing <code>ggplot2</code> plot</h2>
+<p>There are two main functions you will use to layer onto an existing
+<code>ggplot2</code> plot to create plots adhering to the Arcadia style guide and
+access palettes. These are the <code>theme_arcadia</code> and <code>scale</code> functions.
+The particular <code>scale</code> function differs on whether you use <code>color</code> or
+<code>fill</code> to access colors. Here is how you use these functions without
+changing the default arguments:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">arcadiathemeR</span><span class="p">)</span>
+<span class="c1">#&gt; Loading Suisse fonts...</span>
+<span class="c1">#&gt; All custom fonts &#39;Suisse Int&#39;l, Suisse Int&#39;l Semi Bold, Suisse Int&#39;l Medium, Suisse Int&#39;l Mono&#39; are successfully loaded.</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">mtcars</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">hp</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">mpg</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="nf">as.factor</span><span class="p">(</span><span class="n">cyl</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_arcadia</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_color_arcadia</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="" src="../figures/aug-example_plot-1.png" /></p>
+<p>If you want to change the color palette used, you can access this with
+the <code>palette_name</code> argument in the <code>scale</code> function:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">mtcars</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">hp</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">mpg</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="nf">as.factor</span><span class="p">(</span><span class="n">cyl</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_arcadia</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_color_arcadia</span><span class="p">(</span><span class="n">palette_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;primary&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../figures/aug-palette_change-1.png" /></p>
+<p>We have specific font specifications for whether the represented data is
+categorical or numerical. In the next plot where the x-axis is different
+categories, you can see where the font isn’t specified correctly:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">diamonds</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">cut</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">cut</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_bar</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_arcadia</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_arcadia</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="" src="../figures/aug-fonts-1.png" /></p>
+<p>To use the correct font type, you can specify what type of data you have
+on each axis by using the <code>x_axis_type</code> or <code>y_axis_type</code> arguments in
+the <code>theme_arcadia</code> function:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">diamonds</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">cut</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">cut</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_bar</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_arcadia</span><span class="p">(</span><span class="n">x_axis_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;categorical&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_arcadia</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="" src="../figures/aug-fonts_correct-1.png" /></p>
+<p>In addition to specifying which palette to use in the <code>scale</code> function,
+you can also reverse the colors of the scale used with <code>reverse=TRUE</code>.
+You can also use other <code>ggplot2</code> or <code>theme</code> specifications on top of
+these functions, such as moving the position of the legend or modifying
+the scales to remove whitespace between the axis lines and the bars:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">diamonds</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">cut</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">cut</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_bar</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_arcadia</span><span class="p">(</span><span class="n">x_axis_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;categorical&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_arcadia</span><span class="p">(</span><span class="n">palette_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;secondary&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">reverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_y_continuous</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># removes whitespace between axis and bars</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bottom&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../figures/aug-additional_layers-1.png" /></p>
+<p>In addition to reversing the order of the colors used in the palette,
+you can select different indices of colors from the palettes within the
+<code>scale</code> function with the <code>start</code> and <code>end</code> arguments:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hp</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">cyl</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_density</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># remove border line from filled-in density plots</span>
+<span class="w">  </span><span class="nf">theme_arcadia</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_arcadia</span><span class="p">(</span><span class="n">palette_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue_shades&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="o">=</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_y_continuous</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="c1"># remove whitespace between both axes and the plot</span>
+</code></pre></div>
+<p><img alt="" src="../figures/aug-indices-1.png" /></p>
+<p>The <code>scale</code> functions are used to specify which palettes to use. The
+<code>gradient</code> functions are used to access the gradient palettes, which
+work in the same way as the <code>scale</code> functions using <code>color</code> or <code>fill</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mtcars</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hp</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mpg</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hp</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w"> </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">2.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w"> </span><span class="nf">theme_arcadia</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w"> </span><span class="nf">gradient_color_arcadia</span><span class="p">(</span><span class="n">palette_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lisafrank&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../figures/aug-gradient-1.png" /></p>
+<p>There are also single color gradients available in additions to the
+gradient palettes that are useful for heatmap plots. You can also remove
+the background color with <code>background=FALSE</code>, which is recommended when
+exporting plots, which is described below.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">reshape2</span><span class="p">)</span>
+
+<span class="c1"># heatmap of correlation matrix</span>
+<span class="nf">data</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span>
+<span class="n">iris_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">iris</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">]</span>
+<span class="n">cor_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cor</span><span class="p">(</span><span class="n">iris_data</span><span class="p">)</span>
+<span class="n">melted_cor_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="nf">melt</span><span class="p">(</span><span class="n">cor_matrix</span><span class="p">))</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">melted_cor_matrix</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Var1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">Var2</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">value</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_tile</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_arcadia</span><span class="p">(</span><span class="n">x_axis_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;categorical&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y_axis_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;categorical&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">gradient_fill_arcadia</span><span class="p">(</span><span class="n">palette_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;reds&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">        </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;top&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">())</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_y_discrete</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_x_discrete</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">))</span>
+</code></pre></div>
+<p><img alt="" src="../figures/aug-heatmap-1.png" /></p>
+<h2 id="accessing-palettes-and-specific-colors">Accessing palettes and specific colors</h2>
+<p>To view all the color palette options and the individual hex codes that
+comprise each palette, you can view these with <code>show_arcadia_palettes</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">show_arcadia_palettes</span><span class="p">()</span>
+<span class="c1">#&gt; $primary</span>
+<span class="c1">#&gt;  [1] &quot;#5088C5&quot; &quot;#F28360&quot; &quot;#3B9886&quot; &quot;#F7B846&quot; &quot;#7A77AB&quot; &quot;#F898AE&quot; &quot;#73B5E3&quot;</span>
+<span class="c1">#&gt;  [8] &quot;#FFB984&quot; &quot;#F5E4BE&quot; &quot;#BABEE0&quot; &quot;#97CD78&quot; &quot;#C85152&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $secondary</span>
+<span class="c1">#&gt; [1] &quot;#C6E7F4&quot; &quot;#F8C5C1&quot; &quot;#DBD1C3&quot; &quot;#B6C8D4&quot; &quot;#B5BEA4&quot; &quot;#DA9085&quot; &quot;#8A99AD&quot;</span>
+<span class="c1">#&gt; [8] &quot;#EDE0D6&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $primary_ordered</span>
+<span class="c1">#&gt;  [1] &quot;#5088C5&quot; &quot;#F28360&quot; &quot;#F7B846&quot; &quot;#97CD78&quot; &quot;#7A77AB&quot; &quot;#F898AE&quot; &quot;#3B9886&quot;</span>
+<span class="c1">#&gt;  [8] &quot;#C85152&quot; &quot;#73B5E3&quot; &quot;#FFB984&quot; &quot;#F5E4BE&quot; &quot;#BABEE0&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $secondary_ordered</span>
+<span class="c1">#&gt; [1] &quot;#C6E7F4&quot; &quot;#F8C5C1&quot; &quot;#DBD1C3&quot; &quot;#B5BEA4&quot; &quot;#B6C8D4&quot; &quot;#DA9085&quot; &quot;#EDE0D6&quot;</span>
+<span class="c1">#&gt; [8] &quot;#8A99AD&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $neutrals</span>
+<span class="c1">#&gt; [1] &quot;#FFFFFF&quot; &quot;#EBEDE8&quot; &quot;#BAB0A8&quot; &quot;#8F8885&quot; &quot;#43413F&quot; &quot;#484B50&quot; &quot;#292928&quot;</span>
+<span class="c1">#&gt; [8] &quot;#09090A&quot; &quot;#596F74&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $blue_shades</span>
+<span class="c1">#&gt; [1] &quot;#C6E7F4&quot; &quot;#73B5E3&quot; &quot;#5088C5&quot; &quot;#2B65A1&quot; &quot;#094468&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $orange_shades</span>
+<span class="c1">#&gt; [1] &quot;#FFCFAF&quot; &quot;#FFB984&quot; &quot;#F28360&quot; &quot;#C85152&quot; &quot;#9E3F41&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $yellow_shades</span>
+<span class="c1">#&gt; [1] &quot;#F5E4BE&quot; &quot;#FFD364&quot; &quot;#F7B846&quot; &quot;#D68D22&quot; &quot;#A85E28&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $purple_shades</span>
+<span class="c1">#&gt; [1] &quot;#DCDFEF&quot; &quot;#BABEE0&quot; &quot;#7A77AB&quot; &quot;#54448C&quot; &quot;#341E60&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $teal_shades</span>
+<span class="c1">#&gt; [1] &quot;#C3E2DB&quot; &quot;#6FBCAD&quot; &quot;#3B9886&quot; &quot;#2A6B5E&quot; &quot;#09473E&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $pink_shades</span>
+<span class="c1">#&gt; [1] &quot;#FFE3D4&quot; &quot;#F8C5C1&quot; &quot;#F898AE&quot; &quot;#E2718F&quot; &quot;#C04C70&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $warm_gray_shades</span>
+<span class="c1">#&gt; [1] &quot;#EDE6DA&quot; &quot;#DBD1C3&quot; &quot;#BAB0A8&quot; &quot;#8F8885&quot; &quot;#635C5A&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $cool_gray_shades</span>
+<span class="c1">#&gt; [1] &quot;#E6EAED&quot; &quot;#CAD4DB&quot; &quot;#ABBAC4&quot; &quot;#8A99AD&quot; &quot;#687787&quot;</span>
+</code></pre></div>
+<p>To view gradient options and colors, use <code>show_arcadia_gradients</code>. The
+gradients also show the positions for each individual color in the
+gradient. You can use these lists of hex codes to create custom or
+reordered sets of palettes.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">show_arcadia_gradients</span><span class="p">()</span>
+<span class="c1">#&gt; $magma</span>
+<span class="c1">#&gt; $magma$colors</span>
+<span class="c1">#&gt; [1] &quot;#341E60&quot; &quot;#54448C&quot; &quot;#A96789&quot; &quot;#E9A482&quot; &quot;#F5DFB2&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $magma$positions</span>
+<span class="c1">#&gt; [1] 0.000 0.217 0.498 0.799 1.000</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $verde</span>
+<span class="c1">#&gt; $verde$colors</span>
+<span class="c1">#&gt; [1] &quot;#09473E&quot; &quot;#4E7F72&quot; &quot;#FFCC7B&quot; &quot;#FFE3D4&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $verde$positions</span>
+<span class="c1">#&gt; [1] 0.000 0.357 0.909 1.000</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $viridis</span>
+<span class="c1">#&gt; $viridis$colors</span>
+<span class="c1">#&gt; [1] &quot;#282A49&quot; &quot;#5088C5&quot; &quot;#97CD78&quot; &quot;#FFFDBD&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $viridis$positions</span>
+<span class="c1">#&gt; [1] 0.000 0.468 0.746 1.000</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $wine</span>
+<span class="c1">#&gt; $wine$colors</span>
+<span class="c1">#&gt; [1] &quot;#52180A&quot; &quot;#C85152&quot; &quot;#FFB984&quot; &quot;#F8F4F1&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $wine$positions</span>
+<span class="c1">#&gt; [1] 0.000 0.451 0.828 1.000</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $lisafrank</span>
+<span class="c1">#&gt; $lisafrank$colors</span>
+<span class="c1">#&gt; [1] &quot;#09473E&quot; &quot;#5088C5&quot; &quot;#BABEE0&quot; &quot;#F4CAE3&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $lisafrank$positions</span>
+<span class="c1">#&gt; [1] 0.000 0.484 0.862 1.000</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $sunset</span>
+<span class="c1">#&gt; $sunset$colors</span>
+<span class="c1">#&gt; [1] &quot;#4D2500&quot; &quot;#A85E28&quot; &quot;#E9A482&quot; &quot;#FFCC7B&quot; &quot;#FFE3D4&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $sunset$positions</span>
+<span class="c1">#&gt; [1] 0.000 0.407 0.767 0.915 1.000</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $oranges</span>
+<span class="c1">#&gt; $oranges$colors</span>
+<span class="c1">#&gt; [1] &quot;#964222&quot; &quot;#FFB984&quot; &quot;#F8F4F1&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $oranges$positions</span>
+<span class="c1">#&gt; [1] 0.000 0.761 1.000</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $sages</span>
+<span class="c1">#&gt; $sages$colors</span>
+<span class="c1">#&gt; [1] &quot;#2A6B5E&quot; &quot;#B5BEA4&quot; &quot;#F7FBEF&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $sages$positions</span>
+<span class="c1">#&gt; [1] 0.000 0.641 1.000</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $orangesage</span>
+<span class="c1">#&gt; $orangesage$colors</span>
+<span class="c1">#&gt; [1] &quot;#964222&quot; &quot;#FFB984&quot; &quot;#F8F4F1&quot; &quot;#F7FBEF&quot; &quot;#B5BEA4&quot; &quot;#2A6B5E&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $orangesage$positions</span>
+<span class="c1">#&gt; [1] 0.000 0.761 1.000 1.000 0.641 0.000</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $reds</span>
+<span class="c1">#&gt; $reds$colors</span>
+<span class="c1">#&gt; [1] &quot;#9E3F41&quot; &quot;#C85152&quot; &quot;#FFF3F4&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $reds$positions</span>
+<span class="c1">#&gt; [1] 0.000 0.212 1.000</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $blues</span>
+<span class="c1">#&gt; $blues$colors</span>
+<span class="c1">#&gt; [1] &quot;#2B65A1&quot; &quot;#5088C5&quot; &quot;#F4FBFF&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $blues$positions</span>
+<span class="c1">#&gt; [1] 0.000 0.254 1.000</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $redblue</span>
+<span class="c1">#&gt; $redblue$colors</span>
+<span class="c1">#&gt; [1] &quot;#9E3F41&quot; &quot;#C85152&quot; &quot;#FFF3F4&quot; &quot;#F4FBFF&quot; &quot;#5088C5&quot; &quot;#2B65A1&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $redblue$positions</span>
+<span class="c1">#&gt; [1] 0.000 0.212 1.000 1.000 0.254 0.000</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $purples</span>
+<span class="c1">#&gt; $purples$colors</span>
+<span class="c1">#&gt; [1] &quot;#6862AB&quot; &quot;#7A77AB&quot; &quot;#FCF7FF&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $purples$positions</span>
+<span class="c1">#&gt; [1] 0.000 0.144 1.000</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $greens</span>
+<span class="c1">#&gt; $greens$colors</span>
+<span class="c1">#&gt; [1] &quot;#47784A&quot; &quot;#97CD78&quot; &quot;#F7FBEF&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $greens$positions</span>
+<span class="c1">#&gt; [1] 0.000 0.622 1.000</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $purplegreen</span>
+<span class="c1">#&gt; $purplegreen$colors</span>
+<span class="c1">#&gt; [1] &quot;#6862AB&quot; &quot;#7A77AB&quot; &quot;#FCF7FF&quot; &quot;#F7FBEF&quot; &quot;#97CD78&quot; &quot;#47784A&quot;</span>
+<span class="c1">#&gt;</span>
+<span class="c1">#&gt; $purplegreen$positions</span>
+<span class="c1">#&gt; [1] 0.000 0.144 1.000 1.000 0.622 0.000</span>
+</code></pre></div>
+<h2 id="exporting-plots">Exporting plots</h2>
+<p>To save plots, we have a custom <code>save_arcadia_plot</code> function built on
+top of <code>ggsave</code> that helps you export plots that adhere to our size
+guidelines and can be used with the Illustrator templates. The different
+plot size options are
+<code>"full_wide", "float_wide", "half_square", "full_square"</code>, or
+<code>"float_square"</code>. These panel sizes adhere to the panel sizes available
+in the Illustrator templates.</p>
+<p>If you want to save plots in different formats (such as PNG or JPG) or
+sizes that aren’t available through this convenience function, you can
+still use the regular <code>ggsave</code> function. Additionally for the background
+to be transparent in exported plots you need to set the <code>background</code>
+argument to <code>FALSE</code> in the <code>theme_arcadia</code> function:</p>
+<div class="highlight"><pre><span></span><code><span class="n">plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">diamonds</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">cut</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">cut</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_bar</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_arcadia</span><span class="p">(</span><span class="n">x_axis_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;categorical&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_arcadia</span><span class="p">(</span><span class="n">palette_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;secondary&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">reverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_y_continuous</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># removes whitespace between axis and bars</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bottom&quot;</span><span class="p">)</span>
+
+<span class="nf">save_arcadia_plot</span><span class="p">(</span><span class="s">&quot;figures/arcadia-plot.pdf&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">plot</span><span class="p">,</span><span class="w"> </span><span class="n">panel_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;full_square&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="resources">Resources</h2>
+<p>This lesson follows the examples given in the <a href="https://github.com/Arcadia-Science/arcadiathemeR/tree/main"><code>arcadiathemeR</code>
+documentation</a>.
+<a href="https://github.com/Arcadia-Science/arcadiathemeR/issues">Open an issue</a>
+in the repo to request new features or report bugs as you come across
+them!</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,691 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20220912-intro-to-shell2/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Introduction to shell part 2 - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-shell-part-2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction to shell part 2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-the-shell-for-this-lesson" class="md-nav__link">
+    Accessing the shell for this lesson
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interrogating-the-content-of-files" class="md-nav__link">
+    Interrogating the content of files
+  </a>
+  
+    <nav class="md-nav" aria-label="Interrogating the content of files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#looking-at-whole-files" class="md-nav__link">
+    Looking at whole files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#looking-for-specific-content-in-a-file" class="md-nav__link">
+    Looking for specific content in a file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#figuring-out-how-long-a-file-is" class="md-nav__link">
+    Figuring out how long a file is
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copying-moving-and-renaming-files" class="md-nav__link">
+    Copying, moving, and renaming files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-and-removing-directories" class="md-nav__link">
+    Creating and removing directories
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#credits" class="md-nav__link">
+    Credits
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="introduction-to-shell-part-2">Introduction to shell part 2</h1>
+<p>In the <a href="../../20220906-intro-to-shell1/lesson/">previous lesson</a>, we introduced the concept of the Unix shell, showed how to navigate the shell, and introduced the commands <code>head</code>, <code>tail</code>, <code>pwd</code>, <code>ls</code>, and <code>cd</code>.
+In this lesson, we'll cover how to create and delete directories (folders), how to move, copy, and delete files, and how to search the contents of a file more systematically.</p>
+<h2 id="accessing-the-shell-for-this-lesson">Accessing the shell for this lesson</h2>
+<p>For this lesson, we need to have access to a Unix shell. 
+Click the button below to launch a shell through <a href="https://mybinder.org/">binder</a>.</p>
+<p><a href="https://mybinder.org/v2/gh/arcadia-science/arcadia-computational-training/main"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>This will launch a computer in the cloud.
+You'll interact with this computer through your browser.
+Click the Terminal button to launch a Terminal that we will work with for the rest of the lesson.</p>
+<p><img alt="" src="../../20220906-intro-to-shell1/jupyterhub.png" /></p>
+<details>
+  <summary><b>More information on binder and what happens when you click the launch binder button.</b></summary>
+
+Binder is a service that turns a Git repo into a collection of interactive notebooks. 
+When a repository is configured to run as a binder, passing the GitHub repository URL to binder starts the binder-building process.
+binder first builds a docker image that contains all of the software installations specified by a special set of files in the GitHub repository.
+A docker image is a set of instructions that are used to create a docker container.
+A docker container is a runnable instance of a docker image -- it's an encapsulated computing environment that can be used to reproducibly install sets of software on diverse computers.
+Armed with the docker container, binder launches an "instance" in the cloud (either on Google Cloud or AWS typically) on which it runs the docker container.
+Binder does some additional work in the background -- if no software configuration files are provided in the GitHub repo, or if those contain a minimal set of software, binder will by default include JupyterHub in the docker.
+When the cloud instance is launched, this is the screen you interact with.
+You interact with the cloud instance  in your browser.
+Binders are ephemeral instances -- after a period of inactivity, the instance is automatically shut down, and any work you have done will be lost.
+You're able to download files from your work before the instance is shut down if you do want to save anything.
+
+
+You may notice that this instance already has a bunch of files on it. 
+And that these files look suspiciously exactly like the files in the GitHub repository <a href="https://github.com/arcadia-science/arcadia-computational-training">Arcadia-Science/arcadia-computational-training</a>.
+That's because that's the repository we used to build the binder from. 
+</details>
+
+<p><br /></p>
+<h2 id="interrogating-the-content-of-files">Interrogating the content of files</h2>
+<h3 id="looking-at-whole-files">Looking at whole files</h3>
+<p>As we learned in the previous lesson, we can investigate the beginning and end of a file using <code>head</code> or <code>tail</code>.
+What if you want to see all of the contents of a file?
+The command <code>cat</code> will print the contents of a file to <code>stdout</code> -- the standard output stream that prints to the shell.</p>
+<p>Let's run <code>ls</code> and see what files we're working with.</p>
+<div class="highlight"><pre><span></span><code>ls 
+</code></pre></div>
+<p>And then look at the contents of <code>mkdocs.yml</code> using <code>cat</code>:</p>
+<div class="highlight"><pre><span></span><code>cat mkdocs.yml
+</code></pre></div>
+<p>We see the following content:</p>
+<div class="highlight"><pre><span></span><code>site_name: Arcadia Science Computational Training
+site_url: http://arcadia-science.github.io/arcadia-computational-training
+repo_name: arcadia-computational-training
+repo_url: https://github.com/arcadia-science/arcadia-computational-training
+edit_uri: &quot;&quot;
+
+copyright: &#39;Copyright &amp;copy; 2022 &lt;a href=&quot;https://www.arcadiascience.com&quot;&gt;Arcadia Science&lt;/a&gt;&#39;
+
+# change directory names here to reflect directories in the repository
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: lux
+
+extra_css: 
+    - css/extra.css
+
+# organize site structure and give a title for each page
+# paths are relative to the docs directory
+nav:
+    - &quot;Home&quot;: &quot;index.md&quot;
+    - &quot;Arcadia Users Group&quot;: &quot;arcadia-users-group/overview.md&quot;
+    - &quot;Workshops&quot;: &quot;workshops/overview.md&quot;
+    - &quot;Contribute&quot;: &quot;CONTRIBUTING.md&quot;
+</code></pre></div>
+<details>
+  <summary><b>More information on YAML (<code>.yml</code>, <code>.yaml</code>) file formats.</b></summary>
+<a href="https://yaml.org">YAML</a> originally stood for Yet Another Markup Language as it was originally developed and released around the same time as many other markup languages (HTML, etc).
+Now, it stands for YAML Ain't A Markup Language.  
+Unlike <a href="https://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20220822-intro-to-markdown-syntax/lesson/">Markdown</a> which strives to be human-readable and parseable into pretty documents, YAML is a data-oriented.
+YAML is a human-friendly data serialization language for all programming language.
+It's a file format commonly used to specify configuration files.
+Configuration files specify where a computer program can find files it needs, parameters for when the program runs, or other metadata for a program.
+</details>
+
+<p><br />
+In this case, the output of the file is palatable; we can grok the whole files contents by printing it all to stdout.</p>
+<p>Let's use <code>cat</code> on a longer file:</p>
+<div class="highlight"><pre><span></span><code>cat docs/arcadia-users-group/20220822-intro-to-markdown-syntax/lesson.md 
+</code></pre></div>
+<p>When we run this command, the output takes up more than we can see without scrolling.
+If we were to run <code>cat</code> on a really long file, it may take seconds, minutes, or even hours to print all of the contents to the screen. 
+Enter <code>less</code>.
+<code>less</code> is a terminal pager that shows a file's contents one screen at a time.</p>
+<div class="highlight"><pre><span></span><code>less docs/arcadia-users-group/20220822-intro-to-markdown-syntax/lesson.md
+</code></pre></div>
+<p>This allows us to interactivley view the contents of a file. 
+To navigate the lesson screen, we can use key board arrows (line-by-line navigation), the space bar (page jump), or even special combinations of keys (<code>GG</code> jumps to the bottom of the file). 
+To exit out of <code>less</code>, press the <code>q</code> key.</p>
+<h3 id="looking-for-specific-content-in-a-file">Looking for specific content in a file</h3>
+<p>Sometimes, we care less about all the things in a file and instead want to find something specific.
+<code>grep</code> is a great command for this.
+<code>grep</code> (<strong>g</strong>lobal <strong>r</strong>egular <strong>e</strong>x<strong>p</strong>ression) is a search tool. 
+It looks through text files for strings (sequences of characters). 
+In its default usage, <code>grep</code> will look for whatever string of characters you give it (1st positional argument), in whichever file you specify (2nd positional argument), and then print out the lines that contain what you searched for. 
+Let's try it:</p>
+<div class="highlight"><pre><span></span><code>grep &quot;Arcadia&quot; mkdocs.yml
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>site_name: Arcadia Science Computational Training
+copyright: &#39;Copyright &amp;copy; 2022 &lt;a href=&quot;https://www.arcadiascience.com&quot;&gt;Arcadia Science&lt;/a&gt;&#39;
+    - &quot;Arcadia Users Group&quot;: &quot;arcadia-users-group/overview.md&quot;
+</code></pre></div>
+<p>We see <code>Arcadia</code> appears three times.</p>
+<p>If we <code>grep</code> for a string that is not in the file, nothing will be printed to the screen:
+<div class="highlight"><pre><span></span><code>grep &quot;hippo&quot; mkdocs.yml
+</code></pre></div></p>
+<h3 id="figuring-out-how-long-a-file-is">Figuring out how long a file is</h3>
+<p>Sometimes we care less about the specific contents of a file and instead we want a general overview of the contents of a file.
+This can be helpful when you download a large file -- you may know the number of lines you expect to see inside of it. 
+We can use the <code>wc</code> <strong>w</strong>ord <strong>c</strong>ount command to get a summary of the number of lines, words, and characters in a file.</p>
+<div class="highlight"><pre><span></span><code>wc mkdocs.yml
+</code></pre></div>
+<p>This file has 25 lines, 75 words, and 782 characters.
+<div class="highlight"><pre><span></span><code> 25  75 782 mkdocs.yml
+</code></pre></div></p>
+<p><code>wc</code> also accepts flags -- the <code>-l</code> flag limits the output of <code>wc</code> to only the number of lines in a file.
+<div class="highlight"><pre><span></span><code>wc -l
+</code></pre></div></p>
+<p>The options below allow you to select which counts are printed.</p>
+<ul>
+<li><code>-l</code>, <code>--lines</code> - print the number of lines.</li>
+<li><code>-w</code>, <code>--words</code> - print the number of words.</li>
+<li><code>-m</code>, <code>--chars</code> - print the number of characters.</li>
+<li><code>-c</code>, <code>--bytes</code> - print the number of bytes.</li>
+<li><code>-L</code>, <code>--max-line-length</code> - print the length of the longest line.</li>
+</ul>
+<h2 id="copying-moving-and-renaming-files">Copying, moving, and renaming files</h2>
+<p>The commands <strong><code>cp</code></strong> and <strong><code>mv</code></strong> (<strong>c</strong>o<strong>p</strong>y and <strong>m</strong>o<strong>v</strong>e) have the same basic structure. 
+They both require two positional arguments – the first is the file you want to act on, and the second is where you want it to go (which can include the name you want to give it). </p>
+<p>To see how this works, let's make a copy of "example.txt":</p>
+<div class="highlight"><pre><span></span><code>ls
+cp mkdocs.yml mkdocs_copy.yml
+ls
+</code></pre></div>
+<p>By giving the second argument a name and nothing else (meaning no path in front of the name), we are implicitly saying we want it copied to where we currently are. </p>
+<p>To make a copy and put it somewhere else, like in our subdirectory <code>docs</code>, we could change the second positional argument using a <strong>relative path</strong> ("relative" because it starts from where we currently are):</p>
+<div class="highlight"><pre><span></span><code>ls docs
+cp mkdocs.yml docs/mkdocs_copy.yml
+ls docs
+</code></pre></div>
+<p>To copy a file to that subdirectory but keep the same name, we could type the whole name out, but we can also provide the directory but leave off the file name:</p>
+<div class="highlight"><pre><span></span><code>cp mkdocs.yml docs/
+ls docs/
+</code></pre></div>
+<p>If we wanted to copy something <em>from somewhere else to our current working directory</em> and keep the same name, we can use another special character, a period (<strong><code>.</code></strong>), which specifies the current working directory:</p>
+<div class="highlight"><pre><span></span><code>ls
+cp<span class="w"> </span>docs/index.md<span class="w"> </span>.
+ls
+</code></pre></div>
+<p>The <strong><code>mv</code></strong> command is used to move files. 
+Let's move the <code>README.md</code> file into the <code>docs</code> subdirectory:</p>
+<div class="highlight"><pre><span></span><code>ls
+ls docs/
+mv README.md docs/
+ls
+ls docs/
+</code></pre></div>
+<p>The <strong><code>mv</code></strong> command is also used to <em>rename</em> files. 
+This may seem strange at first, but remember that the path (address) of a file actually includes its name too (otherwise everything in the same directory would have the same path). </p>
+<div class="highlight"><pre><span></span><code>ls
+mv mkdocs_copy.yml mkdocs_new.yml
+ls
+</code></pre></div>
+<p>To delete files there is the <strong><code>rm</code></strong> command (<strong>r</strong>e<strong>m</strong>ove). 
+This command requires at least one argument specifying the file we want to delete. 
+Typically, this command does not ask you to confirm your actions and files are permanently deleted instead of being moved to a <code>Trash</code> directory.</p>
+<div class="highlight"><pre><span></span><code>ls
+rm mkdocs_new.yml
+ls
+</code></pre></div>
+<h2 id="creating-and-removing-directories">Creating and removing directories</h2>
+<p>We can make a new directory with the command <strong><code>mkdir</code></strong> (for <strong>m</strong>a<strong>k</strong>e <strong>dir</strong>ectory): </p>
+<div class="highlight"><pre><span></span><code>ls
+mkdir subset
+ls
+</code></pre></div>
+<p>And similarly, directories can be deleted with <strong><code>rmdir</code></strong> (for <strong>r</strong>e<strong>m</strong>ove <strong>dir</strong>ectory):</p>
+<div class="highlight"><pre><span></span><code>rmdir<span class="w"> </span>subset/
+ls
+</code></pre></div>
+<p>The command line is a little more forgiving when trying to delete a directory. 
+If the directory is not empty, <strong><code>rmdir</code></strong> will give you an error. </p>
+<div class="highlight"><pre><span></span><code>rmdir<span class="w"> </span>docs/
+</code></pre></div>
+<p>The <code>rm</code> command can also be used to delete a directory, but it needs the flags <code>-rf</code> added to.
+<code>-r</code> stands for recursive (meaning delete all files and folders located within the specified directory), while the <code>f</code> stands for for force.
+Unlike <code>rmdir</code>, this command will not check whether you want the directory deleted before removing it and it will remove a directory even if it isn't empty. 
+It's good to get into the habit of mentally or actually checking where you are and what you're deleting before removing something with <code>rm -rf</code> as this command can delete A LOT of files very quickly if you enter the wrong thing.</p>
+<div class="highlight"><pre><span></span><code>mkdir subset
+ls
+rm -rf subset
+</code></pre></div>
+<h2 id="summary">Summary</h2>
+<h4><i>Commands introduced:</i></h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Command</strong></th>
+<th align="center"><strong>Function</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong><code>cat</code></strong></td>
+<td align="center">prints the contents of a file to <code>stdout</code></td>
+</tr>
+<tr>
+<td align="center"><strong><code>less</code></strong></td>
+<td align="center">allows us to browse a file (exit with <kbd>q</kbd> key)</td>
+</tr>
+<tr>
+<td align="center"><strong><code>wc</code></strong></td>
+<td align="center">count lines, words, and characters in a file</td>
+</tr>
+<tr>
+<td align="center"><strong><code>cp</code></strong></td>
+<td align="center">copy a file or directory</td>
+</tr>
+<tr>
+<td align="center"><strong><code>mv</code></strong></td>
+<td align="center">move or rename a file or directory</td>
+</tr>
+<tr>
+<td align="center"><strong><code>rm</code></strong></td>
+<td align="center">delete a file or directory</td>
+</tr>
+<tr>
+<td align="center"><strong><code>mkdir</code></strong></td>
+<td align="center">create a directory</td>
+</tr>
+<tr>
+<td align="center"><strong><code>rmdir</code></strong></td>
+<td align="center">delete a directory</td>
+</tr>
+</tbody>
+</table>
+<h4><i>Special characters introduced:</i></h4>
+
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Characters</strong></th>
+<th align="center"><strong>Meaning</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong><code>.</code></strong></td>
+<td align="center">specifies the current working directory</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<h2 id="credits">Credits</h2>
+<p>This lesson was modified from the following sources:</p>
+<ul>
+<li>ANGUS 2019:<ul>
+<li>https://angus.readthedocs.io/en/2019/shell_intro/shell-six-glorious-commands-04.html</li>
+<li>https://angus.readthedocs.io/en/2019/shell_intro/shell-working-02.html</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

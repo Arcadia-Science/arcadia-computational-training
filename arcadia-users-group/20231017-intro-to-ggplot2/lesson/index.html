@@ -1,0 +1,1006 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://arcadia-science.github.io/arcadia-computational-training/arcadia-users-group/20231017-intro-to-ggplot2/lesson/">
+      
+      <link rel="icon" href="../../../assets/Arcadia_LogoOnly-XL-K.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Intro to R via `ggplot2` - Arcadia Science Computational Training</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="light-blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#intro-to-r-via-ggplot2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-header__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arcadia Science Computational Training
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Intro to R via `ggplot2`
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Arcadia Science Computational Training" class="md-nav__button md-logo" aria-label="Arcadia Science Computational Training" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Arcadia Science Computational Training
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/arcadia-science/arcadia-computational-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    arcadia-computational-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Computational Training Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        Arcadia Users Group
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../workshops/overview/" class="md-nav__link">
+        Workshops
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-r-and-rstudio" class="md-nav__link">
+    Introduction to R and RStudio
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction to R and RStudio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-are-r-and-rstudio" class="md-nav__link">
+    What are R and RStudio?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigating-rstudio" class="md-nav__link">
+    Navigating RStudio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#console-vs-script" class="md-nav__link">
+    Console vs. script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-in-r-and-rstudio" class="md-nav__link">
+    Working in R and RStudio
+  </a>
+  
+    <nav class="md-nav" aria-label="Working in R and RStudio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#console" class="md-nav__link">
+    Console
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#script" class="md-nav__link">
+    Script
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-visualization-with-ggplot2" class="md-nav__link">
+    Data visualization with ggplot2
+  </a>
+  
+    <nav class="md-nav" aria-label="Data visualization with ggplot2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getting-started-with-ggplot2-and-data" class="md-nav__link">
+    Getting started with ggplot2 and data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plotting-with-ggplot2" class="md-nav__link">
+    Plotting with ggplot2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-aesthetics" class="md-nav__link">
+    Changing aesthetics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-another-variable" class="md-nav__link">
+    Adding another variable
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-scales" class="md-nav__link">
+    Changing scales
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boxplot" class="md-nav__link">
+    Boxplot
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-geoms" class="md-nav__link">
+    Adding geoms
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding geoms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changing-themes" class="md-nav__link">
+    Changing themes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changing-labels" class="md-nav__link">
+    Changing labels
+  </a>
+  
+    <nav class="md-nav" aria-label="Changing labels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#faceting" class="md-nav__link">
+    Faceting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exporting-plots" class="md-nav__link">
+    Exporting plots
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="intro-to-r-via-ggplot2">Intro to R via <code>ggplot2</code></h1>
+<p>Note that this lesson has been modified from <a href="https://carpentries.org/index.html">The Carpentries</a> <a href="https://carpentries.org/blog/2023/07/r-ecology-alt-beta/">alternative version</a> of the <a href="https://carpentries-incubator.github.io/R-ecology-lesson-alternative/visualizing-ggplot.html">R Ecology lesson</a>.
+Parts are reproduced in full, but the major changes were included to shorten the lesson to 60 minutes.</p>
+<h2 id="introduction-to-r-and-rstudio">Introduction to R and RStudio</h2>
+<h3 id="what-are-r-and-rstudio">What are R and RStudio?</h3>
+<p>R refers to a programming language as well as the software that runs R code.</p>
+<p><a href="https://rstudio.com">RStudio</a> is a software interface that can make it easier to write R scripts and interact with the R software. 
+It's a very popular platform, and RStudio also maintains the <a href="https://www.tidyverse.org/"><code>tidyverse</code></a> series of packages we will use in this lesson.</p>
+<h3 id="navigating-rstudio">Navigating RStudio</h3>
+<p>We will use the RStudio integrated development environment (IDE) to write code into scripts, run code in R, navigate files on our computer, inspect objects we create in R, and look at the plots we make. 
+RStudio has many other features that can help with things like version control, developing R packages, and writing Shiny apps, but we won't cover those in the workshop.</p>
+<p><img alt="Screenshot of RStudio showing the 4 &quot;panes&quot;." src="../rstudio_screenshot.png" /></p>
+<p>In the above screenshot, we can see 4 "panes" in the default layout:</p>
+<ul>
+<li>Top-Left: the <strong>Source</strong> pane that displays scripts and other files. </li>
+<li>If you only have 3 panes, and the Console pane is in the top left, press <kbd>Shift+Cmd+N</kbd> (Mac) or <kbd>Shift+Ctrl+N</kbd> (Windows) to open a blank R script, which should make the Source pane appear.</li>
+<li>Top-Right: the <strong>Environment/History</strong> pane, which shows all the objects in your current R session (Environment) and your command history (History)</li>
+<li>there are some other tabs here, including Connections, Build, Tutorial, and possibly Git</li>
+<li>we won't cover any of the other tabs, but RStudio has lots of other useful features</li>
+<li>Bottom-Left: the <strong>Console</strong> pane, where you can interact directly with an R console, which interprets R commands and prints the results</li>
+<li>There are also tabs for Terminal and Jobs</li>
+<li>Bottom-Right: the <strong>Files/Plots/Help/Viewer</strong> pane to navigate files or view plots and help pages</li>
+</ul>
+<p>You can customize the layout of these panes, as well as many settings such as RStudio color scheme, font, and even keyboard shortcuts.
+You can access these settings by going to the menu bar, then clicking on Tools → Global Options.</p>
+<p>RStudio puts most of the things you need to work in R into a single window, and also includes features like keyboard shortcuts, autocompletion of code, and syntax highlighting (different types of code are colored differently, making it easier to navigate your code).</p>
+<h3 id="console-vs-script">Console vs. script</h3>
+<p>You can run commands directly in the R console, or you can write them into an R script.
+It may help to think of working in the console vs. working in a script as something like cooking.
+The console is like making up a new recipe, but not writing anything down.
+You can carry out a series of steps and produce a nice, tasty dish at the end.
+However, because you didn't write anything down, it's harder to figure out exactly what you did, and in what order.</p>
+<p>Writing a script is like taking nice notes while cooking- you can tweak and edit the recipe all you want, you can come back in 6 months and try it again, and you don't have to try to remember what went well and what didn't.
+It's actually even easier than cooking, since you can hit one button and the computer "cooks" the whole recipe for you!</p>
+<p>An additional benefit of scripts is that you can leave <strong>comments</strong> for yourself or others to read.
+Lines that start with <code>#</code> are considered comments and will not be interpreted as R code.</p>
+<h3 id="working-in-r-and-rstudio">Working in R and RStudio</h3>
+<p>The basis of programming is that we write down instructions for the computer to follow, and then we tell the computer to follow those instructions. 
+We write these instructions in the form of <em>code</em>, which is a common language that is understood by the computer and humans (after some practice). 
+We call these instructions <em>commands</em>, and we tell the computer to follow the instructions by <em>running</em> (also called <em>executing</em>) the commands.</p>
+<h4 id="console">Console</h4>
+<ul>
+<li>The R console is where code is run/executed</li>
+<li>The <strong>prompt</strong>, which is the <code>&gt;</code> symbol, is where you can type commands </li>
+<li>By pressing <kbd>Enter</kbd>, R will execute those commands and print the result.</li>
+<li>You can work here, and your history is saved in the History pane, but you can't access it in the future</li>
+</ul>
+<h4 id="script">Script</h4>
+<ul>
+<li>A script is a record of commands to send to R, preserved in a plain text file with a <code>.R</code> extension</li>
+<li>You can make a new R script by clicking <code>File → New File → R Script</code>, clicking the green <code>+</code> button in the top left corner of RStudio, or pressing <kbd>Shift+Cmd+N</kbd> (Mac) or <kbd>Shift+Ctrl+N</kbd> (Windows). It will be unsaved, and called "Untitled1"</li>
+<li>If you type out lines of R code in a script, you can send them to the R console to be evaluated</li>
+<li><kbd>Cmd+Enter</kbd> (Mac) or <kbd>Ctrl+Enter</kbd> (Windows) will run the line of code that your cursor is on</li>
+<li>If you highlight multiple lines of code, you can run all of them by pressing <kbd>Cmd+Enter</kbd> (Mac) or <kbd>Ctrl+Enter</kbd> (Windows)</li>
+<li>By preserving commands in a script, you can edit and rerun them quickly, save them for later, and share them with others</li>
+<li>You can leave comments for yourself by starting a line with a <code>#</code></li>
+</ul>
+<h2 id="data-visualization-with-ggplot2">Data visualization with ggplot2</h2>
+<h3 id="getting-started-with-ggplot2-and-data">Getting started with ggplot2 and data</h3>
+<p>We are going to be using <strong>functions</strong> from the <code>ggplot2</code> <strong>package</strong> to create visualizations of data.
+Functions are predefined bits of code that automate sets of actions.
+R itself has many built-in functions, but we can access many more by loading other <strong>packages</strong> of functions and data into R.</p>
+<p>If you don't have a blank, untitled script open yet, go ahead and open one with <kbd>Shift+Cmd+N</kbd> (Mac) or <kbd>Shift+Ctrl+N</kbd> (Windows).</p>
+<p>First, we'll use the <code>install.packages()</code> function to install the <code>ggplot2</code> package.</p>
+<div class="highlight"><pre><span></span><code>install.packages(&quot;ggplot2&quot;)
+</code></pre></div>
+<p>This function installs the <code>ggplot2</code> package onto your computer so that R can access it. 
+To use it in our current session, we <strong>load</strong> the package using the <code>library()</code> function.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</code></pre></div>
+<p>Next lesson we will learn how to read data from external files into R, but for now we are going to use a clean and ready-to-use dataset that is provided by the <strong><code>ratdat</code></strong> data package.
+While most packages exist to bring new functionality into R, others package data, and some do both.
+To make our dataset available, we need to install and load the <code>ratdat</code> package too.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#39;ratdat&#39;</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ratdat</span><span class="p">)</span>
+</code></pre></div>
+<p>The <code>ratdat</code> package contains data from the <a href="https://github.com/weecology/PortalData">Portal Project</a> which is a long-term data set from Portal, Arizona, in the Chihuahuan desert. </p>
+<p>We will be using a data set called <code>complete_old</code>, which contains older years of survey data.
+Let's try to learn a little bit about the data.</p>
+<p>We can use the <code>View()</code> function to open an interactive viewer which behaves like a simplified version of a spreadsheet program.
+It's a handy function, but somewhat limited when trying to view large data sets.</p>
+<div class="highlight"><pre><span></span><code>View(complete_old)
+</code></pre></div>
+<p>If you hover over the tab for the interactive <code>View()</code>, you can click the "x" that appears, which will close the tab.</p>
+<p>We can find out more about the dataset by using the <code>str()</code> function to examine the <strong>str</strong>ucture of the data.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">str</span><span class="p">(</span><span class="n">complete_old</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## &#39;data.frame&#39;:    16878 obs. of  13 variables:
+##  $ record_id      : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ month          : int  7 7 7 7 7 7 7 7 7 7 ...
+##  $ day            : int  16 16 16 16 16 16 16 16 16 16 ...
+##  $ year           : int  1977 1977 1977 1977 1977 1977 1977 1977 1977 1977 ...
+##  $ plot_id        : int  2 3 2 7 3 1 2 1 1 6 ...
+##  $ species_id     : chr  &quot;NL&quot; &quot;NL&quot; &quot;DM&quot; &quot;DM&quot; ...
+##  $ sex            : chr  &quot;M&quot; &quot;M&quot; &quot;F&quot; &quot;M&quot; ...
+##  $ hindfoot_length: int  32 33 37 36 35 14 NA 37 34 20 ...
+##  $ weight         : int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ genus          : chr  &quot;Neotoma&quot; &quot;Neotoma&quot; &quot;Dipodomys&quot; &quot;Dipodomys&quot; ...
+##  $ species        : chr  &quot;albigula&quot; &quot;albigula&quot; &quot;merriami&quot; &quot;merriami&quot; ...
+##  $ taxa           : chr  &quot;Rodent&quot; &quot;Rodent&quot; &quot;Rodent&quot; &quot;Rodent&quot; ...
+##  $ plot_type      : chr  &quot;Control&quot; &quot;Long-term Krat Exclosure&quot; &quot;Control&quot; &quot;Rodent Exclosure&quot; ...
+</code></pre></div>
+<p><code>str()</code> will tell us how many observations/rows (obs) and variables/columns we have, as well as some information about each of the variables.
+We see the name of a variable (such as <code>year</code>), followed by the kind of variable (<strong>int</strong> for integer, <strong>chr</strong> for character), and the first 10 entries in that variable. 
+We will talk more about different data types and structures later on.</p>
+<h3 id="plotting-with-ggplot2">Plotting with <strong><code>ggplot2</code></strong></h3>
+<p><strong><code>ggplot2</code></strong> is a powerful package that allows you to create plots from tabular data (data in a table format with rows and columns).
+The <strong><code>gg</code></strong> in <strong><code>ggplot2</code></strong> stands for "grammar of graphics", and the package uses consistent vocabulary to create plots of widely varying types.
+Therefore, we only need small changes to our code if the underlying data changes or we decide to make a box plot instead of a scatter plot.
+This approach helps you create publication-quality plots with minimal adjusting and tweaking.</p>
+<p><strong><code>ggplot2</code></strong> is part of the <strong><code>tidyverse</code></strong> series of packages, which tend to like data in the "long" or "tidy" format, which means each column represents a single variable, and each row represents a single observation.
+Well-structured data will save you lots of time making figures with <strong><code>ggplot2</code></strong>.
+For now, we will use data that are already in this format.
+Later, we'll learn about other packages in tidyverse and how to use them to get data into this format.
+We start learning R by using <strong><code>ggplot2</code></strong> because it relies on concepts that we will need when we talk about data transformation in the next lessons.</p>
+<p><strong><code>ggplot</code></strong> plots are built step by step by adding new layers, which allows for extensive flexibility and customization of plots.</p>
+<p>To build a plot, we will use a basic template that can be used for different types of plots:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">DATA</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="o">&lt;</span><span class="n">MAPPINGS</span><span class="o">&gt;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">&lt;</span><span class="n">GEOM_FUNCTION</span><span class="o">&gt;</span><span class="p">()</span>
+</code></pre></div>
+<p>We use the <code>ggplot()</code> function to create a plot.
+To tell it what data to use, we need to specify the <code>data</code> <strong>argument</strong>.
+An argument is an input that a function takes.
+You set arguments using the <code>=</code> sign.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/bare-plot-1.png" /><!-- --></p>
+<p>We get a blank plot because we haven't told <code>ggplot()</code> which variables we want to correspond to parts of the plot.
+We can specify the "mapping" of variables to plot elements, such as x/y coordinates, size, or shape, by using the <code>aes()</code> function.
+We'll also add a comment, which is any line starting with a <code>#</code>.
+It's a good idea to use comments to organize your code or clarify what you are doing.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># adding a mapping to x and y axes</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">))</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/plot-with-axes-1.png" /><!-- --></p>
+<p>Now we've got a plot with x and y axes corresponding to variables from <code>complete_old</code>.
+However, we haven't specified how we want the data to be displayed.
+We do this using <code>geom_</code> functions, which specify the type of <code>geom</code>etry we want, such as points, lines, or bars.
+We can add a <code>geom_point()</code> layer to our plot by using the <code>+</code> sign.
+We indent onto a new line to make it easier to read.
+The plus sign <code>+</code> at the end of the first line signifies that we are adding another layer to the plot.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## Warning: Removed 3081 rows containing missing values (`geom_point()`).
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/scatter-plot-1.png" /><!-- --></p>
+<p>You may notice a warning that missing values were removed.
+If a variable necessary to make the plot is missing from a given row of data (in this case, <code>hindfoot_length</code> or <code>weight</code>), it can't be plotted.
+<code>ggplot2</code> uses a warning message to let us know that some rows couldn't be plotted.</p>
+<p><strong>Warning</strong> messages are one of a few ways R will communicate with you.
+Warnings can be thought of as a "heads up".
+Nothing necessarily went <em>wrong</em>, but the author of that function wanted to draw your attention to something.
+In the above case, it's worth knowing that some of the rows of your data were not plotted because they had missing data.</p>
+<p>A more serious type of message is an <strong>error</strong>.
+Here's an example:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_poit</span><span class="p">()</span>
+</code></pre></div>
+<p>As you can see, we only get the error message, with no plot, because something has actually gone wrong.
+This particular error message is fairly common, and it happened because we misspelled <code>point</code> as <code>poit</code>.
+Because there is no function named <code>geom_poit()</code>, R tells us it can't find a function with that name.</p>
+<h3 id="changing-aesthetics">Changing aesthetics</h3>
+<p><code>ggplot</code> plots are made layer by layer.
+We'll keep adding new layers to the plot we just made to make it look different.
+You may have noticed that parts of our scatter plot have many overlapping points, making it difficult to see all the data.
+We can adjust the transparency of the points using the <code>alpha</code> argument, which takes a value between 0 and 1:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/change-alpha-1.png" /><!-- --></p>
+<p>We can also change the color of the points:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/change-color-1.png" /><!-- --></p>
+<p>When we add more information into the <code>aes()</code> function, we're changing the aesthetic of the plot. 
+This information is linked directly to the data in the underlying data frame that we're plotting.</p>
+<h3 id="adding-another-variable">Adding another variable</h3>
+<p>Let's try coloring our points according to the sampling plot type (plot here refers to the physical area where rodents were sampled and has nothing to do with making graphs).
+Since we're now mapping a variable (<code>plot_type</code>) to a component of the ggplot2 plot (<code>color</code>), we need to put the argument inside <code>aes()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/color-plot-type-1.png" /><!-- --></p>
+<p><strong>Challenge 1: Modifying plots</strong></p>
+<p>Part 1: Try modifying the plot so that the <code>shape</code> of the point varies by <code>sex</code>. You will set the <code>shape</code> the same way you set the <code>color</code>. Do you think this is a good way to represent <code>sex</code> with these data?</p>
+<details>
+  <summary>Challenge solution</summary>
+
+
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<p><br></p>
+<p>Part 2: Now try changing the plot so that the <code>color</code> of the points vary by <code>year</code>. Do you notice a difference in the color scale compared to changing color by plot type? Why do you think this happened?</p>
+<details>
+  <summary>Challenge solution</summary>
+
+
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span>
+</code></pre></div>
+- For Part 2, the color scale is different compared to using <code>color=plot_type</code> because <code>plot_type</code> and <code>year</code> are different variable types. 
+<code>plot_type</code> is a categorical variable, so <code>ggplot2</code> defaults to use a <b>discrete</b> color scale, whereas <code>year</code> is a numeric variable, so <code>ggplot2</code> uses a <b>continuous</b> color scale.
+
+</details>
+
+<p><br></p>
+<h3 id="changing-scales">Changing scales</h3>
+<p>The default discrete color scale isn't always ideal: it isn't friendly to viewers with colorblindness and it doesn't translate well to grayscale.
+However, <strong><code>ggplot2</code></strong> comes with quite a few other color scales, including the fantastic <code>viridis</code> scales, which are designed to be colorblind and grayscale friendly. We can change scales by adding <code>scale_</code> functions to our plots:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_color_viridis_d</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/scale-viridis-1.png" /><!-- --></p>
+<p>Scales don't just apply to colors - any plot component that you put inside <code>aes()</code> can be modified with <code>scale_</code> functions. Just as we modified the scale used to map <code>plot_type</code> to <code>color</code>, we can modify the way that <code>weight</code> is mapped to the <code>x</code> axis by using the <code>scale_x_log10()</code> function:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_x_log10</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/scale-log-1.png" /><!-- --></p>
+<h2 id="boxplot">Boxplot</h2>
+<p>Let's try making a different type of plot altogether. We'll start off with our same basic building blocks using <code>ggplot()</code> and <code>aes()</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">))</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/blank-boxplot-1.png" /><!-- --></p>
+<p>This time, let's try making a boxplot, which will have <code>plot_type</code> on the x axis and <code>hindfoot_length</code> on the y axis.
+We can do this by adding <code>geom_boxplot()</code> to our <code>ggplot()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## Warning: Removed 2733 rows containing non-finite values (`stat_boxplot()`).
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/boxplot-1.png" /><!-- --></p>
+<p>Just as we colored the points before, we can color our boxplot by <code>plot_type</code> as well:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/boxplot-color-1.png" /><!-- --></p>
+<p>It looks like <code>color</code> has only affected the outlines of the boxplot, not the rectangular portions.
+This is because the <code>color</code> only impacts 1-dimensional parts of a <code>ggplot</code>: points and lines.
+To change the color of 2-dimensional parts of a plot, we use <code>fill</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/boxplot-fill-1.png" /><!-- --></p>
+<h2 id="adding-geoms">Adding geoms</h2>
+<p>One of the most powerful aspects of <strong><code>ggplot</code></strong> is the way we can add components to a plot in successive layers.
+While boxplots can be very useful for summarizing data, it is often helpful to show the raw data as well.
+With <strong><code>ggplot</code></strong>, we can easily add another <code>geom_</code> to our plot to show the raw data. </p>
+<p>Let's add <code>geom_point()</code> to visualize the raw data.
+We will modify the <code>alpha</code> argument to help with overplotting.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/boxplot-points-1.png" /><!-- --></p>
+<p>Uh oh... all our points for a given <code>x</code> axis category fall exactly on a line, which isn't very useful.
+We can shift to using <code>geom_jitter()</code>, which will add points with a bit of random noise added to the positions to prevent this from happening.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_jitter</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/boxplot-jitter-1.png" /><!-- --></p>
+<p>You may have noticed that some of our data points are now appearing on our plot twice: the outliers are plotted as black points from <code>geom_boxplot()</code>, but they are also plotted with <code>geom_jitter()</code>.
+Since we don't want to represent these data multiple times in the same form (points), we can stop <code>geom_boxplot()</code> from plotting them.
+We do this by setting the <code>outlier.shape</code> argument to <code>NA</code>, which means the outliers don't have a shape to be plotted.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">(</span><span class="n">outlier.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_jitter</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/boxplot-outliers-1.png" /><!-- --></p>
+<p>Just as before, we can map <code>plot_type</code> to <code>color</code> by putting it inside <code>aes()</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">(</span><span class="n">outlier.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_jitter</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/global-color-1.png" /><!-- --></p>
+<p>Notice that both the color of the points and the color of the boxplot lines changed.
+Any time we specify an <code>aes()</code> mapping inside our initial <code>ggplot()</code> function, that mapping will apply to all our <code>geom</code>s.</p>
+<p>If we want to limit the mapping to a single <code>geom</code>, we can put the mapping into the specific <code>geom_</code> function, like this:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">(</span><span class="n">outlier.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_jitter</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">),</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/geom-color-1.png" /><!-- --></p>
+<p>Now our points are colored according to <code>plot_type</code>, but the boxplots are all the same color.
+One thing you might notice is that even with <code>alpha = 0.2</code>, the points obscure parts of the boxplot.
+This is because the <code>geom_point()</code> layer comes after the <code>geom_boxplot()</code> layer, which means the points are plotted on top of the boxes.
+To put the boxplots on top, we switch the order of the layers:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_jitter</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">),</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">(</span><span class="n">outlier.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/reverse-layers-1.png" /><!-- --></p>
+<p>Now we have the opposite problem!
+The white <code>fill</code> of the boxplots completely obscures some of the points.
+To address this problem, we can remove the <code>fill</code> from the boxplots altogether, leaving only the black lines.
+To do this, we set <code>fill</code> to <code>NA</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_jitter</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">),</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">(</span><span class="n">outlier.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/fill-na-1.png" /><!-- --></p>
+<p>Now we can see all the raw data and our boxplots on top.</p>
+<p><strong>Challenge 2: Change <code>geom</code>s</strong></p>
+<p>Violin plots are similar to boxplots- try making one using <code>plot_type</code> and <code>hindfoot_length</code> as the x and y variables.
+Remember that all geom functions start with <code>geom_</code>, followed by the type of geom.</p>
+<p>This might also be a place to test your search engine skills.
+It is often useful to search for <code>R package_name stuff you want to search</code>.
+So for this example we might search for <code>R ggplot2 violin plot</code>.</p>
+<details>
+  <summary>Challenge solution</summary>
+
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                     </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_jitter</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_violin</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<p><br></p>
+<p>For an <em>extra challenge</em>, make the color of the points and outlines of the violins vary by <code>plot_type</code>, and set the fill of the violins to white.
+Try playing with the order of the layers to see what looks best.</p>
+<details>
+  <summary>Challenge solution</summary>
+
+
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                     </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_jitter</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_violin</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;white&quot;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<p><br></p>
+<h3 id="changing-themes">Changing themes</h3>
+<p>So far we've been changing the appearance of parts of our plot related to our data and the <code>geom_</code> functions, but we can also change many of the non-data components of our plot. </p>
+<p>At this point, we are pretty happy with the basic layout of our plot, so we can <strong>assign</strong> it to a plot to a named <strong>object</strong>.
+We do this using the <strong>assignment arrow</strong> <code>&lt;-</code>.
+What we are doing here is taking the result of the code on the right side of the arrow, and assigning it to an object whose name is on the left side of the arrow.</p>
+<p>We will create an object called <code>myplot</code>. If you run the name of the <code>ggplot2</code> object, it will show the plot, just like if you ran the code itself.</p>
+<div class="highlight"><pre><span></span><code><span class="n">myplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complete_old</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hindfoot_length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_jitter</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plot_type</span><span class="p">),</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_boxplot</span><span class="p">(</span><span class="n">outlier.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">)</span>
+
+<span class="n">myplot</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## Warning: Removed 2733 rows containing non-finite values (`stat_boxplot()`).
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## Warning: Removed 2733 rows containing missing values (`geom_point()`).
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/unnamed-chunk-5-1.png" /><!-- --></p>
+<p>This process of assigning something to an <strong>object</strong> is not specific to <code>ggplot2</code>, but rather a general feature of R.
+We will be using it a lot in the rest of this lesson.
+We can now work with the <code>myplot</code> object as if it was a block of <code>ggplot2</code> code, which means we can use <code>+</code> to add new components to it.</p>
+<p>We can change the overall appearance using <code>theme_</code> functions. Let's try a black-and-white theme by adding <code>theme_bw()</code> to our plot:</p>
+<div class="highlight"><pre><span></span><code><span class="n">myplot</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">theme_bw</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/theme-bw-1.png" /><!-- --></p>
+<p>As you can see, a number of parts of the plot have changed. 
+<code>theme_</code> functions usually control many aspects of a plot's appearance all at once, for the sake of convenience.
+To individually change parts of a plot, we can use the <code>theme()</code> function, which can take many different arguments to change things about the text, grid lines, background color, and more.
+Let's try changing the size of the text on our axis titles.
+We can do this by specifying that the <code>axis.title</code> should be an <code>element_text()</code> with <code>size</code> set to 14.</p>
+<div class="highlight"><pre><span></span><code><span class="n">myplot</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">))</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/text-size-1.png" /><!-- --></p>
+<p>Another change we might want to make is to remove the vertical grid lines.
+Since our x axis is categorical, those grid lines aren't useful.
+To do this, inside <code>theme()</code>, we will change the <code>panel.grid.major.x</code> to an <code>element_blank()</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">myplot</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w"> </span>
+<span class="w">        </span><span class="n">panel.grid.major.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">())</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/element-blank-1.png" /><!-- --></p>
+<p>Another useful change might be to remove the color legend, since that information is already on our x axis.
+For this one, we will set <code>legend.position</code> to "none". </p>
+<div class="highlight"><pre><span></span><code><span class="n">myplot</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w"> </span>
+<span class="w">        </span><span class="n">panel.grid.major.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span><span class="w"> </span>
+<span class="w">        </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/legend-remove-1.png" /><!-- --></p>
+<h2 id="changing-labels">Changing labels</h2>
+<p>We probably want to make our axis titles nicer, and perhaps add a main title to the plot.
+We can do this using the <code>labs()</code> function:</p>
+<div class="highlight"><pre><span></span><code><span class="n">myplot</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w"> </span>
+<span class="w">        </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Rodent size by plot type&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Plot type&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hindfoot length (mm)&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/labels-1.png" /><!-- --></p>
+<p>We removed our legend from this plot, but you can also change the titles of various legends using <code>labs()</code>.
+For example, <code>labs(color = "Plot type")</code> would change the title of a color scale legend to "Plot type".</p>
+<p><strong>Challenge 3: Customizing a plot</strong></p>
+<p>Modify the previous plot by adding a descriptive subtitle. 
+Increase the font size of the plot title and make it bold.
+<strong>Hint</strong>: "bold" is referred to as a font "face."</p>
+<details>
+  <summary>Challenge solution</summary>
+
+
+<div class="highlight"><pre><span></span><code><span class="n">myplot</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w"> </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bold&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Rodent size by plot type&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Long-term dataset from Portal, AZ&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Plot type&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hindfoot length (mm)&quot;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<p><br></p>
+<h3 id="faceting">Faceting</h3>
+<p>One of the most powerful features of <strong><code>ggplot</code></strong> is the ability to quickly split a plot into multiple smaller plots based on a categorical variable, which is called <strong>faceting</strong>. </p>
+<p>So far we've mapped variables to the x axis, the y axis, and color, but trying to add a 4th variable becomes difficult.
+Changing the shape of a point might work, but only for very few categories, and even then, it can be hard to tell the differences between the shapes of small points.</p>
+<p>Instead of cramming one more variable into a single plot, we will use the <code>facet_wrap()</code> function to generate a series of smaller plots, split out by <code>sex</code>.
+We also use <code>ncol</code> to specify that we want them arranged in a single column:</p>
+<div class="highlight"><pre><span></span><code><span class="n">myplot</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w"> </span>
+<span class="w">        </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="n">panel.grid.major.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">())</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Rodent size by plot type&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Plot type&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hindfoot length (mm)&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Plot type&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="nf">vars</span><span class="p">(</span><span class="n">sex</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/facet-wrap-1.png" /><!-- --></p>
+<p>Faceting comes in handy in many scenarios.
+It can be useful when:</p>
+<ul>
+<li>a categorical variable has too many levels to differentiate by color (such as a dataset with 20 countries)</li>
+<li>your data overlap heavily, obscuring categories</li>
+<li>you want to show more than 3 variables at once</li>
+<li>you want to see each category in isolation while allowing for general comparisons between categories</li>
+</ul>
+<h2 id="exporting-plots">Exporting plots</h2>
+<p>Once we are happy with our final plot, we can assign the whole thing to a new object, which we can call <code>finalplot</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">finalplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">myplot</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w"> </span>
+<span class="w">        </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="n">panel.grid.major.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">())</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Rodent size by plot type&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Plot type&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hindfoot length (mm)&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Plot type&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="nf">vars</span><span class="p">(</span><span class="n">sex</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</code></pre></div>
+<p>After this, we can run <code>ggsave()</code> to save our plot. The first argument we give is the path to the file we want to save, including the correct file extension.
+This code will make an image called <code>rodent_size_plots.jpg</code> in the <code>images/</code> folder of our current project.
+We are making a <code>.jpg</code>, but you can save <code>.pdf</code>, <code>.tiff</code>, and other file formats.
+Next, we tell it the name of the plot object we want to save.
+We can also specify things like the width and height of the plot in inches.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggsave</span><span class="p">(</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;images/rodent_size_plots.jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">finalplot</span><span class="p">,</span>
+<span class="w">       </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">)</span>
+</code></pre></div>
+<p>The final plot should look like this:</p>
+<div class="highlight"><pre><span></span><code>## Warning: Removed 2733 rows containing non-finite values (`stat_boxplot()`).
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>## Warning: Removed 2733 rows containing missing values (`geom_point()`).
+</code></pre></div>
+<p><img alt="" src="../lesson_files/figure-html/unnamed-chunk-6-1.png" /><!-- --></p>
+<p><strong>Challenge 4: Make your own plot</strong></p>
+<p>Try making your own plot! You can run <code>str(complete_old)</code> or <code>?complete_old</code> to explore variables you might use in your new plot. 
+Feel free to use variables we have already seen, or some we haven't explored yet.</p>
+<p>Here are a couple ideas to get you started:</p>
+<ul>
+<li>make a histogram of one of the numeric variables</li>
+<li>try using a different color <code>scale_</code></li>
+<li>try changing the size of points or thickness of lines in a <code>geom</code></li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 <a href="https://www.arcadiascience.com">Arcadia Science</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>
